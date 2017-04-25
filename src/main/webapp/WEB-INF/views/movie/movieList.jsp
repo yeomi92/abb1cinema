@@ -15,7 +15,7 @@
 		<li class="abb1_li_inline"><a href="" class="abb1_text_line_none">평점순</a></li>
 	</ul>
 </div>
-<div class="abb1_width_center" style="margin-top: 10px;">
+<div class="abb1_width_center" style="margin-top: 15px;">
 	<ul class="abb1_ul_inline">
 		<li class="abb1_li_inline">
 			<table class="abb1_nowMovie_table abb1_nowMovie_border abb1_nowMovie_padding">
