@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abb1cinema.web.mapper.Mapper">
+	<delete id="delete" parameterType="hashMap">
+		DELETE FROM ${group} WHERE ${key} = #{value}
+	</delete>
+	<select id="count" resultType="int" parameterType="hashMap">
+		SELECT COUNT(*) FROM ${group}
+	</select>
+	<select id="exist" resultType="int" parameterType="hashMap">
+		SELECT COUNT(*) FROM ${group} WHERE ${idType} = #{id}
+	</select>
+</mapper>

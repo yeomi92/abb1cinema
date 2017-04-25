@@ -1,0 +1,88 @@
+@CHARSET "UTF-8";
+.abb1_gnb {list-style-type: none; display: inline-block;}
+.abb1_gnb li {float: left;}
+.abb1_gnb a {font-size: 17px;color: #5b5b5b; text-align: center; text-decoration: none; padding: 0 20px; border-left: 1px solid #5b5b5b; border-right: 1px solid #5b5b5b;}
+.abb1_gnb_tab{padding-bottom: 10px; border-bottom: 1px solid #c0c0c0;}
+.abb1_tooltip { position: relative; display: inline-block; border-bottom: 1px dotted black;}
+.abb1_tooltip .abb1_tooltiptext {font-size: 10px; width: 30px; visibility: hidden; background-color: #5b5b5b; color: #fff; text-align: center; border-radius: 6px; padding: 5px 0; position: absolute; z-index: 1; bottom: 3px;}
+.abb1_tooltip:hover .abb1_tooltiptext { visibility: visible; }
+.abb1_tbboxoffice {margin: 0 auto; width: 1035px; text-align: center}
+.abb1_tbboxoffice_firstcol {width: 285px; background-color: #2A2E33; color: #BFB689;}
+.abb1_tbboxoffice_firstcol a {font-size: 14px; color: white; text-align: center; text-decoration: none; padding: 0 20px 0 20px; }
+.abb1_main_reservebtn {background-color: #ee1c25; color: white; font-weight: bold; font-size: 20px; height: 48px;}
+.abb1_rank {list-style-type: none; display: inline-block;}
+.abb1_rank li { float: left; display: table; height: 30px; color: #1a1917; font-size: 14px; font-weight: bold; letter-spacing: -0.5px;}
+.abb1_rank a:hover{color: red; text-decoration: none}
+.abb1_rank_grade{display: inline-block; overflow: hidden; vertical-align: middle; width: 24px; height: 24px; margin-right: 5px; text-indent: -99999em;}
+.abb1_rank_moviename{text-align: left; display: inline-block;width: 150px;height: 17px;line-height: 17px;vertical-align: middle;text-overflow: ellipsis; overflow: hidden;white-space: nowrap;}
+.abb1_memRk{ float: right;display: inline-block; height: 30px; line-height: 30px; color: #666; font-size: 13px;}
+.abb1_slidePoster{list-style-type: none; display: inline-block;}
+.abb1_slidePoster li {float: left;}
+.abb1_slidePoster a {font-size: 17px;color: #5b5b5b; text-align: center; text-decoration: none; padding: 0 20px;}
+.abb1_slideBtn {padding-top: 110px}
+.abb1_no_padding{padding: 0;}
+.abb1_width_100{width:100%;}
+.abb1_text_center{text-align: center;}
+.abb1_eventBxMain{color: #231f20; font-size: 25px; margin-bottom: 20px; font-style: italic;}
+
+/*------ main ------*/
+#boxoffice{width:100%; text-align: center; padding-top: 17px;}
+#slidePoster{margin-top: 50px;}
+#bannerbox{margin-top: 50px; border-top: 1px solid #c0c0c0; border-bottom: 1px solid #c0c0c0; width:100%; text-align: center;}
+#eventBxMain{padding: 50px 0; border-bottom: 1px solid #c0c0c0; }
+#bnShortcuts{padding: 50px 0; border-top: 1px solid #c0c0c0; border-bottom: 1px solid #c0c0c0; width:100%; text-align: center;}
+
+/*------ footer ------*/
+#footer{width:100%; text-align: center; background-color: #f5f5f5}
+
+/*------ total settings ------*/
+ul { list-style-type: none; padding: 0; margin: 0;}
+a {text-decoration: none;}
+
+.abb1_nowMovie_table{
+	border-collapse: collapse;
+}
+.abb1_nowMovie_border{
+	border: 1px solid #cdcdcd;
+}
+.abb1_width_center{
+	margin: 0 auto; width: 100%; text-align: center;
+}
+.abb1_width_right{
+	margin: 0 auto;width: 1000px;text-align: right;
+}
+.abb1_width_left{
+	margin: 0 auto;width: 1000px;text-align: left;
+}
+.abb1_ul_inline{
+	list-style-type: none; display: inline-block;
+}
+.abb1_li_inline{
+	float: left;padding-right: 20px;
+}
+.abb1_text_line_none{
+	text-decoration: none;
+}
+.abb1_font_bold{
+	font-weight: bold;
+}
+.abb1_font_serif{
+	font-family: serif;
+}
+.abb1_font_italic{
+	font-style: italic;
+}
+.abb1_movie_detail_font_color{
+	color: #666666;
+}
+.abb1_star_rating {font-size:0; letter-spacing:-4px;}
+.abb1_star_rating a {
+    font-size:22px;
+    letter-spacing:0;
+    display:inline-block;
+    margin-left:5px;
+    color:#d9d9d9;
+    text-decoration:none;
+}
+.abb1_star_rating a:first-child {margin-left:0;}
+.abb1_star_rating a.on {color:#000000;}
