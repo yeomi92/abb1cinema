@@ -53,16 +53,22 @@
 		<tr>
 				<td colspan="2"><input type="text" class="form-control" placeholder="이메일" required="" autofocus=""></td>
 				<td>
-					<input type="button" value="인증번호 발송" class="btn btn-lg btn-primary btn-block abb1_btn_verification" type="submit">
+					<input type="button" value="인증번호 발송" style="font-size: 13px;" class="btn btn-lg btn-primary btn-block abb1_btn_verification" type="submit">
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="text" class="form-control" placeholder="인증번호 입력" required="" autofocus=""></td>
 				<td>
-					<input type="button" value="인증번호 확인" class="btn btn-lg btn-primary btn-block abb1_btn_verification" type="submit">
+					<input type="button" value="인증번호 확인" style="font-size: 13px;" class="btn btn-lg btn-primary btn-block abb1_btn_verification" type="submit">
 				</td>
 			</tr>
 		</table>
-		<input href="${context}/login" type="button" value="가입하기" class="btn btn-lg btn-primary btn-block abb1_btn_verification"/>
+		<table>
+		<tr>
+		<td><input href="${context}/login" type="button" value="가입하기" class="btn btn-lg btn-primary btn-block abb1_btn_verification"/>
+		</td>
+		</tr>
+		</table>
+		
 	</form>
 <jsp:include page="../common/footer.jsp"/>
