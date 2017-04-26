@@ -1,4 +1,5 @@
 @CHARSET "UTF-8";
+/*------ main ------*/
 .abb1_gnb {list-style-type: none; display: inline-block;}
 .abb1_gnb li {float: left;}
 .abb1_gnb a {font-size: 17px;color: #5b5b5b; text-align: center; text-decoration: none; padding: 0 20px; border-left: 1px solid #5b5b5b; border-right: 1px solid #5b5b5b;}
@@ -25,58 +26,120 @@
 .abb1_text_center{text-align: center;}
 .abb1_eventBxMain{color: #231f20; font-size: 25px; margin-bottom: 20px; font-style: italic;}
 
-/*------ main ------*/
+/*------ bbs -------*/
+.abb1_bbs_table{width:980px;margin:0 auto;padding:50px 0;color:#231f20}
+.abb1_bbs_table_text{padding-bottom:20px;font-size:28px}
+.abb1_bbs_table .abb1_select_box{float:left;margin-right:5px; width: 124px; height: 28px;}
+.abb1_bbs_table select {width: 124px; height: 28px; }
+.abb1_bbs_table span {float:right;padding-top:8px;color:#231f20 }
+.abb1_submitbtn{float: left;min-width: 50px;text-align: center;height: 28px;border: 0;background: #231f20; color: #fff; font-size: 12px; font-weight: bold;}
+.abb1_searchtext {float: left; height: 28px; border-right: 0;}
+.abb1_category{padding-top:30px;font-size:14px}
+.abb1_bbs_pagination_table{margin: 0 auto; text-align: center;}
+.abb1_bbs_pagination_table td{width: 100px;}
+
+/*------- bbs detail, notice_detail -------*/
+.abb1_bbs_notice_table tr td{border-top: 1px solid #dedede; border-bottom: 1px solid #dedede; border-collapse: collapse; height: 100px; width: 900px;}
+.abb1_bbs_notice_table tr:nth-child(2){background: #f9f6ec;}
+.abb1_bbs_notice_table span{ text-decoration: none; color: #555;}
+.abb1_view_info{margin-bottom: 30px;}
+.abb1_view_info li:first-child{padding-left: 0;background: none;}
+.abb1_view_info li{float:left;padding:0 0 0 20px;margin:0 20px 0 0;font-size:13px;color:#666}
+.abb1_review_result{display:table-cell;width:900px;vertical-align:middle;border-bottom: 1px solid #9d9d9d}
+
+/*------- bbs write -------*/
+.abb1_bbs_write_container{padding:50px; width:980px; margin: 0 auto;}
+.abb1_bbs_write_table{width:980px;color:#231f20}
+.abb1_bbs_write_table td{border-bottom: 1px solid #dedede; height: 63px; color: #777; vertical-align: middle;}
+.abb1_bbs_write_text{padding-bottom:20px;font-size:28px}
+.abb1_bbs_write_radio {width: 700px}
+.abb1_bbs_write_radio span{padding-right: 11px;}
+.abb1_write_ddl{height:40px;padding:10px 0 10px 10px;line-height:32px;font-size:14px;color:#231f20}
+.abb1_write_ddl option{font-weight:400;display:block;white-space:pre;min-height:1.2em;padding:0 2px 1px}
+.abb1_write_title{width:100%;height:40px;padding:10px;border:1px solid #dedede;background:#f5f5f5}
+.abb1_bbs_write_btns{text-align: center; padding-top: 30px}
+.abb1_bbs_write_btns a{padding-left: 5px; padding-right: 5px}
+.abb1_bbs_write_btns input{min-width:100px;height:40px;padding:0 10px;border:1px solid #231f20;font-size:16px;font-weight:700}
+.abb1_bbs_write_cancel{background:#fff;color:#231f20}
+.abb1_bbs_write_confirm{color:#cdc197;background:#231f20;}
+
+/*------ main id ------*/
 #boxoffice{width:100%; text-align: center; padding-top: 17px;}
 #slidePoster{margin-top: 50px;}
 #bannerbox{margin-top: 50px; border-top: 1px solid #c0c0c0; border-bottom: 1px solid #c0c0c0; width:100%; text-align: center;}
 #eventBxMain{padding: 50px 0; border-bottom: 1px solid #c0c0c0; }
 #bnShortcuts{padding: 50px 0; border-top: 1px solid #c0c0c0; border-bottom: 1px solid #c0c0c0; width:100%; text-align: center;}
 
+/*------ bbs id -------*/
+#bbs_table{width:100%;color:#231f20;line-height:18px;table-layout:fixed}
+#bbs_table tr:nth-child(1){font-weight: bold; background: #f9f6ec;}
+#bbs_table th{padding:14px 0 13px;border-bottom:1px solid silver;vertical-align:middle; text-align: center; font-size:13px; background: white;}
+#bbs_table td{padding:15px 10px;border-bottom:1px solid #dedede;color:#666;vertical-align:middle; font-size:13px;}
+#bbs_pagination{ margin-top: 30px; text-align: center;}
+#bbs_pagination a{width:24px;height:24px;line-height:24px;margin:0 5px;color:#666;text-align:center;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;}
+#bbs_pagination a.on{background-color: #231f20; color: white;}
+#bbs_pagination a:hover{background-color: #594f52; color: white;}
+#bbs_pagination img{background-color: white;}
+
+/*------- bbs notice, review id -------*/
+#bbs_review_result_name1{margin-right: 20px;}
+#bbs_review_result_txt1{margin-top:20px;margin-bottom:8px;color:#231f20;font-size:13px;line-height:18px;word-break:break-all}
+#bbs_review_result_reg_date1{font-size: 12px; color: #666}
+#bbs_review_contents{width:100%;border:1px solid #e8e8e8;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;font-size:14px;color:#666}
+#bbs_review_contents_submit{width:100%;height:87%;background:#231f20;font-size:18px;font-weight:700;color:#cdc197;text-align:center;line-height:23px;border:0}
+
+/*------- bbs write id -------*/
+#bbs_write_select_movie{background-color: white; color: #231f20; font-size: 14px; font-weight: bold; min-width: 102px; height: 35px; line-height: 33px;}
+#bbs_write_contents{width:100%;height:90%;padding:10px 10px 25px;font-size:13px;color:#777;line-height:22px;background:#f5f5f5;border: 1px solid #dedede; resize: none;}
+
 /*------ footer ------*/
 #footer{width:100%; text-align: center; background-color: #f5f5f5}
 
 /*------ total settings ------*/
-ul { list-style-type: none; padding: 0; margin: 0;}
 a {text-decoration: none;}
+a:hover {text-decoration: none;}
+ol, ul, li {list-style: none;}
+textarea{resize: none;}
 
-.abb1_nowMovie_table{
-	border-collapse: collapse;
-}
-.abb1_nowMovie_border{
-	border: 1px solid #cdcdcd;
-}
-.abb1_width_center{
-	margin: 0 auto; width: 100%; text-align: center;
-}
-.abb1_width_right{
-	margin: 0 auto;width: 1000px;text-align: right;
-}
-.abb1_width_left{
-	margin: 0 auto;width: 1000px;text-align: left;
-}
-.abb1_ul_inline{
-	list-style-type: none; display: inline-block;
-}
-.abb1_li_inline{
-	float: left;padding-right: 20px;
-}
-.abb1_text_line_none{
-	text-decoration: none;
-}
-.abb1_font_bold{
-	font-weight: bold;
-}
-.abb1_font_serif{
-	font-family: serif;
-}
-.abb1_font_italic{
-	font-style: italic;
-}
-.abb1_movie_detail_font_color{
-	color: #666666;
-}
+.abb1_nowMovie_table{border-collapse:collapse;}
+.abb1_nowMovie_border{border:1px solid #cdcdcd;}
+.abb1_width_70{width: 70%;}
+.abb1_width_center{margin:0 auto;width:100%;text-align:center;}
+.abb1_width_center_w1000{margin:0 auto;width:800px;text-align:center;}
+.abb1_width_center_w50{margin:0 auto;width:50%;}
+.abb1_width_center_w40{margin:0 auto;width:40%;padding-left: 120px;}
+.abb1_width_center_w30{margin:0 auto;width:30%;}
+.abb1_width_right{margin:0 auto;width:1000px;text-align:right;}
+.abb1_width_right_w500{margin:0 auto;width:500px;text-align:rigth;}
+.abb1_width_left{margin:0 auto;width:1000px;text-align:left;}
+.abb1_ul_inline{list-style-type:none;display:inline-block;}
+.abb1_li_inline{float:left;padding-right:20px;}
+.abb1_font_bold{font-weight:700;}
+.abb1_font_serif{font-family:serif;}
+.abb1_font_italic{font-style:italic;}
+.abb1_movie_detail_font_color{color:#666;}
+.abb1_btn_login{margin-left:5px;background-color:#231f20;color:#efebdb;height:75px;}
+.abb1_btn_signup{margin-left:5px;background-color:#ffffff;color:#231f20;border-color: #dfd7b7;width:70px;text-align: center;}
+.abb1_btn_verification{margin-left:5px;background-color:#ffffff;color:#231f20;border-color: #dfd7b7;width:40px;text-align: center;}
 .abb1_star_rating {font-size:0; letter-spacing:-4px;}
-.abb1_star_rating a {
+.abb1_color_white{color:#ffffff;}
+.abb1_color_black{color:#000000;}
+.abb1_color_bold_brown{color:#231f20;}
+.abb1_color_beige{color:#f9f6ec;}
+.abb1_color_bold_beige{color:#efebdb;}
+.abb1_bgcolor_white{background-color:#ffffff;}
+.abb1_bgcolor_black{background-color:#000000;}
+.abb1_bgcolor_bold_brown{background-color:#231f20;}
+.abb1_bgcolor_beige{background-color:#f9f6ec;}
+.abb1_bgcolor_bold_beige{background-color:#efebdb;}
+.abb1_a_findId{color: black;padding-right: 15px;}
+.abb1_a_findPw{color: black;}
+.abb1_margin_right_30{margin-right: 30px;}
+.abb1_padding_top_15{padding-top: 15px;}
+.abb1_padding_top_20{padding-top: 20px;}
+.abb1_padding_bottom_20{padding-bottom: 20px;}
+.abb1_div_login{margin-right: 0px;margin-left: 0px;padding-top: 30px;padding-bottom: 30px;}
+.abb1_bgstar_rating a {
     font-size:22px;
     letter-spacing:0;
     display:inline-block;
@@ -86,3 +149,7 @@ a {text-decoration: none;}
 }
 .abb1_star_rating a:first-child {margin-left:0;}
 .abb1_star_rating a.on {color:#000000;}
+
+
+
+

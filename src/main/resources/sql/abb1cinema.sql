@@ -1,45 +1,31 @@
-CREATE TABLE Board(
+-- 1
+CREATE TABLE Notice(
 seq INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-type VARCHAR(4) NOT NULL,
-title VARCHAR(50) NOT NULL,
-contents VARCHAR(500),
 file VARCHAR(200),
-date VARCHAR(10) NOT NULL,
-hits VARCHAR(4) NOT NULL,
-customer_id VARCHAR(15),
-theater_id INT,
-comment_seq INT
+title VARCHAR(50) NOT NULL,
+contents VARCHAR(500) NOT NULL,
+reg_date VARCHAR(10) NOT NULL,
+hits VARCHAR(4) NOT NULL
 );
 
-CREATE TABLE Theater(
+-- 2
+CREATE TABLE Seat(
+id VARCHAR(11) PRIMARY KEY,
+is_reserved VARCHAR(1) NOT NULL
+);
+
+-- 3
+CREATE TABLE Files(
 seq INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-name VARCHAR(20) NOT NULL,
-address VARCHAR(40) NOT NULL,
-total_multiplex VARCHAR(2) NOT NULL,
-total_seat VARCHAR(3) NOT NULL,
-axis VARCHAR(40) NOT NULL,
-multiplex_id INT
+pic_main VARCHAR(200) NOT NULL,
+pic_director VARCHAR(200),
+pic_actor1 VARCHAR(200),
+pic_actor2 VARCHAR(200),
+pic_actor3 VARCHAR(200),
+pic_actor4 VARCHAR(200)
 );
 
-CREATE TABLE Multiplex(
-seq INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-name VARCHAR(4) NOT NULL,
-total_seat VARCHAR(3) NOT NULL,
-reser_seat_no VARCHAR(3) NOT NULL,
-start_time VARCHAR(5) NOT NULL,
-end_time VARCHAR(5) NOT NULL,
-price VARCHAR(5) NOT NULL,
-seat_id VARCHAR(11),
-movie_id INT
-);
-
-CREATE TABLE Comment(
-seq INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-date VARCHAR(10) NOT NULL,
-contents VARCHAR(300) NOT NULL,
-customer_id VARCHAR(15)
-);
-
+-- 4
 CREATE TABLE Customer(
 id VARCHAR(15) PRIMARY KEY,
 pw VARCHAR(15) NOT NULL,
@@ -52,41 +38,18 @@ email VARCHAR(30) NOT NULL,
 point VARCHAR(5) NOT NULL
 );
 
-CREATE TABLE Reservation(
-id VARCHAR(30) PRIMARY KEY,
-date VARCHAR(10) NOT NULL,
-headcount VARCHAR(2) NOT NULL,
-is_canceled VARCHAR(1) NOT NULL,
-customer_id VARCHAR(15),
-movie_id INT,
-multiplex_id INT,
-theater_id INT,
-seat_id VARCHAR(11)
-);
-
-CREATE TABLE Seat(
-id VARCHAR(11) PRIMARY KEY,
-is_reserved VARCHAR(1) NOT NULL
-);
-
-CREATE TABLE Notice(
-seq INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-file VARCHAR(200),
-title VARCHAR(50) NOT NULL,
-contents VARCHAR(500) NOT NULL,
-date VARCHAR(10) NOT NULL,
-hits VARCHAR(4) NOT NULL
-);
-
+-- 5
 CREATE TABLE Review(
 seq INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 type VARCHAR(8) NOT NULL,
 gpa VARCHAR(2) NOT NULL,
 contents VARCHAR(300) NOT NULL,
-date VARCHAR(10) NOT NULL,
-customer_id VARCHAR(15)
+reg_date VARCHAR(10) NOT NULL,
+customer_id VARCHAR(15),
+FOREIGN KEY(customer_id) REFERENCES Customer(id)
 );
 
+-- 6
 CREATE TABLE Movie(
 seq INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 title VARCHAR(30) NOT NULL,
@@ -101,27 +64,91 @@ male_p VARCHAR(4) NOT NULL,
 female_p VARCHAR(4) NOT NULL,
 trailer_url VARCHAR(200) NOT NULL,
 review_seq INT,
-files_id INT
+files_seq INT,
+FOREIGN KEY(review_seq) REFERENCES Review(seq),
+FOREIGN KEY(files_seq) REFERENCES Files(seq)
 );
 
-CREATE TABLE Files(
+-- 7
+CREATE TABLE Comment(
 seq INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-pic_main VARCHAR(200) NOT NULL,
-pic_director VARCHAR(200),
-pic_actor1 VARCHAR(200),
-pic_actor2 VARCHAR(200),
-pic_actor3 VARCHAR(200),
-pic_actor4 VARCHAR(200)
+reg_date VARCHAR(10) NOT NULL,
+contents VARCHAR(300) NOT NULL,
+customer_id VARCHAR(15),
+FOREIGN KEY(customer_id) REFERENCES Customer(id)
 );
 
-DROP TABLE Files;
-DROP TABLE Movie;
-DROP TABLE Review;
-DROP TABLE Notice;
-DROP TABLE Seat;
-DROP TABLE Reservation;
-DROP TABLE Customer;
-DROP TABLE Comment;
-DROP TABLE Multiplex;
-DROP TABLE Theater;
-DROP TABLE Board;
+-- 8
+CREATE TABLE Multiplex(
+seq INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(4) NOT NULL,
+total_seat VARCHAR(3) NOT NULL,
+reser_seat_no VARCHAR(3) NOT NULL,
+start_time VARCHAR(5) NOT NULL,
+end_time VARCHAR(5) NOT NULL,
+price VARCHAR(5) NOT NULL,
+seat_id VARCHAR(11),
+movie_seq INT,
+FOREIGN KEY(movie_seq) REFERENCES Movie(seq)
+);
+
+-- 9
+CREATE TABLE Theater(
+seq INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(20) NOT NULL,
+address VARCHAR(40) NOT NULL,
+total_multiplex VARCHAR(2) NOT NULL,
+total_seat VARCHAR(3) NOT NULL,
+axis VARCHAR(40) NOT NULL,
+multiplex_seq INT,
+FOREIGN KEY(multiplex_seq) REFERENCES Multiplex(seq)
+);
+
+-- 10
+CREATE TABLE Article(
+seq INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+article_type VARCHAR(4) NOT NULL,
+title VARCHAR(50) NOT NULL,
+contents VARCHAR(500),
+file VARCHAR(200),
+reg_date VARCHAR(10) NOT NULL,
+hits VARCHAR(4) NOT NULL,
+customer_id VARCHAR(15),
+theater_id INT,
+comment_seq INT,
+FOREIGN KEY(customer_id) REFERENCES Customer(id),
+FOREIGN KEY(theater_id) REFERENCES Theater(seq),
+FOREIGN KEY(comment_seq) REFERENCES Comment(seq)
+);
+
+-- 11
+CREATE TABLE Reservation(
+id VARCHAR(30) PRIMARY KEY,
+reg_date VARCHAR(10) NOT NULL,
+headcount VARCHAR(2) NOT NULL,
+is_canceled VARCHAR(1) NOT NULL,
+customer_id VARCHAR(15),
+movie_seq INT,
+multiplex_seq INT,
+theater_seq INT,
+seat_id VARCHAR(11),
+FOREIGN KEY(customer_id) REFERENCES Customer(id),
+FOREIGN KEY(movie_seq) REFERENCES Movie(seq),
+FOREIGN KEY(multiplex_seq) REFERENCES Multiplex(seq),
+FOREIGN KEY(theater_seq) REFERENCES Theater(seq),
+FOREIGN KEY(seat_id) REFERENCES Seat(id)
+);
+
+DROP TABLE Files CASCADE;
+DROP TABLE Movie CASCADE;
+DROP TABLE Review CASCADE;
+DROP TABLE Notice CASCADE;
+DROP TABLE Seat CASCADE;
+DROP TABLE Reservation CASCADE;
+DROP TABLE Customer CASCADE;
+DROP TABLE Comment CASCADE;
+DROP TABLE Multiplex CASCADE;
+DROP TABLE Theater CASCADE;
+DROP TABLE Board CASCADE;
+
+show tables;

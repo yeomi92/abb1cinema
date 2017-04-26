@@ -31,16 +31,52 @@ public class HomeController {
 		return "index";
 	}
 	
+	@RequestMapping("/bbs")
+	public String bbs(Model model) {
+		logger.info("HomeController main() {}","ENTER");
+		return "board/main";
+	}
+	
+	@RequestMapping("/bbs/detail")
+	   public String bbsDetail(Model model) {
+	      logger.info("HomeController main() {}","ENTER");
+	      return "board/detail";
+	   }
+	   
+	   @RequestMapping("/bbs/notice_detail")
+	   public String bbsNoticeDetail(Model model) {
+	      logger.info("HomeController main() {}","ENTER");
+	      return "board/notice_detail";
+	   }
+	   
+	   @RequestMapping("/bbs/write")
+	   public String bbsWrite(Model model) {
+	      logger.info("HomeController main() {}","ENTER");
+	      return "board/write";
+	   }
+	
 	@RequestMapping("/movieList")
 	public String movieList(Model model) {
 		logger.info("HomeController movieList() {}","ENTER");
-		return "movie/movieList";
+		return "movie/main";
 	}
 	
 	@RequestMapping("/movieDetail/movieNo")
 	public String movieDetail(Model model) {
 		logger.info("HomeController movieDetail() {}","ENTER");
 		return "movie/movieDetail";
+	}
+	
+	@RequestMapping("/login")
+	public String login(Model model) {
+		logger.info("HomeController login() {}","ENTER");
+		return "customer/login";
+	}
+	
+	@RequestMapping("/signUp")
+	public String signUp(Model model) {
+		logger.info("HomeController signUp() {}","ENTER");
+		return "customer/signUp";
 	}
 	
 		
