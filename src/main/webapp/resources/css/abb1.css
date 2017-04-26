@@ -108,6 +108,7 @@ textarea{resize: none;}
 .abb1_width_center_w1000{margin:0 auto;width:800px;text-align:center;}
 .abb1_width_center_w50{margin:0 auto;width:50%;}
 .abb1_width_center_w40{margin:0 auto;width:40%;padding-left: 120px;}
+.abb1_width_center_40{margin:0 auto;width:40%;}
 .abb1_width_center_w30{margin:0 auto;width:30%;}
 .abb1_width_right{margin:0 auto;width:1000px;text-align:right;}
 .abb1_width_right_w500{margin:0 auto;width:500px;text-align:rigth;}
@@ -149,7 +150,12 @@ textarea{resize: none;}
 }
 .abb1_star_rating a:first-child {margin-left:0;}
 .abb1_star_rating a.on {color:#000000;}
-
+.abb1_btn-lg{
+	    padding: 5px 7px;
+    font-size: 13px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+}
 .gender{
    font-size: 15px;
     color: #969696;

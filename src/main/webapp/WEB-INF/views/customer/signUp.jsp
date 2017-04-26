@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../common/header.jsp"/>
 <div id="signUp" class="abb1_bgcolor_beige abb1_div_login">
-    <form class="form-signin abb1_width_center_w40">
+    <form class="form-signin abb1_width_center_40">
 		<h2 class="form-signin-heading text-muted">회원가입</h2>
 		<table class="abb1_width_70">
 			<tr>
@@ -54,18 +54,18 @@
 		<tr>
 				<td colspan="2"><input type="text" class="form-control" placeholder="이메일" required="" autofocus=""></td>
 				<td>
-					<input type="button" value="인증번호 발송" class="btn btn-lg btn-primary btn-block abb1_btn_verification" type="submit">
+					<input type="button" value="인증번호 발송" class="btn abb1_btn-lg btn-primary btn-block abb1_btn_verification" type="submit">
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="text" class="form-control" placeholder="인증번호 입력" required="" autofocus=""></td>
 				<td>
-					<input type="button" value="인증번호 확인" class="btn btn-lg btn-primary btn-block abb1_btn_verification" type="submit">
+					<input type="button" value="인증번호 확인" class="btn abb1_btn-lg btn-primary btn-block abb1_btn_verification" type="submit">
 				</td>
 			</tr>
 		</table>
-		<div>
-		<input href="${context}/login" type="button" value="가입하기" class=""/>
+		<div style="text-align: center;">
+			<input href="${context}/login" type="button" value="가입하기" class="btn abb1_btn-lg btn-primary btn-block abb1_btn_verification"/>
 		</div>
 	</form>
 	</div>
