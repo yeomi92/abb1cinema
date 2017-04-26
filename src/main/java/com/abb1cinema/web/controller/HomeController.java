@@ -61,10 +61,10 @@ public class HomeController {
 		return "movie/main";
 	}
 	
-	@RequestMapping("/movieDetail/movieNo")
+	@RequestMapping("/movie/detail/1")
 	public String movieDetail(Model model) {
 		logger.info("HomeController movieDetail() {}","ENTER");
-		return "movie/movieDetail";
+		return "movie/detail";
 	}
 	
 	@RequestMapping("/login")

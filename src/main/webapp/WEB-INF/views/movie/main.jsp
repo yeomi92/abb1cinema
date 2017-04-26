@@ -23,7 +23,7 @@
 					<td class="abb1_nowMovie_border"><img src="resources/img/movie/movie_poster_2.png" width="228px" height="333.99px" alt="..."></td>
 				</tr>
 				<tr>
-					<td class="abb1_nowMovie_border" style="font-size: 16px;font-style: inherit;padding-left: 10px;"><a href="${context}/movieDetail/movieNo" style="text-decoration: none;">분노의 질주: 더 익스트림</a></td>
+					<td class="abb1_nowMovie_border" style="font-size: 16px;font-style: inherit;padding-left: 10px;"><a href="${context}/movie/detail/1" style="text-decoration: none;">분노의 질주: 더 익스트림</a></td>
 				</tr>
 				<tr>
 					<td class="abb1_nowMovie_border " style="color: #919191;padding-left: 10px;">예매율 15.9% | 관람평점 9.0</td>
