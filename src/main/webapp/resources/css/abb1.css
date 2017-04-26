@@ -120,7 +120,7 @@ textarea{resize: none;}
 .abb1_movie_detail_font_color{color:#666;}
 .abb1_btn_login{margin-left:5px;background-color:#231f20;color:#efebdb;height:75px;}
 .abb1_btn_signup{margin-left:5px;background-color:#ffffff;color:#231f20;border-color: #dfd7b7;width:70px;text-align: center;}
-.abb1_btn_verification{margin-left:5px;background-color:#ffffff;color:#231f20;border-color: #dfd7b7;width:40px;text-align: center;}
+.abb1_btn_verification{margin-left:5px;background-color:#ffffff;color:#231f20;border-color: #dfd7b7;text-align: center;}
 .abb1_star_rating {font-size:0; letter-spacing:-4px;}
 .abb1_color_white{color:#ffffff;}
 .abb1_color_black{color:#000000;}
@@ -150,6 +150,41 @@ textarea{resize: none;}
 .abb1_star_rating a:first-child {margin-left:0;}
 .abb1_star_rating a.on {color:#000000;}
 
-
+.gender{
+   font-size: 15px;
+    color: #969696;
+   position: relative;
+    z-index: 10;
+    display: block;
+    float: left;
+    width: 35.0%;
+    height: 38px;
+    border: solid 1px #dcdcdc;
+}
+.gender input{
+   position: absolute;
+    z-index: 9;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 31px;
+}
+.gender label{
+   line-height: 32px;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 36px;
+    cursor: pointer;
+    text-align: center;
+    color: #676767;
+    background: #fff;
+}
+.gender label:hover{
+    background: #e7e7e7;
+}
 
 

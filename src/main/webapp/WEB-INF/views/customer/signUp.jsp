@@ -14,13 +14,10 @@
 				<td><input type="password" class="form-control" placeholder="비밀번호 확인" required="" autofocus=""></td>
 			</tr>
 		</table>
+		
 		<table style="margin-top: 20px;" class="abb1_width_70">
 			<tr>
 				<td colspan="3"><input type="text" class="form-control" placeholder="이름" required="" autofocus=""></td>
-			</tr>
-			<tr style="text-align: center;">
-				<td><input type="radio" name="gender"/>남자</td>
-				<td><input type="radio" name="gender"/>여자</td>
 			</tr>
 			<tr>
 			<td><input style="width: 100%;padding-right: 0px;margin-right: 0px;" type="password" class="form-control" placeholder="생년" required="" autofocus=""></td>
@@ -49,7 +46,11 @@
 				<td><input type="text" class="form-control" required="" autofocus=""></td>
 			</tr>
 		</table>
-		<table style="margin-top: 20px;" class="abb1_width_70">
+		<div style="margin-top: 1px;margin-bottom: 20px;">
+	      <span class="gender"><input type="radio" id="man" name="gender" value="male"/><label id="manLb" for="man">남자</label></span>
+	      <span class="gender"><input type="radio" id="woman" name="gender" value="female"/><label id="womanLb" for="woman">여자</label></span>
+      	</div>
+		<table style="margin-top: 50px;" class="abb1_width_70">
 		<tr>
 				<td colspan="2"><input type="text" class="form-control" placeholder="이메일" required="" autofocus=""></td>
 				<td>
@@ -63,6 +64,9 @@
 				</td>
 			</tr>
 		</table>
-		<input href="${context}/login" type="button" value="가입하기" class="btn btn-lg btn-primary btn-block abb1_btn_verification"/>
+		<div>
+		<input href="${context}/login" type="button" value="가입하기" class=""/>
+		</div>
 	</form>
+	</div>
 <jsp:include page="../common/footer.jsp"/>
