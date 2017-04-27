@@ -24,7 +24,6 @@
 .abb1_width_100{width:100%;}
 .abb1_text_center{text-align: center;}
 .abb1_eventBxMain{color: #231f20; font-size: 25px; margin-bottom: 20px; font-style: italic;}
-
 /*------ main ------*/
 #boxoffice{width:100%; text-align: center; padding-top: 17px;}
 #slidePoster{margin-top: 50px;}
@@ -84,5 +83,6 @@ a {text-decoration: none;}
     color:#d9d9d9;
     text-decoration:none;
 }
+/**/
 .abb1_star_rating a:first-child {margin-left:0;}
 .abb1_star_rating a.on {color:#000000;}
