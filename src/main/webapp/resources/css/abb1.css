@@ -137,6 +137,110 @@
 .abb1_reservation_timeline dd .abb1_reservation_theatertime li .abb1_reservation_ppnum{display:block;height:19px;line-height:19px;color:#666;font-size:12px}
 .abb1_reservation_timeline dd .abb1_reservation_theatertime li .abb1_reservation_ppnum em{color:#231f20}
 
+/*------ reservation_seat -------*/
+.abb1_seat{width:100%; height:100%; background: #f9f6ec;}
+.abb1_reservation_seat_form{ margin: 0 auto; text-align: center; width: 980px}
+.abb1_seat_maintext {text-align: left;}
+.abb1_seat_maintext span{font-size: 28px; color: #231f20;}
+.abb1_seat_screen{    display: block;
+    margin-bottom: 15px;
+    line-height: 25px;
+    background: url(../img/reservation/bg_screen.gif) no-repeat 0 0;
+    font-size: 20px;
+    color: #231f20;
+    text-align: center;
+    font-weight: normal;
+    font-style: italic;
+}
+.abb1_seat_area{
+       overflow: auto;
+    position: relative;
+    padding: 20px 0;
+    background: #f9f8f3;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+   text-align: center;
+}
+.abb1_seat_table{
+   width: 980px;
+   background: #f9f8f3;
+}
+.abb1_seat_table{
+   margin: 0 auto; width: 400px; text-align: center; padding-bottom: 50px
+}
+.abb1_seat_table tr{
+   height: 35px;
+}
+.abb1_seat_table td a{
+   margin: 0 2px;
+   padding: 6px 6px;
+   font-size: 14px;
+   background-color: #848484;
+   color: white;
+}
+.abb1_seat_table td a:hover{
+   margin: 0 2px;
+   padding: 6px 6px;
+   font-size: 14px;
+   background-color: #181818;
+   color: white;
+}
+.abb1_seat_table .reserved{
+   margin: 0 2px;
+   border: 1px solid #ff8080;
+   padding: 5px 5px;
+   font-size: 14px;
+   background-color: #c2c2c2;
+   color: #b2b2b2;
+}
+.abb1_seat_info{
+   background: white; height: 100px; width: 100%
+}
+.abb1_seat_info img{
+   margin-top: 25px;
+}
+.abb1_ticketing_settings{
+   background: #33373a; width: 100%; height: 43%;
+}
+.abb1_ticketing_table{
+   margin: 0 auto; width: 1000px; text-align: center;
+}
+.abb1_ticketing_table td{
+   width: 333px;
+   color: #cdc197;
+}
+.abb1_ticketing_table span{
+   color: white;
+   font-size: 13px;
+}
+.abb1_ticketing_tr div{
+   margin: 12px;
+}
+.abb1_ticketing_table .abb1_ticketing_tr2 td{
+   width: 134px;
+   color: white;
+}
+.abb1_ticketing_moviename{
+       font-weight: bold;
+    padding-bottom: 15px;
+}
+.abb1_ticketing_type{
+       padding-bottom: 40px;
+}
+.abb1_ticketing_cost{
+   text-align: right; font-size: 23px; height: 87px;
+}
+.abb1_ticketing_paying{
+   text-align: center;
+}
+.abb1_ticketing_paying div{
+   padding-bottom: 100px;
+   font-size: 30px;
+}
+.abb1_ticketing_paying input{
+   width: 100%; height: 50px; background:#cdc197; color: #33373a; font-weight: bold;
+}
+
 /*------ footer ------*/
 #footer{width:100%; text-align: center; background-color: #f5f5f5}
 

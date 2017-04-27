@@ -66,7 +66,7 @@
             <dd>
                <ul class="abb1_reservation_theatertime">
                   <li>
-                  <a href="#">
+                  <a href="${context}/reservation/seat">
                   <span class="abb1_reservation_cined2"><em>5관</em></span>
                   <span class="abb1_reservation_clock">18:25 ~ 20:45</span>
                   <span class="abb1_reservation_ppnum"><em>319</em>석 / 332석</span>

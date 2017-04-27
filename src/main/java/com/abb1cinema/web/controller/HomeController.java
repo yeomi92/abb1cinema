@@ -170,4 +170,10 @@ public class HomeController {
 		model.addAttribute("context", Complex.ContextFactory.create());
 		return "reservation/main";
 	}
+	@RequestMapping("/reservation/seat")
+	public String reservationSeat(Model model) {
+		logger.info("HomeController reservationSeat() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "reservation/seat";
+	}
 }
