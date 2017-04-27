@@ -72,7 +72,7 @@
       </table>
       </div>
       <div class="abb1_bbs_write_btns">
-         <a href="${context}/bbs"><input type="button" value="목록" class="abb1_bbs_write_confirm"/></a>
+         <a href="${context}/board/main"><input type="button" value="목록" class="abb1_bbs_write_confirm"/></a>
       </div>
       
    </div>

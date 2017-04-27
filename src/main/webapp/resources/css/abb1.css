@@ -118,10 +118,10 @@ textarea{resize: none;}
 .abb1_font_bold{font-weight:700;}
 .abb1_font_serif{font-family:serif;}
 .abb1_font_italic{font-style:italic;}
+.abb1_font_size_22{font-size:22px;}
 .abb1_movie_detail_font_color{color:#666;}
 .abb1_btn_login{margin-left:5px;background-color:#231f20;color:#efebdb;height:75px;}
 .abb1_btn_signup{margin-left:5px;background-color:#ffffff;color:#231f20;border-color: #dfd7b7;width:70px;text-align: center;}
-.abb1_btn_verification{margin-left:5px;background-color:#ffffff;color:#231f20;border-color: #dfd7b7;text-align: center;}
 .abb1_star_rating {font-size:0; letter-spacing:-4px;}
 .abb1_color_white{color:#ffffff;}
 .abb1_color_black{color:#000000;}
@@ -136,61 +136,97 @@ textarea{resize: none;}
 .abb1_a_findId{color: black;padding-right: 15px;}
 .abb1_a_findPw{color: black;}
 .abb1_margin_right_30{margin-right: 30px;}
+.abb1_margin_right_20{margin-left: 20px;}
 .abb1_padding_top_15{padding-top: 15px;}
 .abb1_padding_top_20{padding-top: 20px;}
 .abb1_padding_bottom_20{padding-bottom: 20px;}
 .abb1_div_login{margin-right: 0px;margin-left: 0px;padding-top: 30px;padding-bottom: 30px;}
-.abb1_bgstar_rating a {
-    font-size:22px;
-    letter-spacing:0;
-    display:inline-block;
-    margin-left:5px;
-    color:#d9d9d9;
-    text-decoration:none;
-}
+.abb1_bgstar_rating a{font-size:22px;letter-spacing:0;display:inline-block;margin-left:5px;color:#d9d9d9;text-decoration:none}
 .abb1_star_rating a:first-child {margin-left:0;}
 .abb1_star_rating a.on {color:#000000;}
-.abb1_btn-lg{
-	    padding: 5px 7px;
-    font-size: 13px;
-    line-height: 1.3333333;
-    border-radius: 6px;
+
+
+
+/*------ login ------*/
+#login_form{background-color:#f9f6ec;margin-right: 0px;margin-left: 0px;padding-top: 30px;padding-bottom: 30px;}
+.abb1_login_maintext{color: #777; text-align: left;}
+.abb1_btn_baseform{height: 68px;}
+.abb1_find_table{width: 473px; margin-top: 20px}
+.abb1_a_findIdPw{text-align:right;}
+.abb1_a_findIdPw a{color: black; padding-right: 15px;}
+
+/*------ signup ------*/
+.abb1_signup_form{background-color:#f9f6ec;margin-right: 0px;margin-left: 0px;padding-top: 30px;padding-bottom: 30px;}
+.abb1_signup_settings{margin: 0 auto;text-align: center;width: 473px;}
+.abb1_signup_maintext{color: #777; text-align: left;}
+.abb1_signup_form_control {width: 473px;margin-top: 20px;}
+.abb1_signup_form_control input{display:block;width:100%;height:34px;padding:6px 12px;font-size:14px;line-height:1.42857143;color:#555;background-color:#fff;background-image:none;border:1px solid #ccc;border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075);box-shadow:inset 0 1px 1px rgba(0,0,0,.075);-webkit-transition:border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;-o-transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s}
+.abb1_signup_form_control select{width: 100%}
+.abb1_signup_form_control select .btn{display:inline-block;padding:6px 12px;margin-bottom:0;font-size:14px;font-weight:400;line-height:1.42857143;text-align:center;white-space:nowrap;vertical-align:middle;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-image:none;border:1px solid transparent;border-radius:4px}
+.ab1_signup_form_control select .btn_default{color:#333;background-color:#fff;border-color:#ccc}
+.abb1_sigunup_form_gender{font-size:15px;color:#969696;position:relative;z-index:10;display:block;float:left;width:237px;height:38px;border:1px solid #dcdcdc}
+.abb1_sigunup_form_gender input{position:absolute;z-index:9;top:0;left:0;width:100%;height:31px}
+.abb1_sigunup_form_gender label{line-height:32px;position:absolute;z-index:10;top:0;left:0;display:block;width:100%;height:36px;cursor:pointer;text-align:center;color:#676767;background:#fff}
+.abb1_sigunup_form_gender label:hover{background:#e7e7e7}.abb1_btn_lg{display:block;padding:5px 7px;font-size:13px;line-height:1.3333333;border-radius:6px}
+.abb1_btn_verification{width:100%;background-color:#ffffff;color:#231f20;border-color: #dfd7b7;text-align: center;}
+.abb1_btn_confirm{margin-top: 30px; height: 53px;}
+
+
+
+/*------ mypage ------*/
+/* .abb1_tab_st03 .abb1_tabDep2 {
+    position: relative;
+    width: 100%;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #231f20;
 }
-.gender{
-   font-size: 15px;
-    color: #969696;
-   position: relative;
-    z-index: 10;
-    display: block;
+.abb1_tab_st03 > li:first-child {
+    margin-left: 0;
+}
+.abb1_tab_st03 > li:first-child {
+    margin-left: 0;
+}
+.abb1_tab_st03 > li {
     float: left;
-    width: 35.0%;
-    height: 38px;
-    border: solid 1px #dcdcdc;
+    margin-left: 1px;
 }
-.gender input{
-   position: absolute;
-    z-index: 9;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 31px;
+.abb1_tab_st03 > li > a:before {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 100%;
+    vertical-align: middle;
 }
-.gender label{
-   line-height: 32px;
-    position: absolute;
-    z-index: 10;
-    top: 0;
-    left: 0;
+.abb1_tabDep2 li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+.abb1_tab_st03 .abb1_tabDep2 li a {
+    display: inline-block;
+    font-size: 13px;
+    color: #231f20;
+    line-height: 50px;
+    -webkit-box-sizing: border-box;
+}
+.abb1_myInfoTit {
+    overflow: hidden;
+    padding: 17px 30px 17px;
+    background: #282e34;
+}
+.abb1_myInfoTit em .abb1_userName{
+    color: #cdc197;
+} */
+.abb1_page_ul_inline{list-style-type:none;display:inline-block;}
+.abb1_page_li_inline{float:left;}
+.abb1_width_left_content{margin:0 auto;width:1000px;text-align:left;}
+ul, menu, dir {
     display: block;
-    width: 100%;
-    height: 36px;
-    cursor: pointer;
-    text-align: center;
-    color: #676767;
-    background: #fff;
+    list-style-type: disc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start:0px;
 }
-.gender label:hover{
-    background: #e7e7e7;
-}
-
-
+.abb1_page_gnb_li{padding: 10px;border-bottom:1px solid #231f20;}
+.abb1_detail_gnb_li{padding: 10px;color: black;}

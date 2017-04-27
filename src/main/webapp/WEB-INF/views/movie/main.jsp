@@ -20,7 +20,7 @@
 		<li class="abb1_li_inline">
 			<table class="abb1_nowMovie_table abb1_nowMovie_border abb1_nowMovie_padding">
 				<tr>
-					<td class="abb1_nowMovie_border"><img src="resources/img/movie/movie_poster_2.png" width="228px" height="333.99px" alt="..."></td>
+					<td class="abb1_nowMovie_border"><img src="${context}/resources/img/movie/movie_poster_2.png" width="228px" height="333.99px" alt="..."></td>
 				</tr>
 				<tr>
 					<td class="abb1_nowMovie_border" style="font-size: 16px;font-style: inherit;padding-left: 10px;"><a href="${context}/movie/detail/1" style="text-decoration: none;">분노의 질주: 더 익스트림</a></td>
@@ -33,7 +33,7 @@
 		<li class="abb1_li_inline">
 			<table class="abb1_nowMovie_table abb1_nowMovie_border abb1_nowMovie_padding">
 				<tr>
-					<td class="abb1_nowMovie_border"><img src="resources/img/movie/movie_poster_1.png" width="228px" height="333.99px" alt="..."></td>
+					<td class="abb1_nowMovie_border"><img src="${context}/resources/img/movie/movie_poster_1.png" width="228px" height="333.99px" alt="..."></td>
 				</tr>
 				<tr>
 					<td class="abb1_nowMovie_border" style="font-size: 16px;font-style: inherit;padding-left: 10px;"><a href="" style="text-decoration: none;">분노의 질주: 더 익스트림</a></td>
@@ -46,7 +46,7 @@
 		<li class="abb1_li_inline">
 			<table class="abb1_nowMovie_table abb1_nowMovie_border abb1_nowMovie_padding">
 				<tr>
-					<td class="abb1_nowMovie_border"><img src="resources/img/movie/movie_poster_0.png" width="228px" height="333.99px" alt="..."></td>
+					<td class="abb1_nowMovie_border"><img src="${context}/resources/img/movie/movie_poster_0.png" width="228px" height="333.99px" alt="..."></td>
 				</tr>
 				<tr>
 					<td class="abb1_nowMovie_border" style="font-size: 16px;font-style: inherit;padding-left: 10px;"><a href="" style="text-decoration: none;">분노의 질주: 더 익스트림</a></td>
@@ -59,7 +59,7 @@
 		<li class="abb1_li_inline">
 			<table class="abb1_nowMovie_table abb1_nowMovie_border abb1_nowMovie_padding">
 				<tr>
-					<td class="abb1_nowMovie_border"><img src="resources/img/movie/movie_poster_3.png" width="228px" height="333.99px" alt="..."></td>
+					<td class="abb1_nowMovie_border"><img src="${context}/resources/img/movie/movie_poster_3.png" width="228px" height="333.99px" alt="..."></td>
 				</tr>
 				<tr>
 					<td class="abb1_nowMovie_border" style="font-size: 16px;font-style: inherit;padding-left: 10px;"><a href="" style="text-decoration: none;">분노의 질주: 더 익스트림</a></td>
@@ -76,7 +76,7 @@
 		<li class="abb1_li_inline">
 			<table class="abb1_nowMovie_table abb1_nowMovie_border abb1_nowMovie_padding">
 				<tr>
-					<td class="abb1_nowMovie_border"><img src="resources/img/movie/movie_poster_4.png" width="228px" height="333.99px" alt="..."></td>
+					<td class="abb1_nowMovie_border"><img src="${context}/resources/img/movie/movie_poster_4.png" width="228px" height="333.99px" alt="..."></td>
 				</tr>
 				<tr>
 					<td class="abb1_nowMovie_border" style="font-size: 16px;font-style: inherit;padding-left: 10px;"><a href="" style="text-decoration: none;">분노의 질주: 더 익스트림</a></td>
@@ -89,7 +89,7 @@
 		<li class="abb1_li_inline">
 			<table class="abb1_nowMovie_table abb1_nowMovie_border">
 				<tr>
-					<td class="abb1_nowMovie_border"><img src="resources/img/movie/movie_poster_5.png" width="228px" height="333.99px" alt="..."></td>
+					<td class="abb1_nowMovie_border"><img src="${context}/resources/img/movie/movie_poster_5.png" width="228px" height="333.99px" alt="..."></td>
 				</tr>
 				<tr>
 					<td class="abb1_nowMovie_border" style="font-size: 16px;font-style: inherit;padding-left: 10px;"><a href="" style="text-decoration: none;">분노의 질주: 더 익스트림</a></td>
@@ -102,7 +102,7 @@
 		<li class="abb1_li_inline">
 			<table class="abb1_nowMovie_table abb1_nowMovie_border abb1_nowMovie_padding">
 				<tr>
-					<td class="abb1_nowMovie_border abb1_nowMovie_padding"><img src="resources/img/movie/movie_poster_6.png" width="228px" height="333.99px" alt="..."></td>
+					<td class="abb1_nowMovie_border abb1_nowMovie_padding"><img src="${context}/resources/img/movie/movie_poster_6.png" width="228px" height="333.99px" alt="..."></td>
 				</tr>
 				<tr>
 					<td class="abb1_nowMovie_border abb1_nowMovie_padding" style="font-size: 16px;font-style: inherit;padding-left: 10px;"><a href="" style="text-decoration: none;">분노의 질주: 더 익스트림</a></td>
@@ -115,7 +115,7 @@
 		<li class="abb1_li_inline">
 			<table class="abb1_nowMovie_table abb1_nowMovie_border abb1_nowMovie_padding">
 				<tr>
-					<td class="abb1_nowMovie_border abb1_nowMovie_padding"><img src="resources/img/movie/movie_poster_7.png" width="228px" height="333.99px" alt="..."></td>
+					<td class="abb1_nowMovie_border abb1_nowMovie_padding"><img src="${context}/resources/img/movie/movie_poster_7.png" width="228px" height="333.99px" alt="..."></td>
 				</tr>
 				<tr>
 					<td class="abb1_nowMovie_border abb1_nowMovie_padding" style="font-size: 16px;font-style: inherit;padding-left: 10px;"><a href="" style="text-decoration: none;">분노의 질주: 더 익스트림</a></td>

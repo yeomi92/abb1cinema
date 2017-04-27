@@ -24,8 +24,8 @@
          </div>
          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-               <li><a id="login" href="${context}/customer/login">로그인<span class="sr-only">(current)</span></a></li>
-               <li><a id="register" href="${context}/customer/signUp">회원가입<span class="sr-only">(current)</span></a></li>
+               <li><a id="login" href="${context}/web">로그아웃<span class="sr-only">(current)</span></a></li>
+               <li><a id="register" href="${context}/customer/mypage">마이시네마<span class="sr-only">(current)</span></a></li>
                <li><a id="FAQ" href="${context}/board/main">고객센터<span class="sr-only">(current)</span></a></li>
             </ul>
          </div>

@@ -48,14 +48,14 @@
          <tr>
             <td>-</td>
             <td><b>전체</b></td>
-            <td><a href="${context}/bbs/notice_detail">개인정보 이용내역 안내</a></td>
+            <td><a href="${context}/board/noticeDetail">개인정보 이용내역 안내</a></td>
             <td>2017-03-09</td>
             <td>27399</td>
          </tr>
          <tr>
             <td>9</td>
             <td>영화관</td>
-            <td><a href="${context}/bbs/detail">영화관 관련 질문</a></td>
+            <td><a href="${context}/board/detail">영화관 관련 질문</a></td>
             <td>2017-04-21</td>
             <td>27851</td>
          </tr>
@@ -122,8 +122,8 @@
    <table class="abb1_bbs_pagination_table">
       <tr>
          <td>
-            <a href="#"><img src="resources/img/pagination/prev_all.gif" alt="" /></a>
-            <a href="#"><img src="resources/img/pagination/prev.gif" alt="" /></a>
+            <a href="#"><img src="${context}/resources/img/pagination/prev_all.gif" alt="" /></a>
+            <a href="#"><img src="${context}/resources/img/pagination/prev.gif" alt="" /></a>
          </td>
          <td style="width: 256px;">
             <h4>
@@ -140,14 +140,14 @@
             </h4>
          </td>
          <td>
-            <a href="#"><img src="resources/img/pagination/next.gif" alt="" /></a>
-            <a href="#"><img src="resources/img/pagination/next_all.gif" alt="" /></a>
+            <a href="#"><img src="${context}/resources/img/pagination/next.gif" alt="" /></a>
+            <a href="#"><img src="${context}/resources/img/pagination/next_all.gif" alt="" /></a>
          </td>
       </tr>
    </table>
    </div>
    <div style="text-align: right;">
-      <a href="${context}/bbs/write"><input style="background-color: white; color: #231f20;" type="button" value="글쓰기"/></a>
+      <a href="${context}/board/write"><input style="background-color: white; color: #231f20;" type="button" value="글쓰기"/></a>
    </div>
    </div>
    
