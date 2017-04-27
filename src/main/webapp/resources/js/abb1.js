@@ -16,14 +16,11 @@
 
 /* Application NameSpace */
 var abb1 = abb1 || {};
-
 		/************************
 		 * Model
 		 * abb1.context
 		 * abb1.session
 		 * abb1.util
-		 * abb1.algorithm
-		 * abb1.oop
 		 ***********************/
 /*========= abb1-context =========
 	@AUTHOR : Junyoung Park
@@ -42,10 +39,6 @@ abb1.context = (function(){
 	var onCreate = function(){
 		setContentView();
 		abb1.component.init();
-		abb1.algorithm.init();
-		abb1.oop.init();
-		abb1.bbs.init();
-		abb1.person.init();
 		abb1.util.datetime();
 	};
 	return {
