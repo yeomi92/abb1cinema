@@ -25,8 +25,8 @@
 	</ul>
 	<div style="margin-left:20px; margin-right:20px; border-top:1px solid #cec8ca;border-bottom:1px solid #cec8ca;">
 	<table>
-		<tr>
-			<td rowspan="4">이미지</td>
+		<tr style="margin-left: 20px;">
+			<td rowspan="4"><img src="${context}/resources/img/movie/movie_poster_6.png" width="60%" height="60%" alt="" /></td>
 			<td>예매번호</td>
 			<td>123456789</td>
 		</tr>
