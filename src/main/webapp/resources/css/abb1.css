@@ -93,6 +93,50 @@
 #bbs_write_select_movie{background-color: white; color: #231f20; font-size: 14px; font-weight: bold; min-width: 102px; height: 35px; line-height: 33px;}
 #bbs_write_contents{width:100%;height:90%;padding:10px 10px 25px;font-size:13px;color:#777;line-height:22px;background:#f5f5f5;border: 1px solid #dedede; resize: none;}
 
+/*------ reservation -------*/
+.abb1_reservation{width:100%; height:100%; background: #f9f6ec;}
+.abb1_reservation_main_form{ margin: 0 auto; text-align: center; width: 1000px}
+.abb1_reservation_calendar {width: 100%}
+.abb1_reservation_calendar span{font-size: 15px; }
+.abb1_reservation_multiplex {background: white; width: 100%}
+.abb1_reservation_multiplex span{float:left;font-size:20px;padding:0 0 0 10px;font-weight:700;color:#231f20}
+.abb1_reservation_multiplex tr td{border: 1px solid #e0dfdf; padding: 8px}
+.abb1_reservation_movielist li {width:100%; padding: 5px;}
+.abb1_reservation_movielist li a.on{background:url(../img/reservation/check_btn.png) 10px center no-repeat;border:1px solid #999}
+.abb1_reservation_movielist li a{display:block;padding:9px 10px 9px 29px;border:1px solid #fff;color:#231f20;font-size:14px;line-height:22px;word-break:break-all}
+.abb1_reservation_tab_cont{font-size:16px;font-weight:700}
+.abb1_reservation_tab_scroll{height:415px;padding-left:10px;overflow-y:auto}
+.abb1_reservation_theater_zone{position:relative}
+.abb1_reservation_theater_zone li{margin-bottom:8px}
+.abb1_reservation_area_zone>a{display:block;width:116px;height:40px;line-height:40px;padding-left:13px;color:#666;text-align:left;vertical-align:middle;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.abb1_reservation_area_zone>a.on{width:107px;padding-left:22px;background:url(../img/reservation/bullet03.gif) 10px center no-repeat #231f20;color:#fff!important;letter-spacing:-1px}
+.abb1_reservation_area_cont{display:none;position:absolute;left:131px;top:0}
+.abb1_reservation_area_cont.on{display:block}
+.abb1_reservation_area_list{overflow:hidden;width:412px}
+.abb1_reservation_area_list li{float:left;margin:0 0 8px 7px;display:table}
+.abb1_reservation_area_list li a{overflow:hidden;display:table-cell;vertical-align:middle;width:129px;height:40px;border:1px solid #efefef;background:#efefef;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;line-height:16px;font-size:12px;color:#666;text-align:center;letter-spacing:-1px}
+.abb1_reservation_area_list a.on{padding:0 25px;border:1px solid #999;color:#231f20;font-weight:700;background:url(../img/reservation/check_btn.png) 10px 50% no-repeat #fff}
+.abb1_reservation_confirm{width:980px;min-height:33px;margin:0 auto;box-sizing:border-box;-webkit-box-sizing:border-box}
+.abb1_reservation_time{margin-bottom:10px}
+.abb1_reservation_confirm .abb1_reservation_time .sub_tit02{margin-bottom:0}
+.abb1_reservation_confirm .abb1_reservation_time .sub_etc{margin-left:8px;font-size:13px;color:#777;font-weight:400}
+.abb1_reservation_time .abb1_reservation_timefr{float:right;margin-top:10px}
+.abb1_reservation_timetit{width:980px;padding:20px;background:#efebdb;font-size:20px;color:#231f20;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;font-weight:700}
+.abb1_reservation_time_a .abb1_reservation_timeline{padding:0 20px 30px}
+.abb1_reservation_time_a .abb1_reservation_timeline dt{margin-top:0;font-size:16px;font-weight:700;color:#231f20;background:0 0}
+.abb1_reservation_time_a .abb1_reservation_timeline dt [class^=grade_]{margin-right:10px}
+[class^=grade_]{display:inline-block;overflow:hidden;vertical-align:middle;width:20px;height:20px;margin-right:5px;text-indent:-99999em}
+.abb1_reservation_timeline dd{padding:15px 34px 10px 25px;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box}
+.abb1_reservation_time_a .abb1_reservation_timeline dd{padding:0 5px}
+.abb1_reservation_timeline dd .abb1_reservation_theatertime{overflow:hidden;width:935px}
+.abb1_reservation_timeline dd .abb1_reservation_theatertime li{float:left;width:115px;margin:10px -1px 0 0;background:#fff;border:1px solid #ebeaea;text-align:center}
+.abb1_reservation_timeline dd .abb1_reservation_theatertime li a{display:block}
+.abb1_reservation_timeline dd .abb1_reservation_theatertime li .abb1_reservation_cined2{display:block;height:21px;line-height:21px;color:#666;border-bottom:1px solid #e5e5e5}
+.abb1_reservation_timeline dd .abb1_reservation_theatertime li .abb1_reservation_cined2 em:first-child{font-size:12px;background:0 0!important;padding:0 3px}
+.abb1_reservation_timeline dd .abb1_reservation_theatertime li .abb1_reservation_clock{display:block;height:38px;line-height:38px;border-bottom:1px solid #e5e5e5;font-size:15px;color:#666;font-weight:700}
+.abb1_reservation_timeline dd .abb1_reservation_theatertime li .abb1_reservation_ppnum{display:block;height:19px;line-height:19px;color:#666;font-size:12px}
+.abb1_reservation_timeline dd .abb1_reservation_theatertime li .abb1_reservation_ppnum em{color:#231f20}
+
 /*------ footer ------*/
 #footer{width:100%; text-align: center; background-color: #f5f5f5}
 
@@ -106,7 +150,7 @@ textarea{resize: none;}
 .abb1_nowMovie_border{border:1px solid #cdcdcd;}
 .abb1_width_70{width: 70%;}
 .abb1_width_center{margin:0 auto;width:100%;text-align:center;}
-.abb1_width_center_w1000{margin:0 auto;width:800px;text-align:center;}
+.abb1_width_center_w800{margin:0 auto;width:800px;text-align:center;}
 .abb1_width_center_w50{margin:0 auto;width:50%;}
 .abb1_width_center_w40{margin:0 auto;width:40%;padding-left: 120px;}
 .abb1_width_center_40{margin:0 auto;width:40%;}
@@ -141,6 +185,7 @@ textarea{resize: none;}
 .abb1_padding_top_15{padding-top: 15px;}
 .abb1_padding_top_20{padding-top: 20px;}
 .abb1_padding_bottom_20{padding-bottom: 20px;}
+.abb1_padding_bottom_40{padding-bottom: 40px;}
 .abb1_div_login{margin-right: 0px;margin-left: 0px;padding-top: 30px;padding-bottom: 30px;}
 .abb1_bgstar_rating a{font-size:22px;letter-spacing:0;display:inline-block;margin-left:5px;color:#d9d9d9;text-decoration:none}
 .abb1_star_rating a:first-child {margin-left:0;}
@@ -155,6 +200,7 @@ textarea{resize: none;}
 .abb1_find_table{width: 473px; margin-top: 20px}
 .abb1_a_findIdPw{text-align:right;}
 .abb1_a_findIdPw a{color: black; padding-right: 15px;}
+.abb1_btn_login{height: 68px;background-color: #231f20;color: #efebdb;font-size: 15px;}
 
 /*------ signup ------*/
 .abb1_signup_form{background-color:#f9f6ec;margin-right: 0px;margin-left: 0px;padding-top: 30px;padding-bottom: 30px;}
@@ -175,48 +221,6 @@ textarea{resize: none;}
 
 
 /*------ mypage ------*/
-/* .abb1_tab_st03 .abb1_tabDep2 {
-    position: relative;
-    width: 100%;
-    margin-bottom: 40px;
-    border-bottom: 1px solid #231f20;
-}
-.abb1_tab_st03 > li:first-child {
-    margin-left: 0;
-}
-.abb1_tab_st03 > li:first-child {
-    margin-left: 0;
-}
-.abb1_tab_st03 > li {
-    float: left;
-    margin-left: 1px;
-}
-.abb1_tab_st03 > li > a:before {
-    content: '';
-    display: inline-block;
-    width: 0;
-    height: 100%;
-    vertical-align: middle;
-}
-.abb1_tabDep2 li {
-    display: list-item;
-    text-align: -webkit-match-parent;
-}
-.abb1_tab_st03 .abb1_tabDep2 li a {
-    display: inline-block;
-    font-size: 13px;
-    color: #231f20;
-    line-height: 50px;
-    -webkit-box-sizing: border-box;
-}
-.abb1_myInfoTit {
-    overflow: hidden;
-    padding: 17px 30px 17px;
-    background: #282e34;
-}
-.abb1_myInfoTit em .abb1_userName{
-    color: #cdc197;
-} */
 .abb1_page_ul_inline{list-style-type:none;display:inline-block;}
 .abb1_page_li_inline{float:left;}
 .abb1_width_left_content{margin:0 auto;width:1000px;text-align:left;}
@@ -234,3 +238,25 @@ ul, menu, dir {
 .abb1_star_rating a.on {color:#000000;}
 .abb1_page_gnb_li{padding: 10px;border-bottom:1px solid #231f20;}
 .abb1_detail_gnb_li{padding: 10px;color: black;}
+.abb1_page_reservation{margin-left:20px; margin-right:20px; border-top:1px solid #cec8ca;border-bottom:1px solid #cec8ca;padding-top: 20px;padding-bottom: 20px;}
+.abb1_page_info{width:960px; margin-left:20px; margin-right:20px; border-top:1px solid #cec8ca;border-bottom:1px solid #cec8ca;padding-top: 20px;padding-bottom: 20px;}
+.abb1_detail_reservation{border:1px solid #cec8ca;}
+
+
+/*-------updateInfo--------*/
+#updateInfo table tr td{}
+#updateInfo td{height: 55px;}
+#updateInfo strong{margin-left: 15px;margin-right: -15px; }
+
+/*--------findId--------*/
+.abb1_red_font{font-size: 15px;color: #ff0000;}
+
+
+
+
+
+
+
+
+
+.colorcheck{color: #efebdb;}

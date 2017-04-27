@@ -36,7 +36,7 @@
    <div class="abb1_gnb_tab abb1_width_100 abb1_text_center">
       <div class="abb1_width_100 abb1_text_center">
          <ul class="abb1_gnb">
-            <li><a id="ticketing" href="#">예매</a></li>
+            <li><a id="ticketing" href="${context}/reservation/main">예매</a></li>
             <li><a id="movie" href="${context}/movie/main">영화</a></li>
             <li><a id="theater" href="#">영화관</a></li>
             <li><a class="abb1_tooltip" href="#">스위트샵<span class="abb1_tooltiptext">미구현</span></a></li>

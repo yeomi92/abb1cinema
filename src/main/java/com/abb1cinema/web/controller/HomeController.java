@@ -83,10 +83,91 @@ public class HomeController {
 		model.addAttribute("context", Complex.ContextFactory.create());
 		return "customer/signUp";
 	}
+	//mypage
 	@RequestMapping("/customer/mypage")
 	public String myPage(Model model) {
-		logger.info("HomeController myPage() {}","ENTER");
+		logger.info("HomeController myPageReservation() {}","ENTER");
 		model.addAttribute("context", Complex.ContextFactory.create());
 		return "customer/mypage";
+	}
+	@RequestMapping("/customer/mypageReservation")
+	public String mypageReservation(Model model) {
+		logger.info("HomeController mypageReservationDetail() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "customer/mypageReservation";
+	}
+	@RequestMapping("/customer/mypageCancel")
+	public String mypageCancel(Model model) {
+		logger.info("HomeController mypageCancel() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "customer/mypageCancel";
+	}
+	@RequestMapping("/customer/mypageInfo")
+	public String mypageInfo(Model model) {
+		logger.info("HomeController mypageInfo() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "customer/mypageInfo";
+	}
+	@RequestMapping("/customer/updateInfoChPw")
+	public String updateInfoChPw(Model model) {
+		logger.info("HomeController updateInfoChPw() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "customer/updateInfoChPw";
+	}
+	@RequestMapping("/customer/updateInfo")
+	public String updateInfo(Model model) {
+		logger.info("HomeController updateInfo() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "customer/updateInfo";
+	}
+	@RequestMapping("/customer/withdrawal")
+	public String withdrawal(Model model) {
+		logger.info("HomeController withdrawal() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "customer/withdrawal";
+	}
+	@RequestMapping("/customer/signUpSuccess")
+	public String signUpSuccess(Model model) {
+		logger.info("HomeController signUpSuccess() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "customer/signUpSuccess";
+	}
+	@RequestMapping("/customer/findId")
+	public String findId(Model model) {
+		logger.info("HomeController findId() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "customer/findId";
+	}
+	@RequestMapping("/customer/findIdSuccess")
+	public String findIdSuccess(Model model) {
+		logger.info("HomeController findIdSuccess() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "customer/findIdSuccess";
+	}
+	@RequestMapping("/customer/findPw")
+	public String findPw(Model model) {
+		logger.info("HomeController findPw() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "customer/findPw";
+	}@RequestMapping("/customer/findPwSuccess")
+	public String findPwSuccess(Model model) {
+		logger.info("HomeController findPwSuccess() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "customer/findPwSuccess";
+	}
+	@RequestMapping("/customer/updatePw")
+	public String updatePw(Model model) {
+		logger.info("HomeController updatePw() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "customer/updatePw";
+	}
+	
+	
+	//reservation
+	@RequestMapping("/reservation/main")
+	public String reservation(Model model) {
+		logger.info("HomeController reservation() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "reservation/main";
 	}
 }

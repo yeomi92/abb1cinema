@@ -47,11 +47,26 @@
             <td><input type="text"></td>
          </tr>
       </table>
+      
       <table>
          <tr>
             <td><div class="abb1_sigunup_form_gender"><input type="radio" id="man" name="gender" value="male"/><label id="manLb" for="man">남자</label></div></td>
             <td><div class="abb1_sigunup_form_gender"><input type="radio" id="woman" name="gender" value="female"/><label id="womanLb" for="woman">여자</label></div></td>
          </tr>
+      </table>
+      <table class="abb1_signup_form_control">
+      	<tr>
+            <td colspan="2"><input type="text" placeholder="주소" ></td>
+            <td>
+               <input type="button" value="우편번호 검색" class="btn abb1_btn_lg abb1_btn_verification" type="submit">
+            </td>
+         </tr>
+      	<tr>
+               <td colspan="2"><input type="text" placeholder="주소"></td>
+        </tr>
+      	<tr>
+               <td colspan="2"><input type="text" placeholder="상세주소"></td>
+        </tr>
       </table>
       <table class="abb1_signup_form_control">
          <tr>
@@ -67,7 +82,7 @@
             </td>
          </tr>
       </table>
-      <a href="${context}/login"><input type="button" style="background-color: #453d3f;color: #efebdb;font-size: 15px;" value="가입하기" class="btn abb1_btn_lg abb1_btn_verification abb1_btn_confirm"/></a>
+      <a href="${context}/customer/signUpSuccess"><input type="button" style="background-color: #453d3f;color: #efebdb;font-size: 15px;" value="가입하기" class="btn abb1_btn_lg abb1_btn_verification abb1_btn_confirm"/></a>
       </div>
    </div>   
    </form>
