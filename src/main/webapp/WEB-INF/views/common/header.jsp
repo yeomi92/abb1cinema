@@ -17,10 +17,10 @@
          <a href="/web"><img src="${context}/resources/img/common/main_logo.png" alt=""/></a>
       </div>
    </div>
-   <nav id="boot-nav" class="navbar navbar-default">
-      <div class="container-fluid">
+   <nav id="boot-nav" class="abb1_navbar abb1_navbar-default">
+      <div class="abb1_navbar_container">
          <div class="navbar-header">
-            <a id="brand" class="navbar-brand" href="https://www.facebook.com/LotteCinema.kr"><span style="font-size: 14px;"><img src="${context}/resources/img/common/facebook.png" alt="" width="25px" height="25px"/> 롯데시네마 페이스북</span></a>
+            <a id="brand" class="navbar-brand" href="https://www.facebook.com/LotteCinema.kr"><span class="abb1_facebook"><img src="${context}/resources/img/common/facebook.png" alt="" width="25px" height="25px"/> 롯데시네마 페이스북</span></a>
          </div>
          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">

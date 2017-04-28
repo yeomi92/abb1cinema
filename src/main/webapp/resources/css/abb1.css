@@ -1,8 +1,27 @@
 @CHARSET "UTF-8";
 /*------ main ------*/
+.abb1_navbar-default{
+	    background-color: #f9f6ec;
+    border-color: #e7e7e7;
+}
+.abb1_navbar {    position: relative;
+    min-height: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.01);
+}
+.abb1_navbar_container{
+	padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    border-top: 1px solid #cdc197;
+    border-bottom: 1px solid #ab9a60;
+}
+.abb1_facebook{
+	font-size: 14px; font-weight: bold; 
+}
 .abb1_gnb {list-style-type: none; display: inline-block;}
 .abb1_gnb li {float: left;}
-.abb1_gnb a {font-size: 17px;color: #5b5b5b; text-align: center; text-decoration: none; padding: 0 20px; border-left: 1px solid #5b5b5b; border-right: 1px solid #5b5b5b;}
+.abb1_gnb a {font-size: 15px;color: #5b5b5b; text-align: center; padding: 0 30px; border-left: 1px solid #5b5b5b; border-right: 1px solid #5b5b5b;}
 .abb1_gnb_tab{padding-bottom: 10px; border-bottom: 1px solid #c0c0c0;}
 .abb1_tooltip { position: relative; display: inline-block; border-bottom: 1px dotted black;}
 .abb1_tooltip .abb1_tooltiptext {font-size: 10px; width: 30px; visibility: hidden; background-color: #5b5b5b; color: #fff; text-align: center; border-radius: 6px; padding: 5px 0; position: absolute; z-index: 1; bottom: 3px;}
@@ -200,7 +219,7 @@
    margin-top: 25px;
 }
 .abb1_ticketing_settings{
-   background: #33373a; width: 100%; height: 43%;
+   background: #33373a; width: 100%; height:234px;
 }
 .abb1_ticketing_table{
    margin: 0 auto; width: 1000px; text-align: center;
@@ -234,7 +253,7 @@
    text-align: center;
 }
 .abb1_ticketing_paying div{
-   padding-bottom: 100px;
+   padding-bottom: 70px;
    font-size: 30px;
 }
 .abb1_ticketing_paying input{
@@ -242,10 +261,10 @@
 }
 
 /*------ footer ------*/
-#footer{width:100%; text-align: center; background-color: #f5f5f5}
+#footer{width:100%; text-align: center; background-color: #f5f5f5;}
 
 /*------ total settings ------*/
-a {text-decoration: none;}
+a {text-decoration: none; color:#2A2E33;}
 a:hover {text-decoration: none;}
 ol, ul, li {list-style: none;}
 textarea{resize: none;}
@@ -354,11 +373,6 @@ ul, menu, dir {
 
 /*--------findId--------*/
 .abb1_red_font{font-size: 15px;color: #ff0000;}
-
-
-
-
-
 
 
 

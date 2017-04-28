@@ -171,7 +171,7 @@
             <td>
             <table>
                <tr>
-                  <td><img src="${context}/resources/img/movie/movie_poster_6.png" alt="" width="127px" height="191px"/></td>
+                  <td><img src="${context}/resources/img/movie/movie_poster_6.png" alt="" width="127px" height="170px"/></td>
                   <td>
                   <div class="abb1_ticketing_moviename">아빠는 딸</div>
                   <div class="abb1_ticketing_type">2D</div>
@@ -205,7 +205,7 @@
             </td>
             <td class="abb1_ticketing_paying">
             <div >9,000원</div>
-            <input type="button" value="결제하기" class="abb1_ticketing_btn"/>
+            <a href="${context}/customer/mypage"><input type="button" value="결제하기" class="abb1_ticketing_btn"/></a>
             </td>
          </tr>
       </table>
