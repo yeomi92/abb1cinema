@@ -29,7 +29,31 @@ public class HomeController {
 		model.addAttribute("context", Complex.ContextFactory.create());
 		return "index";
 	}
-	
+	//admin
+	@RequestMapping("/admin/index")
+	public String admin(Model model) {
+		logger.info("HomeController admin() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "admin/index";
+	}
+	@RequestMapping("/admin/chart")
+	public String adminChart(Model model) {
+		logger.info("HomeController admin() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "admin/chart";
+	}
+	@RequestMapping("/admin/forms")
+	public String adminForms(Model model) {
+		logger.info("HomeController admin() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "admin/index";
+	}
+	@RequestMapping("/admin/tables")
+	public String adminTable(Model model) {
+		logger.info("HomeController admin() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "admin/tables";
+	}
 	//board
 	@RequestMapping("/board/main")
 	public String bbs(Model model) {

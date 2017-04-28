@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="common/header.jsp"/>
+<a href="${context}/admin/index">
+<input type="button" value="ADMIN TEST"/>
+</a>
 <div id="wrapper">
     <div id="boxoffice">
       <table class="abb1_tbboxoffice">
@@ -97,4 +100,4 @@
   		<img src="resources/img/common/shortList.png" alt="" />
    </div>
 </div>
-<jsp:include page="common/footer.jsp"/>
+<jsp:include page="common/footer_white.jsp"/>
