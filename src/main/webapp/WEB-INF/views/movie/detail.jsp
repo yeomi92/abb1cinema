@@ -121,7 +121,7 @@
 			<textarea style="resize: none;" name="" id="" cols="80" rows="5" placeholder="영화 리뷰는 로그인 후에 작성하실 수 있습니다."></textarea>
 		</td>
 		<td class="abb1_nowMovie_border" style="background-color: #231f20;padding: 11px 30px;font-size: 17px;text-align: center;">
-		<a href="" class="abb1_text_line_none"><h4 style="color: #cdc197;text-decoration: none;">입력</h4></a></td>
+		<a href=""><h4 style="color: #cdc197;">입력</h4></a></td>
 	</tr>
 </table>
 </div>
@@ -140,6 +140,7 @@
 	</tr>
 </table>
 </div>
+
 <jsp:include page="../common/footer.jsp"/>
 <script>
 $( ".abb1_star_rating a" ).click(function() {

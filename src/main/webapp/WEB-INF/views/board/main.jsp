@@ -48,7 +48,7 @@
          <tr>
             <td>-</td>
             <td><b>전체</b></td>
-            <td><a href="${context}/board/noticeDetail">개인정보 이용내역 안내</a></td>
+            <td><a href="${context}/board/noticeDetail">[공지]개인정보 이용내역 안내</a></td>
             <td>2017-03-09</td>
             <td>27399</td>
          </tr>
