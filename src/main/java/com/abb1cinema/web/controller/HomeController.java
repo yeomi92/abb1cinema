@@ -186,7 +186,6 @@ public class HomeController {
 		return "customer/updatePw";
 	}
 	
-	
 	//reservation
 	@RequestMapping("/reservation/main")
 	public String reservation(Model model) {
@@ -199,5 +198,13 @@ public class HomeController {
 		logger.info("HomeController reservationSeat() {}","ENTER");
 		model.addAttribute("context", Complex.ContextFactory.create());
 		return "reservation/seat";
+	}
+	
+	//theater
+	@RequestMapping("/theater/main")
+	public String theater(Model model) {
+		logger.info("HomeController theater() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "theater/main";
 	}
 }

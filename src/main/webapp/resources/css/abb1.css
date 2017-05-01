@@ -269,6 +269,9 @@ a {text-decoration: none; color:#2A2E33;}
 a:hover {text-decoration: none;}
 ol, ul, li {list-style: none;}
 textarea{resize: none;}
+body {
+    font-family: "나눔 고딕", 'Nanum Gothic', 'ng';
+}
 
 .abb1_nowMovie_table{border-collapse:collapse;}
 .abb1_nowMovie_border{border:1px solid #cdcdcd;}
@@ -375,7 +378,11 @@ ul, menu, dir {
 /*--------findId--------*/
 .abb1_red_font{font-size: 15px;color: #ff0000;}
 
-
+/*----theater main----*/
+#mavie_time_line table tr td{border:1px solid #c0c0c0;width: 150px;}
+#mavie_time_line td{height: 35px;text-align: center}
+#movie_time_table li{padding-right: 0px;}
+.abb1_margin_left_100{margin-left: 180px;margin-right: 180px;}
 
 
 .colorcheck{color: #efebdb;}

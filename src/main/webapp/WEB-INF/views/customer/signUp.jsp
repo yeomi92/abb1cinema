@@ -56,7 +56,7 @@
       </table>
       <table class="abb1_signup_form_control">
       	<tr>
-            <td colspan="2"><input type="text" placeholder="주소" ></td>
+            <td><input type="text" placeholder="주소" ></td>
             <td>
                <input type="button" value="우편번호 검색" class="btn abb1_btn_lg abb1_btn_verification" type="submit">
             </td>
@@ -76,10 +76,7 @@
             </td>
          </tr>
          <tr>
-            <td colspan="2"><input type="text" placeholder="인증번호 입력"></td>
-            <td>
-               <input type="button" value="인증번호 확인" class="btn abb1_btn_lg abb1_btn_verification" type="submit">
-            </td>
+            <td colspan="3"><input type="text" placeholder="인증번호 입력"></td>
          </tr>
       </table>
       <a href="${context}/customer/signUpSuccess"><input type="button" style="background-color: #453d3f;color: #efebdb;font-size: 15px;" value="가입하기" class="btn abb1_btn_lg abb1_btn_verification abb1_btn_confirm"/></a>
