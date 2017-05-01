@@ -533,10 +533,10 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="${context}/resources/js/bootstrap_admin/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="${context}/resources/js/bootstrap_admin/js/bootstrap.min.js"></script>
 
 </body>
 

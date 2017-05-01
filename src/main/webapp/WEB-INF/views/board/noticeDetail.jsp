@@ -8,7 +8,7 @@
       <table class="abb1_bbs_notice_table">
          <tr>
             <td>
-               <h3>개인정보 이용내역 안내</h3>
+               <h3>[공지]개인정보 이용내역 안내</h3>
                <ul class="abb1_view_info">
                   <li>
                      <strong>영화관 : </strong><span> 전체</span>

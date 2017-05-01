@@ -95,8 +95,9 @@
 #bbs_table tr:nth-child(1){font-weight: bold; background: #f9f6ec;}
 #bbs_table th{padding:14px 0 13px;border-bottom:1px solid silver;vertical-align:middle; text-align: center; font-size:13px; background: white;}
 #bbs_table td{padding:15px 10px;border-bottom:1px solid #dedede;color:#666;vertical-align:middle; font-size:13px;}
+#bbs_table td:nth-child(3){text-align: left;}
 #bbs_pagination{ margin-top: 30px; text-align: center;}
-#bbs_pagination a{width:24px;height:24px;line-height:24px;margin:0 5px;color:#666;text-align:center;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;}
+#bbs_pagination a{width:24px;height:24px;line-height:24px;margin:0 3px;color:#666;text-align:center;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;}
 #bbs_pagination a.on{background-color: #231f20; color: white;}
 #bbs_pagination a:hover{background-color: #594f52; color: white;}
 #bbs_pagination img{background-color: white;}

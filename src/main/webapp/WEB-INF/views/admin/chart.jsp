@@ -157,7 +157,7 @@
                         <a href="index"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li class="active">
-                        <a href="chart"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
+                        <a href="charts"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
                     </li>
                     <li>
                         <a href="tables"><i class="fa fa-fw fa-table"></i> Tables</a>
@@ -384,15 +384,15 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="${context}/resources/js/bootstrap_admin/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="${context}/resources/js/bootstrap_admin/js/bootstrap.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="js/plugins/morris/raphael.min.js"></script>
-    <script src="js/plugins/morris/morris.min.js"></script>
-    <script src="js/plugins/morris/morris-data.js"></script>
+    <script src="${context}/resources/js/bootstrap_admin/js/plugins/morris/raphael.min.js"></script>
+    <script src="${context}/resources/js/bootstrap_admin/js/plugins/morris/morris.min.js"></script>
+    <script src="${context}/resources/js/bootstrap_admin/js/plugins/morris/morris-data.js"></script>
 
     <!-- Flot Charts JavaScript -->
     <!--[if lte IE 8]><script src="js/excanvas.min.js"></script><![endif]-->
