@@ -1,25 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../common/header.jsp"/>
-<div>
-<img src="${context}/resources/img/theater/theater.jpg" alt="" />
-</div>
 <div id="container" class="abb1_bgcolor_beige">
-<div class="abb1_margin_left_100" style="padding-top: 20px;">
+<div>
+<img src="${context}/resources/img/multiplex/theater.jpg" alt="" />
+</div>
+<div class="abb1_margin_left_100 abb1_padding_top_20">
 <h2><strong>가산디지털</strong></h2>
-<table>
+<table id="multiplex_info">
 	<tr>
 		<td>서울 금천구 가산동,60-8 </td>
-		<td style="border-right: 1px solid gray;"><strong>총 상영관수</strong></td>
+		<td class="abb1_multiplex_border_right"><strong>총 상영관수</strong></td>
 		<td>1개관</td>
-		<td style="border-right: 1px solid gray;"><strong>총 좌석수</strong></td>
+		<td class="abb1_multiplex_border_right"><strong>총 좌석수</strong></td>
 		<td>100석</td>
 	</tr>
 </table>
 </div>
 <div class="abb1_margin_left_100">
 <ul class="abb1_ul_inline">
-<li class="abb1_li_inline" style="background-color: #cdc197;border: 1px solid #cdc197;width: 170px;text-align: center;"><a href="#" style="padding-left: 20px;color: black;line-height: 50px;width: 150px;font-size: 17px;"><strong>상영시간표</strong></a></li>
-<li class="abb1_li_inline" style="background-color: white;border: 1px solid #c0c0c0;width: 170px;text-align: center;"><a href="" style="padding-left: 20px;color: black;line-height: 50px;font-size: 17px;"><strong>위치정보</strong></a></li>
+<li class="abb1_li_inline abb1_multiplex_select_btn" ><a href="#" class="abb1_multiplex_select_a"><strong>상영시간표</strong></a></li>
+<li class="abb1_li_inline abb1_multiplex_btn"><a href="${context}/multiplex/map" class="abb1_multiplex_a"><strong>위치정보</strong></a></li>
 </ul>
 </div>
 <div  class="abb1_margin_left_100" style="margin-bottom: 20px;">

@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../common/header.jsp"/>
 <div style="background-color: #231f20" class="abb1_width_center">
-<img src="${context}/resources/img/movie/movie_trailer_2.PNG" style="margin-top: 30px; margin-bottom: 30px;" alt="" />
+<img src="${context}/resources/img/movie/movie_trailer_2.PNG" class="abb1_movie_trailer" alt="" />
 </div>
-<div class="abb1_width_left" style="margin-top: 30px;">
+<div class="abb1_width_left abb1_margin_top_30">
 
 <ul class="abb1_ul_inline">
 	<li class="abb1_li_inline">
@@ -12,11 +12,11 @@
 				<td><img src="${context}/resources/img/movie/movie_poster_2.png" width="228px" height="333.99px" alt="..."></td>
 			</tr>
 			<tr>
-				<td style="height: 10px;"></td>
+				<td class="abb1_height_10"></td>
 			</tr>
 			<tr>
-				<td style="background-color: #231f20;padding: 11px 30px;font-size: 17px;text-align: center;">
-				<a href="#" style="font-size: 17px;color: #cdc197;text-decoration: none;">예매하기</a>
+				<td class="abb1_movie_btn_reservation_td">
+				<a href="#" class="abb1_movie_btn_reservation">예매하기</a>
 				</td>
 			</tr>
 		</table>
@@ -28,7 +28,7 @@
 			</tr>
 			<tr>
 				<td class="abb1_font_bold" style="height: 50px;">예매율</td>
-				<td><span class="abb1_font_bold abb1_font_serif abb1_font_italic" style="font-size: 25px;">4</span> <span class="abb1_movie_detail_font_color">위, 13.2%</span></td>
+				<td><span class="abb1_movie_rate">4</span> <span class="abb1_movie_detail_font_color">위, 13.2%</span></td>
 				<td class="abb1_font_bold">관람평점</td>
 				<td>9.0</td>
 			</tr>
@@ -82,8 +82,10 @@
 <div id="donutchart" class="abb1_width_center" style="width: 900px; height: 450px;"></div>
 
 <div style="background-color: #f9f6ec;">
-<h3>감독 및 출연</h3>
-<div class="abb1_width_center" style="margin-top: 70px;padding-bottom: 70px;">
+<div class="abb1_width_left">
+<h3 class="abb1_movie_actor_title">감독 및 출연</h3>
+</div>
+<div class="abb1_width_center abb1_movie_actor">
 <ul class="abb1_ul_inline">
 	<li class="abb1_li_inline"><img src="${context}/resources/img/movieProfile/movie_0_pic_director.jpg" alt="" />
 	<br><br>F. 게리 그레이<br>감독</li>
@@ -100,52 +102,111 @@
 </div>
 
 <div class="abb1_width_left" style="margin-top: 30px;margin-bottom: 30px;">
+<div style="padding-bottom: 20px;border-bottom: 1px solid black;">
 <table style="width: 1000px;">
 	<tr>
 		<td colspan="4"><h3>평점 및 영화 리뷰</h3></td>
 		<td colspan="2" style="text-align: right;">(한글 150자/영문300자)</td>
 	</tr>
 	<tr class="abb1_nowMovie_border">
-		<td class="abb1_nowMovie_border" style="text-align: center;">
-			<h4>평점</h4>
-			<h5 class="abb1_star_rating">
-			    <a href="#" class="on">★</a>
-			    <a href="#" class="on">★</a>
-			    <a href="#" class="on">★</a>
-			    <a href="#" class="on">★</a>
-			    <a href="#">★</a>
-			</h5>
-			<h5>5점</h5>
+		<td class="abb1_nowMovie_border" style="text-align: center;padding-left: 15px;padding-right: 15px;">
+			<span style="font-size: 20px;"><strong>평점</strong></span>
+			<div style="margin-top: 10px;">
+			<span class="star-input">
+			  <span class="input">
+			    <input type="radio" name="star-input" id="p1" value="1"><label for="p1">1</label>
+			    <input type="radio" name="star-input" id="p2" value="2"><label for="p2">2</label>
+			    <input type="radio" name="star-input" id="p3" value="3"><label for="p3">3</label>
+			    <input type="radio" name="star-input" id="p4" value="4"><label for="p4">4</label>
+			    <input type="radio" name="star-input" id="p5" value="5"><label for="p5">5</label>
+			    <input type="radio" name="star-input" id="p6" value="6"><label for="p6">6</label>
+			    <input type="radio" name="star-input" id="p7" value="7"><label for="p7">7</label>
+			    <input type="radio" name="star-input" id="p8" value="8"><label for="p8">8</label>
+			    <input type="radio" name="star-input" id="p9" value="9"><label for="p9">9</label>
+			    <input type="radio" name="star-input" id="p10" value="10"><label for="p10">10</label>
+			  </span><br>
+			  <output for="star-input"><b>0</b><strong>점</strong></output>
+			</span>
+			</div>
 		</td>
 		<td colspan="4" class="abb1_nowMovie_border">
-			<textarea style="resize: none;" name="" id="" cols="80" rows="5" placeholder="영화 리뷰는 로그인 후에 작성하실 수 있습니다."></textarea>
+			<textarea name="" id="" cols="100" rows="5" placeholder="영화 리뷰는 로그인 후에 작성하실 수 있습니다."></textarea>
 		</td>
 		<td class="abb1_nowMovie_border" style="background-color: #231f20;padding: 11px 30px;font-size: 17px;text-align: center;">
-		<a href=""><h4 style="color: #cdc197;">입력</h4></a></td>
+		<a href=""><span style="color: #cdc197;font-size: 23px;">입력</span></a></td>
 	</tr>
 </table>
 </div>
-<div>
-<table style="border-top-color: #666666;">
+<div style="margin-top: 20px;">
+<table id="review" class="abb1_movie_review">
 	<tr>
-		<td>실관람객</td>
-		<td colspan="2">평점: 9</td>
+		<td colspan="3" style="text-align: left;"><strong>평점: 9</strong></td>
 	</tr>
 	<tr>
-		<td colspan="2">액션 스케일 너무너무 좋아요.재미있게 잘봤습니다</td>
-		<td>회워ID</td>
+		<td colspan="2">최고의 영화. 추천합니다.</td>
+		<td style="text-align: right;">염*선</td>
 	</tr>
 	<tr>
-		<td colspan="3">2017-04-25</td>
+		<td colspan="3" style="text-align: right;">2017-04-25</td>
+	</tr>
+</table>
+<table id="review" class="abb1_movie_review">
+	<tr>
+		<td colspan="3" style="text-align: left;"><strong>평점: 9</strong></td>
+	</tr>
+	<tr>
+		<td colspan="2">최고의 영화. 추천합니다.</td>
+		<td style="text-align: right;">염*선</td>
+	</tr>
+	<tr>
+		<td colspan="3" style="text-align: right;">2017-04-25</td>
+	</tr>
+</table>
+<table id="review" class="abb1_movie_review">
+	<tr>
+		<td colspan="3" style="text-align: left;"><strong>평점: 9</strong></td>
+	</tr>
+	<tr>
+		<td colspan="2">최고의 영화. 추천합니다.</td>
+		<td style="text-align: right;">염*선</td>
+	</tr>
+	<tr>
+		<td colspan="3" style="text-align: right;">2017-04-25</td>
 	</tr>
 </table>
 </div>
-
+</div>
 <jsp:include page="../common/footer.jsp"/>
 <script>
-$( ".abb1_star_rating a" ).click(function() {
-     $(this).parent().children("a").removeClass("on");
-     $(this).addClass("on").prevAll("a").addClass("on");
-     return false;
-});
+var starRating = function(){
+  var $star = $(".star-input"),
+      $result = $star.find("output>b");
+  $(document)
+    .on("focusin", ".star-input>.input", function(){
+    $(this).addClass("focus");
+  })
+    .on("focusout", ".star-input>.input", function(){
+    var $this = $(this);
+    setTimeout(function(){
+      if($this.find(":focus").length === 0){
+        $this.removeClass("focus");
+      }
+    }, 100);
+  })
+    .on("change", ".star-input :radio", function(){
+    $result.text($(this).next().text());
+  })
+    .on("mouseover", ".star-input label", function(){
+    $result.text($(this).text());
+  })
+    .on("mouseleave", ".star-input>.input", function(){
+    var $checked = $star.find(":checked");
+    if($checked.length === 0){
+      $result.text("0");
+    } else {
+      $result.text($checked.next().text());
+    }
+  });
+};
+starRating();
 </script>

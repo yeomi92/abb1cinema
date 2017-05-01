@@ -10,7 +10,7 @@
          <td><strong>아이디</strong></td>
             <td><input type="text"></td>
             <td rowspan="2">
-            <input type="button" value="로그인" class="btn abb1_btn_lg abb1_btn_verificationabb1_bgcolor_bold_brown abb1_color_beige " type="submit" style="height: 68px;background-color: #231f20;color: #efebdb;font-size: 15px;">
+            <input type="button" value="로그인" class="btn abb1_btn_lg abb1_login_btn" type="submit">
             </td>
          </tr>
          <tr>
@@ -31,7 +31,7 @@
         </table>
    </form>
 </div>
-<div class="abb1_bgcolor_bold_beige abb1_padding_top_20 abb1_padding_bottom_20">
+<div class="abb1_div_login_footer">
    <table class="abb1_width_center_w800">
       <tr>
       <td style="width: 448px">회원가입시 온라인/모바일을 편리하게 이용할 수 있습니다. </td>

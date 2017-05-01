@@ -93,6 +93,12 @@ public class HomeController {
 		model.addAttribute("context", Complex.ContextFactory.create());
 		return "movie/detail";
 	}
+	@RequestMapping("/movie/test")
+	public String movieTest(Model model) {
+		logger.info("HomeController movieDetail() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "movie/test";
+	}
 	
 	//customer
 	@RequestMapping("/customer/login")
@@ -200,11 +206,17 @@ public class HomeController {
 		return "reservation/seat";
 	}
 	
-	//theater
-	@RequestMapping("/theater/main")
-	public String theater(Model model) {
-		logger.info("HomeController theater() {}","ENTER");
+	//multiplex
+	@RequestMapping("/multiplex/main")
+	public String multiplex(Model model) {
+		logger.info("HomeController multiplex() {}","ENTER");
 		model.addAttribute("context", Complex.ContextFactory.create());
-		return "theater/main";
+		return "multiplex/main";
+	}
+	@RequestMapping("/multiplex/map")
+	public String multiplexMap(Model model) {
+		logger.info("HomeController multiplexMap() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "multiplex/map";
 	}
 }
