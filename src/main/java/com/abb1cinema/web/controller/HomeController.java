@@ -36,23 +36,41 @@ public class HomeController {
 		model.addAttribute("context", Complex.ContextFactory.create());
 		return "admin/index";
 	}
-	@RequestMapping("/admin/chart")
-	public String adminChart(Model model) {
-		logger.info("HomeController admin() {}","ENTER");
+	@RequestMapping("/admin/reservation")
+	public String adminReservation(Model model) {
+		logger.info("HomeController adminReservation() {}","ENTER");
 		model.addAttribute("context", Complex.ContextFactory.create());
-		return "admin/chart";
+		return "admin/reservation";
 	}
-	@RequestMapping("/admin/forms")
-	public String adminForms(Model model) {
-		logger.info("HomeController admin() {}","ENTER");
+	@RequestMapping("/admin/movie")
+	public String adminMovie(Model model) {
+		logger.info("HomeController adminMovie() {}","ENTER");
 		model.addAttribute("context", Complex.ContextFactory.create());
-		return "admin/index";
+		return "admin/movie";
 	}
-	@RequestMapping("/admin/tables")
-	public String adminTable(Model model) {
-		logger.info("HomeController admin() {}","ENTER");
+	@RequestMapping("/admin/multiplex")
+	public String adminMultiplex(Model model) {
+		logger.info("HomeController adminMultiplex() {}","ENTER");
 		model.addAttribute("context", Complex.ContextFactory.create());
-		return "admin/tables";
+		return "admin/multiplex";
+	}
+	@RequestMapping("/admin/board")
+	public String adminBoard(Model model) {
+		logger.info("HomeController adminBoard() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "admin/board";
+	}
+	@RequestMapping("/admin/statistic")
+	public String adminStatistic(Model model) {
+		logger.info("HomeController adminStatistic() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "admin/statistic";
+	}
+	@RequestMapping("/admin/customer")
+	public String adminCustomer(Model model) {
+		logger.info("HomeController adminCustomer() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "admin/customer";
 	}
 	//board
 	@RequestMapping("/board/main")

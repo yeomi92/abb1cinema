@@ -147,7 +147,7 @@
    </table>
    </div>
    <div style="text-align: right;">
-      <a href="${context}/board/write"><input style="background-color: white; color: #231f20;" type="button" value="글쓰기"/></a>
+      <a href="${context}/board/write"><input class="abb1_bbs_write_btn" type="button" value="글쓰기"/></a>
    </div>
    </div>
    

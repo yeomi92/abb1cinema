@@ -4,7 +4,7 @@
 <div id="container">
    <div class="abb1_bbs_write_container">
       <div class="abb1_bbs_table_text">문의사항</div>
-      <div style="margin: 0 auto; text-align: center;">
+      <div class="abb1_bbs_pagination_table">
       <table class="abb1_bbs_notice_table">
          <tr>
             <td>
@@ -24,7 +24,7 @@
          </tr>
          <tr>
             <td colspan="2">
-            <div style="margin: 20px 30px;">
+            <div class="abb1_view_content">
             <span>국가는 재해를 예방하고 그 위험으로부터 국민을 보호하기 위하여 노력하여야 한다. 국가는 재해를 예방하고 그 위험으로부터 국민을 보호하기 위하여 노력하여야 한다. 국가는 재해를 예방하고 그 위험으로부터 국민을 보호하기 위하여 노력하여야 한다. 국가는 재해를 예방하고 그 위험으로부터 국민을 보호하기 위하여 노력하여야 한다. 국가는 재해를 예방하고 그 위험으로부터 국민을 보호하기 위하여 노력하여야 한다.</span>
             </div>
             </td>
@@ -41,13 +41,13 @@
                </li>
                <li>
                   <div class="abb1_review_result">
-                  <strong id="bbs_review_result_name1">박준용</strong> <span id="bbs_review_result_reg_date1">2017.04.26</span>
+                  <strong id="bbs_review_result_name1">박준용</strong> <span id="bbs_review_result_reg_date2">2017.04.26</span>
                   <p id="bbs_review_result_txt1">최민식 연기 짱 짱 . 그냥 저냥 내용은 단순하고 지루했어요. 결말이 좀 어정쩡하네요. 구속되야 마땅한데 . . . 최민식 연기 짱 짱 . 그냥 저냥 내용은 단순하고 지루했어요. 결말이 좀 어정쩡하네요. 구속되야 마땅한데 . . . 최민식 연기 짱 짱 . 그냥 저냥 내용은 단순하고 지루했어요. 결말이 좀 어정쩡하네요. 구속되야 마땅한데 . . . 최민식 연기 짱 짱 . 그냥 저냥 내용은 단순하고 지루했어요. 결말이 좀 어정쩡하네요. 구속되야 마땅한데 .</p>
                   </div>
                </li>
                <li>
                   <div class="abb1_review_result">
-                  <strong id="bbs_review_result_name1">박준용</strong> <span id="bbs_review_result_reg_date1">2017.04.26</span>
+                  <strong id="bbs_review_result_name1">박준용</strong> <span id="bbs_review_result_reg_date3">2017.04.26</span>
                   <p id="bbs_review_result_txt1">최민식 연기 짱 짱 . 그냥 저냥 내용은 단순하고 지루했어요. 결말이 좀 어정쩡하네요. 구속되야 마땅한데 . . . 최민식 연기 짱 짱 . 그냥 저냥 내용은 단순하고 지루했어요. 결말이 좀 어정쩡하네요. 구속되야 마땅한데 . . . 최민식 연기 짱 짱 . 그냥 저냥 내용은 단순하고 지루했어요. 결말이 좀 어정쩡하네요. 구속되야 마땅한데 . . . 최민식 연기 짱 짱 . 그냥 저냥 내용은 단순하고 지루했어요. 결말이 좀 어정쩡하네요. 구속되야 마땅한데 .</p>
                   </div>
                </li>

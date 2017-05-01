@@ -45,6 +45,23 @@
 .abb1_text_center{text-align: center;}
 .abb1_eventBxMain{color: #231f20; font-size: 25px; margin-bottom: 20px; font-style: italic;}
 
+
+/*------ admin -------*/
+.abb1_admin_settings{margin: 0 auto; text-align: left;}
+.abb1_admin_maintext{    font-size: 27px;
+    color: #988d8d;
+    margin: 20px 0 20px 50px;}
+.abb1_admin_reservation_table{text-align: center; margin: 0 auto; width: 100%}
+.abb1_admin_reservation_table th{    text-align: center;
+    border-top: 2px solid #777;
+    border-bottom: 2px solid #777;
+    background: #efebdb;
+    padding: 5px 0;}
+.abb1_admin_reservation_table tr td{
+	    border-bottom: 1px solid #777
+}
+
+
 /*------ bbs -------*/
 .abb1_bbs_table{width:980px;margin:0 auto;padding:50px 0;color:#231f20}
 .abb1_bbs_table_text{padding-bottom:20px;font-size:28px}
@@ -65,6 +82,8 @@
 .abb1_view_info li:first-child{padding-left: 0;background: none;}
 .abb1_view_info li{float:left;padding:0 0 0 20px;margin:0 20px 0 0;font-size:13px;color:#666}
 .abb1_review_result{display:table-cell;width:900px;vertical-align:middle;border-bottom: 1px solid #9d9d9d}
+.abb1_view_content {margin: 20px 30px;}
+.abb1_bbs_write_btn{background-color: white; color: #231f20;}
 
 /*------- bbs write -------*/
 .abb1_bbs_write_container{padding:50px; width:980px; margin: 0 auto;}
@@ -158,7 +177,7 @@
 .abb1_reservation_timeline dd .abb1_reservation_theatertime li .abb1_reservation_ppnum em{color:#231f20}
 
 /*------ reservation_seat -------*/
-.abb1_seat{width:100%; height:100%; background: #f9f6ec;}
+.abb1_seat{width:100%; background: #f9f6ec;}
 .abb1_reservation_seat_form{ margin: 0 auto; text-align: center; width: 980px}
 .abb1_seat_maintext {text-align: left;}
 .abb1_seat_maintext span{font-size: 28px; color: #231f20;}
@@ -212,6 +231,17 @@
    font-size: 14px;
    background-color: #c2c2c2;
    color: #b2b2b2;
+}
+.abb1_seat_table .reserved:hover{
+   margin: 0 2px;
+   border: 1px solid #ff8080;
+   padding: 5px 5px;
+   font-size: 14px;
+   background-color: #c2c2c2;
+   color: #b2b2b2;
+}
+.abb1_aisle{
+   margin: 0px 14px;
 }
 .abb1_seat_info{
    background: white; height: 100px; width: 100%
