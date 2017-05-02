@@ -11,7 +11,7 @@
 </div>
 <div class="abb1_width_right">
 	<ul class="abb1_ul_inline">
-		<li class="abb1_li_inline""><a href="" class="abb1_text_line_none" style="padding-right: 5px;">예매순</a></li>
+		<li class="abb1_li_inline""><a href="${context}/movie/test" class="abb1_text_line_none" style="padding-right: 5px;">예매순</a></li>
 		<li class="abb1_li_inline"><a href="" class="abb1_text_line_none">평점순</a></li>
 	</ul>
 </div>

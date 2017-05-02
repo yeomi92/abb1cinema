@@ -34,9 +34,19 @@
                <li><a href="#">노원</a></li>
                <li><a href="#">독산</a></li>
                <li><a href="#">브로드웨이(신사)</a></li>
+               <li><a href="#">서울대입구</a></li>
             </ul>
             </div>
             </li>
+            <div class="abb1_reservation_area_margin">
+            <br><br><br><li><a href="#" class="abb1_reservation_tab_cont on">경기/인천</a></li>
+            <br><li><a href="#" class="abb1_reservation_tab_cont on">충청/대전</a></li>
+            <br><li><a href="#" class="abb1_reservation_tab_cont on">전라/광주</a></li>
+            <br><li><a href="#" class="abb1_reservation_tab_cont on">경북/대구</a></li>
+            <br><li><a href="#" class="abb1_reservation_tab_cont on">경남/부산/울산</a></li>
+            <br><li><a href="#" class="abb1_reservation_tab_cont on">강원</a></li>
+            <br><li><a href="#" class="abb1_reservation_tab_cont on">제주</a></li>
+            </div>
          </ul>
          </div>
          </td>
@@ -61,34 +71,159 @@
       </div>
       <div class="abb1_reservation_time_a">
          <h4 class="abb1_reservation_timetit">가산디지털</h4>
-         <dl class="abb1_reservation_timeline">
-            <dt>특별시민</dt>
-            <dd>
-               <ul class="abb1_reservation_theatertime">
-                  <li>
-                  <a href="${context}/reservation/seat">
-                  <span class="abb1_reservation_cined2"><em>5관</em></span>
-                  <span class="abb1_reservation_clock">18:25 ~ 20:45</span>
-                  <span class="abb1_reservation_ppnum"><em>319</em>석 / 332석</span>
-                  </a>
-                  </li>
-                  <li>
-                  <a href="#">
-                  <span class="abb1_reservation_cined2"><em>5관</em></span>
-                  <span class="abb1_reservation_clock">18:25 ~ 20:45</span>
-                  <span class="abb1_reservation_ppnum"><em>319</em>석 / 332석</span>
-                  </a>
-                  </li>
-                  <li>
-                  <a href="#">
-                  <span class="abb1_reservation_cined2"><em>5관</em></span>
-                  <span class="abb1_reservation_clock">18:25 ~ 20:45</span>
-                  <span class="abb1_reservation_ppnum"><em>319</em>석 / 332석</span>
-                  </a>
-                  </li>
-               </ul>
-            </dd>
-         </dl>
+         <div id="mavie_time_line" style="background-color: white;padding: 10px;">
+			<div style="padding-bottom: 20px;">
+			<span style="font-size: 19px;margin-right: 15px;"><strong>분노의 질주: 더 익스트림</strong></span><img src="${context}/resources/img/icon/movieLink.png" alt="" />
+			</div>
+			<ul id="movie_time_table" class="abb1_ul_inline">
+			<li class="abb1_li_inline"><table>
+				<tr>
+				<td>1관</td>
+				</tr>
+				<tr>
+				<td><strong style="font-size: 22px;">12:00</strong></td>
+				</tr>
+				<tr>
+				<td> 50석 / 100석</td>
+				</tr>
+			</table></li>
+			<li class="abb1_li_inline"><table>
+				<tr>
+				<td>1관</td>
+				</tr>
+				<tr>
+				<td><strong style="font-size: 22px;">12:00</strong></td>
+				</tr>
+				<tr>
+				<td> 50석 / 100석</td>
+				</tr>
+			</table></li>
+			<li class="abb1_li_inline"><table>
+				<tr>
+				<td>1관</td>
+				</tr>
+				<tr>
+				<td><strong style="font-size: 22px;">12:00</strong></td>
+				</tr>
+				<tr>
+				<td> 50석 / 100석</td>
+				</tr>
+			</table></li>
+			<li class="abb1_li_inline"><table>
+				<tr>
+				<td>1관</td>
+				</tr>
+				<tr>
+				<td><strong style="font-size: 22px;">12:00</strong></td>
+				</tr>
+				<tr>
+				<td> 50석 / 100석</td>
+				</tr>
+			</table></li>
+			</ul>
+		</div>
+		<div id="mavie_time_line" style="background-color: white;padding: 10px;">
+			<div style="padding-bottom: 20px;">
+			<span style="font-size: 19px;margin-right: 15px;"><strong>분노의 질주: 더 익스트림</strong></span><img src="${context}/resources/img/icon/movieLink.png" alt="" />
+			</div>
+			<ul id="movie_time_table" class="abb1_ul_inline">
+			<li class="abb1_li_inline"><table>
+				<tr>
+				<td>1관</td>
+				</tr>
+				<tr>
+				<td><strong style="font-size: 22px;">12:00</strong></td>
+				</tr>
+				<tr>
+				<td> 50석 / 100석</td>
+				</tr>
+			</table></li>
+			<li class="abb1_li_inline"><table>
+				<tr>
+				<td>1관</td>
+				</tr>
+				<tr>
+				<td><strong style="font-size: 22px;">12:00</strong></td>
+				</tr>
+				<tr>
+				<td> 50석 / 100석</td>
+				</tr>
+			</table></li>
+			<li class="abb1_li_inline"><table>
+				<tr>
+				<td>1관</td>
+				</tr>
+				<tr>
+				<td><strong style="font-size: 22px;">12:00</strong></td>
+				</tr>
+				<tr>
+				<td> 50석 / 100석</td>
+				</tr>
+			</table></li>
+			<li class="abb1_li_inline"><table>
+				<tr>
+				<td>1관</td>
+				</tr>
+				<tr>
+				<td><strong style="font-size: 22px;">12:00</strong></td>
+				</tr>
+				<tr>
+				<td> 50석 / 100석</td>
+				</tr>
+			</table></li>
+			</ul>
+		</div>
+		<div id="mavie_time_line" style="background-color: white;padding: 10px;">
+			<div style="padding-bottom: 20px;">
+			<span style="font-size: 19px;margin-right: 15px;"><strong>분노의 질주: 더 익스트림</strong></span><img src="${context}/resources/img/icon/movieLink.png" alt="" />
+			</div>
+			<ul id="movie_time_table" class="abb1_ul_inline">
+			<li class="abb1_li_inline"><table>
+				<tr>
+				<td>1관</td>
+				</tr>
+				<tr>
+				<td><strong style="font-size: 22px;">12:00</strong></td>
+				</tr>
+				<tr>
+				<td> 50석 / 100석</td>
+				</tr>
+			</table></li>
+			<li class="abb1_li_inline"><table>
+				<tr>
+				<td>1관</td>
+				</tr>
+				<tr>
+				<td><strong style="font-size: 22px;">12:00</strong></td>
+				</tr>
+				<tr>
+				<td> 50석 / 100석</td>
+				</tr>
+			</table></li>
+			<li class="abb1_li_inline"><table>
+				<tr>
+				<td>1관</td>
+				</tr>
+				<tr>
+				<td><strong style="font-size: 22px;">12:00</strong></td>
+				</tr>
+				<tr>
+				<td> 50석 / 100석</td>
+				</tr>
+			</table></li>
+			<li class="abb1_li_inline"><table>
+				<tr>
+				<td>1관</td>
+				</tr>
+				<tr>
+				<td><strong style="font-size: 22px;">12:00</strong></td>
+				</tr>
+				<tr>
+				<td> 50석 / 100석</td>
+				</tr>
+			</table></li>
+			</ul>
+		</div>
       </div>
       </td>
       </tr>

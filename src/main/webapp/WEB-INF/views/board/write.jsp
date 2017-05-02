@@ -13,7 +13,7 @@
       <col style="width: 80%"/>
       </colgroup>
          <tr>
-            <td>문의종류 <span style="color: red;">*</span></td>
+            <td>문의종류 <span>*</span></td>
             <td class="abb1_bbs_write_radio">
                <input type="radio" name="kind" value="1" checked="checked"/><span>문의</span>
                <input type="radio" name="kind" value="2" checked="checked"/><span>칭찬</span>
@@ -22,7 +22,7 @@
             </td>
          </tr>
          <tr>
-            <td>분류 <span style="color: red;">*</span></td>
+            <td>분류 <span class="star">*</span></td>
             <td>
                <select class="abb1_write_ddl" name="category">
                   <option value="" selected>분류 선택</option>
@@ -35,17 +35,17 @@
             </td>
          </tr>
          <tr>
-            <td>영화관 <span style="color: red;">*</span></td>
+            <td>영화관 <span class="star">*</span></td>
             <td><input id="bbs_write_select_movie" type="button" value="영화관 선택"/></td>
          </tr>
          <tr>
-            <td>제목 <span style="color: red;">*</span></td>
+            <td>제목 <span class="star">*</span></td>
             <td>
                <input type="text" class="abb1_write_title" name="title" maxlength="50"/>
             </td>
          </tr>
-         <tr style="height: 180px">
-            <td>내용 <span style="color: red;">*</span></td>
+         <tr>
+            <td>내용 <span class="star">*</span></td>
             <td>
                <textarea name="contents" id="bbs_write_contents" cols="30" rows="10"></textarea>
             </td>
@@ -55,12 +55,6 @@
             <td>
                <input type="file" id="file" name="file" value="파일 찾기"/>
                <span>jpg, jpeg, png, bmp, pdf (2MB × 1개)</span>
-            </td>
-         </tr>
-         <tr>
-            <td>답변 여부</td>
-            <td>
-               <input type="checkbox" checked="checked"/><span>이메일로 답변 알림 받기</span>
             </td>
          </tr>
       </table>

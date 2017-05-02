@@ -22,13 +22,13 @@ function drawDonutChart() {
 <div id="wrapper">
    <div id="page-wrapper">
 		<div>
-			<select name="" id="">
+			<select name="" id="reservation_category" class="abb1_admin_reservation_category">
 				<option selected>카테고리 선택</option>
 				<option value="multiplex">영화관</option>
 				<option value="movie">영화</option>
 			</select>
-			<input type="text" />
-			<input type="button" value="검색"/>
+			<input id="reservation_search_keyword" type="text" class="abb1_admin_reservation_search_keyword" />
+			<input type="button" value="검색" class="abb1_admin_reservation_search_btn"/>
 		</div>
 		<div class="abb1_admin_settings">
 			<div id="admin_reservation_list">

@@ -42,23 +42,29 @@ public class HomeController {
 		model.addAttribute("context", Complex.ContextFactory.create());
 		return "admin/reservation";
 	}
-	@RequestMapping("/admin/movie")
-	public String adminMovie(Model model) {
+	@RequestMapping("/admin/movie_management")
+	public String adminMovieManagement(Model model) {
 		logger.info("HomeController adminMovie() {}","ENTER");
 		model.addAttribute("context", Complex.ContextFactory.create());
-		return "admin/movie";
+		return "admin/movie_management";
 	}
-	@RequestMapping("/admin/multiplex")
-	public String adminMultiplex(Model model) {
-		logger.info("HomeController adminMultiplex() {}","ENTER");
+	@RequestMapping("/admin/movie_register")
+	public String adminMovieRegister(Model model) {
+		logger.info("HomeController adminMovie() {}","ENTER");
 		model.addAttribute("context", Complex.ContextFactory.create());
-		return "admin/multiplex";
+		return "admin/movie_register";
 	}
-	@RequestMapping("/admin/board")
-	public String adminBoard(Model model) {
+	@RequestMapping("/admin/bbs_notice")
+	public String adminBbsNotice(Model model) {
 		logger.info("HomeController adminBoard() {}","ENTER");
 		model.addAttribute("context", Complex.ContextFactory.create());
-		return "admin/board";
+		return "admin/bbs_notice";
+	}
+	@RequestMapping("/admin/bbs_faq")
+	public String adminBbsFaq(Model model) {
+		logger.info("HomeController adminBoard() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "admin/bbs_faq";
 	}
 	@RequestMapping("/admin/statistic")
 	public String adminStatistic(Model model) {
@@ -110,6 +116,12 @@ public class HomeController {
 		logger.info("HomeController movieDetail() {}","ENTER");
 		model.addAttribute("context", Complex.ContextFactory.create());
 		return "movie/detail";
+	}
+	@RequestMapping("/movie/test")
+	public String movieTest(Model model) {
+		logger.info("HomeController movieDetail() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "movie/test";
 	}
 	
 	//customer
@@ -218,11 +230,17 @@ public class HomeController {
 		return "reservation/seat";
 	}
 	
-	//theater
-	@RequestMapping("/theater/main")
-	public String theater(Model model) {
-		logger.info("HomeController theater() {}","ENTER");
+	//multiplex
+	@RequestMapping("/multiplex/main")
+	public String multiplex(Model model) {
+		logger.info("HomeController multiplex() {}","ENTER");
 		model.addAttribute("context", Complex.ContextFactory.create());
-		return "theater/main";
+		return "multiplex/main";
+	}
+	@RequestMapping("/multiplex/map")
+	public String multiplexMap(Model model) {
+		logger.info("HomeController multiplexMap() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "multiplex/map";
 	}
 }
