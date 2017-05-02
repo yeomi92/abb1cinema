@@ -76,49 +76,49 @@
 <span class="abb1_multiplex_movie_title"><strong>특별시민</strong></span><img src="${context}/resources/img/icon/movieLink.png" alt="" />
 </div>
 <ul class="abb1_ul_inline">
+<a href="${context}/reservation/seat"><li class="abb1_li_inline abb1_padding_right_0"><table>
+   <tr>
+   <td>1관</td>
+   </tr>
+   <tr>
+   <td><strong class="abb1_font_size_22">12:00</strong></td>
+   </tr>
+   <tr>
+   <td> 50석 / 100석</td>
+   </tr>
+</table></li></a>
 <li class="abb1_li_inline abb1_padding_right_0"><table>
-	<tr>
-	<td>1관</td>
-	</tr>
-	<tr>
-	<td><strong class="abb1_font_size_22">12:00</strong></td>
-	</tr>
-	<tr>
-	<td> 50석 / 100석</td>
-	</tr>
+   <tr>
+   <td>1관</td>
+   </tr>
+   <tr>
+   <td><strong class="abb1_font_size_22">12:00</strong></td>
+   </tr>
+   <tr>
+   <td> 50석 / 100석</td>
+   </tr>
 </table></li>
 <li class="abb1_li_inline abb1_padding_right_0"><table>
-	<tr>
-	<td>1관</td>
-	</tr>
-	<tr>
-	<td><strong class="abb1_font_size_22">12:00</strong></td>
-	</tr>
-	<tr>
-	<td> 50석 / 100석</td>
-	</tr>
+   <tr>
+   <td>1관</td>
+   </tr>
+   <tr>
+   <td><strong class="abb1_font_size_22">12:00</strong></td>
+   </tr>
+   <tr>
+   <td> 50석 / 100석</td>
+   </tr>
 </table></li>
 <li class="abb1_li_inline abb1_padding_right_0"><table>
-	<tr>
-	<td>1관</td>
-	</tr>
-	<tr>
-	<td><strong class="abb1_font_size_22">12:00</strong></td>
-	</tr>
-	<tr>
-	<td> 50석 / 100석</td>
-	</tr>
-</table></li>
-<li class="abb1_li_inline abb1_padding_right_0"><table>
-	<tr>
-	<td>1관</td>
-	</tr>
-	<tr>
-	<td><strong class="abb1_font_size_22">12:00</strong></td>
-	</tr>
-	<tr>
-	<td> 50석 / 100석</td>
-	</tr>
+   <tr>
+   <td>1관</td>
+   </tr>
+   <tr>
+   <td><strong class="abb1_font_size_22">12:00</strong></td>
+   </tr>
+   <tr>
+   <td> 50석 / 100석</td>
+   </tr>
 </table></li>
 </ul>
 </div>

@@ -2,7 +2,7 @@
 <jsp:include page="../common/header.jsp"/>
 <div id="container">
 <div class="abb1_movie_detail_trailer">
-<img src="${context}/resources/img/movie/movie_trailer_2.PNG" class="abb1_movie_trailer" alt="분노의 질주 : 더 익스트림" />
+<a id="trailer"><img src="${context}/resources/img/movie/movie_trailer_2.PNG" class="abb1_movie_trailer" alt="분노의 질주 : 더 익스트림" /></a>
 </div>
 <div class="abb1_movie_detail_container">
 <div class="abb1_movie_detail_info">
@@ -212,4 +212,18 @@ var starRating = function(){
   });
 };
 starRating();
+
+init = {
+	setting : function(){
+	    
+	},
+	youtube : function(){
+	    var trailer = $('#trailer');
+	    trailer.on('click',function(){
+			trailer.html('<iframe width="892px" height="530px" src="https://www.youtube.com/embed/bfoFmZhMXmA?autoplay=1"></iframe>');
+	    });
+	}
+};
+init.setting();
+init.youtube();
 </script>

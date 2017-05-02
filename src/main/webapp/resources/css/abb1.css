@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 /*------ main ------*/
 .abb1_navbar-default{
-	    background-color: #f9f6ec;
+       background-color: #f9f6ec;
     border-color: #e7e7e7;
 }
 .abb1_navbar {    position: relative;
@@ -9,7 +9,7 @@
     border: 1px solid rgba(0, 0, 0, 0.01);
 }
 .abb1_navbar_container{
-	padding-right: 15px;
+   padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
@@ -17,7 +17,7 @@
     border-bottom: 1px solid #ab9a60;
 }
 .abb1_facebook{
-	font-size: 14px; font-weight: bold; 
+   font-size: 14px; font-weight: bold; 
 }
 .abb1_gnb {list-style-type: none; display: inline-block;}
 .abb1_gnb li {float: left;}
@@ -27,6 +27,7 @@
 .abb1_tooltip .abb1_tooltiptext {font-size: 10px; width: 30px; visibility: hidden; background-color: #5b5b5b; color: #fff; text-align: center; border-radius: 6px; padding: 5px 0; position: absolute; z-index: 1; bottom: 3px;}
 .abb1_tooltip:hover .abb1_tooltiptext { visibility: visible; }
 .abb1_tbboxoffice {margin: 0 auto; width: 1035px; text-align: center}
+.abb1_tbboxoffice tr:first-child{height: 80px}
 .abb1_tbboxoffice_firstcol {width: 285px; background-color: #2A2E33; color: #BFB689;}
 .abb1_tbboxoffice_firstcol a {font-size: 14px; color: white; text-align: center; text-decoration: none; padding: 0 20px 0 20px; }
 .abb1_main_reservebtn {background-color: #ee1c25; color: white; font-weight: bold; font-size: 20px; height: 48px;}
@@ -45,10 +46,6 @@
 .abb1_text_center{text-align: center;}
 .abb1_eventBxMain{color: #231f20; font-size: 25px; margin-bottom: 20px; font-style: italic;}
 
-<<<<<<< HEAD
-/*------- bbs -------*/
-=======
-
 /*------ admin -------*/
 .abb1_admin_settings{margin: 0 auto; text-align: left;}
 .abb1_admin_maintext{    font-size: 27px;
@@ -61,157 +58,156 @@
     background: #efebdb;
     padding: 5px 0;}
 .abb1_admin_reservation_table tr td{
-	    border-bottom: 1px solid #777;
-	    padding: 5px;
+       border-bottom: 1px solid #777;
+       padding: 5px;
 }
 .abb1_admin_reservation_category{
-	    height: 34px;
+       height: 34px;
     padding: 5px;
 }
 .abb1_admin_reservation_search_keyword{
-	    height: 34px;
+       height: 34px;
     width: 200px;
     padding: 5px;
 }
 .abb1_admin_reservation_search_btn{
-	    height: 34px;
+       height: 34px;
     width: 60px;
     background: white;
 }
 .abb1_admin_movie_management_table{
-	margin-top: 50px;
+   margin-top: 50px;
 }
 .abb1_admin_movie_management_table tr td {
-	padding: 5px;
+   padding: 5px;
 }
 .abb1_admin_movie_management_table tr td:first-child{
-	font-weight: bold;
+   font-weight: bold;
 }
 .abb1_admin_movie_management_table input{
-	width: 100%
+   width: 100%
 }
 .abb1_admin_movie_management_table textarea{
-	width: 100%
+   width: 100%
 }
 .abb1_admin_movie_management_btns{
-	width: 450px; text-align: right; margin-top: 30px
+   width: 450px; text-align: right; margin-top: 30px
 }
 .abb1_admin_movie_management_btns input{
-	width: 50px;
+   width: 50px;
     background: white;
 }
 .abb1_admin_faq_table {
-	width: 700px;
-	text-align: center;	
-	margin: 30px;
+   width: 700px;
+   text-align: center;   
+   margin: 30px;
 }
 .abb1_pagination_faq{
-	width: 760px;
+   width: 760px;
 }
 .abb1_admin_faq_table th{
-	text-align: center;	
+   text-align: center;   
     border-top: 2px solid #777;
     border-bottom: 2px solid #777;
     padding: 3px 0;
     color: #3e393a;
 }
 .abb1_admin_faq_table tr td{
-	text-align: center;	
+   text-align: center;   
     border-bottom: 1px solid #a8a8a8;
     padding: 3px 0;
     color: #3e393a;
 }
 .abb1_admin_faq_table{
-	background: white;
+   background: white;
 }
 .abb1_admin_notice_table {
-	width: 500px;
-	text-align: center;	
-	margin: 30px;
+   width: 500px;
+   text-align: center;   
+   margin: 30px;
 }
 .abb1_admin_notice_table th{
-	text-align: center;	
+   text-align: center;   
     border-top: 2px solid #777;
     border-bottom: 2px solid #777;
     padding: 3px 0;
     color: #3e393a;
 }
 .abb1_admin_notice_table tr td{
-	text-align: center;	
+   text-align: center;   
     border-bottom: 1px solid #a8a8a8;
     padding: 3px 0;
     color: #3e393a;
 }
 .abb1_admin_notice_table input{
-	background: white;
+   background: white;
 }
 .abb1_admin_notice_register{
-	margin: 30px 0 30px 400px;
+   margin: 30px 0 30px 400px;
 }
 .abb1_admin_notice_register input{
-	background: white;
-	width: 50px;
-	padding: 5px;
+   background: white;
+   width: 50px;
+   padding: 5px;
 }
 .abb1_admin_pagination{
-	margin: 10px;
+   margin: 10px;
 }
 .abb1_pagination_notice{
-	width: 560px;
+   width: 560px;
 }
 .abb1_admin_pagination a{
-	padding: 5px;
-	color: #777;
+   padding: 5px;
+   color: #777;
 }
 .abb1_admin_pagination a.on{
-	padding: 5px;
+   padding: 5px;
     background: black;
     color: white;
 }
 .abb1_admin_customer_table{
-	    margin-top: 30px;
-	}
+       margin-top: 30px;
+   }
 .abb1_admin_customer_table table{
-	width: 600px;
+   width: 600px;
 }
 .abb1_admin_customer_table th{
-	text-align: center;	
+   text-align: center;   
     border-top: 2px solid #777;
     border-bottom: 2px solid #777;
     padding: 3px 0;
     color: #3e393a;
 }
 .abb1_admin_customer_change{
-	margin: 50px;
+   margin: 50px;
 }
 .abb1_admin_customer_change table{
-	width: 450px;
+   width: 450px;
 }
 .abb1_admin_customer_change tr {
-	height: 40px;
+   height: 40px;
 }
 .abb1_admin_customer_change input[type=button]{
-	margin-top: 30px;
+   margin-top: 30px;
 }
-.abb1_admin_customer_table tr td{text-align: center;	
+.abb1_admin_customer_table tr td{text-align: center;   
     border-bottom: 1px solid #a8a8a8;
     padding: 3px 0;
     color: #3e393a;
 }
 .abb1_trailer_check td:first-child{
-	text-align: right;
+   text-align: right;
 }
 .abb1_trailer_check td input{
-	width: 14px;
+   width: 14px;
 }
 .abb1_notice_write_table{width:600px;color:#231f20}
 .abb1_notice_write_table td{border-bottom: 1px solid #dedede; height: 63px; color: #777; vertical-align: middle;}
 .abb1_notice_write_table textarea{width:100%; background: #f5f5f5;margin: 16px 0;    border: 1px solid #dedede;}
 
 /*------ bbs -------*/
->>>>>>> john2
-.abb1_bbs_table{width:980px;margin:0 auto;padding:50px 0;color:#231f20}
-.abb1_bbs_table_text{padding-bottom:20px;font-size:28px}
+.abb1_bbs_table{width:980px;margin:0 auto;padding:20px 0;color:#231f20}
+.abb1_bbs_table_text{font-size:28px;margin: 0 auto;width:1000px;text-align: left;margin-top: 20px;}
 .abb1_bbs_table .abb1_select_box{float:left;margin-right:5px; width: 124px; height: 28px;}
 .abb1_bbs_table select {width: 124px; height: 28px; }
 .abb1_bbs_table span {float:right;padding-top:8px;color:#231f20 }
@@ -458,6 +454,7 @@ body {
 .abb1_width_70{width: 70%;}
 /*---width_center---*/
 .abb1_width_center{margin:0 auto;width:100%;text-align:center;}
+.abb1_width_center_w1000{margin:0 auto;width:1000px;text-align:center;}
 .abb1_width_center_w800{margin:0 auto;width:800px;text-align:center;}
 .abb1_width_center_w50{margin:0 auto;width:50%;}
 .abb1_width_center_w40{margin:0 auto;width:40%;padding-left: 120px;}
@@ -731,58 +728,4 @@ ul, menu, dir {
 }
 .star-input>.input>label[for="p1"]{ 
     width: 10px;
-    z-index: 10;
-}
-.star-input>.input>label[for="p2"]{ 
-    width: 20px;
-    z-index: 9;
-}
-.star-input>.input>label[for="p3"]{ 
-    width: 30px;
-    z-index: 8;
-}
-.star-input>.input>label[for="p4"]{ 
-    width: 40px;
-    z-index: 7;
-}
-.star-input>.input>label[for="p5"]{ 
-    width: 50px;
-    z-index: 6;
-}
-.star-input>.input>label[for="p6"]{ 
-    width: 60px;
-    z-index: 5;
-}
-.star-input>.input>label[for="p7"]{ 
-    width: 70px;
-    z-index: 4;
-}
-.star-input>.input>label[for="p8"]{ 
-    width: 80px;
-    z-index: 3;
-}
-.star-input>.input>label[for="p9"]{ 
-    width: 90px;
-    z-index: 2;
-}
-.star-input>.input>label[for="p10"]{ 
-    width: 100px;
-    z-index: 1;
-}
-.star-input>output{
-    display: inline-block;
-    width: 36px;
-    text-align: right;
-}
-.star-input>output>b{
-    font:bold 18px Helvetica, Arial, sans-serif;
-    vertical-align: middle;
-}
-
-
-
-
-
-
-
-
+    z-index: 1

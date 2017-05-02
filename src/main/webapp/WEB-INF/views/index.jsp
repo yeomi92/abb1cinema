@@ -4,17 +4,22 @@
 <a href="${context}/admin/index">
 <input type="button" value="ADMIN TEST"/>
 </a>
+
+
 <div id="wrapper">
     <div id="boxoffice">
       <table class="abb1_tbboxoffice">
-         <tr style="height: 80px">
+         <tr>
             <td class="abb1_tbboxoffice_firstcol">BOX OFFICE
             <div>
             	<a id="orderbyticket" href="#">예매순</a>
             	<a id="orderbyavg" href="#">평점순</a>
             </div>
             </td>
-            <td rowspan="3"><a id="trailer" href="#"><img src="resources/img/common/main_trailer.jpg" alt="" width="784px"/></a></td>
+            <td rowspan="3"><a id="trailer" href="#">
+            <img src="resources/img/common/main_trailer.jpg" alt="" width="784px"/>
+            </a>
+            </td>
          </tr>
          <tr>
             <td>
@@ -78,12 +83,12 @@
    <div id="slidePoster">
 	   <div class="abb1_width_100 abb1_text_center">
 	   		<ul class="abb1_slidePoster">
-	   			<li class="abb1_slideBtn"><a href="#"><img src="resources/img/common/prev.png" alt="" /></a></li>
+	   			<li class="abb1_slideBtn"><a id="slide_prev" href="#"><img src="resources/img/common/prev.png" alt="" /></a></li>
 	   			<li><a id="slide1" href="#"><img src="resources/img/movie/movie_poster_0.png" alt="" width="188px" height="274px"/></a></li>
 	   			<li><a id="slide2" href="#"><img src="resources/img/movie/movie_poster_1.png" alt="" width="188px" height="274px" /></a></li>
 	   			<li><a id="slide3" href="#"><img src="resources/img/movie/movie_poster_2.png" alt="" width="188px" height="274px" /></a></li>
 	   			<li><a id="slide4" href="#"><img src="resources/img/movie/movie_poster_3.png" alt="" width="188px" height="274px" /></a></li>
-	   			<li class="abb1_slideBtn"><a href="#"><img src="resources/img/common/next.png" alt="" /></a></li>
+	   			<li class="abb1_slideBtn"><a id="slide_next" href="#"><img src="resources/img/common/next.png" alt="" /></a></li>
 	   		</ul>	
 	   </div>
    </div>
@@ -100,4 +105,20 @@
   		<img src="resources/img/common/shortList.png" alt="" />
    </div>
 </div>
+<script>
+init = {
+	setting : function(){
+	    
+	},
+	youtube : function(){
+	    var trailer = $('#trailer');
+	    trailer.on('click',function(){
+			trailer.html('<iframe width="784px" height="453px" src="https://www.youtube.com/embed/Py8g9CBJOag?autoplay=1"></iframe>')
+	    });
+	}
+};
+init.setting();
+init.youtube();
+</script>
+
 <jsp:include page="common/footer_white.jsp"/>

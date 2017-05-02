@@ -2,8 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../common/header.jsp"/>
 <div id="container">
-   <div class="abb1_bbs_table">
-      <div class="abb1_bbs_table_text">고객센터</div>
+      <div class="abb1_bbs_table_text"><strong>고객센터</strong></div>
+   <div class="abb1_bbs_table abb1_width_center_w1000">
       <div id="ddl">
          <select class="abb1_select_box" name="city">
             <option value="" selected>지역선택</option>
