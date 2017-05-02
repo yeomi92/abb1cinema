@@ -17,10 +17,10 @@
          <a href="/web"><img src="${context}/resources/img/common/main_logo.png" alt=""/></a>
       </div>
    </div>
-   <nav id="boot-nav" class="navbar navbar-default">
-      <div class="container-fluid">
+   <nav id="boot-nav" class="abb1_navbar abb1_navbar-default">
+      <div class="abb1_navbar_container">
          <div class="navbar-header">
-            <a id="brand" class="navbar-brand" href="https://www.facebook.com/LotteCinema.kr"><span style="font-size: 14px;"><img src="${context}/resources/img/common/facebook.png" alt="" width="25px" height="25px"/> 롯데시네마 페이스북</span></a>
+            <a id="brand" class="navbar-brand" href="https://www.facebook.com/LotteCinema.kr"><span class="abb1_facebook"><img src="${context}/resources/img/common/facebook.png" alt="" width="25px" height="25px"/> 롯데시네마 페이스북</span></a>
          </div>
          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
@@ -36,9 +36,9 @@
    <div class="abb1_gnb_tab abb1_width_100 abb1_text_center">
       <div class="abb1_width_100 abb1_text_center">
          <ul class="abb1_gnb">
-            <li><a id="ticketing" href="#">예매</a></li>
+            <li><a id="ticketing" href="${context}/reservation/main">예매</a></li>
             <li><a id="movie" href="${context}/movie/main">영화</a></li>
-            <li><a id="theater" href="#">영화관</a></li>
+            <li><a id="multiplex" href="${context}/multiplex/main">영화관</a></li>
             <li><a class="abb1_tooltip" href="#">스위트샵<span class="abb1_tooltiptext">미구현</span></a></li>
             <li><a class="abb1_tooltip" href="#">이벤트<span class="abb1_tooltiptext">미구현</span></a></li>
             <li><a class="abb1_tooltip" href="#">기프트샵<span class="abb1_tooltiptext">미구현</span></a></li>

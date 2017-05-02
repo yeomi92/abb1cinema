@@ -4,7 +4,7 @@
 <div>
 <img src="${context}/resources/img/multiplex/theater.jpg" alt="" />
 </div>
-<div class="abb1_margin_left_100" style="padding-top: 20px;">
+<div class="abb1_multiplex_map_title">
 <h2><strong>가산디지털 위치정보</strong></h2>
 </div>
 <div class="abb1_margin_left_100">
