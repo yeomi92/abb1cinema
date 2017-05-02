@@ -28,10 +28,10 @@
          <tr>
          <td colspan="2" class="abb1_padding_left_73"><ul class="abb1_page_ul_inline">
 		<li class="abb1_finc_id_cancel_btn">
-			<a href="${context}/customer/login"><input type="button" value="취소" class="btn abb1_btn_lg abb1_btn_verification" style="height: 50px;width: 150px;font-size: 17px;background-color: #efebdb" /></a>
+			<a href="${context}/customer/login"><input type="button" value="취소" class="btn abb1_btn_lg abb1_btn_verification"  /></a>
 		</li>
 		<li class="abb1_page_li_inline">
-			<a href="${context}/customer/findPwSuccess"><input type="button" value="확인" class="btn abb1_btn_lg abb1_btn_verification" style="height: 50px;width: 150px;font-size: 17px;background-color: #efebdb" /></a>
+			<a href="${context}/customer/findPwSuccess"><input type="button" value="확인" class="btn abb1_btn_lg abb1_btn_verification"  /></a>
 		</li>
 	</ul></td>
          </tr>

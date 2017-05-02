@@ -8,20 +8,20 @@
 <div class="abb1_padding_top_20 abb1_width_left">
 	<ul class="abb1_page_ul_inline">
 		<li class="abb1_page_li_inline">
-			<a href="" class="abb1_mypage_select_btn">예매/구매내역</a>
+			<a href="#" class="abb1_mypage_select_btn">예매/구매내역</a>
 		</li>
 		<li class="abb1_page_li_inline">
-			<a href="" class="abb1_mypage_not_select_btn">나의 정보관리</a>
+			<a href="${context}/customer/mypageInfo" class="abb1_mypage_not_select_btn">나의 정보관리</a>
 		</li>
 	</ul> 
 </div>
 <div class="abb1_mypage_reservation_content">
-	<ul class="abb1_page_ul_inline">
+	<ul class="abb1_page_ul_inline abb1_mypage_margin">
 		<li class="abb1_page_li_inline">
-			<a href="" class="abb1_detail_gnb_li"><strong>예매/구매내역</strong></a>
+			<a href="#" class="abb1_detail_gnb_li"><strong>예매/구매내역</strong></a>
 		</li>
 		<li class="abb1_page_li_inline">
-			<a href="" class="abb1_detail_gnb_li">취소내역</a>
+			<a href="${context}/customer/mypageCancel" class="abb1_detail_gnb_li">취소내역</a>
 		</li>
 	</ul>
 	<div class="abb1_page_reservation">
@@ -52,7 +52,7 @@
 	<div class="abb1_find_pw_margin">
 	<table>
 		<tr>
-			<td rowspan="4"><span class="margin_left_20"><img src="${context}/resources/img/movie/movie_poster_6.png" width="60%" height="60%" alt="" /></span></td>
+			<td rowspan="4"><span class="abb1_margin_left_20"><img src="${context}/resources/img/movie/movie_poster_6.png" width="60%" height="60%" alt="" /></span></td>
 			<td colspan="2"><h4><strong>아빠는 딸</strong></h4></td>
 		</tr>
 		<tr>

@@ -14,8 +14,8 @@
       <div class="abb1_seat_table">
          <table>
             <colgroup>
-            <col style="width: 15%" />
-            <col style="width: 80%" />
+            <col style="width: 9%" />
+            <col style="width: 90%" />
             </colgroup>
          <tr>
             <td>A</td>

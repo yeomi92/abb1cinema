@@ -16,7 +16,7 @@
 	</ul> 
 </div>
 <div class="abb1_mypage_reservation_content">
-	<ul class="abb1_page_ul_inline">
+	<ul class="abb1_page_ul_inline abb1_mypage_margin">
 		<li class="abb1_page_li_inline">
 			<a href="#" class="abb1_detail_gnb_li"><strong>예매/구매내역</strong></a>
 		</li>

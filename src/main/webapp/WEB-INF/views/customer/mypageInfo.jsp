@@ -17,14 +17,21 @@
 </div>
 <div class="abb1_mypage_reservation_content">
 	<div class="abb1_page_info abb1_width_center">
-	<ul class="abb1_page_ul_inline">
-		<li class="abb1_finc_id_cancel_btn">
-			<a href="${context}/customer/updateInfoChPw"><input type="button" value="회원정보변경" class="btn abb1_btn_lg abb1_btn_verification" style="height: 50px;width: 150px;font-size: 17px;background-color: #efebdb" /></a>
-		</li>
-		<li class="abb1_page_li_inline">
-			<a href="${context}/customer/withdrawal"><input type="button" value="회원탈퇴" class="btn abb1_btn_lg abb1_btn_verification" style="height: 50px;width: 150px;font-size: 17px;background-color: #efebdb" /></a>
-		</li>
-	</ul>
+	<table>
+		<tr>
+			<td>
+				<ul class="abb1_page_ul_inline">
+					<li class="abb1_finc_id_cancel_btn">
+						<a href="${context}/customer/updateInfoChPw"><input type="button" value="회원정보변경" class="btn abb1_btn_lg abb1_btn_verification" /></a>
+					</li>
+					<li class="abb1_page_li_inline">
+						<a href="${context}/customer/withdrawal"><input type="button" value="회원탈퇴" class="btn abb1_btn_lg abb1_btn_verification" /></a>
+					</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+	
 	</div>
 </div>
 </div>
