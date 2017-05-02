@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../common/header.jsp"/>
+<div id="container">
 <div id="signUp" class="abb1_signup_form">
     <form>
     <div class="abb1_signup_settings">
@@ -83,5 +84,6 @@
       </div>
    </div>   
    </form>
+</div>
 </div>
 <jsp:include page="../common/footer.jsp"/>

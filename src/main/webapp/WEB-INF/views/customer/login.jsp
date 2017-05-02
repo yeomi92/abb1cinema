@@ -34,8 +34,8 @@
 <div class="abb1_div_login_footer">
    <table class="abb1_width_center_w800">
       <tr>
-      <td style="width: 448px">회원가입시 온라인/모바일을 편리하게 이용할 수 있습니다. </td>
-      <td style="width: 200px"><a href="${context}/customer/signUp"><input type="button" value="회원가입" class="btn abb1_btn_lg abb1_btn_verification" style="height: 60px;width: 120px;font-size: 15px;" /></a></td>
+      <td class="abb1_width_448">회원가입시 온라인/모바일을 편리하게 이용할 수 있습니다. </td>
+      <td class="abb1_width_200"><a href="${context}/customer/signUp"><input type="button" value="회원가입" class="btn abb1_btn_lg abb1_btn_verification" style="height: 60px;width: 120px;font-size: 15px;" /></a></td>
       </tr>
    </table>
 </div>

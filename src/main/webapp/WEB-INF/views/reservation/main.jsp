@@ -6,16 +6,16 @@
    <table class="abb1_reservation_calendar">
       <tr>
          <td>
-         <span style="font-size: 25px">2017-04-27 <a href="#"><img src="${context}/resources/img/icon/calendar.png" alt="" width="30px" height="30px"/></a></span>
+         <span class="abb1_font_size_25">2017-04-27 <a href="#"><img src="${context}/resources/img/icon/calendar.png" alt="" width="30px" height="30px"/></a></span>
          </td>
       </tr>
    </table>
    <table class="abb1_reservation_multiplex">
       <colgroup>
-         <col style="width: 60%" />
-         <col style="width: 40%" />
+         <col class="abb1_width_60" />
+         <col class="abb1_width_40" />
       </colgroup>
-      <tr style="border-top: 2px solid black;">
+      <tr class="abb1_border_top_2">
          <td><span>영화관</span></td>
          <td><span>영화</span></td>
       </tr>
@@ -71,159 +71,57 @@
       </div>
       <div class="abb1_reservation_time_a">
          <h4 class="abb1_reservation_timetit">가산디지털</h4>
-         <div id="mavie_time_line" style="background-color: white;padding: 10px;">
-			<div style="padding-bottom: 20px;">
-			<span style="font-size: 19px;margin-right: 15px;"><strong>분노의 질주: 더 익스트림</strong></span><img src="${context}/resources/img/icon/movieLink.png" alt="" />
-			</div>
-			<ul id="movie_time_table" class="abb1_ul_inline">
-			<li class="abb1_li_inline"><table>
-				<tr>
-				<td>1관</td>
-				</tr>
-				<tr>
-				<td><strong style="font-size: 22px;">12:00</strong></td>
-				</tr>
-				<tr>
-				<td> 50석 / 100석</td>
-				</tr>
-			</table></li>
-			<li class="abb1_li_inline"><table>
-				<tr>
-				<td>1관</td>
-				</tr>
-				<tr>
-				<td><strong style="font-size: 22px;">12:00</strong></td>
-				</tr>
-				<tr>
-				<td> 50석 / 100석</td>
-				</tr>
-			</table></li>
-			<li class="abb1_li_inline"><table>
-				<tr>
-				<td>1관</td>
-				</tr>
-				<tr>
-				<td><strong style="font-size: 22px;">12:00</strong></td>
-				</tr>
-				<tr>
-				<td> 50석 / 100석</td>
-				</tr>
-			</table></li>
-			<li class="abb1_li_inline"><table>
-				<tr>
-				<td>1관</td>
-				</tr>
-				<tr>
-				<td><strong style="font-size: 22px;">12:00</strong></td>
-				</tr>
-				<tr>
-				<td> 50석 / 100석</td>
-				</tr>
-			</table></li>
-			</ul>
-		</div>
-		<div id="mavie_time_line" style="background-color: white;padding: 10px;">
-			<div style="padding-bottom: 20px;">
-			<span style="font-size: 19px;margin-right: 15px;"><strong>분노의 질주: 더 익스트림</strong></span><img src="${context}/resources/img/icon/movieLink.png" alt="" />
-			</div>
-			<ul id="movie_time_table" class="abb1_ul_inline">
-			<li class="abb1_li_inline"><table>
-				<tr>
-				<td>1관</td>
-				</tr>
-				<tr>
-				<td><strong style="font-size: 22px;">12:00</strong></td>
-				</tr>
-				<tr>
-				<td> 50석 / 100석</td>
-				</tr>
-			</table></li>
-			<li class="abb1_li_inline"><table>
-				<tr>
-				<td>1관</td>
-				</tr>
-				<tr>
-				<td><strong style="font-size: 22px;">12:00</strong></td>
-				</tr>
-				<tr>
-				<td> 50석 / 100석</td>
-				</tr>
-			</table></li>
-			<li class="abb1_li_inline"><table>
-				<tr>
-				<td>1관</td>
-				</tr>
-				<tr>
-				<td><strong style="font-size: 22px;">12:00</strong></td>
-				</tr>
-				<tr>
-				<td> 50석 / 100석</td>
-				</tr>
-			</table></li>
-			<li class="abb1_li_inline"><table>
-				<tr>
-				<td>1관</td>
-				</tr>
-				<tr>
-				<td><strong style="font-size: 22px;">12:00</strong></td>
-				</tr>
-				<tr>
-				<td> 50석 / 100석</td>
-				</tr>
-			</table></li>
-			</ul>
-		</div>
-		<div id="mavie_time_line" style="background-color: white;padding: 10px;">
-			<div style="padding-bottom: 20px;">
-			<span style="font-size: 19px;margin-right: 15px;"><strong>분노의 질주: 더 익스트림</strong></span><img src="${context}/resources/img/icon/movieLink.png" alt="" />
-			</div>
-			<ul id="movie_time_table" class="abb1_ul_inline">
-			<li class="abb1_li_inline"><table>
-				<tr>
-				<td>1관</td>
-				</tr>
-				<tr>
-				<td><strong style="font-size: 22px;">12:00</strong></td>
-				</tr>
-				<tr>
-				<td> 50석 / 100석</td>
-				</tr>
-			</table></li>
-			<li class="abb1_li_inline"><table>
-				<tr>
-				<td>1관</td>
-				</tr>
-				<tr>
-				<td><strong style="font-size: 22px;">12:00</strong></td>
-				</tr>
-				<tr>
-				<td> 50석 / 100석</td>
-				</tr>
-			</table></li>
-			<li class="abb1_li_inline"><table>
-				<tr>
-				<td>1관</td>
-				</tr>
-				<tr>
-				<td><strong style="font-size: 22px;">12:00</strong></td>
-				</tr>
-				<tr>
-				<td> 50석 / 100석</td>
-				</tr>
-			</table></li>
-			<li class="abb1_li_inline"><table>
-				<tr>
-				<td>1관</td>
-				</tr>
-				<tr>
-				<td><strong style="font-size: 22px;">12:00</strong></td>
-				</tr>
-				<tr>
-				<td> 50석 / 100석</td>
-				</tr>
-			</table></li>
-			</ul>
-		</div>
+        <div id="movie_time_line" class="abb1_padding_15">
+<div class="abb1_padding_bottom_20">
+<span class="abb1_multiplex_movie_title"><strong>특별시민</strong></span><img src="${context}/resources/img/icon/movieLink.png" alt="" />
+</div>
+<ul class="abb1_ul_inline">
+<li class="abb1_li_inline abb1_padding_right_0"><table>
+	<tr>
+	<td>1관</td>
+	</tr>
+	<tr>
+	<td><strong class="abb1_font_size_22">12:00</strong></td>
+	</tr>
+	<tr>
+	<td> 50석 / 100석</td>
+	</tr>
+</table></li>
+<li class="abb1_li_inline abb1_padding_right_0"><table>
+	<tr>
+	<td>1관</td>
+	</tr>
+	<tr>
+	<td><strong class="abb1_font_size_22">12:00</strong></td>
+	</tr>
+	<tr>
+	<td> 50석 / 100석</td>
+	</tr>
+</table></li>
+<li class="abb1_li_inline abb1_padding_right_0"><table>
+	<tr>
+	<td>1관</td>
+	</tr>
+	<tr>
+	<td><strong class="abb1_font_size_22">12:00</strong></td>
+	</tr>
+	<tr>
+	<td> 50석 / 100석</td>
+	</tr>
+</table></li>
+<li class="abb1_li_inline abb1_padding_right_0"><table>
+	<tr>
+	<td>1관</td>
+	</tr>
+	<tr>
+	<td><strong class="abb1_font_size_22">12:00</strong></td>
+	</tr>
+	<tr>
+	<td> 50석 / 100석</td>
+	</tr>
+</table></li>
+</ul>
+</div>
       </div>
       </td>
       </tr>
