@@ -76,7 +76,7 @@
 <span class="abb1_multiplex_movie_title"><strong>특별시민</strong></span><img src="${context}/resources/img/icon/movieLink.png" alt="" />
 </div>
 <ul class="abb1_ul_inline">
-<li class="abb1_li_inline abb1_padding_right_0"><table>
+<a href="${context}/reservation/seat"><li class="abb1_li_inline abb1_padding_right_0"><table>
 	<tr>
 	<td>1관</td>
 	</tr>
@@ -86,7 +86,7 @@
 	<tr>
 	<td> 50석 / 100석</td>
 	</tr>
-</table></li>
+</table></li></a>
 <li class="abb1_li_inline abb1_padding_right_0"><table>
 	<tr>
 	<td>1관</td>

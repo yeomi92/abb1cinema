@@ -11,12 +11,14 @@
          <tr>
          	<h3><strong>염혜선</strong><span class="abb1_color_bold_gray">님 환영합니다!</span></h3>
          </tr>
-      </table>
-	<ul class="abb1_page_ul_inline">
+         <tr>
+         <td class="abb1_padding_left_163"><ul class="abb1_page_ul_inline">
 		<li class="abb1_page_li_inline">
 			<a href="${context}/web"><input type="button" value="확인" class="btn abb1_btn_lg abb1_btn_verification" style="height: 50px;width: 150px;font-size: 17px;background-color: #453d3f;color: #efebdb" /></a>
 		</li>
-	</ul>
+	</ul></td>
+         </tr>
+      </table>
 	</div>
 </div>
 </div>

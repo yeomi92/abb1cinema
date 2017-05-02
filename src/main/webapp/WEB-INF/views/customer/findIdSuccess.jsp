@@ -11,12 +11,15 @@
          <tr>
          	<h4>회원님의 아이디는 <strong class="abb1_font_size_25">yheisun</strong>입니다.</h4>
          </tr>
-      </table>
-	<ul class="abb1_page_ul_inline">
+         <tr>
+         <td class="abb1_padding_left_163"><ul class="abb1_page_ul_inline">
 		<li class="abb1_page_li_inline">
 			<a href="${context}/customer/login"><input type="button" value="확인" class="btn abb1_btn_lg abb1_btn_verification" style="height: 50px;width: 150px;font-size: 17px;background-color: #efebdb" /></a>
 		</li>
-	</ul>
+	</ul></td>
+         </tr>
+      </table>
+	
 	</div>
 </div>
 </div>

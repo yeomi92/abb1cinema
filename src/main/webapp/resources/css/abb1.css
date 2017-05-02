@@ -27,6 +27,7 @@
 .abb1_tooltip .abb1_tooltiptext {font-size: 10px; width: 30px; visibility: hidden; background-color: #5b5b5b; color: #fff; text-align: center; border-radius: 6px; padding: 5px 0; position: absolute; z-index: 1; bottom: 3px;}
 .abb1_tooltip:hover .abb1_tooltiptext { visibility: visible; }
 .abb1_tbboxoffice {margin: 0 auto; width: 1035px; text-align: center}
+.abb1_tbboxoffice tr:first-child{height: 80px}
 .abb1_tbboxoffice_firstcol {width: 285px; background-color: #2A2E33; color: #BFB689;}
 .abb1_tbboxoffice_firstcol a {font-size: 14px; color: white; text-align: center; text-decoration: none; padding: 0 20px 0 20px; }
 .abb1_main_reservebtn {background-color: #ee1c25; color: white; font-weight: bold; font-size: 20px; height: 48px;}
@@ -44,10 +45,6 @@
 .abb1_width_100{width:100%;}
 .abb1_text_center{text-align: center;}
 .abb1_eventBxMain{color: #231f20; font-size: 25px; margin-bottom: 20px; font-style: italic;}
-
-<<<<<<< HEAD
-/*------- bbs -------*/
-=======
 
 /*------ admin -------*/
 .abb1_admin_settings{margin: 0 auto; text-align: left;}
@@ -209,9 +206,8 @@
 .abb1_notice_write_table textarea{width:100%; background: #f5f5f5;margin: 16px 0;    border: 1px solid #dedede;}
 
 /*------ bbs -------*/
->>>>>>> john2
-.abb1_bbs_table{width:980px;margin:0 auto;padding:50px 0;color:#231f20}
-.abb1_bbs_table_text{padding-bottom:20px;font-size:28px}
+.abb1_bbs_table{width:980px;margin:0 auto;padding:20px 0;color:#231f20}
+.abb1_bbs_table_text{font-size:28px;margin: 0 auto;width:1000px;text-align: left;margin-top: 20px;}
 .abb1_bbs_table .abb1_select_box{float:left;margin-right:5px; width: 124px; height: 28px;}
 .abb1_bbs_table select {width: 124px; height: 28px; }
 .abb1_bbs_table span {float:right;padding-top:8px;color:#231f20 }
@@ -458,6 +454,7 @@ body {
 .abb1_width_70{width: 70%;}
 /*---width_center---*/
 .abb1_width_center{margin:0 auto;width:100%;text-align:center;}
+.abb1_width_center_w1000{margin:0 auto;width:1000px;text-align:center;}
 .abb1_width_center_w800{margin:0 auto;width:800px;text-align:center;}
 .abb1_width_center_w50{margin:0 auto;width:50%;}
 .abb1_width_center_w40{margin:0 auto;width:40%;padding-left: 120px;}
@@ -516,6 +513,8 @@ body {
 .abb1_padding_right_5{padding-right: 5px;}
 .abb1_padding_right_0{padding-right: 0px;}
 .abb1_padding_left_8{padding-left: 8px;}
+.abb1_padding_left_73{padding-left: 73px;}
+.abb1_padding_left_163{padding-left: 163px;}
 /*---text---*/
 .abb1_text_right{text-align: right;}
 .abb1_text_left{text-align: left;}
