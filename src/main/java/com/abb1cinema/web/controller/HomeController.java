@@ -36,23 +36,47 @@ public class HomeController {
 		model.addAttribute("context", Complex.ContextFactory.create());
 		return "admin/index";
 	}
-	@RequestMapping("/admin/chart")
-	public String adminChart(Model model) {
-		logger.info("HomeController admin() {}","ENTER");
+	@RequestMapping("/admin/reservation")
+	public String adminReservation(Model model) {
+		logger.info("HomeController adminReservation() {}","ENTER");
 		model.addAttribute("context", Complex.ContextFactory.create());
-		return "admin/chart";
+		return "admin/reservation";
 	}
-	@RequestMapping("/admin/forms")
-	public String adminForms(Model model) {
-		logger.info("HomeController admin() {}","ENTER");
+	@RequestMapping("/admin/movie_management")
+	public String adminMovieManagement(Model model) {
+		logger.info("HomeController adminMovie() {}","ENTER");
 		model.addAttribute("context", Complex.ContextFactory.create());
-		return "admin/index";
+		return "admin/movie_management";
 	}
-	@RequestMapping("/admin/tables")
-	public String adminTable(Model model) {
-		logger.info("HomeController admin() {}","ENTER");
+	@RequestMapping("/admin/movie_register")
+	public String adminMovieRegister(Model model) {
+		logger.info("HomeController adminMovie() {}","ENTER");
 		model.addAttribute("context", Complex.ContextFactory.create());
-		return "admin/tables";
+		return "admin/movie_register";
+	}
+	@RequestMapping("/admin/bbs_notice")
+	public String adminBbsNotice(Model model) {
+		logger.info("HomeController adminBoard() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "admin/bbs_notice";
+	}
+	@RequestMapping("/admin/bbs_faq")
+	public String adminBbsFaq(Model model) {
+		logger.info("HomeController adminBoard() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "admin/bbs_faq";
+	}
+	@RequestMapping("/admin/statistic")
+	public String adminStatistic(Model model) {
+		logger.info("HomeController adminStatistic() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "admin/statistic";
+	}
+	@RequestMapping("/admin/customer")
+	public String adminCustomer(Model model) {
+		logger.info("HomeController adminCustomer() {}","ENTER");
+		model.addAttribute("context", Complex.ContextFactory.create());
+		return "admin/customer";
 	}
 	//board
 	@RequestMapping("/board/main")

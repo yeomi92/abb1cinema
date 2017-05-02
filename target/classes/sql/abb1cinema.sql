@@ -14,17 +14,6 @@ id VARCHAR(11) PRIMARY KEY,
 is_reserved VARCHAR(1) NOT NULL
 );
 
--- 3
-CREATE TABLE Files(
-seq INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-pic_main VARCHAR(200) NOT NULL,
-pic_director VARCHAR(200),
-pic_actor1 VARCHAR(200),
-pic_actor2 VARCHAR(200),
-pic_actor3 VARCHAR(200),
-pic_actor4 VARCHAR(200)
-);
-
 -- 4
 CREATE TABLE Customer(
 id VARCHAR(15) PRIMARY KEY,
@@ -56,17 +45,18 @@ title VARCHAR(30) NOT NULL,
 rate VARCHAR(6) NOT NULL,
 gpa VARCHAR(3) NOT NULL,
 grade VARCHAR(2) NOT NULL,
-release_date VARCHAR(10) NOT NULL,
+release VARCHAR(10) NOT NULL,
 info VARCHAR(40) NOT NULL,
 synopsys VARCHAR(500) NOT NULL,
 casting VARCHAR(200) NOT NULL,
 male_p VARCHAR(4) NOT NULL,
 female_p VARCHAR(4) NOT NULL,
 trailer_url VARCHAR(200) NOT NULL,
-review_seq INT,
-files_seq INT,
-FOREIGN KEY(review_seq) REFERENCES Review(seq),
-FOREIGN KEY(files_seq) REFERENCES Files(seq)
+pic_main VARCHAR(200) NOT NULL,
+pic_director VARCHAR(200),
+name_director VARCHAR(50),
+pic_actor VARCHAR(200),
+name_actor VARCHAR(50),
 );
 
 -- 7
@@ -139,7 +129,7 @@ FOREIGN KEY(theater_seq) REFERENCES Theater(seq),
 FOREIGN KEY(seat_id) REFERENCES Seat(id)
 );
 
-DROP TABLE Files CASCADE;
+DROP TABLE Casting CASCADE;
 DROP TABLE Movie CASCADE;
 DROP TABLE Review CASCADE;
 DROP TABLE Notice CASCADE;
