@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="${context}/resources/css/abb1.css" type="text/css"/>
 </head>
 <body>
+<!-- bootstrap -->
 <div id="header">
    <div class="abb1_no_padding abb1_width_100 abb1_text_center">
       <div style="margin: 0 auto;">
@@ -32,17 +33,5 @@
       </div>
    </nav>
 </div>
-<div id="gnb">
-   <div class="abb1_gnb_tab abb1_width_100 abb1_text_center">
-      <div class="abb1_width_100 abb1_text_center">
-         <ul class="abb1_gnb">
-            <li><a id="ticketing" href="${context}/reservation/main">예매</a></li>
-            <li><a id="movie" href="${context}/movie/main">영화</a></li>
-            <li><a id="multiplex" href="${context}/multiplex/main">영화관</a></li>
-            <li><a class="abb1_tooltip" href="#">스위트샵<span class="abb1_tooltiptext">미구현</span></a></li>
-            <li><a class="abb1_tooltip" href="#">이벤트<span class="abb1_tooltiptext">미구현</span></a></li>
-            <li><a class="abb1_tooltip" href="#">기프트샵<span class="abb1_tooltiptext">미구현</span></a></li>
-         </ul>
-      </div>
-   </div>
-</div>
+<!-- end bootstrap -->
+<jsp:include page="gnb.jsp"/>

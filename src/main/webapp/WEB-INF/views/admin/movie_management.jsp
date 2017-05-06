@@ -3,13 +3,14 @@
 <jsp:include page="gnb.jsp"/>
 <div id="wrapper">
         <div id="page-wrapper">
-        <div class="abb1_admin_maintext">영화 관리</div>
+        <div id="movie_management">
+	        <div>영화 관리</div>
 			<div>
-				<input id="reservation_search_keyword" type="text" class="abb1_admin_reservation_search_keyword" placeholder="영화명 입력" />
-			<input type="button" value="검색" class="abb1_admin_reservation_search_btn"/>
+				<input id="movie_search_keyword" type="text" placeholder="영화명 입력" />
+				<input id="movie_search_btn" type="button" value="검색"/>
 			</div>
-			<div class="abb1_admin_settings">
-				<div class="abb1_admin_movie_management_table">
+			<div>
+				<div id="movie_management_table">
 				<table>
 					<tr>
 						<td rowspan="11"><img src="${context}/resources/img/movie/movie_poster_0.png" alt="" width="100%" height="100%"/></td>
@@ -58,14 +59,27 @@
 					</tr>
 				</table>
 				</div>
-				<div class="abb1_admin_movie_management_btns">
-				<input type="button" value="삭제"/>
-				<input type="button" value="수정"/>
+				<div id="movie_management_btns">
+					<input id="delete" type="button" value="삭제"/>
+					<input id="update" type="button" value="수정"/>
 				</div>
 			</div>
+	        </div>
         </div>
         <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->
+    <script>
+    $(function(){
+    	var movie_management = $('#movie_management');
+    	movie_management.find('div:first-child').addClass('abb1_admin_maintext');
+    	$('#movie_search_keyword').addClass('abb1_admin_reservation_search_keyword');
+    	$('#movie_search_btn').addClass('abb1_admin_reservation_search_btn');
+    	movie_management.find('div:nth-child(3)').addClass('abb1_admin_settings');
+    	var movie_management_table = $('#movie_management_table');
+    	movie_management_table.addClass('abb1_admin_movie_management_table');
+    	$('#movie_management_btns').addClass('abb1_admin_movie_management_btns');
+    });
+    </script>
 <jsp:include page="footer.jsp"/>

@@ -8,9 +8,9 @@
 
 <div id="wrapper">
     <div id="boxoffice">
-      <table class="abb1_tbboxoffice">
+      <table>
          <tr>
-            <td class="abb1_tbboxoffice_firstcol">BOX OFFICE
+            <td>BOX OFFICE
             <div>
                <a id="orderbyticket" href="#">예매순</a>
                <a id="orderbyavg" href="#">평점순</a>
@@ -23,7 +23,7 @@
          </tr>
          <tr>
             <td>
-            <ul class="abb1_rank">
+            <ul>
                <li><a id="rank1" href="#"><em>1.</em>
                   <span class="abb1_rank_grade" style="background: url(resources/img/movie/grade_15.png);"></span>
                   <span class="abb1_rank_moviename">특별시민</span>
@@ -76,19 +76,19 @@
             </td>
          </tr>
          <tr>
-            <td id="reservation" class="abb1_main_reservebtn">예매하기</td>
+            <td id="reservation">예매하기</td>
          </tr>
       </table>
    </div>
    <div id="slidePoster">
-      <div class="abb1_width_100 abb1_text_center">
-            <ul class="abb1_slidePoster">
-               <li class="abb1_slideBtn"><a href="#"><img src="resources/img/common/prev.png" alt="" /></a></li>
+      <div>
+            <ul>
+               <li><a href="#"><img src="resources/img/common/prev.png" alt="" /></a></li>
                <li><a id="slide1" href="#"><img src="resources/img/movie/movie_poster_0.png" alt="" width="188px" height="274px"/></a></li>
                <li><a id="slide2" href="#"><img src="resources/img/movie/movie_poster_1.png" alt="" width="188px" height="274px" /></a></li>
                <li><a id="slide3" href="#"><img src="resources/img/movie/movie_poster_2.png" alt="" width="188px" height="274px" /></a></li>
                <li><a id="slide4" href="#"><img src="resources/img/movie/movie_poster_3.png" alt="" width="188px" height="274px" /></a></li>
-               <li class="abb1_slideBtn"><a href="#"><img src="resources/img/common/next.png" alt="" /></a></li>
+               <li><a href="#"><img src="resources/img/common/next.png" alt="" /></a></li>
             </ul>   
       </div>
    </div>
@@ -96,8 +96,8 @@
          <img src="resources/img/common/bannerbox.png" alt="" />
    </div>
    <div id="eventBxMain" style="background: url(resources/img/common/bg_pattern.png) repeat left top;">
-         <div class="abb1_width_100 abb1_text_center">
-            <div class="abb1_eventBxMain">Event</div>
+         <div>
+            <div>Event</div>
             <img src="resources/img/common/eventBxMain.png" alt="" />
          </div>
    </div>
@@ -106,6 +106,23 @@
    </div>
 </div>
 <script>
+$(function(){
+	var boxoffice = $('#boxoffice');
+	var botable = boxoffice.find('table');
+	botable.addClass('abb1_tbboxoffice');
+	botable.find('tr:first-child').find('td:first-child').addClass('abb1_tbboxoffice_firstcol');
+	botable.find('ul').addClass('abb1_rank');
+	$('#reservation').addClass('abb1_main_reservebtn');
+	var slidePoster = $('#slidePoster');
+	slidePoster.find('div:first-child').addClass('abb1_width_100 abb1_text_center');
+	slidePoster.find('ul').addClass('abb1_slidePoster');
+	slidePoster.find('li:first-child').addClass('abb1_slideBtn');
+	slidePoster.find('li:nth-child(6)').addClass('abb1_slideBtn');
+	var eventBxMain = $('#eventBxMain');
+	eventBxMain.find('div:first-child').addClass('abb1_width_100 abb1_text_center');
+	eventBxMain.find('div:first-child').find('div:first-child').addClass('abb1_eventBxMain');
+});
+
 init = {
    setting : function(){
        

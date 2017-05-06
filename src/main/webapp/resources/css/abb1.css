@@ -66,12 +66,26 @@
     padding: 5px;
 }
 .abb1_admin_reservation_search_keyword{
+	font-size: 13px;
 	    height: 34px;
     width: 200px;
     padding: 5px;
 }
 .abb1_admin_reservation_search_btn{
 	    height: 34px;
+	    font-size: 13px;
+    width: 60px;
+    background: white;
+}
+.abb1_admin_customer_search_keyword{
+	font-size: 13px;
+	    height: 34px;
+    width: 200px;
+    padding: 5px;
+}
+.abb1_admin_customer_search_btn{
+	    height: 34px;
+	    font-size: 13px;
     width: 60px;
     background: white;
 }
@@ -144,6 +158,8 @@
 }
 .abb1_admin_notice_register{
 	margin: 30px 0 30px 400px;
+	font-size: 13px;
+	color: #777;
 }
 .abb1_admin_notice_register input{
 	background: white;

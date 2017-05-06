@@ -166,7 +166,7 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                         <div id="area_chart" style="width: 100%; height: 500px;"></div>
+                         <div id="area_chart"></div>
                     </div>
                 </div>
                 <!-- /.row -->
@@ -174,7 +174,7 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                       	<div id="donut_chart" class="abb1_width_center" style="width: 900px; height: 450px;"></div>
+                       	<div id="donut_chart"></div>
                     </div>
                 </div>
                 <!-- /.row -->
@@ -187,4 +187,8 @@
 
     </div>
     <!-- /#wrapper -->
+    <script>
+    $('#area_chart').css('width','100%').css('height','500px');
+    $('#donut_chart').addClass('abb1_width_center').css('width','900px').css('height','450px');
+    </script>
 <jsp:include page="footer.jsp"/>

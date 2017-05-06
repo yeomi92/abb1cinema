@@ -1,8 +1,5 @@
 /*
  ========= abb1-meta ========
- * abb1-algorithm
- * abb1-oop
- * abb1-bbs
  * abb1-component
  * abb1-ui
  * abb1-permission
@@ -10,7 +7,7 @@
  * abb1-util
  * abb1-person
  * abb1-info
- *
+ * abb1-jquery
  ===========================
  */
 
@@ -23,9 +20,9 @@ var abb1 = abb1 || {};
 		 * abb1.util
 		 ***********************/
 /*========= abb1-context =========
-	@AUTHOR : Junyoung Park
-	@CREATE DATE : 2017-04-19
-	@UPDATE DATE : 2017-04-19
+	@AUTHOR : Hyeseun Yeom
+	@CREATE DATE : 2017-05-06
+	@UPDATE DATE : 2017-05-06
 	@DESC : META-INF
 =================================*/
 abb1.context = (function(){
@@ -40,6 +37,7 @@ abb1.context = (function(){
 		setContentView();
 		abb1.component.init();
 		abb1.util.datetime();
+		abb1.jquery.statistic();
 	};
 	return {
 		init : init,
@@ -48,9 +46,9 @@ abb1.context = (function(){
 	};
 })();
 /*========= abb1-session =========
-@AUTHOR : Junyoung Park
-@CREATE DATE : 2017-04-19
-@UPDATE DATE : 2017-04-19
+@AUTHOR : Hyeseun Yeom
+@CREATE DATE : 2017-05-06
+@UPDATE DATE : 2017-05-06
 @DESC : Session
 =================================*/
 abb1.session = (function(){ 
@@ -111,9 +109,9 @@ abb1.component = (function(){
 })();
 
 /*========= abb1-util =========
-@AUTHOR : Junyoung Park
-@CREATE DATE : 2017-04-19
-@UPDATE DATE : 2017-04-19
+@AUTHOR : Hyeseun Yeom
+@CREATE DATE : 2017-05-06
+@UPDATE DATE : 2017-05-06
 @DESC : Etc methods(ex: email check validation, calculation profile, datetime check algorithm)
 abb1-util-validation
 abb1-util-calcProfile
@@ -145,9 +143,9 @@ abb1.util={
 	}
 };
 /*========= abb1-person =========
-@AUTHOR : Junyoung Park
-@CREATE DATE : 2017-04-19
-@UPDATE DATE : 2017-04-19
+@AUTHOR : Hyeseun Yeom
+@CREATE DATE : 2017-05-06
+@UPDATE DATE : 2017-05-06
 @DESC : Using person in OOP
 abb1-person-init
 =================================*/
@@ -170,9 +168,9 @@ abb1.person = (function(){
 })();
 
 /*========= abb1-info =========
-@AUTHOR : Junyoung Park
-@CREATE DATE : 2017-04-19
-@UPDATE DATE : 2017-04-19
+@AUTHOR : Hyeseun Yeom
+@CREATE DATE : 2017-05-06
+@UPDATE DATE : 2017-05-06
 @DESC : Practice for OOP
 =================================*/
 abb1.info = (function() { // var를 쓴 것과 같음
@@ -194,6 +192,27 @@ abb1.info = (function() { // var를 쓴 것과 같음
 		}
 	};
 })();
+/*========= abb1-jquery =========
+@AUTHOR : Junyoung Park
+@CREATE DATE : 2017-05-06
+@UPDATE DATE : 2017-05-06
+@DESC : jQuery for view
+=================================*/
+abb1.jquery = (function(){
+	var init = function(){
+		abb1.jquery.statistic();
+	}
+	return {
+		init : init,
+		statistic : function(){
+			var statistic_category = $('#statistic_category');
+	    	statistic_category.addClass('abb1_admin_reservation_category');
+	    	$('#statistic_search_keyword').addClass('abb1_admin_reservation_search_keyword');
+	    	$('#statistic_search_btn').addClass('abb1_admin_reservation_search_btn');
+		}
+	}
+})();
+
 /************************
  * Controller
  * abb1.controller

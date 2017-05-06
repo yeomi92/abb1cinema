@@ -21,14 +21,14 @@ function drawDonutChart() {
 </script>
 <div id="wrapper">
         <div id="page-wrapper">
-			<div>
-			<select name="" id="reservation_category" class="abb1_admin_reservation_category">
-				<option selected>카테고리 선택</option>
-				<option value="multiplex">영화관</option>
-				<option value="movie">영화</option>
-			</select>
-			<input id="reservation_search_keyword" type="text" class="abb1_admin_reservation_search_keyword" />
-			<input type="button" value="검색" class="abb1_admin_reservation_search_btn"/>
+			<div id="statistic">
+				<select name="" id="statistic_category">
+					<option selected>카테고리 선택</option>
+					<option value="multiplex">영화관</option>
+					<option value="movie">영화</option>
+				</select>
+				<input id="statistic_search_keyword" type="text"/>
+				<input id="statistic_search_btn" type="button" value="검색"/>
 			</div>
 			<div id="admin_movie_donut_chart">
 				
@@ -38,4 +38,12 @@ function drawDonutChart() {
 
     </div>
     <!-- /#wrapper -->
+    <script> 
+   /*  $(function(){
+    	var statistic_category = $('#statistic_category');
+    	statistic_category.addClass('abb1_admin_reservation_category');
+    	$('#statistic_search_keyword').addClass('abb1_admin_reservation_search_keyword');
+    	$('#statistic_search_btn').addClass('abb1_admin_reservation_search_btn');
+    }); */
+    </script>
 <jsp:include page="footer.jsp"/>

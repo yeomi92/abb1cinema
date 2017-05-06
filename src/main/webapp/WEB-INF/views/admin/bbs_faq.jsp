@@ -4,16 +4,16 @@
 <div id="wrapper">
         <div id="page-wrapper">
 			<div id="faq_table">
-			<div class="abb1_admin_maintext">문의글 관리</div>
+			<div>문의글 관리</div>
 			<div id="faq_write_wrapper">
-				<table class="abb1_admin_faq_table">
+				<table>
 				<colgroup>
-					<col style="width: 10%"/>
-					<col style="width: 45%"/>
-					<col style="width: 10%"/>
-					<col style="width: 20%"/>
-					<col style="width: 10%"/>
-					<col style="width: 10%"/>
+					<col />
+					<col />
+					<col />
+					<col />
+					<col />
+					<col />
 				</colgroup>
 					<tr>
 						<th>순번</th>
@@ -56,16 +56,16 @@
 						<td><input type="button" value="x"/></td>
 					</tr>
 				</table>
-				<div class="abb1_admin_pagination abb1_pagination_faq">
-				   <table class="abb1_bbs_pagination_table">
+				<div id="faq_pagination">
+				   <table>
 				      <tr>
 				         <td>
 				            <a href="#"><img src="${context}/resources/img/pagination/prev_all.gif" alt="" /></a>
 				            <a href="#"><img src="${context}/resources/img/pagination/prev.gif" alt="" /></a>
 				         </td>
-				         <td style="width: 256px;">
+				         <td>
 				            <h4>
-				            <a class="on" href="#">1</a>
+				            <a href="#">1</a>
 				            <a href="#">2</a>
 				            <a href="#">3</a>
 				            <a href="#">4</a>
@@ -87,12 +87,12 @@
 			</div>
 			</div>
 			<div id="faq_answer">
-			<div class="abb1_bbs_pagination_table">
-		      <table class="abb1_bbs_notice_table">
+			<div>
+		      <table>
 		         <tr>
 		            <td>
 		               <h3>영화관 관련 질문</h3>
-		               <ul class="abb1_view_info">
+		               <ul>
 		                  <li>
 		                     <strong>카테고리 : </strong><span> 영화관</span>
 		                  </li>
@@ -107,17 +107,17 @@
 		         </tr>
 		         <tr>
 		            <td colspan="2">
-		            <div class="abb1_view_content">
+		            <div id="faq_question_content">
 		            <span>국가는 재해를 예방하고 그 위험으로부터 국민을 보호하기 위하여 노력하여야 한다. 국가는 재해를 예방하고 그 위험으로부터 국민을 보호하기 위하여 노력하여야 한다. 국가는 재해를 예방하고 그 위험으로부터 국민을 보호하기 위하여 노력하여야 한다. 국가는 재해를 예방하고 그 위험으로부터 국민을 보호하기 위하여 노력하여야 한다. 국가는 재해를 예방하고 그 위험으로부터 국민을 보호하기 위하여 노력하여야 한다.</span>
 		            </div>
 		            </td>
 		         </tr>
 		         <tr>
 		            <td>
-		            <table>
+		            <table id="faq_answer_content">
 		               <colgroup>
-		               <col style="width: 90%"/>
-		               <col style="width: 10%"/>
+			               <col />
+			               <col />
 		               </colgroup>
 		               <tr>
 		                  <td><textarea name="bbs_review_contents" id="bbs_review_contents" cols="30" rows="5"  placeholder="Write a comment..."></textarea></td>
@@ -134,4 +134,31 @@
 
     </div>
     <!-- /#wrapper -->
+<script>
+$(function(){
+	var faq_table = $('#faq_table');
+	faq_table.find('div:first-child').addClass('abb1_admin_maintext');
+	var faq_write_wrapper = $('#faq_write_wrapper');
+	faq_write_wrapper.find('table').addClass('abb1_admin_faq_table');
+	faq_write_wrapper.find('col:nth-child(1)').css('width','10%');
+	faq_write_wrapper.find('col:nth-child(2)').css('width','45%');
+	faq_write_wrapper.find('col:nth-child(3)').css('width','10%');
+	faq_write_wrapper.find('col:nth-child(4)').css('width','20%');
+	faq_write_wrapper.find('col:nth-child(5)').css('width','10%');
+	faq_write_wrapper.find('col:nth-child(6)').css('width','10%');
+	var faq_pagination = $('#faq_pagination');
+	faq_pagination.addClass('abb1_admin_pagination abb1_pagination_faq');
+	faq_pagination.find('td:nth-child(2)').css('width','256px');
+	faq_pagination.find('td:nth-child(2)').find('a:nth-child(1)').addClass('on');
+	var faq_answer = $('#faq_answer');
+	faq_answer.find('div:first-child').addClass('abb1_bbs_pagination_table');
+	faq_answer.find('table:first-child').addClass('abb1_bbs_notice_table');
+	faq_answer.find('ul').addClass('abb1_view_info');
+	$('#faq_question_content').addClass('abb1_view_content');
+	var faq_answer_content = $('#faq_answer_content');
+	faq_answer_content.find('col:nth-child(1)').css('width','90%');
+	faq_answer_content.find('col:nth-child(2)').css('width','10%');
+});
+</script>
+
 <jsp:include page="footer.jsp"/>

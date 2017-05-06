@@ -3,19 +3,19 @@
 <jsp:include page="gnb.jsp"/>
 <div id="wrapper">
         <div id="page-wrapper">
-			<div id="notice_table">
-			<div class="abb1_admin_maintext">공지글 관리</div>
-			<div id="notice_write_wrapper">
-			<div class="abb1_admin_notice_register">
-				<input type="button" value="등록" />
-			</div>
-				<table class="abb1_admin_notice_table">
-				<colgroup>
-					<col style="width: 10%"/>
-					<col style="width: 60%"/>
-					<col style="width: 20%"/>
-					<col style="width: 10%"/>
-				</colgroup>
+				<div id="notice_table">
+				<div>공지글 관리</div>
+				<div id="notice_write_wrapper">
+				<div>
+					<input type="button" value="등록" />
+				</div>
+				<table>
+					<colgroup>
+						<col />
+						<col />
+						<col />
+						<col />
+					</colgroup>
 					<tr>
 						<th>순번</th>
 						<th>제목</th>
@@ -47,16 +47,16 @@
 						<td><input type="button" value="x"/></td>
 					</tr>
 				</table>
-				<div class="abb1_admin_pagination abb1_pagination_notice">
-				   <table class="abb1_bbs_pagination_table">
+				<div id="notice_pagination">
+				   <table>
 				      <tr>
 				         <td>
 				            <a href="#"><img src="${context}/resources/img/pagination/prev_all.gif" alt="" /></a>
 				            <a href="#"><img src="${context}/resources/img/pagination/prev.gif" alt="" /></a>
 				         </td>
-				         <td style="width: 256px;">
+				         <td>
 				            <h4>
-				            <a class="on" href="#">1</a>
+				            <a href="#">1</a>
 				            <a href="#">2</a>
 				            <a href="#">3</a>
 				            <a href="#">4</a>
@@ -75,18 +75,18 @@
 				      </tr>
 				   </table>
 				  </div>
+				</div>
 			</div>
-			</div>
-			<div id="">
-				<table class="abb1_notice_write_table">
+			<div id="notice_write">
+				<table>
 			      <colgroup>
-			      <col style="width: 15%"/>
-			      <col style="width: 80%"/>
+				      <col />
+				      <col />
 			      </colgroup>
 			         <tr>
 			            <td>제목</td>
 			            <td>
-			               <input type="text" class="abb1_write_title" name="title" maxlength="50"/>
+			           	 <input id="notice_title" type="text" name="title" maxlength="50"/>
 			            </td>
 			         </tr>
 			         <tr>
@@ -103,9 +103,9 @@
 			            </td>
 			         </tr>
 			      </table>
-			      <div class="abb1_bbs_write_btns">
-			         <a href="#"><input type="button" value="취소" class="abb1_bbs_write_cancel"/></a>
-			         <a href="#"><input type="button" value="확인" class="abb1_bbs_write_confirm"/></a>
+			      <div>
+			         <a href="#"><input id="cancel" type="button" value="취소"/></a>
+			         <a href="#"><input id="confirm" type="button" value="확인"/></a>
 			      </div>
 			</div>
         </div>
@@ -113,4 +113,31 @@
 
     </div>
     <!-- /#wrapper -->
+    
+<script>
+$(function(){
+	var notice_table = $('#notice_table');
+	notice_table.find('div:first-child').addClass('abb1_admin_maintext');
+	var notice_write_wrapper = $('#notice_write_wrapper');
+	notice_write_wrapper.find('div:first-child').addClass('abb1_admin_notice_register');
+	notice_write_wrapper.find('table').addClass('abb1_admin_notice_table');
+	notice_write_wrapper.find('col:nth-child(1)').css('width','10%');
+	notice_write_wrapper.find('col:nth-child(2)').css('width','60%');
+	notice_write_wrapper.find('col:nth-child(3)').css('width','20%');
+	notice_write_wrapper.find('col:nth-child(4)').css('width','10%');
+	var notice_pagination = $('#notice_pagination');
+	notice_pagination.addClass('abb1_admin_pagination abb1_pagination_faq');
+	notice_pagination.find('td:nth-child(2)').css('width','256px');
+	notice_pagination.find('td:nth-child(2)').find('a:nth-child(1)').addClass('on');
+	var notice_write = $('#notice_write');
+	notice_write.find('table').addClass('abb1_notice_write_table');
+	notice_write.find('col:nth-child(1)').css('width','15%');
+	notice_write.find('col:nth-child(2)').css('width','80%');
+	$('#notice_title').addClass('abb1_write_title');
+	notice_write.find('div').addClass('abb1_bbs_write_btns');
+	$('#cancel').addClass('abb1_bbs_write_cancel');
+	$('#confirm').addClass('abb1_bbs_write_confirm');
+	
+});
+</script>
 <jsp:include page="footer.jsp"/>
