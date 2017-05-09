@@ -146,44 +146,7 @@ function drawDonutChart() {
 
     </div>
     <!-- /#wrapper -->
-    <script>
-    $(function(){
-    	$('#reservation_category').addClass('abb1_admin_reservation_category');
-    	$('#reservation_search_keyword').addClass('abb1_admin_reservation_search_keyword');
-    	$('#reservation_search_btn').addClass('abb1_admin_reservation_search_btn');
-    	$('#reservation').find('div:nth-child(2)').addClass('abb1_admin_settings');
-    	var admin_reservation_list = $('#admin_reservation_list');
-    	admin_reservation_list.find('div:first-child').addClass('abb1_admin_maintext');
-    	admin_reservation_list.find('div:nth-child(2)').addClass('abb1_admin_settings');
-    	var reservation_table = $('#reservation_table');
-    	reservation_table.addClass('abb1_admin_reservation_table');
-    	reservation_table.find('col:nth-child(1)').css('width','10%');
-    	reservation_table.find('col:nth-child(2)').css('width','35%');
-    	reservation_table.find('col:nth-child(3)').css('width','15%');
-    	reservation_table.find('col:nth-child(4)').css('width','15%');
-    	reservation_table.find('col:nth-child(5)').css('width','20%');
-    	reservation_table.find('col:nth-child(6)').css('width','15%');
-    	var admin_cancel_list = $('#admin_cancel_list');
-    	admin_cancel_list.find('div:first-child').addClass('abb1_admin_maintext');
-    	admin_cancel_list.find('div:nth-child(2)').addClass('abb1_admin_settings');
-    	var cancel_list_table = $('#cancel_list_table');
-    	cancel_list_table.addClass('abb1_admin_reservation_table');
-    	cancel_list_table.find('col:nth-child(1)').css('width','10%');
-    	cancel_list_table.find('col:nth-child(2)').css('width','35%');
-    	cancel_list_table.find('col:nth-child(3)').css('width','15%');
-    	cancel_list_table.find('col:nth-child(4)').css('width','15%');
-    	cancel_list_table.find('col:nth-child(5)').css('width','20%');
-    	cancel_list_table.find('col:nth-child(6)').css('width','15%');
-    	var admin_movie_list = $('#admin_movie_list');
-    	admin_movie_list.find('div:nth-child(1)').addClass('abb1_admin_maintext');
-    	admin_movie_list.find('div:nth-child(2)').addClass('abb1_admin_settings');
-    	var movie_list_table = $('#movie_list_table');
-    	movie_list_table.addClass('abb1_admin_reservation_table');
-    	movie_list_table.find('col:nth-child(1)').css('width','15%');
-    	movie_list_table.find('col:nth-child(2)').css('width','20%');
-    	movie_list_table.find('col:nth-child(3)').css('width','25%');
-    	movie_list_table.find('col:nth-child(4)').css('width','25%');
-    	movie_list_table.find('col:nth-child(5)').css('width','15%');
-    });
-    </script>
 <jsp:include page="footer.jsp"/>
+<script>
+	abb1.jquery.admin_reservation();
+</script>

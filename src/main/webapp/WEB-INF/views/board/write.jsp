@@ -2,19 +2,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../common/header.jsp"/>
 <div id="container">
-   <div class="abb1_bbs_write_container">
-      <div class="abb1_bbs_write_text">문의내용</div>
-      <div style="text-align: right;">      
-      <span style="font-size: 12px; "><span style="color: red;">*</span> 표시항목은 필수 입력 항목입니다.</span>
+   <div id="board_write">
+      <div><strong>문의내용</strong></div>
+      <div>      
+      	<span><span>*</span> 표시항목은 필수 입력 항목입니다.</span>
       </div>
-      <table class="abb1_bbs_write_table">
-      <colgroup>
-      <col style="width: 15%"/>
-      <col style="width: 80%"/>
-      </colgroup>
+      <table id="board_write_table">
+	      <colgroup>
+	      	<col />
+	      	<col />
+	      </colgroup>
          <tr>
             <td>문의종류 <span>*</span></td>
-            <td class="abb1_bbs_write_radio">
+            <td id="board_write_radio">
                <input type="radio" name="kind" value="1" checked="checked"/><span>문의</span>
                <input type="radio" name="kind" value="2" checked="checked"/><span>칭찬</span>
                <input type="radio" name="kind" value="3" checked="checked"/><span>불만</span>
@@ -22,9 +22,9 @@
             </td>
          </tr>
          <tr>
-            <td>분류 <span class="star">*</span></td>
+            <td>분류 <span>*</span></td>
             <td>
-               <select class="abb1_write_ddl" name="category">
+               <select id="board_write_category" name="category">
                   <option value="" selected>분류 선택</option>
                   <option value="theater">영화관 문의</option>
                   <option value="movie">영화 문의</option>
@@ -35,19 +35,19 @@
             </td>
          </tr>
          <tr>
-            <td>영화관 <span class="star">*</span></td>
-            <td><input id="bbs_write_select_movie" type="button" value="영화관 선택"/></td>
+            <td>영화관 <span>*</span></td>
+            <td><input id="board_write_select_multiplex" type="button" value="영화관 선택"/></td>
          </tr>
          <tr>
-            <td>제목 <span class="star">*</span></td>
+            <td>제목 <span>*</span></td>
             <td>
-               <input type="text" class="abb1_write_title" name="title" maxlength="50"/>
+               <input id="board_write_title" type="text" name="title" maxlength="50"/>
             </td>
          </tr>
          <tr>
-            <td>내용 <span class="star">*</span></td>
+            <td>내용 <span>*</span></td>
             <td>
-               <textarea name="contents" id="bbs_write_contents" cols="30" rows="10"></textarea>
+               <textarea name="contents" id="board_write_content" cols="30" rows="10"></textarea>
             </td>
          </tr>
          <tr>
@@ -58,11 +58,15 @@
             </td>
          </tr>
       </table>
-      <div class="abb1_bbs_write_btns">
-         <a href="#"><input type="button" value="취소" class="abb1_bbs_write_cancel"/></a>
-         <a href="#"><input type="button" value="확인" class="abb1_bbs_write_confirm"/></a>
+      <div id="board_write_btns">
+         <a href="#"><input id="board_write_cancel" type="button" value="취소"/></a>
+         <a href="#"><input id="board_wrtie_confirm" type="button" value="확인"/></a>
       </div>
       
    </div>
+   <!-- board_write -->
 </div>
 <jsp:include page="../common/footer.jsp"/>
+<script>
+	abb1.jquery.board_write();
+</script>

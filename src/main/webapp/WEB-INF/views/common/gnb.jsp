@@ -17,8 +17,8 @@
 <script>
 $(function(){
 	var gnb = $('#gnb');
-	gnb.find('div:first-child').addClass('abb1_gnb_tab abb1_width_100 abb1_text_center')
-	gnb.find('div:first-child').find('div:first-child').addClass('abb1_width_100 abb1_text_center');
+	gnb.find('div:first-child').addClass('abb1_width_100 abb1_text_center')
+	gnb.find('div:first-child').find('div:first-child').addClass('abb1_gnb_tab abb1_width_100 abb1_text_center');
 	gnb.find('ul').addClass('abb1_gnb');
 	gnb.find('span:first-child').addClass('abb1_tooltiptext');
 	gnb.find('span:nth-child(2)').addClass('abb1_tooltiptext');

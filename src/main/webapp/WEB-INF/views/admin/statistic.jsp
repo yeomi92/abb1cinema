@@ -38,12 +38,7 @@ function drawDonutChart() {
 
     </div>
     <!-- /#wrapper -->
-    <script> 
-   /*  $(function(){
-    	var statistic_category = $('#statistic_category');
-    	statistic_category.addClass('abb1_admin_reservation_category');
-    	$('#statistic_search_keyword').addClass('abb1_admin_reservation_search_keyword');
-    	$('#statistic_search_btn').addClass('abb1_admin_reservation_search_btn');
-    }); */
-    </script>
 <jsp:include page="footer.jsp"/>
+<script>
+abb1.jquery.admin_statistic();
+</script>

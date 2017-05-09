@@ -114,30 +114,7 @@
     </div>
     <!-- /#wrapper -->
     
-<script>
-$(function(){
-	var notice_table = $('#notice_table');
-	notice_table.find('div:first-child').addClass('abb1_admin_maintext');
-	var notice_write_wrapper = $('#notice_write_wrapper');
-	notice_write_wrapper.find('div:first-child').addClass('abb1_admin_notice_register');
-	notice_write_wrapper.find('table').addClass('abb1_admin_notice_table');
-	notice_write_wrapper.find('col:nth-child(1)').css('width','10%');
-	notice_write_wrapper.find('col:nth-child(2)').css('width','60%');
-	notice_write_wrapper.find('col:nth-child(3)').css('width','20%');
-	notice_write_wrapper.find('col:nth-child(4)').css('width','10%');
-	var notice_pagination = $('#notice_pagination');
-	notice_pagination.addClass('abb1_admin_pagination abb1_pagination_faq');
-	notice_pagination.find('td:nth-child(2)').css('width','256px');
-	notice_pagination.find('td:nth-child(2)').find('a:nth-child(1)').addClass('on');
-	var notice_write = $('#notice_write');
-	notice_write.find('table').addClass('abb1_notice_write_table');
-	notice_write.find('col:nth-child(1)').css('width','15%');
-	notice_write.find('col:nth-child(2)').css('width','80%');
-	$('#notice_title').addClass('abb1_write_title');
-	notice_write.find('div').addClass('abb1_bbs_write_btns');
-	$('#cancel').addClass('abb1_bbs_write_cancel');
-	$('#confirm').addClass('abb1_bbs_write_confirm');
-	
-});
-</script>
 <jsp:include page="footer.jsp"/>
+<script>
+	abb1.jquery.admin_bbs_notice(5);
+</script>

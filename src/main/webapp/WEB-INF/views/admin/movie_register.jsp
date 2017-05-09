@@ -68,16 +68,8 @@
         <!-- /#page-wrapper -->
 
     </div>
-    <script>
-    $(function(){
-    	var movie_register = $('#movie_register');
-    	movie_register.find('div:first-child').addClass('abb1_admin_maintext');
-    	movie_register.find('div:nth-child(2)').addClass('abb1_admin_settings');
-    	var movie_register_table = $('#movie_register_table');
-    	movie_register_table.addClass('abb1_admin_movie_management_table');
-    	$('#trailer_check').addClass('abb1_trailer_check');
-    	$('#movie_register_btns').addClass('abb1_admin_movie_management_btns');
-    });
-    </script>
     <!-- /#wrapper -->
 <jsp:include page="footer.jsp"/>
+<script>
+	abb1.jquery.admin_movie_register();
+</script>

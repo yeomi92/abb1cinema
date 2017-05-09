@@ -134,31 +134,7 @@
 
     </div>
     <!-- /#wrapper -->
-<script>
-$(function(){
-	var faq_table = $('#faq_table');
-	faq_table.find('div:first-child').addClass('abb1_admin_maintext');
-	var faq_write_wrapper = $('#faq_write_wrapper');
-	faq_write_wrapper.find('table').addClass('abb1_admin_faq_table');
-	faq_write_wrapper.find('col:nth-child(1)').css('width','10%');
-	faq_write_wrapper.find('col:nth-child(2)').css('width','45%');
-	faq_write_wrapper.find('col:nth-child(3)').css('width','10%');
-	faq_write_wrapper.find('col:nth-child(4)').css('width','20%');
-	faq_write_wrapper.find('col:nth-child(5)').css('width','10%');
-	faq_write_wrapper.find('col:nth-child(6)').css('width','10%');
-	var faq_pagination = $('#faq_pagination');
-	faq_pagination.addClass('abb1_admin_pagination abb1_pagination_faq');
-	faq_pagination.find('td:nth-child(2)').css('width','256px');
-	faq_pagination.find('td:nth-child(2)').find('a:nth-child(1)').addClass('on');
-	var faq_answer = $('#faq_answer');
-	faq_answer.find('div:first-child').addClass('abb1_bbs_pagination_table');
-	faq_answer.find('table:first-child').addClass('abb1_bbs_notice_table');
-	faq_answer.find('ul').addClass('abb1_view_info');
-	$('#faq_question_content').addClass('abb1_view_content');
-	var faq_answer_content = $('#faq_answer_content');
-	faq_answer_content.find('col:nth-child(1)').css('width','90%');
-	faq_answer_content.find('col:nth-child(2)').css('width','10%');
-});
-</script>
-
 <jsp:include page="footer.jsp"/>
+<script>
+	abb1.jquery.admin_bbs_faq(4);
+</script>

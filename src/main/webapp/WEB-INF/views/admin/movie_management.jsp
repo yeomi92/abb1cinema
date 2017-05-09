@@ -70,16 +70,7 @@
 
     </div>
     <!-- /#wrapper -->
-    <script>
-    $(function(){
-    	var movie_management = $('#movie_management');
-    	movie_management.find('div:first-child').addClass('abb1_admin_maintext');
-    	$('#movie_search_keyword').addClass('abb1_admin_reservation_search_keyword');
-    	$('#movie_search_btn').addClass('abb1_admin_reservation_search_btn');
-    	movie_management.find('div:nth-child(3)').addClass('abb1_admin_settings');
-    	var movie_management_table = $('#movie_management_table');
-    	movie_management_table.addClass('abb1_admin_movie_management_table');
-    	$('#movie_management_btns').addClass('abb1_admin_movie_management_btns');
-    });
-    </script>
 <jsp:include page="footer.jsp"/>
+<script>
+	abb1.jquery.admin_movie_management();
+</script>

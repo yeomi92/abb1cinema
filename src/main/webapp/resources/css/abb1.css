@@ -22,7 +22,7 @@
 .abb1_gnb {list-style-type: none; display: inline-block;}
 .abb1_gnb li {float: left;}
 .abb1_gnb a {font-size: 15px;color: #5b5b5b; text-align: center; padding: 0 30px; border-left: 1px solid #5b5b5b; border-right: 1px solid #5b5b5b;}
-.abb1_gnb_tab{padding-bottom: 10px; border-bottom: 1px solid #c0c0c0;}
+.abb1_gnb_tab{border-bottom: 1px solid #c0c0c0;}
 .abb1_tooltip { position: relative; display: inline-block; border-bottom: 1px dotted black;}
 .abb1_tooltip .abb1_tooltiptext {font-size: 10px; width: 30px; visibility: hidden; background-color: #5b5b5b; color: #fff; text-align: center; border-radius: 6px; padding: 5px 0; position: absolute; z-index: 1; bottom: 3px;}
 .abb1_tooltip:hover .abb1_tooltiptext { visibility: visible; }
@@ -223,7 +223,8 @@
 
 /*------ bbs -------*/
 .abb1_bbs_table{width:980px;margin:0 auto;padding:20px 0;color:#231f20}
-.abb1_bbs_table_text{font-size:28px;margin: 0 auto;width:1000px;text-align: left;margin-top: 20px;}
+.abb1_bbs_table_text{margin: 0 auto;width:900px;text-align: left;margin-top: 20px;}
+.abb1_bbs_table_text>strong{font-size:28px;}
 .abb1_bbs_table .abb1_select_box{float:left;margin-right:5px; width: 124px; height: 28px;}
 .abb1_bbs_table select {width: 124px; height: 28px; }
 .abb1_bbs_table span {float:right;padding-top:8px;color:#231f20 }
@@ -232,16 +233,24 @@
 .abb1_category{padding-top:30px;font-size:14px}
 .abb1_bbs_pagination_table{margin: 0 auto; text-align: center;}
 .abb1_bbs_pagination_table td{width: 100px;}
+.abb1_bbs_main_table{width:100%;color:#231f20;line-height:18px;table-layout:fixed}
+.abb1_bbs_main_table tr:nth-child(1){font-weight: bold; background: #f9f6ec;}
+.abb1_bbs_main_table th{padding:14px 0 13px;border-bottom:1px solid silver;vertical-align:middle; text-align: center; font-size:13px; background: white;}
+.abb1_bbs_main_table td{padding:15px 10px;border-bottom:1px solid #dedede;color:#666;vertical-align:middle; font-size:13px;}
+.abb1_bbs_main_table td:nth-child(3){text-align: left;}
 
 /*------- bbs detail, notice_detail -------*/
 .abb1_bbs_notice_table tr td{border-top: 1px solid #dedede; border-bottom: 1px solid #dedede; border-collapse: collapse; height: 100px; width: 900px;}
 .abb1_bbs_notice_table tr:nth-child(2){background: #f9f6ec;}
 .abb1_bbs_notice_table span{ text-decoration: none; color: #555;}
+.abb1_bbs_review_result_name{margin-right: 20px;}
+.abb1_bbs_review_result_txt{margin-top:20px;margin-bottom:8px;color:#231f20;font-size:13px;line-height:18px;word-break:break-all}
+.abb1_bbs_review_result_reg_date{font-size: 12px; color: #666}
 .abb1_view_info{margin-bottom: 30px;}
 .abb1_view_info li:first-child{padding-left: 0;background: none;}
-.abb1_view_info li{float:left;padding:0 0 0 20px;margin:0 20px 0 0;font-size:13px;color:#666}
+.abb1_view_info li{float:left;margin:0 20px 0 0;font-size:13px;color:#666}
 .abb1_review_result{display:table-cell;width:900px;vertical-align:middle;border-bottom: 1px solid #9d9d9d}
-.abb1_view_content {margin: 20px 30px;}
+.abb1_view_content {font-size: 15px; margin: 20px 30px;}
 .abb1_bbs_write_btn{background-color: white; color: #231f20;}
 
 /*------- bbs write -------*/
@@ -260,6 +269,11 @@
 .abb1_bbs_write_btns input{min-width:100px;height:40px;padding:0 10px;border:1px solid #231f20;font-size:16px;font-weight:700}
 .abb1_bbs_write_cancel{background:#fff;color:#231f20}
 .abb1_bbs_write_confirm{color:#cdc197;background:#231f20;}
+.abb1_bbs_write_font{font-size: 12px;}
+.abb1_bbs_write_font>span{color: red;}
+.abb1_board_write_select_multiplex{background-color: white; color: #231f20; font-size: 14px; font-weight: bold; min-width: 102px; height: 35px; line-height: 33px;}
+.abb1_board_write_content{width:100%;height:90%;padding:10px 10px 25px;font-size:13px;color:#777;line-height:22px;background:#f5f5f5;border: 1px solid #dedede; resize: none;}
+
 
 /*------ main id ------*/
 #boxoffice{width:100%; text-align: center; padding-top: 17px;}
@@ -269,27 +283,15 @@
 #bnShortcuts{padding: 50px 0; border-top: 1px solid #c0c0c0; border-bottom: 1px solid #c0c0c0; width:100%; text-align: center;}
 
 /*------ bbs id -------*/
-#bbs_table{width:100%;color:#231f20;line-height:18px;table-layout:fixed}
-#bbs_table tr:nth-child(1){font-weight: bold; background: #f9f6ec;}
-#bbs_table th{padding:14px 0 13px;border-bottom:1px solid silver;vertical-align:middle; text-align: center; font-size:13px; background: white;}
-#bbs_table td{padding:15px 10px;border-bottom:1px solid #dedede;color:#666;vertical-align:middle; font-size:13px;}
-#bbs_table td:nth-child(3){text-align: left;}
 #bbs_pagination{ margin-top: 30px; text-align: center;}
-#bbs_pagination a{width:24px;height:24px;line-height:24px;margin:0 3px;color:#666;text-align:center;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;}
+#bbs_pagination a{padding:0 3px; line-height:24px;margin:0 3px;color:#666;text-align:center;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;}
 #bbs_pagination a.on{background-color: #231f20; color: white;}
 #bbs_pagination a:hover{background-color: #594f52; color: white;}
 #bbs_pagination img{background-color: white;}
 
 /*------- bbs notice, review id -------*/
-#bbs_review_result_name1{margin-right: 20px;}
-#bbs_review_result_txt1{margin-top:20px;margin-bottom:8px;color:#231f20;font-size:13px;line-height:18px;word-break:break-all}
-#bbs_review_result_reg_date1{font-size: 12px; color: #666}
 #bbs_review_contents{width:100%;border:1px solid #e8e8e8;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;font-size:14px;color:#666}
 #bbs_review_contents_submit{width:100%;height:87%;background:#231f20;font-size:18px;font-weight:700;color:#cdc197;text-align:center;line-height:23px;border:0}
-
-/*------- bbs write id -------*/
-#bbs_write_select_movie{background-color: white; color: #231f20; font-size: 14px; font-weight: bold; min-width: 102px; height: 35px; line-height: 33px;}
-#bbs_write_contents{width:100%;height:90%;padding:10px 10px 25px;font-size:13px;color:#777;line-height:22px;background:#f5f5f5;border: 1px solid #dedede; resize: none;}
 
 /*------ reservation -------*/
 .abb1_reservation{width:100%;background: #f9f6ec;}
@@ -305,7 +307,7 @@
 .abb1_reservation_tab_cont{font-size:16px;font-weight:700}
 .abb1_reservation_tab_scroll{height:415px;padding-left:10px;overflow-y:auto}
 .abb1_reservation_theater_zone{position:relative}
-.abb1_reservation_theater_zone li{margin-bottom:8px}
+.abb1_reservation_theater_zone li{padding:8px 0}
 .abb1_reservation_area_zone>a{display:block;width:116px;height:40px;line-height:40px;padding-left:13px;color:#666;text-align:left;vertical-align:middle;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .abb1_reservation_area_zone>a.on{width:107px;padding-left:22px;background:url(../img/reservation/bullet03.gif) 10px center no-repeat #231f20;color:#fff!important;letter-spacing:-1px}
 .abb1_reservation_area_cont{display:none;position:absolute;left:131px;top:0}
@@ -334,7 +336,8 @@
 .abb1_reservation_timeline dd .abb1_reservation_theatertime li .abb1_reservation_clock{display:block;height:38px;line-height:38px;border-bottom:1px solid #e5e5e5;font-size:15px;color:#666;font-weight:700}
 .abb1_reservation_timeline dd .abb1_reservation_theatertime li .abb1_reservation_ppnum{display:block;height:19px;line-height:19px;color:#666;font-size:12px}
 .abb1_reservation_timeline dd .abb1_reservation_theatertime li .abb1_reservation_ppnum em{color:#231f20}
-.abb1_reservation_area_margin{margin-left: 10px;}
+.abb1_reservation_area{margin-left: 10px;}
+.abb1_reservation_area li{padding: 10px;}
 /*------ reservation_seat -------*/
 .abb1_seat{width:100%; background: #f9f6ec;}
 .abb1_reservation_seat_form{ margin: 0 auto; text-align: center; width: 980px}
@@ -409,7 +412,7 @@
    margin-top: 25px;
 }
 .abb1_ticketing_settings{
-   background: #33373a; width: 100%; height:234px;
+   background: #33373a; width: 100%; height:234px; min-width: 900px;
 }
 .abb1_ticketing_table{
    margin: 0 auto; width: 1000px; text-align: center;
@@ -470,7 +473,7 @@ body {
 .abb1_width_70{width: 70%;}
 /*---width_center---*/
 .abb1_width_center{margin:0 auto;width:100%;text-align:center;}
-.abb1_width_center_w1000{margin:0 auto;width:1000px;text-align:center;}
+.abb1_width_center_w900{margin:0 auto;width:900px;text-align:center;}
 .abb1_width_center_w800{margin:0 auto;width:800px;text-align:center;}
 .abb1_width_center_w50{margin:0 auto;width:50%;}
 .abb1_width_center_w40{margin:0 auto;width:40%;padding-left: 120px;}

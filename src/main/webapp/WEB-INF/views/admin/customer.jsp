@@ -91,23 +91,7 @@
 
     </div>
     <!-- /#wrapper -->
-    <script>
-    $(function(){
-    	var customer = $('#customer');
-    	customer.find('div:first-child').addClass('abb1_admin_maintext');
-    	$('#customer_search_keyword').addClass('abb1_admin_reservation_search_keyword');
-    	$('#customer_search_btn').addClass('abb1_admin_customer_search_btn');
-    	$('#customer_management_wrapper').find('div:nth-child(2)').addClass('abb1_admin_settings');
-    	var admin_customer_table = $('#admin_customer_table');
-    	admin_customer_table.addClass('abb1_admin_customer_table');
-    	admin_customer_table.find('col:nth-child(1)').css('width','20%');
-    	admin_customer_table.find('col:nth-child(2)').css('width','20%');
-    	admin_customer_table.find('col:nth-child(3)').css('width','20%');
-    	admin_customer_table.find('col:nth-child(4)').css('width','30%');
-    	admin_customer_table.find('col:nth-child(5)').css('width','10%');
-    	$('#delete').css('background','white');
-    	$('#customer_result').addClass('abb1_signup_form_control abb1_admin_customer_change');
-    	
-    });
-    </script>
 <jsp:include page="footer.jsp"/>
+<script>
+	abb1.jquery.admin_customer();
+</script>
