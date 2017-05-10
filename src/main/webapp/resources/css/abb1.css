@@ -484,6 +484,7 @@ body {
 .abb1_width_right_w500{margin:0 auto;width:500px;text-align:rigth;}
 /*---width_left---*/
 .abb1_width_left{margin:0 auto;width:1000px;text-align:left;}
+.abb1_width_left_950{margin:0 auto;width:950px;text-align:left;}
 /*---width---*/
 .abb1_width_60{width: 60%;}
 .abb1_width_40{width: 40%;}
@@ -548,7 +549,9 @@ body {
 .abb1_find_id_inner_div{width:960px; margin-left:20px; margin-right:20px; border-top:1px solid #cec8ca;border-bottom:1px solid #cec8ca;padding-top: 20px;padding-bottom: 20px;margin:0 auto;text-align:center;padding-top: 0px;}
 .abb1_find_id_red_font{color: red;margin-right: -47px;}
 .abb1_finc_id_cancel_btn{float: left;margin-right: 30px;}
-
+.abb1_find_id_table_input{
+	margin-top: 15px;margin-bottom: 15px;
+}
 /*--------find PW success--------*/
 .abb1_find_pw_margin{margin-top: 15px;margin-bottom: 15px;}
 
@@ -600,7 +603,7 @@ body {
 .abb1_a_findId{color: black;padding-right: 15px;}
 .abb1_a_findPw{color: black;}
 .abb1_div_login{margin-right: 0px;margin-left: 0px;padding-top: 30px;padding-bottom: 30px;}
-.abb1_div_login_footer{background-color:#efebdb;padding-top: 20px;padding-bottom: 20px;}
+.abb1_div_login_footer{background-color:#efebdb;padding-top: 20px;padding-bottom: 20px;margin-top: 15px;}
 
 /*------ signup ------*/
 .abb1_signup_form{background-color:#f9f6ec;margin-right: 0px;margin-left: 0px;padding-top: 30px;padding-bottom: 30px;}
@@ -658,11 +661,11 @@ ul, menu, dir {
 .abb1_star_rating a.on {color:#000000;}
 .abb1_page_gnb_li{padding: 10px;border-bottom:1px solid #231f20;}
 .abb1_detail_gnb_li{padding: 10px;color: black;}
-.abb1_page_reservation{margin-left:20px; margin-right:20px; border-top:1px solid #cec8ca;border-bottom:1px solid #cec8ca;padding-top: 20px;padding-bottom: 20px;}
+.abb1_page_reservation{border-top:1px solid #cec8ca;border-bottom:1px solid #cec8ca;padding-top: 20px;padding-bottom: 20px;margin-left: 10px;margin-right: 10px;}
 .abb1_page_info{width:960px; margin-left:20px; margin-right:20px; border-top:1px solid #cec8ca;border-bottom:1px solid #cec8ca;padding-top: 20px;padding-bottom: 20px;text-align: center;}
 .abb1_page_info table{text-align: center;margin: 0 auto;}
-.abb1_detail_reservation{border:1px solid #cec8ca;margin-top: 20px;}
-.abb1_mypage_reservation{border-bottom:1px solid #cec8ca;margin-left: 10px;margin-right: 10px;}
+.abb1_detail_reservation{border:1px solid #cec8ca;margin-top: 20px;margin-left: 10px;margin-right: 10px;}
+.abb1_mypage_reservation{margin-left: 10px;margin-right: 10px;}
 
 
 /*-------updateInfo--------*/

@@ -4,8 +4,6 @@
 <a href="${context}/admin/index">
 <input type="button" value="ADMIN TEST"/>
 </a>
-
-
 <div id="wrapper">
     <div id="boxoffice">
       <table>

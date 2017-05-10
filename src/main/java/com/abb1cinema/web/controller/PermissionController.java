@@ -3,47 +3,42 @@ package com.abb1cinema.web.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
-
+import com.abb1cinema.web.composite.Complex;
+import com.abb1cinema.web.domain.Customer;
 import com.abb1cinema.web.mapper.Mapper;
 import com.abb1cinema.web.service.IGetService;
-import com.abb1cinema.web.util.Util;
-
 @Controller
 @SessionAttributes("permission")
 public class PermissionController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	@Autowired Mapper mapper;
+	@Autowired Customer customer;
 	
-	@RequestMapping("/test/loginForm")
-	public String patLogin() {
-		logger.info("Permission - patLogin() {}","ENTER");
-		return "public:patient/loginForm";
-	}
-	
-	@RequestMapping(value="/test/{permission}/login", method=RequestMethod.POST)
-	public String patLogin(@RequestParam("id") String id, 
-			@RequestParam("pw") String pw, @PathVariable String permission, HttpSession session, Model model) throws Exception {
-		String movePosition = "";
-		logger.info("Permission - patLogin(model) PathVarialbe: {}",permission);
-		logger.info("Permission - id, pw: {}",id+","+pw);
-		return movePosition;
-	}
-	@RequestMapping("/test/logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
-		return "redirect:/";
+	@RequestMapping(value="/customer/main", method=RequestMethod.POST)
+	public String checkLogin(@RequestParam("customer_id") String id, @RequestParam("customer_pw") String pw, Model model) throws Exception{
+		logger.info("GetController checkLogin() {}","ENTER");
+		model.addAttribute("context",Complex.ContextFactory.create());
+		logger.info("넘어온 id,pw:{}, {}",id,pw);
+		Map<String,String> map=new HashMap<>();
+		map.put("id", id);
+		map.put("pw", pw);
+		IGetService service= new IGetService() {
+			@Override
+			public Object execute(Map<?, ?> map) throws Exception {
+				return mapper.findCustomer(map);
+			}
+		};
+		customer = (Customer) service.execute(map);
+		logger.info("DB다녀온 id의 name {}",customer.getName());
+		return "login:customer/main";
 	}
 }

@@ -1,12 +1,12 @@
 package com.abb1cinema.web.controller;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.abb1cinema.web.composite.Complex;
@@ -129,13 +129,13 @@ public class HomeController {
 	public String login(Model model) {
 		logger.info("HomeController login() {}","ENTER");
 		model.addAttribute("context", Complex.ContextFactory.create());
-		return "customer/login";
+		return "public:customer/login";
 	}
 	@RequestMapping("/customer/signUp")
 	public String signUp(Model model) {
 		logger.info("HomeController signUp() {}","ENTER");
 		model.addAttribute("context", Complex.ContextFactory.create());
-		return "customer/signUp";
+		return "public:customer/signUp";
 	}
 	//mypage
 	@RequestMapping("/customer/mypage")
@@ -190,7 +190,7 @@ public class HomeController {
 	public String findId(Model model) {
 		logger.info("HomeController findId() {}","ENTER");
 		model.addAttribute("context", Complex.ContextFactory.create());
-		return "customer/findId";
+		return "public:customer/findId";
 	}
 	@RequestMapping("/customer/findIdSuccess")
 	public String findIdSuccess(Model model) {
@@ -202,7 +202,8 @@ public class HomeController {
 	public String findPw(Model model) {
 		logger.info("HomeController findPw() {}","ENTER");
 		model.addAttribute("context", Complex.ContextFactory.create());
-		return "customer/findPw";
+		return "public:customer/findPw";
+		
 	}@RequestMapping("/customer/findPwSuccess")
 	public String findPwSuccess(Model model) {
 		logger.info("HomeController findPwSuccess() {}","ENTER");
