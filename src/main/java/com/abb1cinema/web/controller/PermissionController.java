@@ -31,20 +31,28 @@ public class PermissionController {
 		Map<String,String> map=new HashMap<>();
 		map.put("id", id);
 		map.put("pw", pw);
-		String result="public:customer/login";
-		IGetService service= new IGetService() {
+		String position="public:customer/login";
+		IGetService checkId= new IGetService() {
 			@Override
 			public Object execute(Map<?,?> map) throws Exception {
 				return mapper.existCustomer(map);
 			}
 		};
 		logger.info("map에 들어있는 id,pw {}",id+pw);
-		customer = (Customer) service.execute(map);
-		if(id.equals("admin")&&pw.equals(customer.getPw())){
-			result="admin/index";
+		int exist=(int) checkId.execute(map);
+		if(exist==1){
+			IGetService service= new IGetService() {
+				@Override
+				public Object execute(Map<?, ?> map) throws Exception {
+					return mapper.findCustomer(map);
+				}
+			};
+		}
+		/*if(id.equals("admin")&&pw.equals(customer.getPw())){
+			position="admin/index";
 		}else if(pw.equals(customer.getPw())){
-			result="customer/main";
-		}	
-		return result;
+			position="customer/main";
+		}*/	
+		return position;
 	}
 }
