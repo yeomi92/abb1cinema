@@ -242,3 +242,4 @@ INSERT INTO Comment(reg_date, content, customer_id, article_seq) VALUES ('2017.0
 INSERT INTO Comment(reg_date, content, customer_id, article_seq) VALUES ('2017.05.12','재미게시글3','babungv2',1);
 INSERT INTO Comment(reg_date, content, customer_id, article_seq) VALUES ('2017.05.13','재미게시글4','babungv2',1);
 INSERT INTO Comment(reg_date, content, customer_id, article_seq) VALUES ('2017.05.14','여미','babungv2',1);
+

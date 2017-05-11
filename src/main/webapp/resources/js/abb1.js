@@ -2056,6 +2056,46 @@ abb1.jquery = {
 	},
 	customer_findid : function(){
 	    var ctx = abb1.session.getContextPath();
+	    var view='<div id="customer_find_id">'
+	    	+'		<div> '
+	    	+'			<h2><strong>회원 ID 찾기</strong></h2>'
+	    	+'		</div>'
+	    	+'		<div id="customer_find_id_div">'
+	    	+'			<div>'
+	    	+'				<table id="customer_find_id_table">'
+	    	+'			         <tr>'
+	    	+'			         	<td><strong>이름</strong></td>'
+	    	+'			            <td colspan="2"><input type="text"></td>'
+	    	+'			         </tr>'
+	    	+'			         <tr>'
+	    	+'			         	<td><strong>이메일</strong></td>'
+	    	+'			            <td colspan="2"><input type="text" ></td>'
+	    	+'			         </tr>'
+	    	+'			         <tr>'
+	    	+'			         <td><span>인증번호를 받을</span></td>'
+	    	+'		         <td><span>이메일를 입력하세요.</span></td>'
+	    	+'			         <td><input id="customer_send_email" type="button" value="전송"></td>'
+	    	+'			         </tr>'
+	    	+'			         <tr>'
+	    	+'			         	<td><strong>인증번호</strong></td>'
+	    	+'			            <td colspan="2"><input type="text"></td>'
+	    	+'			         </tr>'
+	    	+'			         <tr>'
+	    	+'			         <td colspan="3" id="customer_find_id_btns">'
+	    	+'			         <ul>'
+	    	+'						<li>'
+	    	+'							<a href="javascript:abb1.jquery.customer_login()"><input type="button" value="취소"/></a>'
+	    	+'						</li>'
+	    	+'						<li>'
+	    	+'							<a href="javascript:abb1.jquery.customer_findidsuccess()"><input type="button" value="확인"  /></a>'
+	    	+'						</li>'
+	    	+'					</ul></td>'
+	    	+'		         	</tr>'
+	    	+'		      	</table>'
+	    	+'			</div>'
+	    	+'		</div>'
+	    	+'	</div>';
+	    $('#container').html(view);
 		var customer_find_id = $('#customer_find_id');
 		customer_find_id.addClass('abb1_find_id_container');
 		customer_find_id.find('div:first-child').addClass('abb1_width_left');
@@ -2079,6 +2119,32 @@ abb1.jquery = {
 	},
 	customer_findidsuccess : function(){
 	    var ctx = abb1.session.getContextPath();
+	    var view='<div id="customer_find_id">'
+	    	+'		<div> '
+	    	+'			<h2><strong>회원 ID 찾기</strong></h2>'
+	    	+'		</div>'
+	    	+'		<div id="customer_find_id_result">'
+	    	+'			<div>'
+	    	+'				<table id="customer_find_id_table">'
+	    	+'		         <tr>'
+	    	+'			         <td>'
+	    	+'			         	<h4>회원님의 아이디는 <strong>yheisun</strong>입니다.</h4>'
+	    	+'			         </td>'
+	    	+'		         </tr>'
+	    	+'		         <tr>'
+	    	+'		         	<td>'
+	    	+'			        <ul>'
+	    	+'						<li>'
+	    	+'							<a href="'+ctx+'/customer/login"><input type="button" value="확인"  /></a>'
+	    	+'						</li>'
+	    	+'					</ul>'
+	    	+'					</td>'
+	    	+'		         </tr>'
+	    	+'		      </table>'
+	    	+'			</div>'
+	    	+'		</div>'
+	    	+'	</div>';
+	    $('#container').html(view);
 		var customer_find_id = $('#customer_find_id');
 		customer_find_id.addClass('abb1_find_id_container');
 		customer_find_id.find('div:first-child').addClass('abb1_width_left');
@@ -2096,6 +2162,47 @@ abb1.jquery = {
 	},
 	customer_findpw : function(){
 	    var ctx = abb1.session.getContextPath();
+	    var view='<div id="customer_find_pw">'
+	    	+'		<div> '
+	    	+'			<h2><strong>회원 비밀번호 찾기</strong></h2>'
+	    	+'		</div>'
+	    	+'		<div id="customer_find_pw_div">'
+	    	+'			<div>'
+	    	+'				<table id="customer_find_pw_table">'
+	    	+'		         <tr>'
+	    	+'		         	<td><strong>아이디</strong></td>'
+	    	+'		            <td colspan="2"><input type="text"></td>'
+	    	+'		         </tr>'
+	    	+'		         <tr>'
+	    	+'		         	<td><strong>이메일</strong></td>'
+	    	+'		            <td colspan="2"><input type="text"></td>'
+	    	+'		         </tr>'
+	    	+'		         <tr>'
+	    	+'			         <td><span>인증번호를 받을</span></td>'
+	    	+'			         <td><span>이메일를 입력하세요.</span></td>'
+	    	+'			         <td><input id="customer_send_email" type="button" value="전송"></td>'
+	    	+'		         </tr>'
+	    	+'		         <tr>'
+	    	+'		         	<td><strong>인증번호</strong></td>'
+	    	+'		            <td colspan="2"><input type="text"></td>'
+	    	+'		         </tr>'
+	    	+'		         <tr>'
+	    	+'		         <td colspan="3" id="customer_find_pw_btns">'
+	    	+'			         <ul>'
+	    	+'						<li>'
+	    	+'							<a href="javascript:abb1.jquery.customer_login()"><input type="button" value="취소"  /></a>'
+	    	+'						</li>'
+	    	+'						<li>'
+	    	+'							<a href="javascript:abb1.jquery.customer_findpwsuccess()"><input type="button" value="확인"  /></a>'
+	    	+'						</li>'
+	    	+'					</ul>'
+	    	+'				</td>'
+	    	+'		         </tr>'
+	    	+'		      </table>'
+	    	+'			</div>'
+	    	+'		</div>'
+	    	+'	</div>';
+	    $('#container').html(view);
 		var customer_find_pw = $('#customer_find_pw');
 		customer_find_pw.addClass('abb1_find_id_container');
 		customer_find_pw.find('div:first-child').addClass('abb1_width_left');
@@ -2119,6 +2226,38 @@ abb1.jquery = {
 	},
 	customer_findpwsuccess : function(){
 	    var ctx = abb1.session.getContextPath();
+	    var view='<div id="customer_find_pw">'
+	    	+'		<div> '
+	    	+'			<h2><strong>회원 비밀번호 찾기</strong></h2>'
+	    	+'		</div>'
+	    	+'		<div id="customer_find_pw_result">'
+	    	+'			<div>'
+	    	+'				<table id="customer_find_pw_table">'
+	    	+'		         <tr>'
+	    	+'		         	<td><strong>비밀번호</strong></td>'
+	    	+'		            <td colspan="2"><input type="text"></td>'
+	    	+'		         </tr>'
+	    	+'		         <tr>'
+	    	+'		         	<td><strong>비밀번호 확인</strong></td>'
+	    	+'		            <td colspan="2"><input type="text"></td>'
+	    	+'		         </tr>'
+	    	+'		         <tr>'
+	    	+'		         	<td colspan="3" id="customer_find_pw_btns">'
+	    	+'			        <ul>'
+	    	+'					<li>'
+	    	+'						<a href="'+ctx+'/customer/login"><input type="button" value="취소"  /></a>'
+	    	+'					</li>'
+	    	+'					<li>'
+	    	+'						<a href="'+ctx+'/customer/login"><input type="button" value="확인"  /></a>'
+	    	+'					</li>'
+	    	+'					</ul>'
+	    	+'					</td>'
+	    	+'		         </tr>'
+	    	+'		      </table>'
+	    	+'			</div>'
+	    	+'		</div>'
+	    	+'	</div>';
+	    $('#container').html(view);
 		var customer_find_pw = $('#customer_find_pw');
 		customer_find_pw.addClass('abb1_find_id_container');
 		customer_find_pw.find('div:first-child').addClass('abb1_width_left');
@@ -2138,7 +2277,6 @@ abb1.jquery = {
 		customer_find_pw_btns.find('li:nth-child(2)').find('input').addClass('btn abb1_btn_lg abb1_btn_verification');
 	},
 	customer_login : function(){
-	    var ctx = abb1.session.getContextPath();
 		var customer_login_form = $('#customer_login_form');
 		customer_login_form.addClass('abb1_signup_form');
 		customer_login_form.find('div:first-child').addClass('abb1_signup_settings');
@@ -2153,14 +2291,63 @@ abb1.jquery = {
 		login_footer.find('td:nth-child(1)').addClass('abb1_width_448');
 		login_footer.find('td:nth-child(2)').addClass('abb1_width_200');
 		login_footer.find('td:nth-child(2)').find('input').addClass('btn abb1_btn_lg abb1_btn_verification').css('height','60px').css('width','120px').css('font-size','15px');
+		
 	},
 	customer_mypage : function(){
 	    var ctx = abb1.session.getContextPath();
+	    var view='<div id="mypage">'
+	    	+'		<div> '
+	    	+'			<h2><strong>마이시네마</strong></h2>'
+	    	+'		</div>'
+	    	+'		<div id="mypageGnb">'
+	    	+'			<ul>'
+	    	+'				<li>'
+	    	+'					<a href="#">예매/구매내역</a>'
+	    	+'				</li>'
+	    	+'				<li>'
+	    	+'					<a href="javascript:abb1.jquery.customer_mypageInfo()">나의 정보관리</a>'
+	    	+'				</li>'
+	    	+'			</ul> '
+	    	+'		</div>'
+	    	+'		<div id="mypage_reservation_content">'
+	    	+'			<ul>'
+	    	+'				<li>'
+	    	+'					<a href="#"><strong>예매/구매내역</strong></a>'
+	    	+'				</li>'
+	    	+'				<li>'
+	    	+'					<a href="javascript:abb1.jquery.customer_mypageCancel()">취소내역</a>'
+	    	+'				</li>'
+	    	+'			</ul>'
+	    	+'			<div id="mypage_reservation">'
+	    	+'				<table>'
+	    	+'					<tr>'
+	    	+'						<td rowspan="4"><span id="reservation_pic"><img src="'+ctx+'/resources/img/movie/movie_poster_6.png" width="60%" height="60%" alt="" /></span></td>'
+	    	+'						<td><span id="reservation_no">예매번호(예매일)</span></td>'
+	    	+'						<td colspan="2"><span>123456789</span>(2017-04-21)</td>'
+	    	+'					</tr>'
+	    	+'					<tr>'
+	    	+'						<td>사용상태</td>'
+	    	+'						<td>취소가능</td>'
+	    	+'						<td><a id="detail" href="javascript:abb1.jquery.customer_mypageReservation()">상세<img src="'+ctx+'/resources/img/icon/downarrow.png" width="3%" height="3%" alt="" /></a></td>'
+	    	+'					</tr>'
+	    	+'					<tr>'
+	    	+'						<td>예매내역</td>'
+	    	+'						<td colspan="2">아빠는 딸</td>'
+	    	+'					</tr>'
+	    	+'					<tr>'
+	    	+'						<td>총 결제 금액</td>'
+	    	+'						<td colspan="2">22,000원</td>'
+	    	+'					</tr>'
+	    	+'				</table>'
+	    	+'			</div>'
+	    	+'		</div>'
+	    	+'	</div>';
+	    $('#container').html(view);
 		var mypage = $('#mypage');
 		mypage.addClass('abb1_find_id_container');
 		mypage.find('div:first-child').addClass('abb1_width_left');
 		mypage.find('div:first-child').find('h2').addClass('abb1_color_bold_brown');
-		mypage.find('div:nth-child(2)').addClass('abb1_padding_top_20 abb1_width_left');
+		$('#mypageGnb').addClass('abb1_padding_top_20 abb1_width_left');
 		mypage.find('div:nth-child(2)').find('ul').addClass('abb1_page_ul_inline');
 		mypage.find('div:nth-child(2)').find('li').addClass('abb1_page_li_inline');
 		mypage.find('div:nth-child(2)').find('li:nth-child(1)').find('a').addClass('abb1_mypage_select_btn');
@@ -2179,11 +2366,57 @@ abb1.jquery = {
 	},
 	customer_mypageCancel : function(){
 	    var ctx = abb1.session.getContextPath();
+	    var view='<div id="mypage">'
+	    	+'		<div> '
+	    	+'			<h2><strong>마이시네마</strong></h2>'
+	    	+'		</div>'
+	    	+'		<div id="mypageGnb">'
+	    	+'			<ul>'
+	    	+'				<li>'
+	    	+'					<a href="#">예매/구매내역</a>'
+	    	+'				</li>'
+	    	+'				<li>'
+	    	+'					<a href="javascript:abb1.jquery.customer_mypageInfo()">나의 정보관리</a>'
+	    	+'				</li>'
+	    	+'			</ul> '
+	    	+'		</div>'
+	    	+'		<div id="mypage_reservation_content">'
+	    	+'			<ul>'
+	    	+'				<li>'
+	    	+'					<a href="javascript:abb1.jquery.customer_mypage()"><strong>예매/구매내역</strong></a>'
+	    	+'				</li>'
+	    	+'				<li>'
+	    	+'					<a href="#">취소내역</a>'
+	    	+'				</li>'
+	    	+'			</ul>'
+	    	+'			<div id="mypage_reservation">'
+	    	+'				<table>'
+	    	+'					<tr>'
+	    	+'						<td rowspan="4"><span id="reservation_pic"><img src="'+ctx+'/resources/img/movie/movie_poster_6.png" width="60%" height="60%" alt="" /></span></td>'
+	    	+'						<td><span id="reservation_no">예매번호(예매일)</span></td>'
+	    	+'						<td colspan="2"><span>123456789</span>(2017-04-21)</td>'
+	    	+'					</tr>'
+	    	+'					<tr>'
+	    	+'						<td>사용상태</td>'
+	    	+'						<td>취소완료(2017-04-22)</td>'
+	    	+'					</tr>'
+	    	+'					<tr>'
+	    	+'						<td>예매내역</td>'
+	    	+'						<td colspan="2">아빠는 딸</td>'
+	    	+'					<tr>'
+	    	+'						<td>총 결제 금액</td>'
+	    	+'						<td colspan="2">22,000원</td>'
+	    	+'					</tr>'
+	    	+'				</table>'
+	    	+'			</div>'
+	    	+'		</div>'
+	    	+'	</div>';
+	    $('#container').html(view);
 		var mypage = $('#mypage');
 		mypage.addClass('abb1_find_id_container');
 		mypage.find('div:first-child').addClass('abb1_width_left');
 		mypage.find('div:first-child').find('h2').addClass('abb1_color_bold_brown');
-		mypage.find('div:nth-child(2)').addClass('abb1_padding_top_20 abb1_width_left');
+		$('#mypageGnb').addClass('abb1_padding_top_20 abb1_width_left');
 		mypage.find('div:nth-child(2)').find('ul').addClass('abb1_page_ul_inline');
 		mypage.find('div:nth-child(2)').find('li').addClass('abb1_page_li_inline');
 		mypage.find('div:nth-child(2)').find('li:nth-child(1)').find('a').addClass('abb1_mypage_select_btn');
@@ -2201,11 +2434,39 @@ abb1.jquery = {
 	},
 	customer_mypageInfo : function(){
 	    var ctx = abb1.session.getContextPath();
+	    var view='<div id="mypage">'
+	    	+'		<div> '
+	    	+'			<h2><strong>마이시네마</strong></h2>'
+	    	+'		</div>'
+	    	+'		<div id="mypageGnb">'
+	    	+'			<ul>'
+	    	+'				<li>'
+	    	+'					<a href="javascript:abb1.jquery.customer_mypage()">예매/구매내역</a>'
+	    	+'				</li>'
+	    	+'				<li>'
+	    	+'					<a href="#">나의 정보관리</a>'
+	    	+'				</li>'
+	    	+'			</ul> '
+	    	+'		</div>'
+	    	+'		<div id="mypage_reservation_content">'
+	    	+'			<div>'
+	    	+'				<ul>'
+	    	+'					<li>'
+	    	+'						<a href="javascript:abb1.jquery.customer_updateInfoChPw()"><input type="button" value="회원정보변경" /></a>'
+	    	+'					</li>'
+	    	+'					<li>'
+	    	+'						<a href="javascript:abb1.jquery.customer_withdrawal()"><input type="button" value="회원탈퇴" /></a>'
+	    	+'					</li>'
+	    	+'				</ul>'
+	    	+'			</div>'
+	    	+'		</div>'
+	    	+'	</div>';
+	    $('#container').html(view);
 		var mypage = $('#mypage');
 		mypage.addClass('abb1_find_id_container');
 		mypage.find('div:first-child').addClass('abb1_width_left');
 		mypage.find('div:first-child').find('h2').addClass('abb1_color_bold_brown');
-		mypage.find('div:nth-child(2)').addClass('abb1_padding_top_20 abb1_width_left');
+		$('#mypageGnb').addClass('abb1_padding_top_20 abb1_width_left');
 		mypage.find('div:nth-child(2)').find('ul').addClass('abb1_page_ul_inline');
 		mypage.find('div:nth-child(2)').find('li').addClass('abb1_page_li_inline');
 		mypage.find('div:nth-child(2)').find('li:nth-child(1)').find('a').addClass('abb1_mypage_select_btn');
@@ -2220,11 +2481,87 @@ abb1.jquery = {
 	},
 	customer_mypageReservation : function(){
 	    var ctx = abb1.session.getContextPath();
+	    var view='<div id="mypage">'
+	    	+'		<div> '
+	    	+'			<h2><strong>마이시네마</strong></h2>'
+	    	+'		</div>'
+	    	+'		<div id="mypageGnb">'
+	    	+'			<ul>'
+	    	+'				<li>'
+	    	+'					<a href="#">예매/구매내역</a>'
+	    	+'				</li>'
+	    	+'				<li>'
+	    	+'					<a href="'+ctx+'/customer/mypageInfo">나의 정보관리</a>'
+	    	+'				</li>'
+	    	+'			</ul> '
+	    	+'		</div>'
+	    	+'		<div id="mypage_reservation_content">'
+	    	+'			<ul>'
+	    	+'				<li>'
+	    	+'					<a href="#"><strong>예매/구매내역</strong></a>'
+	    	+'				</li>'
+	    	+'				<li>'
+	    	+'					<a href="javascript:abb1.jquery.customer_mypageCancel()">취소내역</a>'
+	    	+'				</li>'
+	    	+'			</ul>'
+	    	+'			<div id="mypage_reservation">'
+	    	+'				<table>'
+	    	+'					<tr>'
+	    	+'						<td rowspan="4"><span id="reservation_pic"><img src="'+ctx+'/resources/img/movie/movie_poster_6.png" width="60%" height="60%" alt="" /></span></td>'
+	    	+'						<td><span id="reservation_no">예매번호(예매일)</span></td>'
+	    	+'						<td colspan="2"><span>123456789</span>(2017-04-21)</td>'
+	    	+'					</tr>'
+	    	+'					<tr>'
+	    	+'						<td>사용상태</td>'
+	    	+'						<td>취소가능</td>'
+	    	+'						<td><a href="javascript:abb1.jquery.customer_mypage()">닫기<img src="'+ctx+'/resources/img/icon/uparrow.png" width="3%" height="3%" alt="" /></a></td>'
+	    	+'					</tr>'
+	    	+'					<tr>'
+	    	+'						<td>예매내역</td>'
+	    	+'						<td colspan="2">아빠는 딸</td>'
+	    	+'					</tr>'
+	    	+'					<tr>'
+	    	+'						<td>총 결제 금액</td>'
+	    	+'						<td colspan="2">22,000원</td>'
+	    	+'					</tr>'
+	    	+'				</table>'
+	    	+'				<div id="detail_reservation">'
+	    	+'					<div>'
+	    	+'						<h4>상세내용</h4>'
+	    	+'					</div>'
+	    	+'					<div>'
+	    	+'					<table>'
+	    	+'						<tr>'
+	    	+'							<td rowspan="4"><span id="detail_reservation_pic"><img src="'+ctx+'/resources/img/movie/movie_poster_6.png" width="60%" height="60%" alt="" /></span></td>'
+	    	+'							<td colspan="2"><h4><strong>아빠는 딸</strong></h4></td>'
+	    	+'						</tr>'
+	    	+'						<tr>'
+	    	+'							<td>상영일</td>'
+	    	+'							<td>2017-04-23 | 상영시간 13:50 ~ 15:55 | 상영관 가산디지털, 1관</td>'
+	    	+'						</tr>'
+	    	+'						<tr>'
+	    	+'							<td>관람인원</td>'
+	    	+'							<td>성인2 | 좌석 E10,E11</td>'
+	    	+'						</tr>'
+	    	+'						<tr>'
+	    	+'							<td><span>주문금액</span></td>'
+	    	+'							<td>22,000원</td>'
+	    	+'						</tr>'
+	    	+'					</table>'
+	    	+'					</div>'
+	    	+'					<div>'
+	    	+'						<input id="reservation_cancel" type="button" value="결제취소"  />'
+	    	+'					</div>'
+	    	+'				</div>'
+	    	+'			</div>'
+	    	+'		</div>'
+	    	+'	</div>';
+	    $('#container').html(view);
 		var mypage = $('#mypage');
 		mypage.addClass('abb1_find_id_container');
 		mypage.find('div:first-child').addClass('abb1_width_left');
 		mypage.find('div:first-child').find('h2').addClass('abb1_color_bold_brown');
-		mypage.find('div:nth-child(2)').addClass('abb1_padding_top_20 abb1_width_left');
+		$('#mypageGnb').addClass('abb1_width_left abb1_padding_top_20');
 		mypage.find('div:nth-child(2)').find('ul').addClass('abb1_page_ul_inline');
 		mypage.find('div:nth-child(2)').find('li').addClass('abb1_page_li_inline');
 		mypage.find('div:nth-child(2)').find('li:nth-child(1)').find('a').addClass('abb1_mypage_select_btn');
@@ -2249,6 +2586,88 @@ abb1.jquery = {
 	},
 	customer_signup : function(){
 	    var ctx = abb1.session.getContextPath();
+	    var view='<div id="signUp">'
+	    	+'	    <div>'
+	    	+'	      <h2>회원가입</h2>'
+	    	+'	      <div id="signup_tables">'
+	    	+'	         <table>'
+	    	+'	            <tr>'
+	    	+'	               <td><input type="text" placeholder="아이디"></td>'
+	    	+'	            </tr>'
+	    	+'	            <tr>'
+	    	+'	               <td><input type="password" placeholder="비밀번호"></td>'
+	    	+'	            </tr>'
+	    	+'	            <tr>'
+	    	+'	               <td><input type="password" placeholder="비밀번호 확인"></td>'
+	    	+'	            </tr>'
+	    	+'	         </table>'
+	    	+'	         <table>'
+	    	+'	            <tr>'
+	    	+'	               <td colspan="3"><input type="text" placeholder="이름"></td>'
+	    	+'	            </tr>'
+	    	+'	            <tr>'
+	    	+'	               <td><input type="text" placeholder="생년"></td>'
+	    	+'	            <td>'
+	    	+'	               <select name="date">'
+	    	+'	                  <option value="" selected>월</option>'
+	    	+'	                  <option value="1">1</option>'
+	    	+'	                  <option value="2">2</option>'
+	    	+'	                  <option value="3">3</option>'
+	    	+'	                  <option value="4">4</option>'
+	    	+'	                  <option value="5">5</option>'
+	    	+'	                  <option value="6">6</option>'
+	    	+'	                  <option value="7">7</option>'
+	    	+'	                  <option value="8">8</option>'
+	    	+'	                  <option value="9">9</option>'
+	    	+'	                  <option value="10">10</option>'
+	    	+'	                  <option value="11">11</option>'
+	    	+'	                  <option value="12">12</option>'
+	    	+'	               </select>'
+	    	+'	            </td>'
+	    	+'	            <td><input type="text" placeholder="일"></td>'
+	    	+'	         </tr>'
+	    	+'	         <tr>'
+	    	+'	            <td><input type="text" placeholder="010"></td>'
+	    	+'	            <td><input type="text"></td>'
+	    	+'	            <td><input type="text"></td>'
+	    	+'	         </tr>'
+	    	+'	      </table>'
+	    	+'	      <table>'
+	    	+'	         <tr>'
+	    	+'	            <td><div><input type="radio" id="man" name="gender" value="male"/><label id="manLb" for="man">남자</label></div></td>'
+	    	+'	            <td><div><input type="radio" id="woman" name="gender" value="female"/><label id="womanLb" for="woman">여자</label></div></td>'
+	    	+'	         </tr>'
+	    	+'	      </table>'
+	    	+'	      <table>'
+	    	+'	      	<tr>'
+	    	+'	            <td><input type="text" placeholder="주소" ></td>'
+	    	+'	            <td>'
+	    	+'	               <input id="find_postcode" type="button" value="우편번호 검색" type="submit">'
+	    	+'	            </td>'
+	    	+'	         </tr>'
+	    	+'	      	<tr>'
+	    	+'              <td colspan="2"><input type="text" placeholder="주소"></td>'
+	    	+'	        </tr>'
+	    	+'	      	<tr>'
+	    	+'              <td colspan="2"><input type="text" placeholder="상세주소"></td>'
+	    	+'	        </tr>'
+	    	+'	      </table>'
+	    	+'	      <table>'
+	    	+'	         <tr>'
+	    	+'	            <td colspan="2"><input type="text" placeholder="이메일" ></td>'
+	    	+'	            <td>'
+	    	+'	               <input id="send_code" type="button" value="인증번호 발송" type="submit">'
+	    	+'	            </td>'
+	    	+'	         </tr>'
+	    	+'	         <tr>'
+	    	+'	            <td colspan="3"><input type="text" placeholder="인증번호 입력"></td>'
+	    	+'	         </tr>'
+	    	+'	      </table>'
+	    	+'	      	<a href="javascript:abb1.jquery.customer_signupsuccess()"><input id="signup_finish" type="button" value="가입하기"/></a>'
+	    	+'	      </div>'
+	    	+'	   </div> '  
+	    	+'	</div>';
+	    $('#container').html(view);
 		var signUp = $('#signUp');
 		signUp.addClass('abb1_signup_form');
 		signUp.find('div:first-child').addClass('abb1_signup_settings');
@@ -2263,8 +2682,34 @@ abb1.jquery = {
 	},
 	customer_signupsuccess : function(){
 	    var ctx = abb1.session.getContextPath();
+	    var view='<div id="signupSuccess">'
+	    	+'		<div> '
+	    	+'			<h2><strong>가입완료</strong></h2>'
+	    	+'		</div>'
+	    	+'		<div id="signup_success">'
+	    	+'			<div>'
+	    	+'				<table>'
+	    	+'		         <tr>'
+	    	+'		         	<td>'
+	    	+'			         	<h3><strong>염혜선</strong><span>님 환영합니다!</span></h3>'
+	    	+'		         	</td>'
+	    	+'		         </tr>'
+	    	+'		         <tr>'
+	    	+'			         <td>'
+	    	+'			         <ul>'
+	    	+'						 <li>'
+	    	+'							<a href="'+ctx+'"><input type="button" value="확인"/></a>'
+	    	+'						 </li>'
+	    	+'					 </ul>'
+	    	+'					 </td>'
+	    	+'		         </tr>'
+	    	+'		      	</table>'
+	    	+'			</div>'
+	    	+'		</div>'
+	    	+'	</div>';
+	    $('#container').html(view);
 		var container = $('#container');
-		container.find('div:first-child').addClass('abb1_find_id_container');
+		$('#signupSuccess').addClass('abb1_find_id_container');
 		container.find('div:first-child').find('div:first-child').addClass('abb1_width_left');
 		container.find('h2').addClass('abb1_color_bold_brown');
 		var signup_success = $('#signup_success');
@@ -2279,6 +2724,68 @@ abb1.jquery = {
 	},
 	customer_updateInfo : function(){
 	    var ctx = abb1.session.getContextPath();
+	    var view='<div id="signUp">'
+	    	+'	    <div>'
+	    	+'	      <h2><strong>회원정보변경</strong></h2>'
+	    	+'			<div id="updateInfo">'
+	    	+'				<table>'
+	    	+'					<tr>'
+	    	+'						<td><strong>아이디</strong></td>'
+	    	+'						<td>yheisun</td>'
+	    	+'					</tr>'
+	    	+'					<tr>'
+	    	+'						<td><strong>비밀번호</strong></td>'
+	    	+'						<td><input type="password" placeholder="비밀번호"><input type="password" placeholder="비밀번호 확인"></td>'
+	    	+'					</tr>'
+	    	+'					<tr>'
+	    	+'						<td><strong>성명</strong></td>'
+	    	+'						<td>염혜선</td>'
+	    	+'					</tr>'
+	    	+'					<tr>'
+	    	+'						<td><strong>생년</strong></td>'
+	    	+'						<td>1992년 10월 15일</td>'
+	    	+'					</tr>'
+	    	+'					<tr>'
+	    	+'						<td><strong>성별</strong></td>'
+	    	+'						<td>여자</td>'
+	    	+'					</tr>'
+	    	+'					<tr>'
+	    	+'						<td><strong>이메일</strong></td>'
+	    	+'						<td>yheisun@gmail.com</td>'
+	    	+'					</tr>'
+	    	+'					<tr>'
+	    	+'				</table>'
+	    	+'				<table>'
+	    	+'					<tr>'
+	    	+'						<td><input type="text" placeholder="010"></td>'
+	    	+'						<td><input type="text"></td>'
+	    	+'						<td><input type="text"></td>'
+	    	+'					</tr>'
+	    	+'				</table>'
+	    	+'				<table>'
+	    	+'					<tr>'
+	    	+'						<td><input type="text" placeholder="주소"></td>'
+	    	+'						<td><input id="find_postcode" type="button" value="우편번호 검색"></td>'
+	    	+'					</tr>'
+	    	+'					<tr>'
+	    	+'						<td colspan="2"><input type="text" placeholder="주소"></td>'
+	    	+'					</tr>'
+	    	+'					<tr>'
+	    	+'						<td colspan="2"><input type="text" placeholder="상세주소"></td>'
+	    	+'					</tr>'
+	    	+'				</table>'
+	    	+'				<ul>'
+	    	+'					<li>'
+	    	+'						<a href="${context}/customer/mypageInfo"><input id="cancel" type="button" value="취소"/></a>'
+	    	+'					</li>'
+	    	+'					<li>'
+	    	+'						<a href="${context}/customer/mypageInfo"><input id="confirm" type="button" value="확인"/></a>'
+	    	+'					</li>'
+	    	+'				</ul>'
+	    	+'			</div>'
+	    	+'		</div>'
+	    	+'	</div>';
+	    $('#container').html(view);
 	    var signUp = $('#signUp');
 	    signUp.addClass('abb1_signup_form');
 	    signUp.find('div:first-child').addClass('abb1_signup_settings');
@@ -2296,13 +2803,46 @@ abb1.jquery = {
 	},
 	customer_updateInfoChPw : function(){
 	    var ctx = abb1.session.getContextPath();
+	    var view='<div id="updateInfoChPw">'
+	    	+'	<div> '
+	    	+'			<h2><strong>회원정보변경</strong></h2>'
+	    	+'		</div>'
+	    	+'		<div id="signup_success">'
+	    	+'			<div>'
+	    	+'				<table>'
+	    	+'		         <tr>'
+	    	+'		         	<td><strong>아이디</strong></td>'
+	    	+'		            <td>yheisun</td>'
+	    	+'		         </tr>'
+	    	+'		         <tr>'
+	    	+'		         	<td><strong>비밀번호</strong></td>'
+	    	+'		            <td><input id="customer_password" type="password"></td>'
+	    	+'		         </tr>'
+	    	+'		         <tr>'
+	    	+'		         	<td colspan="2">'
+	    	+'		         	<ul>'
+	    	+'						<li>'
+	    	+'							<a href="javascript:abb1.jquery.customer_mypageInfo()"><input type="button" value="취소"  /></a>'
+	    	+'						</li>'
+	    	+'						<li class="abb1_page_li_inline">'
+	    	+'							<a href="javascript:abb1.jquery.customer_updateInfo()"><input type="button" value="확인"  /></a>'
+	    	+'						</li>'
+	    	+'					</ul>'
+	    	+'					</td>'
+	    	+'		         </tr>'
+	    	+'		      </table>'
+	    	+'			</div>'
+	    	+'		</div>'
+	    	+'	</div>';
+	    $('#container').html(view);
 	    var container = $('#container');
-	    container.find('div:first-child').addClass('abb1_bgcolor_beige abb1_padding_top_20 abb1_padding_bottom_20');
-	    container.find('div:first-child').find('div:first-child').addClass('abb1_width_left');
+	    $('#updateInfoChPw').addClass('abb1_bgcolor_beige abb1_padding_top_20 abb1_padding_bottom_20');
+	    container.find('td').addClass('abb1_text_left');
+	    container.find('div:nth-child(1)').find('div:first-child').addClass('abb1_width_left');
 	    container.find('h2').addClass('abb1_color_bold_brown');
 	    var signup_success = $('#signup_success');
 	    signup_success.addClass('abb1_signup_success_div');
-	    signup_success.find('div:first-child').addClass('abb1_width_center');
+	    signup_success.find('div:first-child').addClass('abb1_page_info abb1_width_left');
 	    signup_success.find('table').addClass('abb1_signup_form_control abb1_width_left');
 	    $('#customer_password').addClass('abb1_find_id_table_input');
 	    signup_success.find('table').find('tr:nth-child(3)').css('text-align','center');
@@ -2314,8 +2854,35 @@ abb1.jquery = {
 	},
 	customer_withdrawal : function(){
 	    var ctx = abb1.session.getContextPath();
+	    var view='<div id="mypageWithdrawal">'
+	    	+'		<div> '
+	    	+'			<h2><strong>회원탈퇴</strong></h2>'
+	    	+'		</div>'
+	    	+'		<div id="withdrawal">'
+	    	+'			<div>'
+	    	+'				<table>'
+	    	+'		         <tr>'
+	    	+'		         	 <td><h3>지금까지 이용해주셔서 감사드립니다!</h3></td>'
+	    	+'		         </tr>'
+	    	+'		         <tr>'
+	    	+'			         <td>'
+	    	+'				        <ul>'
+	    	+'						<li>'
+	    	+'							<a href="javascript:abb1.jquery.customer_mypageInfo()"><input type="button" value="취소"  /></a>'
+	    	+'						</li>'
+	    	+'						<li>'
+	    	+'							<a href="'+ctx+'"><input type="button" value="확인"  /></a>'
+	    	+'						</li>'
+	    	+'						</ul>'
+	    	+'					</td>'
+	    	+'		         </tr>'
+	    	+'		      </table>'
+	    	+'			</div>'
+	    	+'		</div>'
+	    	+'	</div>';
+	    $('#container').html(view);
 	    var container = $('#container');
-	    container.find('div:first-child').addClass('abb1_find_id_container');
+	    $('#mypageWithdrawal').addClass('abb1_find_id_container');
 	    container.find('div:first-child').find('div:first-child').addClass('abb1_width_left');
 	    container.find('h2').addClass('abb1_color_bold_brown'); 
 	    var withdrawal = $('#withdrawal');
@@ -2561,14 +3128,14 @@ abb1.jquery = {
 		   +'		    <li><a href="#">상영예정작</a></li>'
 		   +'		  </ul>'
 		   +'		</div>'
-		   +'		<div>'
+		   +'		<div id="order">'
 		   +'		   <ul>'
 		   +'		      <li><a href="'+ctx+'/movie/test">예매순</a></li>'
 		   +'		      <li><a href="">평점순</a></li>'
 		   +'		   </ul>'
 		   +'		</div>'
 		   +'		<div>'
-		   +'		   <div>'
+		   +'		   <div id="movieList">'
 		   +'		      <ul>'
 		   +'		         <li>'
 		   +'		            <table>'
@@ -2624,7 +3191,7 @@ abb1.jquery = {
 		   +'		         </li>'
 		   +'		      </ul>'
 		   +'		   </div>'
-		   +'		   <div>'
+		   +'		   <div id="movieList">'
 		   +'		      <ul>'
 		   +'		         <li>'
 		   +'		            <table>'
@@ -2689,8 +3256,8 @@ abb1.jquery = {
 	       movieMain.find('li').addClass('abb1_li_inline');
 	       movieMain.find('div:nth-child(1) li:nth-child(1)>a').addClass('abb1_movie_now_btn');
 	       movieMain.find('div:nth-child(1) li:nth-child(2)>a').addClass('abb1_movie_future_btn');
-	       movieMain.find('div:nth-child(2)').addClass('abb1_width_right');
-	       movieMain.find('div:nth-child(2) li:nth-child(1) a').addClass('abb1_padding_right_5');
+	       $('#order').addClass('abb1_width_right');
+	       $('#order').find('li:nth-child(1) a').addClass('abb1_padding_right_5');
 	       var movieList=movieMain.find('div:nth-child(3)');
 	       movieList.addClass('abb1_movie_list_div');
 	       movieList.find('table').addClass('abb1_movie_table');

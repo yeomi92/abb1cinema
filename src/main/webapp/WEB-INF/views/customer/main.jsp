@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<jsp:include page="../common/headerLogin.jsp"/>
 <div id="wrapper">
     <div id="boxoffice">
       <table>
@@ -98,6 +99,7 @@
         <img src="${context}/resources/img/common/shortList.png" alt="" />
    </div>
 </div>
+<jsp:include page="../common/footer.jsp"/>
 <script>
 $(function(){
 	var boxoffice = $('#boxoffice');

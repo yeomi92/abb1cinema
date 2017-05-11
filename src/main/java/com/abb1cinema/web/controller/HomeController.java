@@ -135,7 +135,7 @@ public class HomeController {
 	public String signUp(Model model) {
 		logger.info("HomeController signUp() {}","ENTER");
 		model.addAttribute("context", Complex.ContextFactory.create());
-		return "public:customer/signUp";
+		return "customer/signUp";
 	}
 	//mypage
 	@RequestMapping("/customer/mypage")
@@ -190,7 +190,7 @@ public class HomeController {
 	public String findId(Model model) {
 		logger.info("HomeController findId() {}","ENTER");
 		model.addAttribute("context", Complex.ContextFactory.create());
-		return "public:customer/findId";
+		return "customer/findId";
 	}
 	@RequestMapping("/customer/findIdSuccess")
 	public String findIdSuccess(Model model) {
@@ -202,7 +202,7 @@ public class HomeController {
 	public String findPw(Model model) {
 		logger.info("HomeController findPw() {}","ENTER");
 		model.addAttribute("context", Complex.ContextFactory.create());
-		return "public:customer/findPw";
+		return "customer/findPw";
 		
 	}@RequestMapping("/customer/findPwSuccess")
 	public String findPwSuccess(Model model) {

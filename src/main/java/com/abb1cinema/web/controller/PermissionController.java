@@ -31,6 +31,7 @@ public class PermissionController {
 		Map<String,String> map=new HashMap<>();
 		map.put("id", id);
 		map.put("pw", pw);
+		String result="public:customer/login";
 		IGetService service= new IGetService() {
 			@Override
 			public Object execute(Map<?,?> map) throws Exception {
@@ -39,7 +40,11 @@ public class PermissionController {
 		};
 		logger.info("map에 들어있는 id,pw {}",id+pw);
 		customer = (Customer) service.execute(map);
-		logger.info("DB다녀온 id의 name {}",customer.getName());
-		return "login:customer/main";
+		if(id.equals("admin")&&pw.equals(customer.getPw())){
+			result="admin/index";
+		}else if(pw.equals(customer.getPw())){
+			result="customer/main";
+		}	
+		return result;
 	}
 }
