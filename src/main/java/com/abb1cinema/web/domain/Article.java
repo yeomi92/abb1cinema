@@ -5,6 +5,6 @@ import org.springframework.stereotype.Component;
 import lombok.*;
 
 @Component @Data @Lazy
-public class Files {
-	String seq, pic_main, pic_director, pic_actor1, pic_actor2, pic_actor3, pic_actor4;
+public class Article {
+	String seq, type, title, content, file, date, hits, confirm, customer_id, multiplex_id, comment_seq;
 }

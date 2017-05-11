@@ -5,6 +5,6 @@ import org.springframework.stereotype.Component;
 import lombok.*;
 
 @Component @Data @Lazy
-public class Seat {
-	String id, is_reserved;
+public class Address {
+	String seq;
 }

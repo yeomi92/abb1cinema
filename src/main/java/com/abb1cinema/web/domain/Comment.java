@@ -6,5 +6,5 @@ import lombok.*;
 
 @Component @Data @Lazy
 public class Comment {
-	String seq, date, contents, customer_id;
+	String seq, reg_date, content, customer_id;
 }

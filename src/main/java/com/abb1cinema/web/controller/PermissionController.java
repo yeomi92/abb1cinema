@@ -33,10 +33,11 @@ public class PermissionController {
 		map.put("pw", pw);
 		IGetService service= new IGetService() {
 			@Override
-			public Object execute(Map<?, ?> map) throws Exception {
+			public Object execute(Map<?,?> map) throws Exception {
 				return mapper.findCustomer(map);
 			}
 		};
+		logger.info("map에 들어있는 id,pw {}",id+pw);
 		customer = (Customer) service.execute(map);
 		logger.info("DB다녀온 id의 name {}",customer.getName());
 		return "login:customer/main";

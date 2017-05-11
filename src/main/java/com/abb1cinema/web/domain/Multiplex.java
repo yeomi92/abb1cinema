@@ -6,5 +6,5 @@ import lombok.*;
 
 @Component @Data @Lazy
 public class Multiplex {
-	String seq, name, total_seat, reser_seat_no, start_time, end_time, price, seat_id, movie_id;
+	String seq, name, address, total_theater, total_seat, axis;
 }

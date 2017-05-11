@@ -6,5 +6,5 @@ import lombok.*;
 
 @Component @Data @Lazy
 public class Notice {
-	String seq, file, title, contents, date, hits;
+	String seq, file, title, content, reg_date, hits;
 }

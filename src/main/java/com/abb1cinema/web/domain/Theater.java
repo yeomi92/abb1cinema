@@ -6,5 +6,5 @@ import lombok.*;
 
 @Component @Data @Lazy
 public class Theater {
-	String seq, name, address, total_multiplex, total_seat, axis, multiplex_id;
+	String seq, name, total_seat, reser_seat_no, start_time, end_time, price, multiplex_seq;
 }

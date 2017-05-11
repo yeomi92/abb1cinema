@@ -6,5 +6,5 @@ import lombok.*;
 
 @Component @Data @Lazy
 public class Review {
-	String seq, type, gpa, contents, date, customer_id;
+	String seq, spectator, gpa, content, reg_date, customer_id, movie_seq;
 }

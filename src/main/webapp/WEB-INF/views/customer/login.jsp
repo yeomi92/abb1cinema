@@ -40,10 +40,10 @@
 	</div>
 	</div>
 </div>
+
 <script>
 abb1.jquery.customer_login();
 $('#login_btn').on('click',function(event){
-	alert('test');
 	var loginForm=$('#loginForm');
 	loginForm.attr('action','${context}/customer/main');
 	loginForm.attr('method','post');
