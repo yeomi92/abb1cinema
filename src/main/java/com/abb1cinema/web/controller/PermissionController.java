@@ -47,12 +47,13 @@ public class PermissionController {
 					return mapper.findCustomer(map);
 				}
 			};
+			customer=(Customer) service.execute(map);
+			if(id.equals("admin")&&pw.equals(customer.getPw())){
+				position="admin/index";
+			}else if(pw.equals(customer.getPw())){
+				position="customer/main";
+			}
 		}
-		/*if(id.equals("admin")&&pw.equals(customer.getPw())){
-			position="admin/index";
-		}else if(pw.equals(customer.getPw())){
-			position="customer/main";
-		}*/	
 		return position;
 	}
 }

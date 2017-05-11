@@ -2277,6 +2277,7 @@ abb1.jquery = {
 		customer_find_pw_btns.find('li:nth-child(2)').find('input').addClass('btn abb1_btn_lg abb1_btn_verification');
 	},
 	customer_login : function(){
+		var ctx = abb1.session.getContextPath();
 		var customer_login_form = $('#customer_login_form');
 		customer_login_form.addClass('abb1_signup_form');
 		customer_login_form.find('div:first-child').addClass('abb1_signup_settings');
@@ -2284,14 +2285,59 @@ abb1.jquery = {
 		$('#login_table').addClass('abb1_signup_form_control');
 		$('#login_btn').addClass('btn abb1_btn_lg abb1_login_btn');
 		$('#find_table').addClass('abb1_find_table');
-		$('#find_table').find('tr:nth-child(2)').find('td').addClass('abb1_a_findIdPw');
+		$('#find_table').find('tr:nth-child(1)>td').css('padding','0 0 0 82px').css('text-align','left');
+		$('#find_table').find('tr:nth-child(2)>td').addClass('abb1_a_findIdPw');
 		var login_footer = $('#login_footer');
 		login_footer.addClass('abb1_div_login_footer');
 		login_footer.find('table').addClass('abb1_width_center_w800');
 		login_footer.find('td:nth-child(1)').addClass('abb1_width_448');
 		login_footer.find('td:nth-child(2)').addClass('abb1_width_200');
 		login_footer.find('td:nth-child(2)').find('input').addClass('btn abb1_btn_lg abb1_btn_verification').css('height','60px').css('width','120px').css('font-size','15px');
-		
+		$('#login_btn').on('click',function(event){
+			var id=$('#customer_id').val();
+			var pw=$('#customer_pw').val();
+			if(id==''){
+				alert('아이디를 입력하세요.');
+			}else if(pw==''){
+				alert('비밀번호를 입력하세요.')
+			}
+			else{
+				alert('아이디:'+id+'비밀번호:'+pw);
+				$.ajax({
+					url: ctx+'/login',
+					method: 'POST',
+					data: JSON.stringify({
+						id: $('#customer_id').val(),
+						pw: $('#customer_pw').val()
+					}),
+					dataType: 'json',
+					contentType: 'application/json',
+					success: function(data){
+						if(data.exist==='0'){
+							alert('아이디가 존재하지 않습니다.');
+						}else if(data.customer==='admin'){
+							alert('관리자로 로그인 하셨습니다.');
+							//abb1.jquery.admin_index();
+						}else if(data.customer==='customer'){
+							alert('로그인 성공');
+							abb1.jquery.customer_mypage();
+							/*$('#container').html('<div id="mypage">'
+	    	+'		<div> '
+	    	+'			<h2><strong>마이시네마</strong></h2>'
+	    	+'		</div></div>');*/
+							//$('#loginForm').attr('action','javascript:abb1.jquery.customer_mypage()');
+							//$('#loginForm').attr('method','post');
+						}else{
+							alert('비밀번호를 다시 확인하세요.');
+						}
+						$('#loginForm').submit();
+					},
+					error: function(xhr,status,msg){
+						alert('로그인 실패이유:'+msg)
+					}
+				});
+			}
+		});
 	},
 	customer_mypage : function(){
 	    var ctx = abb1.session.getContextPath();
@@ -2592,10 +2638,10 @@ abb1.jquery = {
 	    	+'	      <div id="signup_tables">'
 	    	+'	         <table>'
 	    	+'	            <tr>'
-	    	+'	               <td><input type="text" placeholder="아이디"></td>'
+	    	+'	               <td><input id="id" name="id" type="text" placeholder="아이디"></td>'
 	    	+'	            </tr>'
 	    	+'	            <tr>'
-	    	+'	               <td><input type="password" placeholder="비밀번호"></td>'
+	    	+'	               <td><input id="pw" name="pw" type="password" placeholder="비밀번호"></td>'
 	    	+'	            </tr>'
 	    	+'	            <tr>'
 	    	+'	               <td><input type="password" placeholder="비밀번호 확인"></td>'
@@ -2603,12 +2649,12 @@ abb1.jquery = {
 	    	+'	         </table>'
 	    	+'	         <table>'
 	    	+'	            <tr>'
-	    	+'	               <td colspan="3"><input type="text" placeholder="이름"></td>'
+	    	+'	               <td colspan="3"><input id="name" name="name" type="text" placeholder="이름"></td>'
 	    	+'	            </tr>'
 	    	+'	            <tr>'
-	    	+'	               <td><input type="text" placeholder="생년"></td>'
+	    	+'	               <td><input id="year" name="year" type="text" placeholder="생년"></td>'
 	    	+'	            <td>'
-	    	+'	               <select name="date">'
+	    	+'	               <select id="month" name="month">'
 	    	+'	                  <option value="" selected>월</option>'
 	    	+'	                  <option value="1">1</option>'
 	    	+'	                  <option value="2">2</option>'
@@ -2624,12 +2670,12 @@ abb1.jquery = {
 	    	+'	                  <option value="12">12</option>'
 	    	+'	               </select>'
 	    	+'	            </td>'
-	    	+'	            <td><input type="text" placeholder="일"></td>'
+	    	+'	            <td><input id="date" name="date" type="text" placeholder="일"></td>'
 	    	+'	         </tr>'
 	    	+'	         <tr>'
-	    	+'	            <td><input type="text" placeholder="010"></td>'
-	    	+'	            <td><input type="text"></td>'
-	    	+'	            <td><input type="text"></td>'
+	    	+'	            <td><input id="phone1" name="phone1" type="text" placeholder="010"></td>'
+	    	+'	            <td><input id="phone2" name="phone2" type="text"></td>'
+	    	+'	            <td><input id="phone3" name="phone3" type="text"></td>'
 	    	+'	         </tr>'
 	    	+'	      </table>'
 	    	+'	      <table>'
@@ -2654,7 +2700,7 @@ abb1.jquery = {
 	    	+'	      </table>'
 	    	+'	      <table>'
 	    	+'	         <tr>'
-	    	+'	            <td colspan="2"><input type="text" placeholder="이메일" ></td>'
+	    	+'	            <td colspan="2"><input id="email" name="email" type="text" placeholder="이메일" ></td>'
 	    	+'	            <td>'
 	    	+'	               <input id="send_code" type="button" value="인증번호 발송" type="submit">'
 	    	+'	            </td>'

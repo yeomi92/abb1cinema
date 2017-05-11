@@ -3,13 +3,13 @@
 <div id="customer_login_form">
 	<div>
       <h2>로그인</h2>
-      <form id="loginForm">
+      <!-- <form id="loginForm"> -->
       <table id="login_table">
          <tr>
          	<td><strong>아이디</strong></td>
             <td><input id="customer_id" name="customer_id" type="text"></td>
             <td rowspan="2">
-            	<a href="#"><input id="login_btn" type="submit" value="로그인"></a>
+            	<input id="login_btn" type="submit" value="로그인">
             </td>
          </tr>
          <tr>
@@ -17,7 +17,7 @@
             <td><input id="customer_pw" name="customer_pw" type="password"></td>
          </tr>
       </table>
-      </form>
+      <!-- </form> -->
       <table id="find_table">
              <tr>
                 <td><input type="checkbox"/> 아이디저장</td>
@@ -43,17 +43,4 @@
 
 <script>
 abb1.jquery.customer_login();
-$('#login_btn').on('click',function(event){
-	var loginForm=$('#loginForm');
-	loginForm.attr('action','${context}/customer/main');
-	loginForm.attr('method','post');
-	var id=loginForm.find('input[name=customer_id]').val();
-	var pw=loginForm.find('input[name=customer_pw]').val();
-	if(id==''||pw==''){
-		alert('아이디, 비밀번호를 입력하세요.');
-	}else{
-		alert('아이디:'+id+'비밀번호:'+pw);
-		loginForm.submit();
-	}
-});
 </script>
