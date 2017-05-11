@@ -35,7 +35,7 @@ public class PermissionController {
 		IGetService service= new IGetService() {
 			@Override
 			public Object execute(Map<?,?> map) throws Exception {
-				return mapper.findCustomer(map);
+				return mapper.existCustomer(map);
 			}
 		};
 		logger.info("map에 들어있는 id,pw {}",id+pw);

@@ -9,6 +9,9 @@ INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES (#
 <select id="findCustomer" resultType="com.abb1cinema.web.domain.Customer" parameterType="hashMap">
 SELECT * FROM Customer WHERE id = #{id}
 </select>
+<select id="existCustomer" resultType="int" parameterType="hashMap">
+SELECT COUNT(*) FROM Customer WHERE id=#{id}
+</select>
 <update id="updateCustomer">
 UPDATE Customer
 <set>

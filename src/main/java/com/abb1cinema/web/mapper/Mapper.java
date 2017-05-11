@@ -9,8 +9,5 @@ import com.abb1cinema.web.domain.Customer;
 @Repository
 public interface Mapper {
 	public Customer findCustomer(Map<?,?> map) throws Exception;
-	
-	public int count(Map<?,?> map);
-	public int exist(Map<?,?> map) throws Exception;
-	public int registerChartFile(Object chart) throws Exception;
+	public int existCustomer(Map<?,?> map) throws Exception;
 }
