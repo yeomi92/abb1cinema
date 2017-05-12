@@ -7,20 +7,20 @@
       <table id="login_table">
          <tr>
          	<td><strong>아이디</strong></td>
-            <td><input id="customer_id" name="customer_id" type="text"></td>
-            <td rowspan="2">
-            	<input id="login_btn" type="submit" value="로그인">
+            <td><input id="customer_id" name="customer_id" tabindex="1" type="text"></td>
+            <td id="td_login" rowspan="2">
+            	<a id="a_login" href="#"><input id="login_btn" type="submit" tabindex="3" value="로그인"></a>
             </td>
          </tr>
          <tr>
          	<td><strong>비밀번호</strong></td>
-            <td><input id="customer_pw" name="customer_pw" type="password"></td>
+            <td><input id="customer_pw" name="customer_pw" tabindex="2" type="password"></td>
          </tr>
       </table>
       <!-- </form> -->
       <table id="find_table">
              <tr>
-                <td><input type="checkbox"/> 아이디저장</td>
+                <td><input id="remember" name="remember" type="checkbox"/> 아이디저장</td>
              </tr>
              <tr>
                <td>

@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="common/header.jsp"/>
-<a href="${context}/admin/index">
-<input type="button" value="ADMIN TEST"/>
-</a>
 <div id="wrapper">
     <div id="boxoffice">
       <table>
@@ -21,56 +18,7 @@
          </tr>
          <tr>
             <td>
-            <ul>
-               <li><a id="rank1" href="#"><em>1.</em>
-                  <span class="abb1_rank_grade" style="background: url(resources/img/movie/grade_15.png);"></span>
-                  <span class="abb1_rank_moviename">특별시민</span>
-               </a>
-               <em id="rank1_stat">24.5%</em>
-               </li>
-               <li><a id="rank2" href="#"><em>2.</em>
-                  <span class="abb1_rank_grade" style="background: url(resources/img/movie/grade_12.png);"></span>
-                  <span class="abb1_rank_moviename">임금님의 사건수첩</span>
-               </a>
-               <em id="rank2_stat">19.5%</em>
-               </li>
-               <li><a id="rank3" href="#"><em>3.</em>
-                  <span class="abb1_rank_grade" style="background: url(resources/img/movie/grade_15.png);"></span>
-                  <span class="abb1_rank_moviename">보안관</span>
-               </a>
-               <em id="rank3_stat">15.9%</em>
-               </li>
-               <li><a id="rank4" href="#"><em>4.</em>
-                  <span class="abb1_rank_grade" style="background: url(resources/img/movie/grade_15.png);"></span>
-                  <span class="abb1_rank_moviename">분노의 질주</span>
-               </a>
-               <em id="rank4_stat">13.2%</em>
-               </li>
-               <li><a id="rank5" href="#"><em>5.</em>
-                  <span class="abb1_rank_grade" style="background: url(resources/img/movie/grade_all.png);"></span>
-                  <span class="abb1_rank_moviename">서서평</span>
-               </a>
-               <em id="rank5_stat">5.1%</em>
-               </li>
-               <li><a id="rank6" href="#"><em>6.</em>
-                  <span class="abb1_rank_grade" style="background: url(resources/img/movie/grade_15.png);"></span>
-                  <span class="abb1_rank_moviename">영웅본색2</span>
-               </a>
-               <em id="rank6_stat">4.1%</em>
-               </li>
-               <li><a id="rank7" href="#"><em>7.</em>
-                  <span class="abb1_rank_grade" style="background: url(resources/img/movie/grade_12.png);"></span>
-                  <span class="abb1_rank_moviename">아빠는 딸</span>
-               </a>
-               <em id="rank7_stat">3.1%</em>
-               </li>
-               <li><a id="rank8" href="#"><em>8.</em>
-                  <span class="abb1_rank_grade" style="background: url(resources/img/movie/grade_12.png);"></span>
-                  <span class="abb1_rank_moviename">가디언즈 오브 갤럭시</span>
-               </a>
-               <em id="rank8_stat">2.1%</em>
-               </li>
-            </ul>
+            <ul id="rank_ul"></ul>
             </td>
          </tr>
          <tr>
@@ -79,16 +27,6 @@
       </table>
    </div>
    <div id="slidePoster">
-      <div>
-            <ul>
-               <li><a href="#"><img src="resources/img/common/prev.png" alt="" /></a></li>
-               <li><a id="slide1" href="#"><img src="resources/img/movie/movie_poster_0.png" alt="" width="188px" height="274px"/></a></li>
-               <li><a id="slide2" href="#"><img src="resources/img/movie/movie_poster_1.png" alt="" width="188px" height="274px" /></a></li>
-               <li><a id="slide3" href="#"><img src="resources/img/movie/movie_poster_2.png" alt="" width="188px" height="274px" /></a></li>
-               <li><a id="slide4" href="#"><img src="resources/img/movie/movie_poster_3.png" alt="" width="188px" height="274px" /></a></li>
-               <li><a href="#"><img src="resources/img/common/next.png" alt="" /></a></li>
-            </ul>   
-      </div>
    </div>
    <div id="bannerbox">
          <img src="resources/img/common/bannerbox.png" alt="" />
@@ -103,37 +41,126 @@
         <img src="resources/img/common/shortList.png" alt="" />
    </div>
 </div>
-<script>
-$(function(){
-	var boxoffice = $('#boxoffice');
-	var botable = boxoffice.find('table');
-	botable.addClass('abb1_tbboxoffice');
-	botable.find('tr:first-child').find('td:first-child').addClass('abb1_tbboxoffice_firstcol');
-	botable.find('ul').addClass('abb1_rank');
-	$('#reservation').addClass('abb1_main_reservebtn');
-	var slidePoster = $('#slidePoster');
-	slidePoster.find('div:first-child').addClass('abb1_width_100 abb1_text_center');
-	slidePoster.find('ul').addClass('abb1_slidePoster');
-	slidePoster.find('li:first-child').addClass('abb1_slideBtn');
-	slidePoster.find('li:nth-child(6)').addClass('abb1_slideBtn');
-	var eventBxMain = $('#eventBxMain');
-	eventBxMain.find('div:first-child').addClass('abb1_width_100 abb1_text_center');
-	eventBxMain.find('div:first-child').find('div:first-child').addClass('abb1_eventBxMain');
-});
-
-init = {
-   setting : function(){
-       
-   },
-   youtube : function(){
-       var trailer = $('#trailer');
-       trailer.on('click',function(){
-         trailer.html('<iframe width="784px" height="453px" src="https://www.youtube.com/embed/Py8g9CBJOag?autoplay=1"></iframe>')
-       });
-   }
-};
-init.setting();
-init.youtube();
-</script>
 
 <jsp:include page="common/footer_white.jsp"/>
+<script>
+function movie_sort(movie_arr){
+    var temp = 0;
+    for(k=0; k<movie_arr.length; k++) {
+      for(j=k+1; j<movie_arr.length; j++) {
+         if(movie_arr[k].count*1<=movie_arr[j].count*1) {
+            temp = movie_arr[k];
+            movie_arr[k] = movie_arr[j];
+            movie_arr[j] = temp;
+         }
+      }
+   }
+    return movie_arr;
+}
+function index_movie_rank(data){
+    var rank_li = '';
+    var total = 0;
+    var movie_arr = [];
+    $.each(data.movie_list, function(i,movie){
+       total += movie.count*1;
+       movie_arr.push(movie);
+    });
+    $.each(movie_sort(movie_arr), function(i,movie){
+      var count = movie.count;
+      rank_li += '<li><a href="#"><em>'+(i+1)+'</em>'
+                   + '<span class="abb1_rank_grade" style="background: url(resources/img/movie/grade_'+movie.grade+'.png);"></span>'
+                   + '<span class="abb1_rank_moviename">'+ movie.title +'</span>'
+                   + '</a>'
+                   + '<em>'+(count/total*100).toFixed(1)+'%</em>'
+                   + '</li>';
+    });
+    $('#rank_ul').html(rank_li);
+}
+function play_youtube(src){
+    $('#trailer').html('<iframe width="784px" height="453px" src="'+src+'?autoplay=1"></iframe>')
+}
+function show_slide(){
+    var slide = '<div><ul><li><a id="prev"><img src="resources/img/common/prev.png" alt="" /></a></li>';
+   for(var i=0; i<4; i++){
+       slide += '<li><a href="javascript:abb1.jquery.movie_detail()"><img src="resources/img/movie/movie_poster_'+i+'.png" alt="" width="188px" height="274px"/></a></li>';
+   }
+   slide_css(slide);
+}
+
+function slide_click(add){
+    $('#prev').on('click',function(){
+       var slide = '<div><ul><li><a id="prev"><img src="resources/img/common/prev.png" alt="" /></a></li>';
+       add-=4;
+         if(add==-4){
+            add = 8;
+         }
+       for(var i=0+add; i<4+add; i++){
+          slide += '<li><a href="javascript:abb1.jquery.movie_detail()"><img src="resources/img/movie/movie_poster_'+i+'.png" alt="" width="188px" height="274px"/></a></li>'
+       }
+       slide_css(slide);
+      slide_click(add);
+   });
+    $('#next').on('click',function(){
+       var slide = '<div><ul><li><a id="prev"><img src="resources/img/common/prev.png" alt="" /></a></li>';
+       add+=4;
+       if(add>=12){
+         add = 0;
+       }
+       for(var i=0+add; i<4+add; i++){
+          slide += '<li><a href="javascript:abb1.jquery.movie_detail()"><img src="resources/img/movie/movie_poster_'+i+'.png" alt="" width="188px" height="274px"/></a></li>'
+       }
+       slide_css(slide);
+      slide_click(add);
+   });
+}
+function slide_css(slide){
+    slide += '<li><a id="next"><img src="resources/img/common/next.png" alt="" /></a></li></ul></div>'
+    var slidePoster = $('#slidePoster');
+   slidePoster.html(slide);
+   slidePoster.find('div:first-child').addClass('abb1_width_100 abb1_text_center');
+   slidePoster.find('ul').addClass('abb1_slidePoster');
+   slidePoster.find('li:first-child').addClass('abb1_slideBtn');
+   slidePoster.find('li:nth-child(6)').addClass('abb1_slideBtn');
+}
+$(function(){
+    var ctx = abb1.session.getContextPath();
+    $.ajax({
+      url: ctx+"/get/movieRank",
+      method: "POST",
+      data: JSON.stringify({}),
+      dataType: "json",
+      contentType: "application/json",
+      success : function(data){
+          index_movie_rank(data);
+          $.each(data.movie_list, function(i,movie){
+            if(movie.trailer_main==1){
+                play_youtube(movie.trailer_url);
+            }
+          });
+         show_slide();
+         var add = 0;
+         slide_click(add);
+      },
+      error : function(xhr,status,msg){
+         alert(msg);
+      }
+   });
+   
+   
+   var boxoffice = $('#boxoffice');
+   var botable = boxoffice.find('table');
+   botable.addClass('abb1_tbboxoffice');
+   botable.find('tr:first-child').find('td:first-child').addClass('abb1_tbboxoffice_firstcol');
+   botable.find('ul').addClass('abb1_rank');
+   $('#reservation').addClass('abb1_main_reservebtn');
+   /* var slidePoster = $('#slidePoster');
+   slidePoster.find('div:first-child').addClass('abb1_width_100 abb1_text_center');
+   slidePoster.find('ul').addClass('abb1_slidePoster');
+   slidePoster.find('li:first-child').addClass('abb1_slideBtn');
+   slidePoster.find('li:nth-child(6)').addClass('abb1_slideBtn'); */
+   var eventBxMain = $('#eventBxMain');
+   eventBxMain.find('div:first-child').addClass('abb1_width_100 abb1_text_center');
+   eventBxMain.find('div:first-child').find('div:first-child').addClass('abb1_eventBxMain');
+});
+
+</script>

@@ -20,6 +20,5 @@
 
     <!-- Custom Fonts -->
     <link href="${context}/resources/css/bootstrap_admin/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
 </head>
 <body>

@@ -177,6 +177,30 @@ abb1.api = {
 	}
 }
 
+/*========= abb1-cookie =========
+@AUTHOR : Hyeseon Yeom
+@CREATE DATE : 2017-05-12
+@UPDATE DATE : 2017-05-12
+@DESC : jQuery for view
+=================================*/
+abb1.cookie={
+		setCookie:	function (name,value) {
+		 	document.cookie = name + "=" + value;
+		},
+		getCookie: function(name) {
+		    var nameEQ = name + "=";
+		    var ca = document.cookie.split(';');
+		    for(var i=0;i < ca.length;i++) {
+		        var c = ca[i];
+		        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+		    }
+		    return null;
+		},
+		removeCookie: function(name) {
+		    createCookie(name,"",-1);
+		}
+}
 
 /*========= abb1-jquery =========
 @AUTHOR : Junyoung Park
@@ -185,6 +209,55 @@ abb1.api = {
 @DESC : jQuery for view
 =================================*/
 abb1.jquery = {
+		
+	admin_header: function(){
+		
+	},
+	admin_gnb: function(){
+		
+	},
+	admin_footer: function(){
+		
+	},
+	admin_login: function(){
+		var ctx = abb1.session.getContextPath();
+	    var view='<div id="signupSuccess">'
+	    	+'		<div id="signup_success">'
+	    	+'			<div>'
+	    	+'				<table>'
+	    	+'		         <tr>'
+	    	+'		         	<td>'
+	    	+'			         	<h3><strong>관리자</strong><span>님 환영합니다!</span></h3>'
+	    	+'		         	</td>'
+	    	+'		         </tr>'
+	    	+'		         <tr>'
+	    	+'			         <td>'
+	    	+'			         <ul>'
+	    	+'						 <li>'
+	    	+'							<a href="'+ctx+'/admin/index"><input type="button" value="관리자 페이지 GO"/></a>'
+	    	+'						 </li>'
+	    	+'					 </ul>'
+	    	+'					 </td>'
+	    	+'		         </tr>'
+	    	+'		      	</table>'
+	    	+'			</div>'
+	    	+'		</div>'
+	    	+'	</div>';
+	    $('#container').html(view);
+		var container = $('#container');
+		$('#signupSuccess').addClass('abb1_find_id_container');
+		container.find('div:first-child').find('div:first-child').addClass('abb1_width_left');
+		container.find('h2').addClass('abb1_color_bold_brown');
+		var signup_success = $('#signup_success');
+		signup_success.addClass('abb1_signup_success_div').css('margin-top','40px');
+		signup_success.find('div:first-child').addClass('abb1_page_info abb1_width_center');
+		signup_success.find('table').addClass('abb1_signup_form_control abb1_width_left');
+		signup_success.find('span').addClass('abb1_color_bold_gray');
+		signup_success.find('td:nth-child(2)').addClass('abb1_padding_left_163');
+		signup_success.find('ul').addClass('abb1_page_ul_inline');
+		signup_success.find('li').addClass('abb1_page_li_inline');
+		signup_success.find('li').find('input').addClass('btn abb1_btn_lg abb1_btn_verification').css('height','50px').css('width','170px').css('font-size','17px').css('background','#453d3f').css('color','#efebdb');
+	},
 	admin_index : function(){
 	    var ctx = abb1.session.getContextPath();
 	    var view = '<div id="page-wrapper">'
@@ -1337,7 +1410,6 @@ abb1.jquery = {
         	+'	   </div>'
         	+'	</div>';
         	$('#container').html(view);
-        	
             	var board_main = $('#board_main');
             	board_main.find('div:first-child').addClass('abb1_bbs_table_text');
             	board_main.find('div:nth-child(2)').addClass('abb1_bbs_table abb1_width_center_w900');
@@ -2293,16 +2365,28 @@ abb1.jquery = {
 		login_footer.find('td:nth-child(1)').addClass('abb1_width_448');
 		login_footer.find('td:nth-child(2)').addClass('abb1_width_200');
 		login_footer.find('td:nth-child(2)').find('input').addClass('btn abb1_btn_lg abb1_btn_verification').css('height','60px').css('width','120px').css('font-size','15px');
-		$('#login_btn').on('click',function(event){
-			var id=$('#customer_id').val();
-			var pw=$('#customer_pw').val();
-			if(id==''){
+		var authId=$.cookie('authId');
+		if(authId!=undefined){
+			$('#customer_id').val(authId);
+			$('#remember').prop("checked",true);
+		}
+		$('#login_btn').on('click',function(e){
+			if($.trim($('#customer_id').val())==''){
 				alert('아이디를 입력하세요.');
-			}else if(pw==''){
-				alert('비밀번호를 입력하세요.')
+				return;
+			}else if($('#customer_pw').val()==''){
+				alert('비밀번호를 입력하세요.');
+				return;
 			}
 			else{
-				alert('아이디:'+id+'비밀번호:'+pw);
+				alert('아이디:'+$('#customer_id').val()+'비밀번호:'+$('#customer_pw').val());
+				var checked=$("#remember").prop("checked");
+	            if(checked){
+	                $.cookie('authId', $("#customer_id").val());
+	            }else{
+	                $.removeCookie("username");
+	            }
+				e.preventDefault();
 				$.ajax({
 					url: ctx+'/login',
 					method: 'POST',
@@ -2315,18 +2399,26 @@ abb1.jquery = {
 					success: function(data){
 						if(data.exist==='0'){
 							alert('아이디가 존재하지 않습니다.');
-						}else if(data.customer==='admin'){
+						}else if(data.permission==='admin'){
 							alert('관리자로 로그인 하셨습니다.');
-							//abb1.jquery.admin_index();
-						}else if(data.customer==='customer'){
+							abb1.jquery.admin_login();
+							$('#ul_gnb').html('<li><a id="login" href="'+ctx+'">로그아웃<span class="sr-only">(current)</span></a></li>'
+									+'<li><a id="FAQ" href="'+ctx+'/board/main">고객센터<span class="sr-only">(current)</span></a></li>');
+						}else if(data.permission==='customer'){
 							alert('로그인 성공');
+							abb1.cookie.setCookie('id',data.customer.id);
+							abb1.cookie.setCookie('pw',data.customer.pw);
+							abb1.cookie.setCookie('name',data.customer.name);
+							abb1.cookie.setCookie('gender',data.customer.gender);
+							abb1.cookie.setCookie('birth',data.customer.birth);
+							abb1.cookie.setCookie('phone',data.customer.phone);
+							abb1.cookie.setCookie('email',data.customer.email);
+							abb1.cookie.setCookie('point',data.customer.point);
+							abb1.cookie.setCookie('address',data.customer.address);
+							$('#ul_gnb').html('<li><a id="login" href="'+ctx+'">로그아웃<span class="sr-only">(current)</span></a></li>'
+										+'<li><a id="register" href="'+ctx+'/customer/mypage">마이시네마<span class="sr-only">(current)</span></a></li>'
+										+'<li><a id="FAQ" href="'+ctx+'/board/main">고객센터<span class="sr-only">(current)</span></a></li>');
 							abb1.jquery.customer_mypage();
-							/*$('#container').html('<div id="mypage">'
-	    	+'		<div> '
-	    	+'			<h2><strong>마이시네마</strong></h2>'
-	    	+'		</div></div>');*/
-							//$('#loginForm').attr('action','javascript:abb1.jquery.customer_mypage()');
-							//$('#loginForm').attr('method','post');
 						}else{
 							alert('비밀번호를 다시 확인하세요.');
 						}
@@ -2777,35 +2869,35 @@ abb1.jquery = {
 	    	+'				<table>'
 	    	+'					<tr>'
 	    	+'						<td><strong>아이디</strong></td>'
-	    	+'						<td>yheisun</td>'
+	    	+'						<td id="id">yheisun</td>'
 	    	+'					</tr>'
 	    	+'					<tr>'
 	    	+'						<td><strong>비밀번호</strong></td>'
-	    	+'						<td><input type="password" placeholder="비밀번호"><input type="password" placeholder="비밀번호 확인"></td>'
+	    	+'						<td><input id="pw" type="password" placeholder="비밀번호"><input type="password" placeholder="비밀번호 확인"></td>'
 	    	+'					</tr>'
 	    	+'					<tr>'
 	    	+'						<td><strong>성명</strong></td>'
-	    	+'						<td>염혜선</td>'
+	    	+'						<td id="name">염혜선</td>'
 	    	+'					</tr>'
 	    	+'					<tr>'
 	    	+'						<td><strong>생년</strong></td>'
-	    	+'						<td>1992년 10월 15일</td>'
+	    	+'						<td id="birth">1992년 10월 15일</td>'
 	    	+'					</tr>'
 	    	+'					<tr>'
 	    	+'						<td><strong>성별</strong></td>'
-	    	+'						<td>여자</td>'
+	    	+'						<td id="gender">여자</td>'
 	    	+'					</tr>'
 	    	+'					<tr>'
 	    	+'						<td><strong>이메일</strong></td>'
-	    	+'						<td>yheisun@gmail.com</td>'
+	    	+'						<td id="email">yheisun@gmail.com</td>'
 	    	+'					</tr>'
 	    	+'					<tr>'
 	    	+'				</table>'
 	    	+'				<table>'
 	    	+'					<tr>'
-	    	+'						<td><input type="text" placeholder="010"></td>'
-	    	+'						<td><input type="text"></td>'
-	    	+'						<td><input type="text"></td>'
+	    	+'						<td><input id="phone1" type="text" placeholder="010"></td>'
+	    	+'						<td><input id="phone2" type="text"></td>'
+	    	+'						<td><input id="phone3" type="text"></td>'
 	    	+'					</tr>'
 	    	+'				</table>'
 	    	+'				<table>'
@@ -2822,10 +2914,10 @@ abb1.jquery = {
 	    	+'				</table>'
 	    	+'				<ul>'
 	    	+'					<li>'
-	    	+'						<a href="${context}/customer/mypageInfo"><input id="cancel" type="button" value="취소"/></a>'
+	    	+'						<a href="javascript:abb1.jquery.customer_mypageInfo()"><input id="cancel" type="button" value="취소"/></a>'
 	    	+'					</li>'
 	    	+'					<li>'
-	    	+'						<a href="${context}/customer/mypageInfo"><input id="confirm" type="button" value="확인"/></a>'
+	    	+'						<a href="javascript:abb1.jquery.customer_mypageInfo()"><input id="confirm" type="button" value="확인"/></a>'
 	    	+'					</li>'
 	    	+'				</ul>'
 	    	+'			</div>'
@@ -2837,7 +2929,7 @@ abb1.jquery = {
 	    signUp.find('div:first-child').addClass('abb1_signup_settings');
 	    signUp.find('h2:first-child').addClass('abb1_signup_maintext');
 	    var updateInfo = $('#updateInfo');
-	    updateInfo.find('table').addClass('abb1_signup_form_control');
+	    updateInfo.find('table').addClass('abb1_signup_form_control').css('text-align','left');
 	    updateInfo.find('table:nth-child(2)').find('td:first-child').addClass('abb1_height_55');
 	    updateInfo.find('table:nth-child(3)').find('td').addClass('abb1_height_0');
 	    $('#find_postcode').addClass('btn abb1_btn_lg abb1_btn_verification');
@@ -2846,6 +2938,12 @@ abb1.jquery = {
 	    updateInfo.find('li:nth-child(2)').addClass('abb1_page_li_inline');
 	    $('#cancel').addClass('btn abb1_btn_lg abb1_btn_verification').css('height','50px').css('width','150px').css('font-size','17px').css('color','#efebdb').css('background','#453d3f');
 	    $('#confirm').addClass('btn abb1_btn_lg abb1_btn_verification').css('height','50px').css('width','150px').css('font-size','17px').css('color','#efebdb').css('background','#453d3f');
+	    $('#id').text(abb1.cookie.getCookie('id'));
+	    $('#name').text(abb1.cookie.getCookie('name'));
+	    var cookieBirth=abb1.cookie.getCookie('birth');
+	    var birth=cookieBirth.substring(0,4)+'년'+cookieBirth.substring(4,6)+'월'+cookieBirth.substring(6,8)+'일';
+	    $('#birth').text(birth);
+	    $('#gender').text(abb1.cookie.getCookie('gender')==='M'?'남자':'여자');
 	},
 	customer_updateInfoChPw : function(){
 	    var ctx = abb1.session.getContextPath();
@@ -2858,11 +2956,11 @@ abb1.jquery = {
 	    	+'				<table>'
 	    	+'		         <tr>'
 	    	+'		         	<td><strong>아이디</strong></td>'
-	    	+'		            <td>yheisun</td>'
+	    	+'		            <td id="id">yheisun</td>'
 	    	+'		         </tr>'
 	    	+'		         <tr>'
 	    	+'		         	<td><strong>비밀번호</strong></td>'
-	    	+'		            <td><input id="customer_password" type="password"></td>'
+	    	+'		            <td><input id="pw" type="password"></td>'
 	    	+'		         </tr>'
 	    	+'		         <tr>'
 	    	+'		         	<td colspan="2">'
@@ -2871,7 +2969,7 @@ abb1.jquery = {
 	    	+'							<a href="javascript:abb1.jquery.customer_mypageInfo()"><input type="button" value="취소"  /></a>'
 	    	+'						</li>'
 	    	+'						<li class="abb1_page_li_inline">'
-	    	+'							<a href="javascript:abb1.jquery.customer_updateInfo()"><input type="button" value="확인"  /></a>'
+	    	+'							<a href="#"><input id="go_update_info" type="button" value="확인"  /></a>'
 	    	+'						</li>'
 	    	+'					</ul>'
 	    	+'					</td>'
@@ -2897,6 +2995,15 @@ abb1.jquery = {
 	    signup_success.find('li:nth-child(1)').addClass('abb1_finc_id_cancel_btn');
 	    signup_success.find('li:nth-child(2)').addClass('abb1_page_li_inline');
 	    signup_success.find('li').find('input').addClass('btn abb1_btn_lg abb1_btn_verification');
+	    $('#id').text(abb1.cookie.getCookie('id'));
+	    $('#go_update_info').on('click',function(){
+		   if($('#pw').val()===abb1.cookie.getCookie('pw')){
+		    	abb1.jquery.customer_updateInfo();
+		    }else{
+		    	alert('비밀번호를 다시 확인하세요.');
+		    	return;
+		    }
+	   });
 	},
 	customer_withdrawal : function(){
 	    var ctx = abb1.session.getContextPath();
@@ -2917,7 +3024,7 @@ abb1.jquery = {
 	    	+'							<a href="javascript:abb1.jquery.customer_mypageInfo()"><input type="button" value="취소"  /></a>'
 	    	+'						</li>'
 	    	+'						<li>'
-	    	+'							<a href="'+ctx+'"><input type="button" value="확인"  /></a>'
+	    	+'							<a href="'+ctx+'"><input id="withdrawal_btn" type="button" value="확인"  /></a>'
 	    	+'						</li>'
 	    	+'						</ul>'
 	    	+'					</td>'
@@ -2941,376 +3048,284 @@ abb1.jquery = {
 	    withdrawal.find('li:nth-child(1)').addClass('abb1_finc_id_cancel_btn');
 	    withdrawal.find('li:nth-child(2)').addClass('abb1_page_li_inline');
 	    withdrawal.find('ul').find('input').addClass('btn abb1_btn_lg abb1_btn_verification');
+	    $('#withdrawal_btn').on('click',function(e){
+	    	e.preventDefault();
+	    	$.ajax({
+	    		url: ctx+'/withdrawal',
+	    		method: 'POST',
+	    		data:JSON.springify({
+	    			id: abb1.cookie.getCookie('id')
+	    		}),
+	    		dataType:'application/json',
+	    		success:function(data){
+	    			alert(탈퇴성공);
+	    		},
+	    		error:function(xhr,status,msg){
+	    			alert('탈퇴 실패 이유:'+msg);
+	    		}
+	    	});
+	    });
 	},
-	movie_detail : function(){
-	    var ctx = abb1.session.getContextPath();
-	    var view = '<div id="movieDetail">'
-		+'		<div id="movieTrailer">'
-		+'		   <img src="'+ctx+'/resources/img/movie/movie_trailer_2.PNG" alt="분노의 질주 : 더 익스트림" />'
-		+'		</div>'
-		+'		<div id="movieInfo">'
-		+'		   <div>'
-		+'		   <ul>'
-		+'		   <li>'
-		+'		      <table>'
-		+'		         <tr>'
-		+'		            <td>'
-		+'		               <img src="'+ctx+'/resources/img/movie/movie_poster_2.png" width="228px" height="333.99px" alt="...">'
-		+'		            </td>'
-		+'		         </tr>'
-		+'		         <tr>'
-		+'		            <td></td>'
-		+'		         </tr>'
-		+'		         <tr>'
-		+'		            <td>'
-		+'		               <a href="#">예매하기</a>'
-		+'		            </td>'
-		+'		         </tr>'
-		+'		      </table>'
-		+'		   </li>'
-		+'		   <li>'
-		+'		      <table>'
-		+'		         <tr>'
-		+'		            <td colspan="4"><h3><strong>분노의 질주: 더 익스트림</strong></h3></td>'
-		+'		         </tr>'
-		+'		         <tr>'
-		+'		            <td><strong>예매율</strong></td>'
-		+'		            <td><span>4</span> <span>위, 13.2%</span></td>'
-		+'		            <td><strong>관람평점</strong></td>'
-		+'		            <td>9.0</td>'
-		+'		         </tr>'
-		+'		         <tr>'
-		+'		            <td><strong>등급</strong></td>'
-		+'		            <td colspan="3">[국내] 15세이상관람가</td>'
-		+'		         </tr>'
-		+'		         <tr>'
-		+'		            <td><strong>개봉일</strong></td>'
-		+'		            <td colspan="3">2017.04.12</td>'
-		+'		         </tr>'
-		+'		         <tr>'
-		+'		            <td><strong>기본정보</strong></td>'
-		+'		            <td colspan="3">스릴러/범죄/공포 미국(136분)</td>'
-		+'		         </tr>'
-		+'		      </table>'
-		+'		   </li>'
-		+'		</ul>'
-		+'		</div>'
-		+'		<div>'
-		+'		   <table>'
-		+'		      <tr>'
-		+'		         <td colspan="4"><h3><strong>시놉시스</strong></h3></td>'
-		+'		      </tr>'
-		+'		      <tr>'
-		+'		         <td colspan="4">'
-		+'		         최강의 리더 최악의 적이 되다!<br><br>'
-		+'		         마침내 평화로운 일상으로 돌아온 리더 ‘도미닉’(빈 디젤)과 멤버들.'
-		+'		         그러던 어느 날, 멤버들은 도미닉이 첨단 테러 조직의 리더 ‘사이퍼’(샤를리즈 테론)와 함께 사상 최악의 테러를 계획하고 있음을 알게 된다. 리더의 배신으로 위기에 놓인 멤버들은 한때 팀을 모두 전멸시키려 했던 ‘데카드 쇼’(제이슨 스타뎀)까지 영입해 최악의 적이 되어버린 도미닉과의 피할 수 없는 대결을 앞두게 되는데…'
-		+'		         </td>'
-		+'		      </tr>'
-		+'		   </table>'
-		+'		</div>'
-		+'		<div id="donutchart"></div>'
-		+'		</div>'
-		+'		<div>'
-		+'		   <div>'
-		+'		      <h3>감독 및 출연</h3>'
-		+'		   </div>'
-		+'		   <div>'
-		+'		      <ul>'
-		+'		         <li><img src="'+ctx+'/resources/img/movieProfile/movie_0_pic_director.jpg" alt="" />'
-		+'		            <br><br>F. 게리 그레이<br>감독'
-		+'		         </li>'
-		+'		         <li><img src="'+ctx+'/resources/img/movieProfile/movie_0_pic_actor1.jpg" alt="" />'
-		+'		            <br><br>빈 디젤<br>배우'
-		+'		         </li>'
-		+'		         <li><img src="'+ctx+'/resources/img/movieProfile/movie_0_pic_actor2.jpg" alt="" />'
-		+'		            <br><br>드웨인 존슨<br>배우'
-		+'		         </li>'
-		+'		         <li><img src="'+ctx+'/resources/img/movieProfile/movie_0_pic_actor3.jpg" alt="" />'
-		+'		            <br><br>샤를리즈 테론<br>배우'
-		+'		         </li>'
-		+'		         <li><img src="'+ctx+'/resources/img/movieProfile/movie_0_pic_actor4.jpg" alt="" />'
-		+'		            <br><br>제이슨 스타뎀<br>배우'
-		+'		         </li>'
-		+'		      </ul>'
-		+'		   </div>'
-		+'		</div>'
-		+'		<div>'
-		+'		   <div>'
-		+'		      <table>'
-		+'		         <tr>'
-		+'		            <td colspan="4"><h3>평점 및 영화 리뷰</h3></td>'
-		+'		            <td colspan="2">(한글 150자/영문300자)</td>'
-		+'		         </tr>'
-		+'		         <tr>'
-		+'		            <td>'
-		+'		               <span><strong>평점</strong></span>'
-		+'		               <div>'
-		+'		                  <span>'
-		+'		                       <span>'
-		+'		                         <input type="radio" name="star-input" id="p1" value="1"><label for="p1">1</label>'
-		+'		                         <input type="radio" name="star-input" id="p2" value="2"><label for="p2">2</label>'
-		+'		                         <input type="radio" name="star-input" id="p3" value="3"><label for="p3">3</label>'
-		+'		                         <input type="radio" name="star-input" id="p4" value="4"><label for="p4">4</label>'
-		+'		                         <input type="radio" name="star-input" id="p5" value="5"><label for="p5">5</label>'
-		+'		                         <input type="radio" name="star-input" id="p6" value="6"><label for="p6">6</label>'
-		+'		                         <input type="radio" name="star-input" id="p7" value="7"><label for="p7">7</label>'
-		+'		                         <input type="radio" name="star-input" id="p8" value="8"><label for="p8">8</label>'
-		+'		                         <input type="radio" name="star-input" id="p9" value="9"><label for="p9">9</label>'
-		+'		                         <input type="radio" name="star-input" id="p10" value="10"><label for="p10">10</label>'
-		+'		                     </span><br>'
-		+'		                       <output for="star-input"><b>0</b><strong>점</strong></output>'
-		+'		                  </span>'
-		+'		               </div>'
-		+'		            </td>'
-		+'		            <td colspan="4">'
-		+'		               <textarea name="" id="" cols="100" rows="5" placeholder="영화 리뷰는 로그인 후에 작성하실 수 있습니다."></textarea>'
-		+'		            </td>'
-		+'		            <td><a href=""><span>입력</span></a></td>'
-		+'		         </tr>'
-		+'		      </table>'
-		+'		   </div>'
-		+'		   <div>'
-		+'		      <table id="review">'
-		+'		         <tr>'
-		+'		            <td colspan="3"><strong>평점: 9</strong></td>'
-		+'		         </tr>'
-		+'		         <tr>'
-		+'		            <td colspan="2">최고의 영화. 추천합니다.</td>'
-		+'		            <td class="abb1_text_right">염*선</td>'
-		+'		         </tr>'
-		+'		         <tr>'
-		+'		            <td colspan="3">2017-04-25</td>'
-		+'		         </tr>'
-		+'		      </table>'
-		+'		      <table id="review">'
-		+'		         <tr>'
-		+'		            <td colspan="3"><strong>평점: 9</strong></td>'
-		+'		         </tr>'
-		+'		         <tr>'
-		+'		            <td colspan="2">최고의 영화. 추천합니다.</td>'
-		+'		            <td>염*선</td>'
-		+'		         </tr>'
-		+'		         <tr>'
-		+'		            <td colspan="3">2017-04-25</td>'
-		+'		         </tr>'
-		+'		      </table>'
-		+'		      <table id="review">'
-		+'		         <tr>'
-		+'		            <td colspan="3"><strong>평점: 9</strong></td>'
-		+'		         </tr>'
-		+'		         <tr>'
-		+'		            <td colspan="2">최고의 영화. 추천합니다.</td>'
-		+'		            <td>염*선</td>'
-		+'		         </tr>'
-		+'		         <tr>'
-		+'		            <td colspan="3">2017-04-25</td>'
-		+'		         </tr>'
-		+'		      </table>'
-		+'		   </div>'
-		+'		</div>'
-		+'	</div>';
-		$('#container').html(view);
-	      var movieDetail = $('#movieDetail');
-	      var movieTrailer=$('#movieTrailer');
-	      movieTrailer.addClass('abb1_movie_detail_trailer');
-	      movieDetail.find('div:nth-child(1)>img').addClass('abb1_movie_trailer');
-	      var movieInfo=$('#movieInfo');
-	      movieInfo.addClass('abb1_movie_detail_container');
-	      movieInfo.find('div:nth-child(1)').addClass('abb1_movie_detail_info');
-	      movieInfo.find('div:nth-child(1)').find('ul').addClass('abb1_ul_inline');
-	      movieInfo.find('div:nth-child(1)').find('li').addClass('abb1_li_inline');
-	      movieInfo.find('div:nth-child(1)').find('li:nth-child(1)').find('tr:nth-child(2) td').addClass('abb1_height_10');
-	      movieInfo.find('div:nth-child(1)').find('li:nth-child(1)').find('tr:nth-child(3) td').addClass('abb1_movie_btn_reservation_td');
-	      movieInfo.find('div:nth-child(1)').find('li:nth-child(1)').find('a').addClass('abb1_movie_btn_reservation');
-	      movieInfo.find('div:nth-child(1)').find('li:nth-child(2)').find('td:nth-child(2)').addClass('abb1_height_50');
-	      movieInfo.find('div:nth-child(1)').find('li:nth-child(2)').find('span:nth-child(1)').addClass('abb1_movie_rate');
-	      movieInfo.find('div:nth-child(1)').find('li:nth-child(2)').find('span:nth-child(2)').addClass('abb1_movie_detail_font_color');
-	      movieInfo.find('div:nth-child(1)').find('li:nth-child(2)').find('td:nth-child(6)').addClass('abb1_height_50');
-	      movieInfo.find('div:nth-child(1)').find('li:nth-child(2)').find('td:nth-child(8)').addClass('abb1_height_50');   
-	      movieInfo.find('div:nth-child(1)').find('li:nth-child(2)').find('td:nth-child(10)').addClass('abb1_height_50');
-	      movieInfo.find('div:nth-child(1)').find('li:nth-child(2)').find('td:nth-child(7)').addClass('abb1_movie_detail_font_color');
-	      movieInfo.find('div:nth-child(1)').find('li:nth-child(2)').find('td:nth-child(9)').addClass('abb1_movie_detail_font_color');
-	      movieInfo.find('div:nth-child(1)').find('li:nth-child(2)').find('td:nth-child(11)').addClass('abb1_movie_detail_font_color');
-	      movieInfo.find('div:nth-child(2)').addClass('abb1_movie_detail_synopsys');
-	      movieInfo.find('div:nth-child(2)').find('tr:nth-child(2)>td').addClass('abb1_movie_detail_synopsys_content');
-	      movieInfo.find('div:nth-child(3)').addClass('abb1_movie_donutchart');   
-	      var movieActor = movieDetail.find('div:nth-child(3)');
-	      movieActor.addClass('abb1_bgcolor_beige');
-	      movieActor.find('div:nth-child(1)').addClass('abb1_width_left');
-	      movieActor.find('div:nth-child(1)').find('h3').addClass('abb1_movie_actor_title');
-	      movieActor.find('div:nth-child(2)').addClass('abb1_movie_detail_actor_list');
-	      movieActor.find('div:nth-child(2)').find('ul').addClass('abb1_ul_inline');
-	      movieActor.find('div:nth-child(2)').find('li').addClass('abb1_li_inline');
-	      var movieReview =movieDetail.find('div:nth-child(4)');
-	      movieReview.addClass('abb1_movie_review_div');
-	      movieReview.find('div:nth-child(1)').addClass('abb1_movie_review_box');
-	      movieReview.find('div:nth-child(1)').find('table').addClass('abb1_movie_review_table');
-	      movieReview.find('div:nth-child(1)').find('table tr:nth-child(1)>td:nth-child(2)').addClass('abb1_text_right');
-	      movieReview.find('div:nth-child(1)').find('table tr:nth-child(2)').addClass('abb1_nowMovie_border');
-	      movieReview.find('div:nth-child(1)').find('table tr:nth-child(2)>td:nth-child(1)').addClass('abb1_movie_review_gpa');
-	      movieReview.find('div:nth-child(1)').find('table tr:nth-child(2)>td:nth-child(1)').find('span:nth-child(1)').addClass('abb1_font_size_20');
-	      movieReview.find('div:nth-child(1)').find('table div').addClass('abb1_margin_top_10');
-	      movieReview.find('div:nth-child(1)').find('table div>span').addClass('star-input');
-	      movieReview.find('div:nth-child(1)').find('table div>span>span').addClass('input');
-	      movieReview.find('div:nth-child(1)').find('table tr:nth-child(2)>td:nth-child(2)').addClass('abb1_nowMovie_border');
-	      movieReview.find('div:nth-child(1)').find('table tr:nth-child(2)>td:nth-child(3)').addClass('abb1_movie_review_btn');
-	      movieReview.find('div:nth-child(1)').find('table tr:nth-child(2)>td:nth-child(3) span').addClass('abb1_movie_review_btn_text');
-	      movieReview.find('div:nth-child(2)').addClass('abb1_margin_top_20');
-	      movieReview.find('div:nth-child(2) table').addClass('abb1_movie_review');
-	      movieReview.find('div:nth-child(2) table tr:nth-child(1)>td').addClass('abb1_text_left');
-	      movieReview.find('div:nth-child(2) table tr:nth-child(2)>td:nth-child(2)').addClass('abb1_text_right');
-	      movieReview.find('div:nth-child(2) table tr:nth-child(3)>td').addClass('abb1_text_right');  
-	      /*-- Google API Loading --*/
-	      abb1.api.google(30.5, 69.5);
-	      abb1.util.starRating();
-	   },
-	   movie_main : function(){
+	movie_detail : function(seq){
 	       var ctx = abb1.session.getContextPath();
-	       var view = '	<div id="movieMain">'
-		   +'		<div>'
-		   +'		  <ul>'
-		   +'		    <li><a href="#">현재상영작</a></li>'
-		   +'		    <li><a href="#">상영예정작</a></li>'
-		   +'		  </ul>'
-		   +'		</div>'
-		   +'		<div id="order">'
-		   +'		   <ul>'
-		   +'		      <li><a href="'+ctx+'/movie/test">예매순</a></li>'
-		   +'		      <li><a href="">평점순</a></li>'
-		   +'		   </ul>'
-		   +'		</div>'
-		   +'		<div>'
-		   +'		   <div id="movieList">'
-		   +'		      <ul>'
-		   +'		         <li>'
-		   +'		            <table>'
-		   +'		               <tr>'
-		   +'		                  <td><img src="'+ctx+'/resources/img/movie/movie_poster_2.png" width="228px" height="333.99px" alt="..."></td>'
-		   +'		               </tr>'
-		   +'		               <tr>'
-		   +'		                  <td><a href="javascript:abb1.jquery.movie_detail()">분노의 질주: 더 익스트림</a></td>'
-		   +'		               </tr>'
-		   +'		               <tr>'
-		   +'		                  <td>예매율 15.9% | 관람평점 9.0</td>'
-		   +'		               </tr>'
-		   +'		            </table>'
-		   +'		         </li>'
-		   +'		         <li>'
-		   +'		            <table>'
-		   +'		               <tr>'
-		   +'		                  <td><img src="'+ctx+'/resources/img/movie/movie_poster_2.png" width="228px" height="333.99px" alt="..."></td>'
-		   +'		               </tr>'
-		   +'		               <tr>'
-		   +'		                  <td><a href="javascript:abb1.jquery.movie_detail()">분노의 질주: 더 익스트림</a></td>'
-		   +'		               </tr>'
-		   +'		               <tr>'
-		   +'		                  <td>예매율 15.9% | 관람평점 9.0</td>'
-		   +'		               </tr>'
-		   +'		            </table>'
-		   +'		         </li>'
-		   +'		         <li>'
-		   +'		            <table>'
-		   +'		               <tr>'
-		   +'		                  <td><img src="'+ctx+'/resources/img/movie/movie_poster_2.png" width="228px" height="333.99px" alt="..."></td>'
-		   +'		               </tr>'
-		   +'		               <tr>'
-		   +'		                  <td><a href="javascript:abb1.jquery.movie_detail()">분노의 질주: 더 익스트림</a></td>'
-		   +'		               </tr>'
-		   +'		               <tr>'
-		   +'		                  <td>예매율 15.9% | 관람평점 9.0</td>'
-		   +'		               </tr>'
-		   +'		            </table>'
-		   +'		         </li>'
-		   +'		         <li>'
-		   +'		            <table>'
-		   +'		               <tr>'
-		   +'		                  <td><img src="'+ctx+'/resources/img/movie/movie_poster_2.png" width="228px" height="333.99px" alt="..."></td>'
-		   +'		               </tr>'
-		   +'		               <tr>'
-		   +'		                  <td><a href="javascript:abb1.jquery.movie_detail()">분노의 질주: 더 익스트림</a></td>'
-		   +'		               </tr>'
-		   +'		               <tr>'
-		   +'		                  <td>예매율 15.9% | 관람평점 9.0</td>'
-		   +'		               </tr>'
-		   +'		            </table>'
-		   +'		         </li>'
-		   +'		      </ul>'
-		   +'		   </div>'
-		   +'		   <div id="movieList">'
-		   +'		      <ul>'
-		   +'		         <li>'
-		   +'		            <table>'
-		   +'		               <tr>'
-		   +'		                  <td><img src="'+ctx+'/resources/img/movie/movie_poster_2.png" width="228px" height="333.99px" alt="..."></td>'
-		   +'		               </tr>'
-		   +'		               <tr>'
-		   +'		                  <td><a href="javascript:abb1.jquery.movie_detail()">분노의 질주: 더 익스트림</a></td>'
-		   +'		               </tr>'
-		   +'		               <tr>'
-		   +'		                  <td>예매율 15.9% | 관람평점 9.0</td>'
-		   +'		               </tr>'
-		   +'		            </table>'
-		   +'		         </li>'
-		   +'		         <li>'
-		   +'		            <table>'
-		   +'		               <tr>'
-		   +'		                  <td><img src="'+ctx+'/resources/img/movie/movie_poster_2.png" width="228px" height="333.99px" alt="..."></td>'
-		   +'		               </tr>'
-		   +'		               <tr>'
-		   +'		                  <td><a href="javascript:abb1.jquery.movie_detail()">분노의 질주: 더 익스트림</a></td>'
-		   +'		               </tr>'
-		   +'		               <tr>'
-		   +'		                  <td>예매율 15.9% | 관람평점 9.0</td>'
-		   +'		               </tr>'
-		   +'		            </table>'
-		   +'		         </li>'
-		   +'		         <li>'
-		   +'		            <table>'
-		   +'		               <tr>'
-		   +'		                  <td><img src="'+ctx+'/resources/img/movie/movie_poster_2.png" width="228px" height="333.99px" alt="..."></td>'
-		   +'		               </tr>'
-		   +'		               <tr>'
-		   +'		                  <td><a href="javascript:abb1.jquery.movie_detail()">분노의 질주: 더 익스트림</a></td>'
-		   +'		               </tr>'
-		   +'		               <tr>'
-		   +'		                  <td>예매율 15.9% | 관람평점 9.0</td>'
-		   +'		               </tr>'
-		   +'		            </table>'
-		   +'		         </li>'
-		   +'		         <li>'
-		   +'		            <table>'
-		   +'		               <tr>'
-		   +'		                  <td><img src="'+ctx+'/resources/img/movie/movie_poster_2.png" width="228px" height="333.99px" alt="..."></td>'
-		   +'		               </tr>'
-		   +'		               <tr>'
-		   +'		                  <td><a href="javascript:abb1.jquery.movie_detail()">분노의 질주: 더 익스트림</a></td>'
-		   +'		               </tr>'
-		   +'		               <tr>'
-		   +'		                  <td>예매율 15.9% | 관람평점 9.0</td>'
-		   +'		               </tr>'
-		   +'		            </table>'
-		   +'		         </li>'
-		   +'		      </ul>'
-		   +'		   </div>'
-		   +'		</div>'
-		   +'	</div>';
-	       $('#container').html(view);
-	       var movieMain=$('#movieMain');
-	       movieMain.find('div:nth-child(1)').addClass('abb1_movie_btns');
-	       movieMain.find('ul').addClass('abb1_ul_inline');
-	       movieMain.find('li').addClass('abb1_li_inline');
-	       movieMain.find('div:nth-child(1) li:nth-child(1)>a').addClass('abb1_movie_now_btn');
-	       movieMain.find('div:nth-child(1) li:nth-child(2)>a').addClass('abb1_movie_future_btn');
-	       $('#order').addClass('abb1_width_right');
-	       $('#order').find('li:nth-child(1) a').addClass('abb1_padding_right_5');
-	       var movieList=movieMain.find('div:nth-child(3)');
-	       movieList.addClass('abb1_movie_list_div');
-	       movieList.find('table').addClass('abb1_movie_table');
-	       movieList.find('table tr:nth-child(1)>td').addClass('abb1_nowMovie_border');
-	       movieList.find('table tr:nth-child(2)>td').addClass('abb1_movie_table_title_td');
-	       movieList.find('table tr:nth-child(3)>td').addClass('abb1_movie_table_rate_td');
-	    }
+	       $.ajax({
+	      url: ctx+"/get/movie",
+	      method: "POST",
+	      data: JSON.stringify({
+	          seq : seq
+	      }),
+	      dataType: "json",
+	      contentType: "application/json",
+	      success : function(data){
+	         alert(data.title);
+	      },
+	      error : function(xhr,status,msg){
+	          alert(msg);
+	      }
+	       });
+	       var view = '<div id="movieDetail">'
+	      +'      <div id="movieTrailer">'
+	      +'         <img src="'+ctx+'/resources/img/movie/movie_trailer_2.PNG" alt="분노의 질주 : 더 익스트림" />'
+	      +'      </div>'
+	      +'      <div id="movieInfo">'
+	      +'         <div>'
+	      +'         <ul>'
+	      +'         <li>'
+	      +'            <table>'
+	      +'               <tr>'
+	      +'                  <td>'
+	      +'                     <img src="'+ctx+'/resources/img/movie/movie_poster_2.png" width="228px" height="333.99px" alt="...">'
+	      +'                  </td>'
+	      +'               </tr>'
+	      +'               <tr>'
+	      +'                  <td></td>'
+	      +'               </tr>'
+	      +'               <tr>'
+	      +'                  <td>'
+	      +'                     <a href="#">예매하기</a>'
+	      +'                  </td>'
+	      +'               </tr>'
+	      +'            </table>'
+	      +'         </li>'
+	      +'         <li>'
+	      +'            <table>'
+	      +'               <tr>'
+	      +'                  <td colspan="4"><h3><strong>분노의 질주: 더 익스트림</strong></h3></td>'
+	      +'               </tr>'
+	      +'               <tr>'
+	      +'                  <td><strong>예매율</strong></td>'
+	      +'                  <td><span>4</span> <span>위, 13.2%</span></td>'
+	      +'                  <td><strong>관람평점</strong></td>'
+	      +'                  <td>9.0</td>'
+	      +'               </tr>'
+	      +'               <tr>'
+	      +'                  <td><strong>등급</strong></td>'
+	      +'                  <td colspan="3">[국내] 15세이상관람가</td>'
+	      +'               </tr>'
+	      +'               <tr>'
+	      +'                  <td><strong>개봉일</strong></td>'
+	      +'                  <td colspan="3">2017.04.12</td>'
+	      +'               </tr>'
+	      +'               <tr>'
+	      +'                  <td><strong>기본정보</strong></td>'
+	      +'                  <td colspan="3">스릴러/범죄/공포 미국(136분)</td>'
+	      +'               </tr>'
+	      +'            </table>'
+	      +'         </li>'
+	      +'      </ul>'
+	      +'      </div>'
+	      +'      <div>'
+	      +'         <table>'
+	      +'            <tr>'
+	      +'               <td colspan="4"><h3><strong>시놉시스</strong></h3></td>'
+	      +'            </tr>'
+	      +'            <tr>'
+	      +'               <td colspan="4">'
+	      +'               최강의 리더 최악의 적이 되다!<br><br>'
+	      +'               마침내 평화로운 일상으로 돌아온 리더 ‘도미닉’(빈 디젤)과 멤버들.'
+	      +'               그러던 어느 날, 멤버들은 도미닉이 첨단 테러 조직의 리더 ‘사이퍼’(샤를리즈 테론)와 함께 사상 최악의 테러를 계획하고 있음을 알게 된다. 리더의 배신으로 위기에 놓인 멤버들은 한때 팀을 모두 전멸시키려 했던 ‘데카드 쇼’(제이슨 스타뎀)까지 영입해 최악의 적이 되어버린 도미닉과의 피할 수 없는 대결을 앞두게 되는데…'
+	      +'               </td>'
+	      +'            </tr>'
+	      +'         </table>'
+	      +'      </div>'
+	      +'      <div id="donutchart"></div>'
+	      +'      </div>'
+	      +'      <div>'
+	      +'         <div>'
+	      +'            <h3>감독 및 출연</h3>'
+	      +'         </div>'
+	      +'         <div>'
+	      +'            <ul>'
+	      +'               <li><img src="'+ctx+'/resources/img/movieProfile/movie_0_pic_director.jpg" alt="" />'
+	      +'                  <br><br>F. 게리 그레이<br>감독'
+	      +'               </li>'
+	      +'               <li><img src="'+ctx+'/resources/img/movieProfile/movie_0_pic_actor1.jpg" alt="" />'
+	      +'                  <br><br>빈 디젤<br>배우'
+	      +'               </li>'
+	      +'               <li><img src="'+ctx+'/resources/img/movieProfile/movie_0_pic_actor2.jpg" alt="" />'
+	      +'                  <br><br>드웨인 존슨<br>배우'
+	      +'               </li>'
+	      +'               <li><img src="'+ctx+'/resources/img/movieProfile/movie_0_pic_actor3.jpg" alt="" />'
+	      +'                  <br><br>샤를리즈 테론<br>배우'
+	      +'               </li>'
+	      +'               <li><img src="'+ctx+'/resources/img/movieProfile/movie_0_pic_actor4.jpg" alt="" />'
+	      +'                  <br><br>제이슨 스타뎀<br>배우'
+	      +'               </li>'
+	      +'            </ul>'
+	      +'         </div>'
+	      +'      </div>'
+	      +'      <div>'
+	      +'         <div>'
+	      +'            <table>'
+	      +'               <tr>'
+	      +'                  <td colspan="4"><h3>평점 및 영화 리뷰</h3></td>'
+	      +'                  <td colspan="2">(한글 150자/영문300자)</td>'
+	      +'               </tr>'
+	      +'               <tr>'
+	      +'                  <td>'
+	      +'                     <span><strong>평점</strong></span>'
+	      +'                     <div>'
+	      +'                        <span>'
+	      +'                             <span>'
+	      +'                               <input type="radio" name="star-input" id="p1" value="1"><label for="p1">1</label>'
+	      +'                               <input type="radio" name="star-input" id="p2" value="2"><label for="p2">2</label>'
+	      +'                               <input type="radio" name="star-input" id="p3" value="3"><label for="p3">3</label>'
+	      +'                               <input type="radio" name="star-input" id="p4" value="4"><label for="p4">4</label>'
+	      +'                               <input type="radio" name="star-input" id="p5" value="5"><label for="p5">5</label>'
+	      +'                               <input type="radio" name="star-input" id="p6" value="6"><label for="p6">6</label>'
+	      +'                               <input type="radio" name="star-input" id="p7" value="7"><label for="p7">7</label>'
+	      +'                               <input type="radio" name="star-input" id="p8" value="8"><label for="p8">8</label>'
+	      +'                               <input type="radio" name="star-input" id="p9" value="9"><label for="p9">9</label>'
+	      +'                               <input type="radio" name="star-input" id="p10" value="10"><label for="p10">10</label>'
+	      +'                           </span><br>'
+	      +'                             <output for="star-input"><b>0</b><strong>점</strong></output>'
+	      +'                        </span>'
+	      +'                     </div>'
+	      +'                  </td>'
+	      +'                  <td colspan="4">'
+	      +'                     <textarea name="" id="" cols="100" rows="5" placeholder="영화 리뷰는 로그인 후에 작성하실 수 있습니다."></textarea>'
+	      +'                  </td>'
+	      +'                  <td><a href=""><span>입력</span></a></td>'
+	      +'               </tr>'
+	      +'            </table>'
+	      +'         </div>'
+	      +'         <div>'
+	      +'            <table id="review">'
+	      +'               <tr>'
+	      +'                  <td colspan="3"><strong>평점: 9</strong></td>'
+	      +'               </tr>'
+	      +'               <tr>'
+	      +'                  <td colspan="2">최고의 영화. 추천합니다.</td>'
+	      +'                  <td class="abb1_text_right">염*선</td>'
+	      +'               </tr>'
+	      +'               <tr>'
+	      +'                  <td colspan="3">2017-04-25</td>'
+	      +'               </tr>'
+	      +'            </table>'
+	      +'            <table id="review">'
+	      +'               <tr>'
+	      +'                  <td colspan="3"><strong>평점: 9</strong></td>'
+	      +'               </tr>'
+	      +'               <tr>'
+	      +'                  <td colspan="2">최고의 영화. 추천합니다.</td>'
+	      +'                  <td>염*선</td>'
+	      +'               </tr>'
+	      +'               <tr>'
+	      +'                  <td colspan="3">2017-04-25</td>'
+	      +'               </tr>'
+	      +'            </table>'
+	      +'            <table id="review">'
+	      +'               <tr>'
+	      +'                  <td colspan="3"><strong>평점: 9</strong></td>'
+	      +'               </tr>'
+	      +'               <tr>'
+	      +'                  <td colspan="2">최고의 영화. 추천합니다.</td>'
+	      +'                  <td>염*선</td>'
+	      +'               </tr>'
+	      +'               <tr>'
+	      +'                  <td colspan="3">2017-04-25</td>'
+	      +'               </tr>'
+	      +'            </table>'
+	      +'         </div>'
+	      +'      </div>'
+	      +'   </div>';
+	      $('#container').html(view);
+	         var movieDetail = $('#movieDetail');
+	         var movieTrailer=$('#movieTrailer');
+	         movieTrailer.addClass('abb1_movie_detail_trailer');
+	         movieDetail.find('div:nth-child(1)>img').addClass('abb1_movie_trailer');
+	         var movieInfo=$('#movieInfo');
+	         movieInfo.addClass('abb1_movie_detail_container');
+	         movieInfo.find('div:nth-child(1)').addClass('abb1_movie_detail_info');
+	         movieInfo.find('div:nth-child(1)').find('ul').addClass('abb1_ul_inline');
+	         movieInfo.find('div:nth-child(1)').find('li').addClass('abb1_li_inline');
+	         movieInfo.find('div:nth-child(1)').find('li:nth-child(1)').find('tr:nth-child(2) td').addClass('abb1_height_10');
+	         movieInfo.find('div:nth-child(1)').find('li:nth-child(1)').find('tr:nth-child(3) td').addClass('abb1_movie_btn_reservation_td');
+	         movieInfo.find('div:nth-child(1)').find('li:nth-child(1)').find('a').addClass('abb1_movie_btn_reservation');
+	         movieInfo.find('div:nth-child(1)').find('li:nth-child(2)').find('td:nth-child(2)').addClass('abb1_height_50');
+	         movieInfo.find('div:nth-child(1)').find('li:nth-child(2)').find('span:nth-child(1)').addClass('abb1_movie_rate');
+	         movieInfo.find('div:nth-child(1)').find('li:nth-child(2)').find('span:nth-child(2)').addClass('abb1_movie_detail_font_color');
+	         movieInfo.find('div:nth-child(1)').find('li:nth-child(2)').find('td:nth-child(6)').addClass('abb1_height_50');
+	         movieInfo.find('div:nth-child(1)').find('li:nth-child(2)').find('td:nth-child(8)').addClass('abb1_height_50');   
+	         movieInfo.find('div:nth-child(1)').find('li:nth-child(2)').find('td:nth-child(10)').addClass('abb1_height_50');
+	         movieInfo.find('div:nth-child(1)').find('li:nth-child(2)').find('td:nth-child(7)').addClass('abb1_movie_detail_font_color');
+	         movieInfo.find('div:nth-child(1)').find('li:nth-child(2)').find('td:nth-child(9)').addClass('abb1_movie_detail_font_color');
+	         movieInfo.find('div:nth-child(1)').find('li:nth-child(2)').find('td:nth-child(11)').addClass('abb1_movie_detail_font_color');
+	         movieInfo.find('div:nth-child(2)').addClass('abb1_movie_detail_synopsys');
+	         movieInfo.find('div:nth-child(2)').find('tr:nth-child(2)>td').addClass('abb1_movie_detail_synopsys_content');
+	         movieInfo.find('div:nth-child(3)').addClass('abb1_movie_donutchart');   
+	         var movieActor = movieDetail.find('div:nth-child(3)');
+	         movieActor.addClass('abb1_bgcolor_beige');
+	         movieActor.find('div:nth-child(1)').addClass('abb1_width_left');
+	         movieActor.find('div:nth-child(1)').find('h3').addClass('abb1_movie_actor_title');
+	         movieActor.find('div:nth-child(2)').addClass('abb1_movie_detail_actor_list');
+	         movieActor.find('div:nth-child(2)').find('ul').addClass('abb1_ul_inline');
+	         movieActor.find('div:nth-child(2)').find('li').addClass('abb1_li_inline');
+	         var movieReview =movieDetail.find('div:nth-child(4)');
+	         movieReview.addClass('abb1_movie_review_div');
+	         movieReview.find('div:nth-child(1)').addClass('abb1_movie_review_box');
+	         movieReview.find('div:nth-child(1)').find('table').addClass('abb1_movie_review_table');
+	         movieReview.find('div:nth-child(1)').find('table tr:nth-child(1)>td:nth-child(2)').addClass('abb1_text_right');
+	         movieReview.find('div:nth-child(1)').find('table tr:nth-child(2)').addClass('abb1_nowMovie_border');
+	         movieReview.find('div:nth-child(1)').find('table tr:nth-child(2)>td:nth-child(1)').addClass('abb1_movie_review_gpa');
+	         movieReview.find('div:nth-child(1)').find('table tr:nth-child(2)>td:nth-child(1)').find('span:nth-child(1)').addClass('abb1_font_size_20');
+	         movieReview.find('div:nth-child(1)').find('table div').addClass('abb1_margin_top_10');
+	         movieReview.find('div:nth-child(1)').find('table div>span').addClass('star-input');
+	         movieReview.find('div:nth-child(1)').find('table div>span>span').addClass('input');
+	         movieReview.find('div:nth-child(1)').find('table tr:nth-child(2)>td:nth-child(2)').addClass('abb1_nowMovie_border');
+	         movieReview.find('div:nth-child(1)').find('table tr:nth-child(2)>td:nth-child(3)').addClass('abb1_movie_review_btn');
+	         movieReview.find('div:nth-child(1)').find('table tr:nth-child(2)>td:nth-child(3) span').addClass('abb1_movie_review_btn_text');
+	         movieReview.find('div:nth-child(2)').addClass('abb1_margin_top_20');
+	         movieReview.find('div:nth-child(2) table').addClass('abb1_movie_review');
+	         movieReview.find('div:nth-child(2) table tr:nth-child(1)>td').addClass('abb1_text_left');
+	         movieReview.find('div:nth-child(2) table tr:nth-child(2)>td:nth-child(2)').addClass('abb1_text_right');
+	         movieReview.find('div:nth-child(2) table tr:nth-child(3)>td').addClass('abb1_text_right');  
+	         /*-- Google API Loading --*/
+	         abb1.api.google(30.5, 69.5);
+	         abb1.util.starRating();
+	      },
+	      movie_main : function(){
+	          var ctx = abb1.session.getContextPath();
+	          var view = '   <div id="movieMain">'
+	         +'      <div>'
+	         +'        <ul>'
+	         +'          <li><a href="#">현재상영작</a></li>'
+	         +'          <li><a href="#">상영예정작</a></li>'
+	         +'        </ul>'
+	         +'      </div>'
+	         +'      <div id="order">'
+	         +'         <ul>'
+	         +'            <li><a id="order_by_rate" href="#">예매순</a></li>'
+	         +'            <li><a id="order_by_gpa" href="#">평점순</a></li>'
+	         +'         </ul>'
+	         +'      </div>'
+	         +'      <div>'
+	         +'         <div id="movieList"></div>'
+	         +'         <div id="movieList2"></div>'
+	         +'      </div>'
+	         +'   </div>';
+	          $('#container').html(view);
+	       }
 }
 /************************
  * Controller

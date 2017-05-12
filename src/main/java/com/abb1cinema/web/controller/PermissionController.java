@@ -23,7 +23,7 @@ public class PermissionController {
 	@Autowired Mapper mapper;
 	@Autowired Customer customer;
 	
-	@RequestMapping(value="/customer/main", method=RequestMethod.POST)
+	/*@RequestMapping(value="/customer/main", method=RequestMethod.POST)
 	public String checkLogin(@RequestParam("customer_id") String id, @RequestParam("customer_pw") String pw, Model model) throws Exception{
 		logger.info("GetController checkLogin() {}","ENTER");
 		model.addAttribute("context",Complex.ContextFactory.create());
@@ -55,5 +55,5 @@ public class PermissionController {
 			}
 		}
 		return position;
-	}
+	}*/
 }

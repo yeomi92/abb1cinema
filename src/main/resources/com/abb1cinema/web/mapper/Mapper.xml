@@ -21,9 +21,20 @@ UPDATE Customer
 </set>
 WHERE id=#{id};
 </update>
-<delete id="deleteCustomer">
+<delete id="deleteCustomer" parameterType="hashMap">
 DELETE FROM Customer WHERE id = #{id}
 </delete>
+
+
+<select id="getMovieList" resultType="com.abb1cinema.web.domain.Movie" parameterType="hashMap">
+SELECT * FROM Movie;
+</select>
+<select id="getMovie" resultType="com.abb1cinema.web.domain.Movie" parameterType="hashMap">
+SELECT * FROM Movie WHERE seq = ${seq};
+</select>
+<select id="getReviewList" resultType="com.abb1cinema.web.domain.Review" parameterType="hashMap">
+SELECT * FROM Review;
+</select>
 
 
 

@@ -38,13 +38,15 @@ id VARCHAR(15) PRIMARY KEY,
 pw VARCHAR(15) NOT NULL,
 name VARCHAR(15) NOT NULL,
 gender VARCHAR(1) NOT NULL,
-birth VARCHAR(6) NOT NULL,
+birth VARCHAR(8) NOT NULL,
 phone VARCHAR(11) NOT NULL,
 email VARCHAR(30) NOT NULL,
 point VARCHAR(5) NOT NULL,
 address INT,
 FOREIGN KEY(address) REFERENCES Address(seq)
 );
+
+ALTER TABLE Customer MODIFY birth VARCHAR(8);
 
 -- 5
 CREATE TABLE Reservation(
@@ -172,6 +174,10 @@ INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('
 INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('babungv7','1234','박준용','M','900518','01022068900','babungv@gmail.com','0');
 INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('babungv8','1234','박준용','M','900518','01022068900','babungv@gmail.com','0');
 INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('babungv9','1234','박준용','M','900518','01022068900','babungv@gmail.com','0');
+INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('t','1','테스트','M','19900518','01022068900','babungv@gmail.com','0');
+
+
+
 
 INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id) VALUES ('001-001-1805-A01','2017.05.10','N','10000','1','babungv1');
 INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id) VALUES ('001-001-1805-A02','2017.05.10','N','10000','1','babungv2');
