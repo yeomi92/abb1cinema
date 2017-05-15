@@ -18,13 +18,14 @@ import com.abb1cinema.web.domain.Customer;
 import com.abb1cinema.web.domain.Movie;
 import com.abb1cinema.web.domain.Review;
 import com.abb1cinema.web.mapper.Mapper;
+import com.abb1cinema.web.service.GetService;
 import com.abb1cinema.web.service.IGetService;
 
 @RestController
 public class GetController {
 	private static final Logger logger = LoggerFactory.getLogger(GetController.class);
-	@Autowired Mapper mapper;
 	@Autowired Customer customer;
+	@Autowired GetService getService;
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST, consumes="application/json")
 	public @ResponseBody Map<?,?> checkLogin( @RequestBody Map<String,String> paramMap) throws Exception{
@@ -35,24 +36,12 @@ public class GetController {
 		map.put("id", id);
 		map.put("pw", pw);
 		logger.info("GetController paramMap 내용 {}",id+pw);
-		IGetService checkId= new IGetService() {
-			@Override
-			public Object execute(Map<?,?> map) throws Exception {
-				return mapper.existCustomer(map);
-			}
-		};
 		logger.info("map에 들어있는 id,pw {}",id+pw);
-		int exist=(int) checkId.execute(map);
+		int exist=getService.checkId(map);
 		map.put("exist", String.valueOf(exist));
 		logger.info("map 안의 exist {}",map.get("exist"));
 		if(exist==1){
-			IGetService service= new IGetService() {
-				@Override
-				public Object execute(Map<?, ?> map) throws Exception {
-					return mapper.findCustomer(map);
-				}
-			};
-			customer=(Customer) service.execute(map);
+			customer=getService.getCustomer(map);
 			if(id.equals("admin")&&pw.equals(customer.getPw())){
 				logger.info("admin 로그인 if문에 진입");
 				map.put("permission", "admin");
@@ -69,10 +58,8 @@ public class GetController {
 	   public @ResponseBody Map<?,?> getMovieRank() throws Exception {
 	      logger.info("getMovieRank() {}","ENTER");
 	      Map<String, Object> map = new HashMap<>();
-	      IGetService service = (o) -> mapper.getMovieList(o);
-	      IGetService review = (o) -> mapper.getReviewList(o);
-	      List<Movie> movieList = (List<Movie>) service.execute(map);
-	      List<Review> reviewList = (List<Review>) review.execute(map);
+	      List<Movie> movieList = getService.getMovieList(map);
+	      List<Review> reviewList = getService.getReviewList(map);
 	      int movieListSize = movieList.size();
 	      map.put("movie_list", movieList);
 	      map.put("review_list", reviewList);
@@ -85,8 +72,7 @@ public class GetController {
 	      logger.info("getMovie() {}","ENTER");
 	      Map<String, Object> map = new HashMap<>();
 	      map.put("result", "Succeess!!!!");
-	      IGetService service = (o) -> mapper.getMovie(o);
-	      Movie movie = (Movie) service.execute(map);
+	      Movie movie = getService.getMovie(map);
 	      map.put("movie", movie);
 	      return map;
 	   }

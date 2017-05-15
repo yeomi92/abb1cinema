@@ -6,5 +6,5 @@ import lombok.*;
 
 @Component @Data @Lazy
 public class Movie {
-	String seq, title, rate, count, grade, release, info, synopsys, male_p, female_p, trailer_url, pic_main, pic_director, name_director, pic_actor, name_actor;
+	String seq, title, rate, count, grade, release, info, synopsys, male_p, female_p, trailer_url, trailer_main, pic_main, pic_director, name_director, pic_actor, name_actor;
 }
