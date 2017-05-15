@@ -9,11 +9,12 @@ import org.springframework.stereotype.Service;
 import com.abb1cinema.web.mapper.Mapper;
 
 @Service
-public class PostService {
+public class PutService {
 	@Autowired Mapper mapper;
-	private static final Logger logger=LoggerFactory.getLogger(PostService.class);
-	public int registerCustomer(Map<?,?>paramMap) throws Exception{
-		IPostService service=(map)->mapper.registerCustomer(map);
+	private static final Logger logger=LoggerFactory.getLogger(PutService.class);
+	public int updateCustomer(Map<?,?> paramMap) throws Exception{
+		logger.info("PutService updateCustomer() {}","ENTER");
+		IDeleteService service=(map)->mapper.updateCustomer(map);
 		return service.execute(paramMap);
 	}
 }

@@ -176,6 +176,18 @@ INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('
 INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('babungv8','1234','박준용','M','19900518','01022068900','babungv@gmail.com','0');
 INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('babungv9','1234','박준용','M','19900518','01022068900','babungv@gmail.com','0');
 
+
+INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('yeom1','1','박준용','M','19900518','01022068900','babungv@gmail.com','0');
+INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('yeom2','1','박준용','M','19900518','01022068900','babungv@gmail.com','0');
+INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('yeom3','1','박준용','M','19900518','01022068900','babungv@gmail.com','0');
+INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('yeom4','1','박준용','M','19900518','01022068900','babungv@gmail.com','0');
+INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('yeom5','1','박준용','M','19900518','01022068900','babungv@gmail.com','0');
+INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('yeom6','1','박준용','M','19900518','01022068900','babungv@gmail.com','0');
+INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('yeom7','1','박준용','M','19900518','01022068900','babungv@gmail.com','0');
+INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('yeom8','1','박준용','M','19900518','01022068900','babungv@gmail.com','0');
+INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('yeom9','1','박준용','M','19900518','01022068900','babungv@gmail.com','0');
+
+
 INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id) VALUES ('001-001-1800-A01','2017.05.10','N','10000','1','babungv1');
 INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id) VALUES ('001-001-1800-A02','2017.05.10','N','10000','1','babungv2');
 INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id) VALUES ('001-001-1800-B03','2017.05.10','N','10000','1','babungv3');

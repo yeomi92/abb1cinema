@@ -126,6 +126,40 @@ abb1.util={
 		    $result.text($checked.next().text());
 		}
 	    });
+	},
+	checkPhone : function(strValue){
+		var regExp = /[0-9]$/;
+		if(strValue.lenght == 0)
+		{return false;}
+		if (!strValue.match(regExp))
+		{return false;}
+		return true;
+	},
+	checkEmail : function(strValue){
+		var regExp = /[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
+		if(strValue.lenght == 0)
+		{return false;}
+		if (!strValue.match(regExp))
+		{return false;}
+		return true;
+	},
+	checkId : function(strValue){
+		//5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.
+		var regExp = /[_0-9a-z-]{5,15}$/;
+		if(strValue.lenght == 0)
+		{return false;}
+		if (!strValue.match(regExp))
+		{return false;}
+		return true;
+	},
+	checkPw : function(strValue){
+		//5~15자 영문 대 소문자, 숫자, 특수문자를 사용하세요.
+		var regExp = /[0-9a-zA-Z!"#$%&'()*+,./:;<=>?@\^_`{|}~-]{5,15}$/;
+		if(strValue.lenght == 0)
+		{return false;}
+		if (!strValue.match(regExp))
+		{return false;}
+		return true;
 	}
 };
 /*
@@ -197,8 +231,12 @@ abb1.cookie={
 		    }
 		    return null;
 		},
-		removeCookie: function(name) {
-		    createCookie(name,"",-1);
+		removeCookie :function(name){
+			var expireDate = new Date();
+		  
+		    //어제 날짜를 쿠키 소멸 날짜로 설정한다.
+		    expireDate.setDate( expireDate.getDate() - 1 );
+		    document.cookie = name + "= " + "; expires=" + expireDate.toGMTString() + "; path=/";
 		}
 }
 
@@ -2733,10 +2771,19 @@ abb1.jquery = {
 	    	+'	               <td><input id="id" name="id" type="text" placeholder="아이디"></td>'
 	    	+'	            </tr>'
 	    	+'	            <tr>'
+	    	+'	               <td id="result_id_msg"></td>'
+	    	+'	            </tr>'
+	    	+'	            <tr>'
 	    	+'	               <td><input id="pw" name="pw" type="password" placeholder="비밀번호"></td>'
 	    	+'	            </tr>'
 	    	+'	            <tr>'
-	    	+'	               <td><input type="password" placeholder="비밀번호 확인"></td>'
+	    	+'	               <td id="result_pw_msg"></td>'
+	    	+'	            </tr>'
+	    	+'	            <tr>'
+	    	+'	               <td><input id="check_pw" type="password" placeholder="비밀번호 확인"></td>'
+	    	+'	            </tr>'
+	    	+'	            <tr>'
+	    	+'	               <td id="check_pw_msg"></td>'
 	    	+'	            </tr>'
 	    	+'	         </table>'
 	    	+'	         <table>'
@@ -2772,8 +2819,8 @@ abb1.jquery = {
 	    	+'	      </table>'
 	    	+'	      <table>'
 	    	+'	         <tr>'
-	    	+'	            <td><div><input type="radio" id="man" name="gender" value="male"/><label id="manLb" for="man">남자</label></div></td>'
-	    	+'	            <td><div><input type="radio" id="woman" name="gender" value="female"/><label id="womanLb" for="woman">여자</label></div></td>'
+	    	+'	            <td><div><input type="radio" id="male" name="gender" value="M" checked="checked"/><label id="manLb" for="man">남자</label></div></td>'
+	    	+'	            <td><div><input type="radio" id="female" name="gender" value="F"/><label id="womanLb" for="woman">여자</label></div></td>'
 	    	+'	         </tr>'
 	    	+'	      </table>'
 	    	+'	      <table>'
@@ -2817,6 +2864,101 @@ abb1.jquery = {
 		$('#find_postcode').addClass('btn abb1_btn_lg abb1_btn_verification');
 		$('#send_code').addClass('btn abb1_btn_lg abb1_btn_verification');
 		$('#signup_finish').css('background','#453d3f').css('color','#efebdb').css('font-size','15px').addClass('btn abb1_btn_lg abb1_btn_verification abb1_btn_confirm');
+		$('#result_id_msg').addClass('abb1_signup_check');
+		$('#result_pw_msg').addClass('abb1_signup_check');
+		$('#check_pw_msg').addClass('abb1_signup_check');
+		$('#id').keyup(function(){
+	            var id = $('#id').val();
+	            $.ajax({
+	                url : ctx+'/checkId',
+	                method: 'POST',
+	                data:JSON.stringify({
+	                    id: id
+	                }),
+	                dateType: 'json',
+	                contentType: 'application/json',
+	                success : function(data) {
+	                    if (data.result===0) {
+	                        if(abb1.util.checkId(id)){
+	                        	$("#result_id_msg").text("사용 가능한 아이디입니다.");
+	                        }else{
+	                        	$("#result_id_msg").text("5~20자의 영문 소문자, 숫자와 특수기호( _ ),(-)만 사용 가능합니다.");
+	                        }
+	                    }else {
+	                        $("#result_id_msg").text("이미 사용중인 아이디입니다.");
+	                    }
+	                },
+	                error: function(xhr,status,msg){
+	                	alert('실패 이유: '+msg);
+	                }
+	            });
+	    });
+		$('#pw').keyup(function(){
+            if(abb1.util.checkPw($('#pw').val())){
+            	$("#result_pw_msg").text("사용 가능한 비밀번호입니다.");
+            }
+            else{
+            	$("#result_pw_msg").text("5~15자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
+            }
+		});
+		$('#check_pw').keyup(function(){
+            if($('#pw').val()===$('#check_pw').val()){
+            	$("#check_pw_msg").text("비밀번호가 일치합니다.");
+            }
+		});
+		$('#send_code').on('click',function(e){
+			$.ajax({
+			      type: 'POST',
+			      url: 'https://mandrillapp.com/api/1.0/messages/send.json',
+			      data: {
+			        'key': 'VdJ0Y_O31CFpVfbWcZ86fQ',
+			        'message': {
+			          'from_email': 'yheisun@naver.com',
+			          'to': [
+			              {
+			                'email': 'yheisun@naver.com',
+			                'name': 'RECIPIENT NAME (OPTIONAL)',
+			                'type': 'to'
+			              }
+			            ],
+			          'autotext': 'true',
+			          'subject': 'YOUR SUBJECT HERE!',
+			          'html': 'YOUR EMAIL CONTENT HERE! YOU CAN USE HTML!'
+			        }
+			      }
+			     }).done(function(response) {
+			       console.log(response); // if you're into that sorta thing
+			       console.log(response); // if you're into that sorta thing
+			     });
+		});
+		$('#signup_finish').on('click',function(e){
+			e.preventDefault();
+			var gender=$(':radio[name="gender"]:checked').val();
+			$.ajax({
+				url: ctx+'/signup',
+				method: 'POST',
+				data: JSON.stringify({
+					id: $('#id').val(),
+					pw: $('#pw').val(),
+					name: $('#name').val(),
+					birth: $('#year').val()+$('#month').val()+$('#date').val(),
+					phone: $('#phone1').val()+$('#phone2').val()+$('#phone3').val(),
+					gender: gender,
+					email: $('#email').val()
+				}),
+				dataType: 'json',
+				contentType: 'application/json',
+				success: function(data){
+					if(data.result===1){
+						alert('가입 성공!');
+						abb1.jquery.customer_login();
+					}
+				},
+				error: function(xhr,status,msg){
+					alert('가입 실패 이유: '+msg);
+				}
+			});
+		});
 	},
 	customer_signupsuccess : function(){
 	    var ctx = abb1.session.getContextPath();
@@ -2917,7 +3059,7 @@ abb1.jquery = {
 	    	+'						<a href="javascript:abb1.jquery.customer_mypageInfo()"><input id="cancel" type="button" value="취소"/></a>'
 	    	+'					</li>'
 	    	+'					<li>'
-	    	+'						<a href="javascript:abb1.jquery.customer_mypageInfo()"><input id="confirm" type="button" value="확인"/></a>'
+	    	+'						<a href="#"><input id="confirm" type="button" value="확인"/></a>'
 	    	+'					</li>'
 	    	+'				</ul>'
 	    	+'			</div>'
@@ -2943,7 +3085,48 @@ abb1.jquery = {
 	    var cookieBirth=abb1.cookie.getCookie('birth');
 	    var birth=cookieBirth.substring(0,4)+'년'+cookieBirth.substring(4,6)+'월'+cookieBirth.substring(6,8)+'일';
 	    $('#birth').text(birth);
+	    var phone=abb1.cookie.getCookie('phone');
+	    $('#phone1').attr('placeholder',phone.substring(0,3));
+	    $('#phone2').attr('placeholder',phone.substring(3,7));
+	    $('#phone3').attr('placeholder',phone.substring(7,11));
 	    $('#gender').text(abb1.cookie.getCookie('gender')==='M'?'남자':'여자');
+	    
+	    $('#confirm').on('click',function(e){
+	    	var pw=($('#pw').val()==='')?abb1.cookie.getCookie('pw'):$('#pw').val();
+	    	var phone='';
+	    	if($('#phone1').val()+$('#phone2').val()+$('#phone3').val()===''){
+	    		phone=$('#phone1').val()+$('#phone2').val()+$('#phone3').val();
+	    	}
+	    	else if(abb1.util.checkPhone($('#phone1').val())&&abb1.util.checkPhone($('#phone2').val())&&abb1.util.checkPhone($('#phone3').val())){
+	    		phone=$('#phone1').val()+$('#phone2').val()+$('#phone3').val();
+	    	}else{
+	    		alert('정확한 휴대폰 번호를 입력하세요.');
+	    		return;
+	    	}
+	    	var phoneVal=(phone==='')?abb1.cookie.getCookie('phone'):phone;
+	    	e.preventDefault();
+	    	$.ajax({
+	    		url: ctx+'/updateInfo',
+	    		method:'POST',
+	    		data: JSON.stringify({
+	    			id: abb1.cookie.getCookie('id'),
+	    			pw: pw,
+	    			phone: phoneVal
+	    		}),
+	    		dataType: 'json',
+	    		contentType: 'application/json',
+	    		success: function(data){
+	    			if(data.result===1){
+	    				abb1.cookie.setCookie('pw',data.pw);
+	    				abb1.cookie.setCookie('phone',data.phone);
+	    				abb1.jquery.customer_mypageInfo();
+	    			}
+	    		},
+	    		error: function(xhr,status,msg){
+	    			alert('업데이트 실패 이유:'+msg);
+	    		}
+	    	});
+	    });
 	},
 	customer_updateInfoChPw : function(){
 	    var ctx = abb1.session.getContextPath();
@@ -3015,16 +3198,16 @@ abb1.jquery = {
 	    	+'			<div>'
 	    	+'				<table>'
 	    	+'		         <tr>'
-	    	+'		         	 <td><h3>지금까지 이용해주셔서 감사드립니다!</h3></td>'
+	    	+'		         	 <td><h3 id="comment">탈퇴를 하시겠습니까?</h3></td>'
 	    	+'		         </tr>'
 	    	+'		         <tr>'
 	    	+'			         <td>'
-	    	+'				        <ul>'
+	    	+'				        <ul id="ul_btn">'
 	    	+'						<li>'
 	    	+'							<a href="javascript:abb1.jquery.customer_mypageInfo()"><input type="button" value="취소"  /></a>'
 	    	+'						</li>'
 	    	+'						<li>'
-	    	+'							<a href="'+ctx+'"><input id="withdrawal_btn" type="button" value="확인"  /></a>'
+	    	+'							<a href="#"><input id="withdrawal_btn" type="button" value="확인"  /></a>'
 	    	+'						</li>'
 	    	+'						</ul>'
 	    	+'					</td>'
@@ -3053,12 +3236,27 @@ abb1.jquery = {
 	    	$.ajax({
 	    		url: ctx+'/withdrawal',
 	    		method: 'POST',
-	    		data:JSON.springify({
+	    		data:JSON.stringify({
 	    			id: abb1.cookie.getCookie('id')
 	    		}),
-	    		dataType:'application/json',
+	    		dataType:'json',
+	    		contentType:'application/json',
 	    		success:function(data){
-	    			alert(탈퇴성공);
+	    			if(data.result===1){
+	    				abb1.cookie.removeCookie('id');
+	    				abb1.cookie.removeCookie('pw');
+	    				abb1.cookie.removeCookie('name');
+	    				abb1.cookie.removeCookie('gender');
+	    				abb1.cookie.removeCookie('birth');
+	    				abb1.cookie.removeCookie('phone');
+	    				abb1.cookie.removeCookie('email');
+	    				abb1.cookie.removeCookie('point');
+	    				abb1.cookie.removeCookie('address');
+	    				$('#comment').text('지금까지 이용해주셔서 감사드립니다!');
+	    				$('#ul_btn').html('<li>'
+	    								+'<a href="'+ctx+'"><input type="button" value="확인"  /></a>'
+	    								+'</li>');
+	    			}
 	    		},
 	    		error:function(xhr,status,msg){
 	    			alert('탈퇴 실패 이유:'+msg);

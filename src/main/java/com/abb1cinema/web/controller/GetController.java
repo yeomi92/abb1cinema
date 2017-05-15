@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
+import com.abb1cinema.web.composite.Complex;
 import com.abb1cinema.web.domain.Customer;
 import com.abb1cinema.web.domain.Movie;
 import com.abb1cinema.web.domain.Review;
@@ -54,6 +57,16 @@ public class GetController {
 		return map;
 	}
 	
+	@RequestMapping(value="/checkId", method=RequestMethod.POST, consumes="application/json")
+	public @ResponseBody Map<?,?> checkId( @RequestBody Map<String,String> paramMap) throws Exception{
+		logger.info("GetController checkId() {}","ENTER");
+		Map<String, Object>map=new HashMap<>();
+		map.put("id", paramMap.get("id"));
+		int exist=getService.checkId(map);
+		map.put("result", exist);
+		return map;
+	}
+	
 	@RequestMapping(value="/get/movieRank", method=RequestMethod.POST, consumes="application/json")
 	   public @ResponseBody Map<?,?> getMovieRank() throws Exception {
 	      logger.info("getMovieRank() {}","ENTER");
@@ -77,7 +90,12 @@ public class GetController {
 	      return map;
 	   }
 	   
-	   
+	   @RequestMapping("/web/index")
+		public String main(Model model) {
+			logger.info("HomeController main() {}","ENTER");
+			model.addAttribute("context", Complex.ContextFactory.create());
+			return "index";
+		}
 	   
 
 }

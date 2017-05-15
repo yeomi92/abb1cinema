@@ -11,9 +11,11 @@ import com.abb1cinema.web.domain.Review;
 
 @Repository
 public interface Mapper {
+	public int registerCustomer(Map<?,?> map) throws Exception;
 	public Customer findCustomer(Map<?,?> map) throws Exception;
 	public int existCustomer(Map<?,?> map) throws Exception;
 	public int deleteCustomer(Map<?,?> map) throws Exception;
+	public int updateCustomer(Map<?,?> map) throws Exception;
 	public Movie getMovie(Map<?,?> map) throws Exception;
 	public List<Movie> getMovieList(Map<?,?> map) throws Exception;
 	public List<Review> getReviewList(Map<?,?> map) throws Exception;

@@ -27,8 +27,8 @@ public class GetService {
 	}
 	
 	public int checkId(Map<?,?> paramMap)throws Exception{
-		IGetService checkId=(map)->mapper.existCustomer(map);
-		return (int) checkId.execute(paramMap);
+		IGetService service=(map)->mapper.existCustomer(map);
+		return (int) service.execute(paramMap);
 	}
 	
 	public List<Movie> getMovieList(Map<?,?> paramMap)throws Exception{
@@ -37,8 +37,8 @@ public class GetService {
 	}
 	
 	public List<Review> getReviewList(Map<?,?> paramMap)throws Exception{
-		IGetService review = (map) -> mapper.getReviewList(map);
-		return (List<Review>) review.execute(paramMap);
+		IGetService service = (map) -> mapper.getReviewList(map);
+		return (List<Review>) service.execute(paramMap);
 	}
 	
 }
