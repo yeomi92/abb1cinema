@@ -1,11 +1,96 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<jsp:include page="../common/header.jsp"/>
-<div id="container">
+-- 1
+CREATE TABLE Notice(
+seq INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+file VARCHAR(200),
+title VARCHAR(50) NOT NULL,
+content VARCHAR(500) NOT NULL,
+reg_date VARCHAR(10) NOT NULL,
+hits VARCHAR(4) NOT NULL
+);
 
-</div>
+-- 2
+CREATE TABLE Movie(
+seq INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+title VARCHAR(30) NOT NULL,
+count VARCHAR(5),
+grade VARCHAR(4) NOT NULL,
+released VARCHAR(10) NOT NULL,
+info VARCHAR(40) NOT NULL,
+synopsys VARCHAR(500) NOT NULL,
+male_p VARCHAR(4) NOT NULL,
+female_p VARCHAR(4) NOT NULL,
+trailer_url VARCHAR(200) NOT NULL,
+trailer_main VARCHAR(1),
+pic_main VARCHAR(200) NOT NULL,
+pic_director VARCHAR(200),
+name_director VARCHAR(50),
+pic_actor VARCHAR(200),
+name_actor VARCHAR(50)
+);
 
-<jsp:include page="../common/footer.jsp"/>
-<script>
-	abb1.jquery.board_main(3);
-</script>
+-- 3
+CREATE TABLE Address(
+seq INT NOT NULL AUTO_INCREMENT PRIMARY KEY
+);
+
+-- 4
+CREATE TABLE Customer(
+id VARCHAR(15) PRIMARY KEY,
+pw VARCHAR(15) NOT NULL,
+name VARCHAR(15) NOT NULL,
+gender VARCHAR(1) NOT NULL,
+birth VARCHAR(8) NOT NULL,
+phone VARCHAR(11) NOT NULL,
+email VARCHAR(30) NOT NULL,
+point VARCHAR(5) NOT NULL,
+address INT,
+FOREIGN KEY(address) REFERENCES Address(seq)
+);
+
+-- 5
+CREATE TABLE Reservation(
+id VARCHAR(30) PRIMARY KEY,
+reg_date VARCHAR(10) NOT NULL,
+canceled VARCHAR(1),
+price VARCHAR(10),
+hcount  VARCHAR(10),
+customer_id VARCHAR(15),
+movie_seq INT
+FOREIGN KEY(customer_id) REFERENCES Customer(id),
+FOREIGN KEY (movie_seq) REFERENCES Movie(seq);
+);
+
+-- 6
+CREATE TABLE Review(
+seq INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+spectator VARCHAR(8) NOT NULL,
+gpa VARCHAR(2) NOT NULL,
+content VARCHAR(300) NOT NULL,
+reg_date VARCHAR(10) NOT NULL,
+customer_id VARCHAR(15),
+movie_seq INT,
+FOREIGN KEY(customer_id) REFERENCES Customer(id),
+FOREIGN KEY(movie_seq) REFERENCES Movie(seq)
+);
+
+-- 7
+CREATE TABLE Multiplex(
+seq INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(20) NOT NULL,
+address VARCHAR(40) NOT NULL,
+axis VARCHAR(40) NOT NULL
+);
+
+-- 8
+CREATE TABLE Theater(
+seq INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(4) NOT NULL,
+total_seat VARCHAR(3) NOT NULL,
+start_time VARCHAR(5) NOT NULL,
+end_time VARCHAR(5) NOT NULL,
+price VARCHAR(5) NOT NULL,
+multiplex_seq INT,
+movie_seq INT,
+FOREIGN KEY(movie_seq) REFERENCES Movie(seq),
+FOREIGN KEY(multiplex_seq) REFERENCES Multiplex(seq)
+);

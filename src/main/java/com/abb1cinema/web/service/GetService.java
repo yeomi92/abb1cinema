@@ -7,9 +7,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.abb1cinema.web.domain.Article;
+import com.abb1cinema.web.domain.Comment;
 import com.abb1cinema.web.domain.Customer;
+import com.abb1cinema.web.domain.Information;
 import com.abb1cinema.web.domain.Movie;
+import com.abb1cinema.web.domain.Multiplex;
+import com.abb1cinema.web.domain.Notice;
+import com.abb1cinema.web.domain.Reservation;
 import com.abb1cinema.web.domain.Review;
+import com.abb1cinema.web.domain.Theater;
 import com.abb1cinema.web.mapper.Mapper;
 
 @Service
@@ -41,4 +49,58 @@ public class GetService {
 		return (List<Review>) service.execute(paramMap);
 	}
 	
+	public List<Reservation> getReservationList(Map<?,?> paramMap)throws Exception{
+		IGetService service = (map) -> mapper.getReservationList(map);
+		return (List<Reservation>) service.execute(paramMap);
+	}
+	
+	public Reservation getMultiplex(Map<?,?> paramMap)throws Exception{
+		IGetService service = (map) -> mapper.getMultiplex(map);
+		return (Reservation) service.execute(paramMap);
+	}
+		   
+		   public List<Article> getArticleList(Map<?,?> paramMap)throws Exception{
+		      IGetService service = (map) -> mapper.getArticleList(map);
+		      return (List<Article>) service.execute(paramMap);
+		   }
+		   
+		   public List<Notice> getNoticeList(Map<?,?> paramMap)throws Exception{
+		      IGetService service = (map) -> mapper.getNoticeList(map);
+		      return (List<Notice>) service.execute(paramMap);
+		   }
+		   
+		   public List<Comment> getCommentList(Map<?,?> paramMap)throws Exception{
+		      IGetService service = (map) -> mapper.getCommentList(map);
+		      return (List<Comment>) service.execute(paramMap);
+		   }
+		   
+		   public List<Multiplex> getMultiplexList(Map<?,?> paramMap)throws Exception{
+		      IGetService service = (map) -> mapper.getMultiplexList(map);
+		      return (List<Multiplex>) service.execute(paramMap);
+		   }
+		   
+		   public Notice getNotice(Map<?,?> paramMap)throws Exception{
+		      IGetService service = (map) -> mapper.getNotice(map);
+		      return (Notice) service.execute(paramMap);
+		   }
+		   
+		   public Article getArticle(Map<?,?> paramMap)throws Exception{
+		      IGetService service = (map) -> mapper.getArticle(map);
+		      return (Article) service.execute(paramMap);
+		   }
+		   
+		   public int count(Map<?,?> paramMap) throws Exception{
+		      IGetService service = (map) -> mapper.count(map);
+		      return (int) service.execute(paramMap);
+		   }
+		   
+		   public List<Theater> getTheaterList(Map<?,?> paramMap) throws Exception {
+		      IGetService service = (map) -> mapper.getTheaterList(map);
+		      return (List<Theater>) service.execute(paramMap);
+		   }
+		   
+		   public List<Information> getInfoList(Map<?,?> paramMap) throws Exception {
+		      IGetService service = (map) -> mapper.getInfoList(map);
+		      return (List<Information>) service.execute(paramMap);
+		   }
 }

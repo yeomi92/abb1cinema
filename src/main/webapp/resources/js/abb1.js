@@ -231,12 +231,8 @@ abb1.cookie={
 		    }
 		    return null;
 		},
-		removeCookie :function(name){
-			var expireDate = new Date();
-		  
-		    //어제 날짜를 쿠키 소멸 날짜로 설정한다.
-		    expireDate.setDate( expireDate.getDate() - 1 );
-		    document.cookie = name + "= " + "; expires=" + expireDate.toGMTString() + "; path=/";
+		removeCookie : function(name) {
+		    abb1.cookie.setCookie(name, "", -1);
 		}
 }
 
@@ -2388,89 +2384,50 @@ abb1.jquery = {
 	},
 	customer_login : function(){
 		var ctx = abb1.session.getContextPath();
-		var customer_login_form = $('#customer_login_form');
-		customer_login_form.addClass('abb1_signup_form');
-		customer_login_form.find('div:first-child').addClass('abb1_signup_settings');
-		customer_login_form.find('h2').addClass('abb1_login_maintext');
-		$('#login_table').addClass('abb1_signup_form_control');
-		$('#login_btn').addClass('btn abb1_btn_lg abb1_login_btn');
-		$('#find_table').addClass('abb1_find_table');
-		$('#find_table').find('tr:nth-child(1)>td').css('padding','0 0 0 82px').css('text-align','left');
-		$('#find_table').find('tr:nth-child(2)>td').addClass('abb1_a_findIdPw');
-		var login_footer = $('#login_footer');
-		login_footer.addClass('abb1_div_login_footer');
-		login_footer.find('table').addClass('abb1_width_center_w800');
-		login_footer.find('td:nth-child(1)').addClass('abb1_width_448');
-		login_footer.find('td:nth-child(2)').addClass('abb1_width_200');
-		login_footer.find('td:nth-child(2)').find('input').addClass('btn abb1_btn_lg abb1_btn_verification').css('height','60px').css('width','120px').css('font-size','15px');
-		var authId=$.cookie('authId');
-		if(authId!=undefined){
-			$('#customer_id').val(authId);
-			$('#remember').prop("checked",true);
-		}
-		$('#login_btn').on('click',function(e){
-			if($.trim($('#customer_id').val())==''){
-				alert('아이디를 입력하세요.');
-				return;
-			}else if($('#customer_pw').val()==''){
-				alert('비밀번호를 입력하세요.');
-				return;
-			}
-			else{
-				alert('아이디:'+$('#customer_id').val()+'비밀번호:'+$('#customer_pw').val());
-				var checked=$("#remember").prop("checked");
-	            if(checked){
-	                $.cookie('authId', $("#customer_id").val());
-	            }else{
-	                $.removeCookie("username");
-	            }
-				e.preventDefault();
-				$.ajax({
-					url: ctx+'/login',
-					method: 'POST',
-					data: JSON.stringify({
-						id: $('#customer_id').val(),
-						pw: $('#customer_pw').val()
-					}),
-					dataType: 'json',
-					contentType: 'application/json',
-					success: function(data){
-						if(data.exist==='0'){
-							alert('아이디가 존재하지 않습니다.');
-						}else if(data.permission==='admin'){
-							alert('관리자로 로그인 하셨습니다.');
-							abb1.jquery.admin_login();
-							$('#ul_gnb').html('<li><a id="login" href="'+ctx+'">로그아웃<span class="sr-only">(current)</span></a></li>'
-									+'<li><a id="FAQ" href="'+ctx+'/board/main">고객센터<span class="sr-only">(current)</span></a></li>');
-						}else if(data.permission==='customer'){
-							alert('로그인 성공');
-							abb1.cookie.setCookie('id',data.customer.id);
-							abb1.cookie.setCookie('pw',data.customer.pw);
-							abb1.cookie.setCookie('name',data.customer.name);
-							abb1.cookie.setCookie('gender',data.customer.gender);
-							abb1.cookie.setCookie('birth',data.customer.birth);
-							abb1.cookie.setCookie('phone',data.customer.phone);
-							abb1.cookie.setCookie('email',data.customer.email);
-							abb1.cookie.setCookie('point',data.customer.point);
-							abb1.cookie.setCookie('address',data.customer.address);
-							$('#ul_gnb').html('<li><a id="login" href="'+ctx+'">로그아웃<span class="sr-only">(current)</span></a></li>'
-										+'<li><a id="register" href="'+ctx+'/customer/mypage">마이시네마<span class="sr-only">(current)</span></a></li>'
-										+'<li><a id="FAQ" href="'+ctx+'/board/main">고객센터<span class="sr-only">(current)</span></a></li>');
-							abb1.jquery.customer_mypage();
-						}else{
-							alert('비밀번호를 다시 확인하세요.');
+		var yeom=ctx+'/resources/js/yeom.js';
+		$.getScript(yeom,function(){
+			customer_login_css();
+			var authId=customer_login_cookie();
+			$('#login_btn').on('click',function(e){
+				if($.trim($('#customer_id').val())==''){
+					alert('아이디를 입력하세요.');
+					return;
+				}else if($('#customer_pw').val()==''){
+					alert('비밀번호를 입력하세요.');
+					return;
+				}
+				else{
+					alert('아이디:'+$('#customer_id').val()+'비밀번호:'+$('#customer_pw').val());
+					var checked=$("#remember").prop("checked");
+		            if(checked){
+		                $.cookie('authId', $("#customer_id").val());
+		            }else{
+		                $.removeCookie("username");
+		            }
+					e.preventDefault();
+					$.ajax({
+						url: ctx+'/login',
+						method: 'POST',
+						data: JSON.stringify({
+							id: $('#customer_id').val(),
+							pw: $('#customer_pw').val()
+						}),
+						dataType: 'json',
+						contentType: 'application/json',
+						success: function(data){
+							customer_login_success(data,ctx);
+						},
+						error: function(xhr,status,msg){
+							alert('로그인 실패이유:'+msg)
 						}
-						$('#loginForm').submit();
-					},
-					error: function(xhr,status,msg){
-						alert('로그인 실패이유:'+msg)
-					}
-				});
-			}
+					});
+				}
+			});
 		});
 	},
 	customer_mypage : function(){
 	    var ctx = abb1.session.getContextPath();
+	    var yeom = ctx+'/resources/js/yeom.js';
 	    var view='<div id="mypage">'
 	    	+'		<div> '
 	    	+'			<h2><strong>마이시네마</strong></h2>'
@@ -2494,28 +2451,36 @@ abb1.jquery = {
 	    	+'					<a href="javascript:abb1.jquery.customer_mypageCancel()">취소내역</a>'
 	    	+'				</li>'
 	    	+'			</ul>'
+	    	
 	    	+'			<div id="mypage_reservation">'
 	    	+'				<table>'
 	    	+'					<tr>'
-	    	+'						<td rowspan="4"><span id="reservation_pic"><img src="'+ctx+'/resources/img/movie/movie_poster_6.png" width="60%" height="60%" alt="" /></span></td>'
-	    	+'						<td><span id="reservation_no">예매번호(예매일)</span></td>'
-	    	+'						<td colspan="2"><span>123456789</span>(2017-04-21)</td>'
+	    	+'						<td rowspan="5"><span id="reservation_pic"><img id="movie_poster" src="" width="60%" height="60%" alt="" /></span></td>'
+	    	+'						<td><span id="reservation_no">예매번호</span></td>'
+	    	+'						<td id="reservation_number">123456789</td>'
+	    	+'					</tr>'
+	    	+'					<tr>'
+	    	+'						<td>예매일</td>'
+	    	+'						<td colspan="2" id="reservation_date">2017-04-21</td>'
 	    	+'					</tr>'
 	    	+'					<tr>'
 	    	+'						<td>사용상태</td>'
-	    	+'						<td>취소가능</td>'
-	    	+'						<td><a id="detail" href="javascript:abb1.jquery.customer_mypageReservation()">상세<img src="'+ctx+'/resources/img/icon/downarrow.png" width="3%" height="3%" alt="" /></a></td>'
+	    	+'						<td id="canceled">취소가능</td>'
+	    	+'						<td id="detail_icon"><a id="detail" href="#">상세<img src="'+ctx+'/resources/img/icon/downarrow.png" width="3%" height="3%" alt="" /></a></td>'
 	    	+'					</tr>'
 	    	+'					<tr>'
 	    	+'						<td>예매내역</td>'
-	    	+'						<td colspan="2">아빠는 딸</td>'
+	    	+'						<td colspan="2" id="movie_name">아빠는 딸</td>'
 	    	+'					</tr>'
 	    	+'					<tr>'
-	    	+'						<td>총 결제 금액</td>'
-	    	+'						<td colspan="2">22,000원</td>'
+	    	+'						<td id="price_title">총 결제 금액</td>'
+	    	+'						<td colspan="2" id="reservation_price">22,000원</td>'
 	    	+'					</tr>'
 	    	+'				</table>'
 	    	+'			</div>'
+	    	
+	    	
+	    	
 	    	+'		</div>'
 	    	+'	</div>';
 	    $('#container').html(view);
@@ -2539,6 +2504,82 @@ abb1.jquery = {
 		$('#reservation_pic').addClass('abb1_margin_left_20');
 		$('#reservation_no').addClass('abb1_margin_right_20');
 		mypage_reservation.find('tr:nth-child(2)').find('td:nth-child(3)').addClass('abb1_text_right');
+		$('#detail_icon').css('text-align','right');
+		$('#price_title').css('padding-right','25px');
+		$.ajax({
+			url: ctx+'/getReservation',
+			method: 'POST',
+			data: JSON.stringify({
+				id: abb1.cookie.getCookie('id')
+			}),
+			dataType: 'json',
+			contentType: 'application/json',
+			success: function(data){
+				$.getScript(yeom,function(){
+					customer_mypage_reservation(data,ctx);
+				});
+			},
+			error: function(xhr,status,msg){
+				alert('실패 이유: '+msg)
+			}
+		});
+		$('#detail').on('click',function(e){
+			e.preventDefault();
+			alert('상세보기 클릭');
+			$('#mypage_reservation').append('<div id="detail_reservation">'
+			    	+'					<div>'
+			    	+'						<h4>상세내용</h4>'
+			    	+'					</div>'
+			    	+'					<div>'
+				    +'					<table>'
+				    +'						<tr>'
+				    +'							<td rowspan="4"><span id="detail_reservation_pic"><img id="movie_poster" src="'+ctx+'/resources/img/movie/movie_poster_6.png" width="60%" height="60%" alt="" /></span></td>'
+				    +'							<td colspan="2"><h4><strong id="movie_name">아빠는 딸</strong></h4></td>'
+				    +'						</tr>'
+				    +'						<tr>'
+				    +'							<td>상영일</td>'
+				    +'							<td id="show_info">2017-04-23 | 상영시간 13:50 ~ 15:55 | 상영관 가산디지털, 1관</td>'
+				    +'						</tr>'
+				    +'						<tr>'
+				    +'							<td>관람인원</td>'
+				    +'							<td id="customer_info">성인2 | 좌석 E10,E11</td>'
+				    +'						</tr>'
+				    +'						<tr>'
+				    +'							<td><span>주문금액</span></td>'
+				    +'							<td id="reservation_price">22,000원</td>'
+				    +'						</tr>'
+				    +'					</table>'
+			    	+'					</div>'
+			    	+'					<div>'
+			    	+'						<input id="reservation_cancel" type="button" value="결제취소"  />'
+			    	+'					</div>'
+			    	+'				</div>'
+			 );
+			 var detail_reservation = $('#detail_reservation');
+			 detail_reservation.addClass('abb1_detail_reservation');
+			 detail_reservation.find('div:first-child').addClass('abb1_mypage_reservation');
+			 detail_reservation.find('div:nth-child(2)').addClass('abb1_find_pw_margin');
+			 $('#detail_reservation_pic').addClass('abb1_margin_left_20');
+			 $('#reservation_cancel').addClass('btn abb1_btn_lg abb1_btn_verification').css('height','40px').css('width','100px').css('font-size','15px');
+			 $('#detail_icon').html('<a id="close" href="#">닫기<img src="'+ctx+'/resources/img/icon/uparrow.png" width="3%" height="3%" alt="" /></a>')
+			 $.ajax({
+					url: ctx+'/getReservation',
+					method: 'POST',
+					data: JSON.stringify({
+						id: abb1.cookie.getCookie('id')
+					}),
+					dataType: 'json',
+					contentType: 'application/json',
+					success: function(data){
+						$.getScript(yeom,function(){
+							customer_mypage_reservation(data,ctx);
+						});
+					},
+					error: function(xhr,status,msg){
+						alert('실패 이유: '+msg)
+					}
+				});
+		});
 	},
 	customer_mypageCancel : function(){
 	    var ctx = abb1.session.getContextPath();
@@ -2701,34 +2742,36 @@ abb1.jquery = {
 	    	+'						<td colspan="2">22,000원</td>'
 	    	+'					</tr>'
 	    	+'				</table>'
+	    	//
 	    	+'				<div id="detail_reservation">'
 	    	+'					<div>'
 	    	+'						<h4>상세내용</h4>'
 	    	+'					</div>'
 	    	+'					<div>'
-	    	+'					<table>'
-	    	+'						<tr>'
-	    	+'							<td rowspan="4"><span id="detail_reservation_pic"><img src="'+ctx+'/resources/img/movie/movie_poster_6.png" width="60%" height="60%" alt="" /></span></td>'
-	    	+'							<td colspan="2"><h4><strong>아빠는 딸</strong></h4></td>'
-	    	+'						</tr>'
-	    	+'						<tr>'
-	    	+'							<td>상영일</td>'
-	    	+'							<td>2017-04-23 | 상영시간 13:50 ~ 15:55 | 상영관 가산디지털, 1관</td>'
-	    	+'						</tr>'
-	    	+'						<tr>'
-	    	+'							<td>관람인원</td>'
-	    	+'							<td>성인2 | 좌석 E10,E11</td>'
-	    	+'						</tr>'
-	    	+'						<tr>'
-	    	+'							<td><span>주문금액</span></td>'
-	    	+'							<td>22,000원</td>'
-	    	+'						</tr>'
-	    	+'					</table>'
+		    	+'					<table>'
+		    	+'						<tr>'
+		    	+'							<td rowspan="4"><span id="detail_reservation_pic"><img src="'+ctx+'/resources/img/movie/movie_poster_6.png" width="60%" height="60%" alt="" /></span></td>'
+		    	+'							<td colspan="2"><h4><strong>아빠는 딸</strong></h4></td>'
+		    	+'						</tr>'
+		    	+'						<tr>'
+		    	+'							<td>상영일</td>'
+		    	+'							<td>2017-04-23 | 상영시간 13:50 ~ 15:55 | 상영관 가산디지털, 1관</td>'
+		    	+'						</tr>'
+		    	+'						<tr>'
+		    	+'							<td>관람인원</td>'
+		    	+'							<td>성인2 | 좌석 E10,E11</td>'
+		    	+'						</tr>'
+		    	+'						<tr>'
+		    	+'							<td><span>주문금액</span></td>'
+		    	+'							<td>22,000원</td>'
+		    	+'						</tr>'
+		    	+'					</table>'
 	    	+'					</div>'
 	    	+'					<div>'
 	    	+'						<input id="reservation_cancel" type="button" value="결제취소"  />'
 	    	+'					</div>'
 	    	+'				</div>'
+	    	//
 	    	+'			</div>'
 	    	+'		</div>'
 	    	+'	</div>';
@@ -2762,111 +2805,10 @@ abb1.jquery = {
 	},
 	customer_signup : function(){
 	    var ctx = abb1.session.getContextPath();
-	    var view='<div id="signUp">'
-	    	+'	    <div>'
-	    	+'	      <h2>회원가입</h2>'
-	    	+'	      <div id="signup_tables">'
-	    	+'	         <table>'
-	    	+'	            <tr>'
-	    	+'	               <td><input id="id" name="id" type="text" placeholder="아이디"></td>'
-	    	+'	            </tr>'
-	    	+'	            <tr>'
-	    	+'	               <td id="result_id_msg"></td>'
-	    	+'	            </tr>'
-	    	+'	            <tr>'
-	    	+'	               <td><input id="pw" name="pw" type="password" placeholder="비밀번호"></td>'
-	    	+'	            </tr>'
-	    	+'	            <tr>'
-	    	+'	               <td id="result_pw_msg"></td>'
-	    	+'	            </tr>'
-	    	+'	            <tr>'
-	    	+'	               <td><input id="check_pw" type="password" placeholder="비밀번호 확인"></td>'
-	    	+'	            </tr>'
-	    	+'	            <tr>'
-	    	+'	               <td id="check_pw_msg"></td>'
-	    	+'	            </tr>'
-	    	+'	         </table>'
-	    	+'	         <table>'
-	    	+'	            <tr>'
-	    	+'	               <td colspan="3"><input id="name" name="name" type="text" placeholder="이름"></td>'
-	    	+'	            </tr>'
-	    	+'	            <tr>'
-	    	+'	               <td><input id="year" name="year" type="text" placeholder="생년"></td>'
-	    	+'	            <td>'
-	    	+'	               <select id="month" name="month">'
-	    	+'	                  <option value="" selected>월</option>'
-	    	+'	                  <option value="1">1</option>'
-	    	+'	                  <option value="2">2</option>'
-	    	+'	                  <option value="3">3</option>'
-	    	+'	                  <option value="4">4</option>'
-	    	+'	                  <option value="5">5</option>'
-	    	+'	                  <option value="6">6</option>'
-	    	+'	                  <option value="7">7</option>'
-	    	+'	                  <option value="8">8</option>'
-	    	+'	                  <option value="9">9</option>'
-	    	+'	                  <option value="10">10</option>'
-	    	+'	                  <option value="11">11</option>'
-	    	+'	                  <option value="12">12</option>'
-	    	+'	               </select>'
-	    	+'	            </td>'
-	    	+'	            <td><input id="date" name="date" type="text" placeholder="일"></td>'
-	    	+'	         </tr>'
-	    	+'	         <tr>'
-	    	+'	            <td><input id="phone1" name="phone1" type="text" placeholder="010"></td>'
-	    	+'	            <td><input id="phone2" name="phone2" type="text"></td>'
-	    	+'	            <td><input id="phone3" name="phone3" type="text"></td>'
-	    	+'	         </tr>'
-	    	+'	      </table>'
-	    	+'	      <table>'
-	    	+'	         <tr>'
-	    	+'	            <td><div><input type="radio" id="male" name="gender" value="M" checked="checked"/><label id="manLb" for="man">남자</label></div></td>'
-	    	+'	            <td><div><input type="radio" id="female" name="gender" value="F"/><label id="womanLb" for="woman">여자</label></div></td>'
-	    	+'	         </tr>'
-	    	+'	      </table>'
-	    	+'	      <table>'
-	    	+'	      	<tr>'
-	    	+'	            <td><input type="text" placeholder="주소" ></td>'
-	    	+'	            <td>'
-	    	+'	               <input id="find_postcode" type="button" value="우편번호 검색" type="submit">'
-	    	+'	            </td>'
-	    	+'	         </tr>'
-	    	+'	      	<tr>'
-	    	+'              <td colspan="2"><input type="text" placeholder="주소"></td>'
-	    	+'	        </tr>'
-	    	+'	      	<tr>'
-	    	+'              <td colspan="2"><input type="text" placeholder="상세주소"></td>'
-	    	+'	        </tr>'
-	    	+'	      </table>'
-	    	+'	      <table>'
-	    	+'	         <tr>'
-	    	+'	            <td colspan="2"><input id="email" name="email" type="text" placeholder="이메일" ></td>'
-	    	+'	            <td>'
-	    	+'	               <input id="send_code" type="button" value="인증번호 발송" type="submit">'
-	    	+'	            </td>'
-	    	+'	         </tr>'
-	    	+'	         <tr>'
-	    	+'	            <td colspan="3"><input type="text" placeholder="인증번호 입력"></td>'
-	    	+'	         </tr>'
-	    	+'	      </table>'
-	    	+'	      	<a href="javascript:abb1.jquery.customer_signupsuccess()"><input id="signup_finish" type="button" value="가입하기"/></a>'
-	    	+'	      </div>'
-	    	+'	   </div> '  
-	    	+'	</div>';
-	    $('#container').html(view);
-		var signUp = $('#signUp');
-		signUp.addClass('abb1_signup_form');
-		signUp.find('div:first-child').addClass('abb1_signup_settings');
-		signUp.find('h2:first-child').addClass('abb1_signup_maintext');
-		var signup_tables = $('#signup_tables');
-		signup_tables.find('table').addClass('abb1_signup_form_control');
-		signup_tables.find('select').addClass('btn btn_default');
-		signup_tables.find('table').find('div').addClass('abb1_sigunup_form_gender');
-		$('#find_postcode').addClass('btn abb1_btn_lg abb1_btn_verification');
-		$('#send_code').addClass('btn abb1_btn_lg abb1_btn_verification');
-		$('#signup_finish').css('background','#453d3f').css('color','#efebdb').css('font-size','15px').addClass('btn abb1_btn_lg abb1_btn_verification abb1_btn_confirm');
-		$('#result_id_msg').addClass('abb1_signup_check');
-		$('#result_pw_msg').addClass('abb1_signup_check');
-		$('#check_pw_msg').addClass('abb1_signup_check');
+	    var yeom = ctx+'/resources/js/yeom.js';
+		$.getScript(yeom,function(){
+			customer_signup_view();
+			customer_signup_css();
 		$('#id').keyup(function(){
 	            var id = $('#id').val();
 	            $.ajax({
@@ -2878,15 +2820,7 @@ abb1.jquery = {
 	                dateType: 'json',
 	                contentType: 'application/json',
 	                success : function(data) {
-	                    if (data.result===0) {
-	                        if(abb1.util.checkId(id)){
-	                        	$("#result_id_msg").text("사용 가능한 아이디입니다.");
-	                        }else{
-	                        	$("#result_id_msg").text("5~20자의 영문 소문자, 숫자와 특수기호( _ ),(-)만 사용 가능합니다.");
-	                        }
-	                    }else {
-	                        $("#result_id_msg").text("이미 사용중인 아이디입니다.");
-	                    }
+	                	customer_check_id(data);
 	                },
 	                error: function(xhr,status,msg){
 	                	alert('실패 이유: '+msg);
@@ -2894,17 +2828,10 @@ abb1.jquery = {
 	            });
 	    });
 		$('#pw').keyup(function(){
-            if(abb1.util.checkPw($('#pw').val())){
-            	$("#result_pw_msg").text("사용 가능한 비밀번호입니다.");
-            }
-            else{
-            	$("#result_pw_msg").text("5~15자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
-            }
+			customer_check_pw();
 		});
 		$('#check_pw').keyup(function(){
-            if($('#pw').val()===$('#check_pw').val()){
-            	$("#check_pw_msg").text("비밀번호가 일치합니다.");
-            }
+			customer_correct_pw();
 		});
 		$('#send_code').on('click',function(e){
 			$.ajax({
@@ -2959,6 +2886,7 @@ abb1.jquery = {
 				}
 			});
 		});
+	});
 	},
 	customer_signupsuccess : function(){
 	    var ctx = abb1.session.getContextPath();
@@ -3004,128 +2932,39 @@ abb1.jquery = {
 	},
 	customer_updateInfo : function(){
 	    var ctx = abb1.session.getContextPath();
-	    var view='<div id="signUp">'
-	    	+'	    <div>'
-	    	+'	      <h2><strong>회원정보변경</strong></h2>'
-	    	+'			<div id="updateInfo">'
-	    	+'				<table>'
-	    	+'					<tr>'
-	    	+'						<td><strong>아이디</strong></td>'
-	    	+'						<td id="id">yheisun</td>'
-	    	+'					</tr>'
-	    	+'					<tr>'
-	    	+'						<td><strong>비밀번호</strong></td>'
-	    	+'						<td><input id="pw" type="password" placeholder="비밀번호"><input type="password" placeholder="비밀번호 확인"></td>'
-	    	+'					</tr>'
-	    	+'					<tr>'
-	    	+'						<td><strong>성명</strong></td>'
-	    	+'						<td id="name">염혜선</td>'
-	    	+'					</tr>'
-	    	+'					<tr>'
-	    	+'						<td><strong>생년</strong></td>'
-	    	+'						<td id="birth">1992년 10월 15일</td>'
-	    	+'					</tr>'
-	    	+'					<tr>'
-	    	+'						<td><strong>성별</strong></td>'
-	    	+'						<td id="gender">여자</td>'
-	    	+'					</tr>'
-	    	+'					<tr>'
-	    	+'						<td><strong>이메일</strong></td>'
-	    	+'						<td id="email">yheisun@gmail.com</td>'
-	    	+'					</tr>'
-	    	+'					<tr>'
-	    	+'				</table>'
-	    	+'				<table>'
-	    	+'					<tr>'
-	    	+'						<td><input id="phone1" type="text" placeholder="010"></td>'
-	    	+'						<td><input id="phone2" type="text"></td>'
-	    	+'						<td><input id="phone3" type="text"></td>'
-	    	+'					</tr>'
-	    	+'				</table>'
-	    	+'				<table>'
-	    	+'					<tr>'
-	    	+'						<td><input type="text" placeholder="주소"></td>'
-	    	+'						<td><input id="find_postcode" type="button" value="우편번호 검색"></td>'
-	    	+'					</tr>'
-	    	+'					<tr>'
-	    	+'						<td colspan="2"><input type="text" placeholder="주소"></td>'
-	    	+'					</tr>'
-	    	+'					<tr>'
-	    	+'						<td colspan="2"><input type="text" placeholder="상세주소"></td>'
-	    	+'					</tr>'
-	    	+'				</table>'
-	    	+'				<ul>'
-	    	+'					<li>'
-	    	+'						<a href="javascript:abb1.jquery.customer_mypageInfo()"><input id="cancel" type="button" value="취소"/></a>'
-	    	+'					</li>'
-	    	+'					<li>'
-	    	+'						<a href="#"><input id="confirm" type="button" value="확인"/></a>'
-	    	+'					</li>'
-	    	+'				</ul>'
-	    	+'			</div>'
-	    	+'		</div>'
-	    	+'	</div>';
-	    $('#container').html(view);
-	    var signUp = $('#signUp');
-	    signUp.addClass('abb1_signup_form');
-	    signUp.find('div:first-child').addClass('abb1_signup_settings');
-	    signUp.find('h2:first-child').addClass('abb1_signup_maintext');
-	    var updateInfo = $('#updateInfo');
-	    updateInfo.find('table').addClass('abb1_signup_form_control').css('text-align','left');
-	    updateInfo.find('table:nth-child(2)').find('td:first-child').addClass('abb1_height_55');
-	    updateInfo.find('table:nth-child(3)').find('td').addClass('abb1_height_0');
-	    $('#find_postcode').addClass('btn abb1_btn_lg abb1_btn_verification');
-	    updateInfo.find('ul').addClass('abb1_page_ul_inline abb1_updateinfo_margin');
-	    updateInfo.find('li:first-child').addClass('abb1_finc_id_cancel_btn');
-	    updateInfo.find('li:nth-child(2)').addClass('abb1_page_li_inline');
-	    $('#cancel').addClass('btn abb1_btn_lg abb1_btn_verification').css('height','50px').css('width','150px').css('font-size','17px').css('color','#efebdb').css('background','#453d3f');
-	    $('#confirm').addClass('btn abb1_btn_lg abb1_btn_verification').css('height','50px').css('width','150px').css('font-size','17px').css('color','#efebdb').css('background','#453d3f');
-	    $('#id').text(abb1.cookie.getCookie('id'));
-	    $('#name').text(abb1.cookie.getCookie('name'));
-	    var cookieBirth=abb1.cookie.getCookie('birth');
-	    var birth=cookieBirth.substring(0,4)+'년'+cookieBirth.substring(4,6)+'월'+cookieBirth.substring(6,8)+'일';
-	    $('#birth').text(birth);
-	    var phone=abb1.cookie.getCookie('phone');
-	    $('#phone1').attr('placeholder',phone.substring(0,3));
-	    $('#phone2').attr('placeholder',phone.substring(3,7));
-	    $('#phone3').attr('placeholder',phone.substring(7,11));
-	    $('#gender').text(abb1.cookie.getCookie('gender')==='M'?'남자':'여자');
-	    
+	    var yeom = ctx+'/resources/js/yeom.js'
+	    $.getScript(yeom,function(){
+	    	customer_updateInfo_view();
+	    	customer_updateInfo_css();
+	    	customer_updateInfo_info();
+	    $('#pw').keyup(function(){
+	    	customer_check_pw();
+		});
+		$('#check_pw').keyup(function(){
+			customer_correct_pw();
+		});
 	    $('#confirm').on('click',function(e){
-	    	var pw=($('#pw').val()==='')?abb1.cookie.getCookie('pw'):$('#pw').val();
-	    	var phone='';
-	    	if($('#phone1').val()+$('#phone2').val()+$('#phone3').val()===''){
-	    		phone=$('#phone1').val()+$('#phone2').val()+$('#phone3').val();
-	    	}
-	    	else if(abb1.util.checkPhone($('#phone1').val())&&abb1.util.checkPhone($('#phone2').val())&&abb1.util.checkPhone($('#phone3').val())){
-	    		phone=$('#phone1').val()+$('#phone2').val()+$('#phone3').val();
-	    	}else{
-	    		alert('정확한 휴대폰 번호를 입력하세요.');
-	    		return;
-	    	}
-	    	var phoneVal=(phone==='')?abb1.cookie.getCookie('phone'):phone;
 	    	e.preventDefault();
+	    	var pw=($('#pw').val()==='')?abb1.cookie.getCookie('pw'):$('#pw').val();
+	    	var phone=customer_updateInfo_phone();
 	    	$.ajax({
 	    		url: ctx+'/updateInfo',
 	    		method:'POST',
 	    		data: JSON.stringify({
 	    			id: abb1.cookie.getCookie('id'),
 	    			pw: pw,
-	    			phone: phoneVal
+	    			phone: phone
 	    		}),
 	    		dataType: 'json',
 	    		contentType: 'application/json',
 	    		success: function(data){
-	    			if(data.result===1){
-	    				abb1.cookie.setCookie('pw',data.pw);
-	    				abb1.cookie.setCookie('phone',data.phone);
-	    				abb1.jquery.customer_mypageInfo();
-	    			}
+	    			customer_updateInfo_success(data);
 	    		},
 	    		error: function(xhr,status,msg){
 	    			alert('업데이트 실패 이유:'+msg);
 	    		}
 	    	});
+	    });
 	    });
 	},
 	customer_updateInfoChPw : function(){

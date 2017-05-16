@@ -6,5 +6,5 @@ import lombok.*;
 
 @Component @Data @Lazy
 public class Article {
-	String seq, type, title, content, file, date, hits, confirm, customer_id, multiplex_id, comment_seq;
+	String seq, article_type, title, content, file, reg_date, hits, customer_id, multiplex_seq;
 }
