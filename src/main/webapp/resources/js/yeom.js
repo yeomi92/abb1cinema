@@ -318,17 +318,75 @@ function customer_updateInfo_success(data){
 	}
 }
 
-function customer_mypage_reservation(data,ctx){
-	$('#movie_name').text(data.movie.title);
-	$('#movie_poster').attr('src',ctx+'/resources/img/movie/'+data.movie.pic_main);
-	$('#reservation_date').text(data.reservation.reg_date);
-	$('#reservation_number').text(data.reservation.id);
-	$('#reservation_price').text(data.reservation.price+'원');
-	if(data.reservation.canceled==='1'){
-		$('#canceled').text('취소가능');
-	}else if(data.reservation.canceled==='2'){
-		$('#canceled').text('사용');
+function customer_mypage_reservation(info_list,ctx,i){
+	$('#movie_name'+i+'').text(info_list[i].movTitle);
+	$('#movie_poster'+i+'').attr('src',ctx+'/resources/img/movie/'+info_list[i].movPicMain);
+	$('#reservation_date'+i+'').text(info_list[i].resRegDate);
+	$('#reservation_number'+i+'').text(info_list[i].resId);
+	$('#reservation_price'+i+'').text(info_list[i].resPrice+'원');
+	if(info_list[i].resCanceled==='N'){
+		$('#canceled'+i+'').text('취소가능');
+	}else if(info_list[i].resCanceled==='Y'){
+		$('#canceled'+i+'').text('취소');
 	}else{
-		$('#canceled').text('취소');
+		$('#canceled'+i+'').text('사용');
+	}
+}
+function customer_mypage_reservation_table(i,ctx){
+	var view='<div id="mypage_table'+i+'">	<table>'
+	+'					<tr>'
+	+'						<td id="movie_img'+i+'" rowspan="5"><span id="reservation_pic'+i+'"><img id="movie_poster'+i+'" src="" width="115px" height="150px" alt="" /></span></td>'
+	+'						<td><span id="reservation_no'+i+'">예매번호</span></td>'
+	+'						<td id="reservation_number'+i+'">123456789</td>'
+	+'					</tr>'
+	+'					<tr>'
+	+'						<td>예매일</td>'
+	+'						<td colspan="2" id="reservation_date'+i+'">2017-04-21</td>'
+	+'					</tr>'
+	+'					<tr>'
+	+'						<td>사용상태</td>'
+	+'						<td id="canceled'+i+'">취소가능</td>'
+	+'						<td id="detail_icon'+i+'"><a id="detail'+i+'" href="#">상세<img src="'+ctx+'/resources/img/icon/downarrow.png" width="3%" height="3%" alt="" /></a></td>'
+	+'					</tr>'
+	+'					<tr>'
+	+'						<td>예매내역</td>'
+	+'						<td colspan="2" id="movie_name'+i+'">아빠는 딸</td>'
+	+'					</tr>'
+	+'					<tr>'
+	+'						<td id="price_title'+i+'">총 결제 금액</td>'
+	+'						<td colspan="2" id="reservation_price'+i+'">22,000원</td>'
+	+'					</tr>'
+	+'				</table></div>'
+	return view;
+}
+function customer_mypage_css(length){
+	var mypage = $('#mypage');
+	mypage.addClass('abb1_find_id_container');
+	$('#mypageGnb').addClass('abb1_padding_top_20 abb1_width_left');
+	mypage.find('table').css('margin','15px');
+	mypage.find('div:first-child').addClass('abb1_width_left');
+	mypage.find('div:first-child').find('h2').addClass('abb1_color_bold_brown');
+	mypage.find('div:nth-child(2)').find('ul').addClass('abb1_page_ul_inline');
+	mypage.find('div:nth-child(2)').find('li').addClass('abb1_page_li_inline');
+	mypage.find('div:nth-child(2)').find('li:nth-child(1)').find('a').addClass('abb1_mypage_select_btn');
+	mypage.find('div:nth-child(2)').find('li:nth-child(2)').find('a').addClass('abb1_mypage_not_select_btn');
+	var mypage_reservation_content = $('#mypage_reservation_content');
+	mypage_reservation_content.addClass('abb1_mypage_reservation_content');
+	mypage_reservation_content.find('ul').addClass('abb1_page_ul_inline abb1_mypage_margin');
+	mypage_reservation_content.find('li').addClass('abb1_page_li_inline');
+	mypage_reservation_content.find('li').find('a').addClass('abb1_detail_gnb_li');
+	var mypage_reservation = $('#mypage_reservation');
+	mypage_reservation.addClass('abb1_page_reservation');
+	mypage_reservation.find('tr:first-child').addClass('abb1_margin_left_20');
+	mypage_reservation.find('tr:nth-child(2)').find('td:nth-child(3)').addClass('abb1_text_right');
+	mypage.find('table>tr:nth-child(3)>td:nth-child(3)').css('text-align','right');
+	$('#default_msg').css('padding-left','20px');
+	mypage.find('div:first-child>h4').addClass('abb1_width_right');
+	for(var i=0;i<length;i++){
+		$('#movie_img'+i+'').css('padding-right','35px');
+		$('#reservation_pic'+i+'').addClass('abb1_margin_left_20');
+		$('#reservation_no'+i+'').addClass('abb1_margin_right_20');
+		$('#detail_icon'+i+'').css('text-align','right');
+		$('#price_title'+i+'').css('padding-right','25px');
 	}
 }

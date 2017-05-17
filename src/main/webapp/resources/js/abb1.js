@@ -2430,7 +2430,7 @@ abb1.jquery = {
 	    var yeom = ctx+'/resources/js/yeom.js';
 	    var view='<div id="mypage">'
 	    	+'		<div> '
-	    	+'			<h2><strong>마이시네마</strong></h2>'
+	    	+'			<h2><strong>마이시네마</strong></h2><h4><strong>내 포인트</strong>: <span id="point"></span>점</h4>'
 	    	+'		</div>'
 	    	+'		<div id="mypageGnb">'
 	    	+'			<ul>'
@@ -2453,30 +2453,6 @@ abb1.jquery = {
 	    	+'			</ul>'
 	    	
 	    	+'			<div id="mypage_reservation">'
-	    	+'				<table>'
-	    	+'					<tr>'
-	    	+'						<td rowspan="5"><span id="reservation_pic"><img id="movie_poster" src="" width="60%" height="60%" alt="" /></span></td>'
-	    	+'						<td><span id="reservation_no">예매번호</span></td>'
-	    	+'						<td id="reservation_number">123456789</td>'
-	    	+'					</tr>'
-	    	+'					<tr>'
-	    	+'						<td>예매일</td>'
-	    	+'						<td colspan="2" id="reservation_date">2017-04-21</td>'
-	    	+'					</tr>'
-	    	+'					<tr>'
-	    	+'						<td>사용상태</td>'
-	    	+'						<td id="canceled">취소가능</td>'
-	    	+'						<td id="detail_icon"><a id="detail" href="#">상세<img src="'+ctx+'/resources/img/icon/downarrow.png" width="3%" height="3%" alt="" /></a></td>'
-	    	+'					</tr>'
-	    	+'					<tr>'
-	    	+'						<td>예매내역</td>'
-	    	+'						<td colspan="2" id="movie_name">아빠는 딸</td>'
-	    	+'					</tr>'
-	    	+'					<tr>'
-	    	+'						<td id="price_title">총 결제 금액</td>'
-	    	+'						<td colspan="2" id="reservation_price">22,000원</td>'
-	    	+'					</tr>'
-	    	+'				</table>'
 	    	+'			</div>'
 	    	
 	    	
@@ -2484,28 +2460,7 @@ abb1.jquery = {
 	    	+'		</div>'
 	    	+'	</div>';
 	    $('#container').html(view);
-		var mypage = $('#mypage');
-		mypage.addClass('abb1_find_id_container');
-		mypage.find('div:first-child').addClass('abb1_width_left');
-		mypage.find('div:first-child').find('h2').addClass('abb1_color_bold_brown');
-		$('#mypageGnb').addClass('abb1_padding_top_20 abb1_width_left');
-		mypage.find('div:nth-child(2)').find('ul').addClass('abb1_page_ul_inline');
-		mypage.find('div:nth-child(2)').find('li').addClass('abb1_page_li_inline');
-		mypage.find('div:nth-child(2)').find('li:nth-child(1)').find('a').addClass('abb1_mypage_select_btn');
-		mypage.find('div:nth-child(2)').find('li:nth-child(2)').find('a').addClass('abb1_mypage_not_select_btn');
-		var mypage_reservation_content = $('#mypage_reservation_content');
-		mypage_reservation_content.addClass('abb1_mypage_reservation_content');
-		mypage_reservation_content.find('ul').addClass('abb1_page_ul_inline abb1_mypage_margin');
-		mypage_reservation_content.find('li').addClass('abb1_page_li_inline');
-		mypage_reservation_content.find('li').find('a').addClass('abb1_detail_gnb_li');
-		var mypage_reservation = $('#mypage_reservation');
-		mypage_reservation.addClass('abb1_page_reservation');
-		mypage_reservation.find('tr:first-child').addClass('abb1_margin_left_20');
-		$('#reservation_pic').addClass('abb1_margin_left_20');
-		$('#reservation_no').addClass('abb1_margin_right_20');
-		mypage_reservation.find('tr:nth-child(2)').find('td:nth-child(3)').addClass('abb1_text_right');
-		$('#detail_icon').css('text-align','right');
-		$('#price_title').css('padding-right','25px');
+		
 		$.ajax({
 			url: ctx+'/getReservation',
 			method: 'POST',
@@ -2515,15 +2470,45 @@ abb1.jquery = {
 			dataType: 'json',
 			contentType: 'application/json',
 			success: function(data){
+				alert('성공');
+				var info_list=[];
+				console.log('data.infoList');
+				console.log(data.infoList);
+				$.each(data.infoList, function(i, info){
+		             //info_list.push(info);
+		             var o = {
+		            		 cusPoint : info.cusPoint,
+				             resId : info.resId,
+				             resRegDate : info.resRegDate,
+				             resCanceled : info.resCanceled,
+				             resPrice : info.resPrice,
+				             movTitle : info.movTitle,
+				             movPicMain : info.movPicMain
+		             };
+		             info_list.push(o);
+		        });
+				$('#point').text(info_list[0].cusPoint);
 				$.getScript(yeom,function(){
-					customer_mypage_reservation(data,ctx);
+					var view='';
+					if(info_list.length===0){
+						$('#mypage_reservation').append('<h5 id="default_msg">예매/구매내역이 없습니다.</h5>');
+					}else{
+						for(var i=0;i<info_list.length;i++){
+							view=customer_mypage_reservation_table(i,ctx);
+							$('#mypage_reservation').append(view);
+							customer_mypage_reservation(info_list,ctx,i);
+						}
+					}
+					customer_mypage_css(info_list.length);
 				});
 			},
 			error: function(xhr,status,msg){
 				alert('실패 이유: '+msg)
 			}
 		});
-		$('#detail').on('click',function(e){
+		
+		
+		$('#detail0').on('click',function(e){
 			e.preventDefault();
 			alert('상세보기 클릭');
 			$('#mypage_reservation').append('<div id="detail_reservation">'

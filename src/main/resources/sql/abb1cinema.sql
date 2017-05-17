@@ -121,6 +121,8 @@ FOREIGN KEY(customer_id) REFERENCES Customer(id),
 FOREIGN KEY(article_seq) REFERENCES Article(seq)
 );
 
+CREATE TABLE Showing
+
 DROP TABLE Notice CASCADE;
 DROP TABLE Comment CASCADE;
 DROP TABLE Theater CASCADE;
@@ -131,15 +133,62 @@ DROP TABLE Article CASCADE;
 DROP TABLE Customer CASCADE;
 DROP TABLE Multiplex CASCADE;
 DROP TABLE Address CASCADE;
+DROP VIEW Information CASCADE;
 
 CREATE VIEW Information AS
-SELECT mul.seq as mulSeq, mul.name as mulName, mul.address as mulAddress, mul.axis as axis, t.seq as theaterSeq, t.name as theaterName, t.total_seat as totalSeat, t.start_time as startTime, t.end_time as endTime, price, t.movie_seq as movieSeq, mov.title as movieTitle, mov.count as movieCount, mov.grade as movieGrade, released, mov.info as movieInfo, synopsys, mov.male_p as maleP, mov.female_p as femaleP, mov.trailer_url as trailerUrl, mov.trailer_main as trailerMain, mov.pic_main as picMain, mov.pic_director as picDirector, mov.name_director as nameDirector, mov.pic_actor as picActor, mov.name_actor as nameActor
-FROM Multiplex mul, Theater t, Movie mov WHERE mul.seq = t.multiplex_seq AND t.movie_seq = mov.seq;
+SELECT r.id AS resId,
+r.reg_date AS resRegDate,
+r.canceled AS resCanceled,
+r.price AS resPrice,
+r.hcount AS resHcount,
+r.customer_id AS cusId,
+c.pw AS cusPw,
+c.name AS cusName,
+c.gender AS cusGender,
+c.birth AS cusBirth,
+c.phone AS cusPhone,
+c.email AS cusEmail,
+c.point AS cusPoint,
+c.address AS cusAddress,
+r.showing_seq AS shoSeq,
+s.start_time AS shoStartTime,
+s.end_time AS shoEndTime,
+s.show_date AS shoShowDate,
+s.price AS shoPrice,
+s.movie_seq AS movSeq,
+mov.title AS movTitle,
+mov.count AS movCount,
+mov.grade AS movGrade,
+mov.released AS movReleased,
+mov.info AS movInfo,
+mov.synopsys AS movSynopsys,
+mov.male_p AS movMaleP,
+mov.female_p AS movFemaleP,
+mov.trailer_url AS movTrailerUrl,
+mov.pic_main AS movPicMain,
+mov.pic_director AS movPicDirector,
+mov.name_director AS movNameDirector,
+mov.pic_actor AS movPicActor,
+mov.name_actor AS movNameActor,
+mov.trailer_main AS movTrailerMain,
+s.theater_seq AS theSeq,
+t.name AS theName,
+t.total_seat AS theTotalSeat,
+t.multiplex_seq AS mulSeq,
+mul.name AS mulName,
+mul.address AS mulAddress,
+mul.axis AS mulAxis 
+FROM  Multiplex mul, Theater t, Movie mov ,Reservation r, Showing s, Customer c 
+WHERE r.showing_seq=s.seq AND r.customer_id=c.id AND s.movie_seq=mov.seq AND s.theater_seq=t.seq AND t.multiplex_seq=mul.seq;
 
-SELECT * FROM Information;
+SELECT * FROM Information WHERE cusId='t' AND resCanceled='Y' OR resCanceled='N';
+
+DROP VIEW Information;
 -------------------------------------------------------------------------------------------------------------------------------------------------
-INSERT INTO Notice(file, title, content, reg_date, hits) VALUES ('notice_sample.jpg','개인정보 이용내역 안내','콘텐츠8','2017-04-17','185');
-INSERT INTO Notice(file, title, content, reg_date, hits) VALUES ('default','추가 공지사항','콘텐츠가 글로 된 공지사항','2017-05-18','18882');
+INSERT INTO Notice(file, title, content, reg_date, hits) VALUES ('notice_sample.jpg','개인정보 이용내역 안내','롯데시네마 개인정보 이용내역 안내드립니다.','2017-04-17','185');
+INSERT INTO Notice(file, title, content, reg_date, hits) VALUES ('default','2017 DU - ATHLON RACE 개최에 따른 교통 통제 안내','안녕하십니까, 롯데시네마 인천아시아드관입니다.<br/><br/>항상 저희 인천아시아드관을 사랑해 주시는 고객 여러분께 진심으로 감사드립니다.<br/><br/>2017 DU - ATHLON RACE "AWAKEN INCHEON" 경기 일정으로 <br/><br/>2017년 5월 28일 (일)  09:10 ~ 10:00 까지 롯데시네마 주차장 진입로가 통제됩니다.<br/><br/>참고하시어 이용에 불편 없으시길 바랍니다.<br/><br/>아울러 통제가 끝나는 10:00 이후부터 영화 상영이 시작되오니 참고 부탁드립니다.<br/><br/>경기는 13:00까지 진행될 예정이오니 통제가 끝난 후 다소 혼잡하더라도<br/><br/>고객 여러분들의 너른 양해 부탁드립니다.<br/><br/>감사합니다.','2017-05-18','1888');
+
+DELETE FROM notice;
 
 INSERT INTO Movie(title, count, grade, released, info, synopsys, male_p, female_p, trailer_url, trailer_main, pic_main, pic_director, name_director, pic_actor, name_actor) 
 VALUES ('보안관','181','15','2017-05-03','드라마','과잉 수사로 잘리고 낙향한 전직 형사 대호(이성민)<br/>보안관을 자처하며 바다만큼 드넓은 오지랖으로 고향 ‘기장’ 을 수호한다.<br/>평화롭던 동네에 비치타운 건설을 위해 성공한 사업가 종진(조진웅)이 서울에서 내려온 그때,<br/>인근 해운대에 마약이 돌기 시작한다.<br/>종진의 모든 행보가 의심스러운 대호는 그를 마약사범으로 의심해 처남 덕만(김성균)을 조수로 ‘나 홀로 수사’에 나서지만 민심은 돈 많고 세련된 종진에게로 옮겨간 지 오래…<br/><br/>두고 봐라, 이래 당하고만 있겠나. 게임은 인자 시작이다!','200','100','https://www.youtube.com/embed/nRVuV8nuOmQ','0','movie_poster_0.png','director_0.jpg','김형주','actor_0.png','이성민');
@@ -172,16 +221,30 @@ INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('
 INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('c','1','테스트','M','19900518','01022068900','babungv@gmail.com','0');
 INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('d','1','테스트','M','19900518','01022068900','babungv@gmail.com','0');
 
-INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, movie_seq) VALUES ('1-1-1800-A01','2017-05-10','N','10000','1','babungv1',1);
-INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, movie_seq) VALUES ('1-1-1800-B02','2017-05-10','N','10000','1','babungv2',1);
-INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, movie_seq) VALUES ('1-1-1800-C03','2017-05-10','N','10000','1','babungv3',1);
-INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, movie_seq) VALUES ('1-1-1800-D04','2017-05-10','N','10000','1','babungv4',1);
-INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, movie_seq) VALUES ('1-1-1800-E05','2017-05-10','N','10000','1','t',1);
-INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, movie_seq) VALUES ('1-1-1800-E06','2017-05-10','N','10000','1','a',1);
-INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, movie_seq) VALUES ('1-1-1800-D07','2017-05-10','N','10000','1','a',2);
-INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, movie_seq) VALUES ('1-1-1800-D08','2017-05-10','N','10000','1','b',1);
-INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, movie_seq) VALUES ('1-1-1800-A09','2017-05-10','N','10000','1','b',2);
-INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, movie_seq) VALUES ('1-1-1800-A10','2017-05-10','N','10000','1','b',3);
+INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, showing_seq) VALUES ('1-1-1800-A01','2017-05-10','N','10000', '1','babungv1',7);
+INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, showing_seq) VALUES ('1-1-1800-B02','2017-05-10','N','10000', '1','babungv2',3);
+INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, showing_seq) VALUES ('1-1-1800-C03','2017-05-10','N','10000', '1','babungv3',3);
+INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, showing_seq) VALUES ('1-1-1800-D04','2017-05-10','N','10000', '1','babungv4',5);
+INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, showing_seq) VALUES ('1-1-1800-E05','2017-05-10','N','10000', '1','t',7);
+INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, showing_seq) VALUES ('1-1-1800-E06','2017-05-10','N','10000', '1','a',5);
+INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, showing_seq) VALUES ('1-1-1800-D07','2017-05-10','N','10000', '1','a',5);
+INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, showing_seq) VALUES ('1-1-1800-D10','2017-05-10','N','10000', '1','a',4);
+INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, showing_seq) VALUES ('1-1-1910-D10','2017-05-10','N','10000', '1','a',3);
+INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, showing_seq) VALUES ('1-1-1910-D11','2017-05-15','N','10000', '1','a',3);
+INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, showing_seq) VALUES ('1-1-1800-D08','2017-05-10','N','10000', '1','b',7);
+INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, showing_seq) VALUES ('1-1-1800-A09','2017-05-10','N','10000', '1','b',6);
+INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, showing_seq) VALUES ('1-1-1800-A10','2017-05-10','N','10000', '1','b',6);
+                                                                                     
+INSERT INTO Showing(start_time, end_time, show_date, price, movie_seq, theater_seq) VALUES ('18:00', '18:10', '2017-05-20', '10000', 1, 1);
+INSERT INTO Showing(start_time, end_time, show_date, price, movie_seq, theater_seq) VALUES ('19:00', '19:10', '2017-05-20', '10000', 2, 1);
+INSERT INTO Showing(start_time, end_time, show_date, price, movie_seq, theater_seq) VALUES ('18:00', '18:10', '2017-05-20', '10000', 3, 2);
+INSERT INTO Showing(start_time, end_time, show_date, price, movie_seq, theater_seq) VALUES ('19:00', '19:10', '2017-05-20', '10000', 4, 2);
+INSERT INTO Showing(start_time, end_time, show_date, price, movie_seq, theater_seq) VALUES ('18:00', '18:10', '2017-05-20', '10000', 5, 3);
+INSERT INTO Showing(start_time, end_time, show_date, price, movie_seq, theater_seq) VALUES ('18:00', '18:10', '2017-05-20', '10000', 6, 4);
+
+INSERT INTO Showing(start_time, end_time, show_date, price, movie_seq, theater_seq) VALUES ('19:00', '19:10', '2017-05-20', '10000', 6, 4);
+
+
 
 INSERT INTO Review(spectator, gpa, content, reg_date, customer_id, movie_seq) VALUES ('실관람객','7','재밌게 봤어요','2017-05-10','a', 1);
 INSERT INTO Review(spectator, gpa, content, reg_date, customer_id, movie_seq) VALUES ('실관람객','8','재밌게 봤어요','2017-05-10','a', 1);
@@ -202,10 +265,13 @@ INSERT INTO Review(spectator, gpa, content, reg_date, customer_id, movie_seq) VA
 
 INSERT INTO Multiplex(name, address, axis) values ('가산디지털','서울 금천구 가산동,60-8','37.477633, 126.889149');
 
-INSERT INTO Theater(name, total_seat, start_time, end_time, price, multiplex_seq, movie_seq) VALUES ('1관','100','18:00','18:05','10000', 1, 1);
-INSERT INTO Theater(name, total_seat, start_time, end_time, price, multiplex_seq, movie_seq) VALUES ('2관','100','18:15','19:05','10000', 1, 1);
-INSERT INTO Theater(name, total_seat, start_time, end_time, price, multiplex_seq, movie_seq) VALUES ('3관','100','18:25','19:05','10000', 1, 1);
-INSERT INTO Theater(name, total_seat, start_time, end_time, price, multiplex_seq, movie_seq) VALUES ('4관','100','18:35','19:05','10000', 1, 1);
+INSERT INTO Theater(name, total_seat, multiplex_seq) VALUES ('1관','100', 1);
+INSERT INTO Theater(name, total_seat, multiplex_seq) VALUES ('2관','90', 1);
+INSERT INTO Theater(name, total_seat, multiplex_seq) VALUES ('3관','70', 1);
+INSERT INTO Theater(name, total_seat, multiplex_seq) VALUES ('4관','80', 1);
+
+
+
 
 INSERT INTO Article(article_type, title, content, file, reg_date, hits, customer_id, multiplex_seq) 
 VALUES ('문의','진주관 리뉴얼 안내','ㅎㅎㅎㅎ','','2017-05-10','123','babungv1',1);

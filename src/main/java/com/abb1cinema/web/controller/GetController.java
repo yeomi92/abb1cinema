@@ -102,23 +102,12 @@ public class GetController {
 			List<Reservation> rvList=new ArrayList<>();
 			List<Information> infoList=new ArrayList<>();
 			String id=paramMap.get("id");
-			map.put("id",id);
-			//information=(Information) getService.getInfoList(map);
-			rvList=getService.getReservationList(map);
-			map.clear();
-			
-			//영화를 2개이상 가져오므로 무비시퀀스가 다르다 for문 써야할듯 
-			String movieSeq=reservation.getId().split("-")[1];
-			String startTime=reservation.getId().split("-")[2].substring(0,2)+":"+reservation.getId().split("-")[2].substring(2,4);
-			System.out.println(startTime);
-			map.put("key1", "movieSeq");
-			map.put("value1", movieSeq);
-			map.put("key2", "startTime");
-			map.put("value2", startTime);
+			map.put("key1","cusId");
+			map.put("value1",id);
 			infoList=getService.getInfoList(map);
-			System.out.println(infoList);
-			
-			map.put("reservation", reservation);
+			logger.info("getReservation() infoList {}",infoList);
+			map.clear();
+			map.put("infoList", infoList);
 			return map;
 	   }
 

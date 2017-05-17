@@ -7,5 +7,20 @@ import lombok.Data;
 
 @Component @Data @Lazy
 public class Information {
-	String mulSeq, mulName, mulAddress, axis, theaterSeq, theaterName, totalSeat, startTime, endTime, price, movieSeq, movieTitle, movieCount, movieGrade, released, movieInfo, synopsys, maleP, femalP,trailerUrl, trailerMain, picMain, picDirector, nameDirector, picActor, nameActor; 
+   String resId, resRegDate, resCanceled, resPrice, resHcount, 
+   cusId, cusPw, cusName, cusGender, cusBirth, cusPhone, cusEmail, cusPoint, cusAddress, 
+   shoSeq, shoStartTime, shoEndTime, shoShowDate, shoPrice,
+   movSeq, movTitle, movCount, movGrade, movReleased, movInfo, movSynopsys, movMaleP, movFemaleP, movTrailerUrl, movPicMain, movPicDirector, movNameDirector, movPicActor, movNameActor, movTrailerMain,
+   theSeq, theName, theTotalSeat,
+   mulSeq, mulName, mulAddress, mulAxis;
 }
+
+/*$.each(data.info_list, function(i, info){
+    info_list.push(info); 
+    // 영화별 분류를 위한 JSON 생성
+    var o = {
+   movSeq : info.movSeq,
+   title : info.movTitle
+    };
+    movSeq_list.push(o);
+});*/
