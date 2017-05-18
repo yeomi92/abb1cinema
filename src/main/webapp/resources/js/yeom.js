@@ -317,16 +317,46 @@ function customer_updateInfo_success(data){
 		abb1.jquery.customer_mypageInfo();
 	}
 }
-
+function customer_mypage_view(){
+	var view='<div id="mypage">'
+    	+'		<div> '
+    	+'			<h2><strong>마이시네마</strong></h2><h4><strong>내 포인트</strong>: <span id="point"></span>점</h4>'
+    	+'		</div>'
+    	+'		<div id="mypageGnb">'
+    	+'			<ul>'
+    	+'				<li>'
+    	+'					<a href="#">예매/구매내역</a>'
+    	+'				</li>'
+    	+'				<li>'
+    	+'					<a href="javascript:abb1.jquery.customer_mypageInfo()">나의 정보관리</a>'
+    	+'				</li>'
+    	+'			</ul> '
+    	+'		</div>'
+    	+'		<div id="mypage_reservation_content">'
+    	+'			<ul>'
+    	+'				<li>'
+    	+'					<a href="#"><strong>예매/구매내역</strong></a>'
+    	+'				</li>'
+    	+'				<li>'
+    	+'					<a href="javascript:abb1.jquery.customer_mypageCancel()">취소내역</a>'
+    	+'				</li>'
+    	+'			</ul>'
+    	+'			<div id="mypage_reservation">'
+    	+'			</div>'
+    	+'		</div>'
+    	+'	</div>';
+    $('#container').html(view);
+}
 function customer_mypage_reservation(info_list,ctx,i){
-	$('#movie_name'+i+'').text(info_list[i].movTitle);
-	$('#movie_poster'+i+'').attr('src',ctx+'/resources/img/movie/'+info_list[i].movPicMain);
-	$('#reservation_date'+i+'').text(info_list[i].resRegDate);
-	$('#reservation_number'+i+'').text(info_list[i].resId);
-	$('#reservation_price'+i+'').text(info_list[i].resPrice+'원');
-	if(info_list[i].resCanceled==='N'){
+	var info=info_list[i];
+	$('#movie_name'+i+'').text(info.movTitle);
+	$('#movie_poster'+i+'').attr('src',ctx+'/resources/img/movie/'+info.movPicMain);
+	$('#reservation_date'+i+'').text(info.resRegDate);
+	$('#reservation_number'+i+'').text(info.resId);
+	$('#reservation_price'+i+'').text(info.resPrice+'원');
+	if(info.resCanceled==='N'){
 		$('#canceled'+i+'').text('취소가능');
-	}else if(info_list[i].resCanceled==='Y'){
+	}else if(info.resCanceled==='Y'){
 		$('#canceled'+i+'').text('취소');
 	}else{
 		$('#canceled'+i+'').text('사용');
@@ -389,4 +419,72 @@ function customer_mypage_css(length){
 		$('#detail_icon'+i+'').css('text-align','right');
 		$('#price_title'+i+'').css('padding-right','25px');
 	}
+}
+function customer_mypage_detail(info_list,ctx){
+	for(var i=0; i<info_list.length; i++){
+		customer_mypage_detail_click('#detail'+i,i,info_list,ctx);
+	}
+}
+function customer_mypage_detail_click(id,i,info_list,ctx){
+	$(id).on('click',function(e){
+		e.preventDefault();
+		customer_mypage_detail_view(ctx,i,info_list,ctx);
+		
+	});
+}
+function customer_mypage_detail_view(ctx,i,info_list,ctx){
+	alert('view로 넘어온 i: '+i);
+	var view='<div id="detail_reservation'+i+'">'
+    	+'					<div>'
+    	+'						<h4>상세내용</h4>'
+    	+'					</div>'
+    	+'					<div>'
+	    +'					<table>'
+	    +'						<tr>'
+	    +'							<td rowspan="4"><span id="detail_reservation_pic'+i+'"><img id="movie_poster'+i+'" src="'+ctx+'/resources/img/movie/movie_poster_6.png" width="60%" height="60%" alt="" /></span></td>'
+	    +'							<td colspan="2"><h4><strong id="movie_name'+i+'">아빠는 딸</strong></h4></td>'
+	    +'						</tr>'
+	    +'						<tr>'
+	    +'							<td>상영일</td>'
+	    +'							<td id="show_info'+i+'">2017-04-23 | 상영시간 13:50 ~ 15:55 | 상영관 가산디지털, 1관</td>'
+	    +'						</tr>'
+	    +'						<tr>'
+	    +'							<td>관람인원</td>'
+	    +'							<td id="customer_info'+i+'">성인2 | 좌석 E10,E11</td>'
+	    +'						</tr>'
+	    +'						<tr>'
+	    +'							<td><span>주문금액</span></td>'
+	    +'							<td id="reservation_price'+i+'">22,000원</td>'
+	    +'						</tr>'
+	    +'					</table>'
+    	+'					</div>'
+    	+'					<div>'
+    	+'						<input id="reservation_cancel'+i+'" type="button" value="결제취소"  />'
+    	+'					</div>'
+    	+'				</div>'
+    $('#mypage_table'+i+'').append(view);
+	$('#detail_icon'+i+'').html('<a id="close" href="#">닫기<img src="'+ctx+'/resources/img/icon/uparrow.png" width="3%" height="3%" alt="" /></a>')
+	customer_mypage_detail_success(info_list,i,ctx);
+	customer_mypage_detail_css(i);
+}
+function customer_mypage_detail_css(i){
+	var detail_reservation = $('#detail_reservation'+i+'');
+	 detail_reservation.addClass('abb1_detail_reservation');
+	 detail_reservation.find('div:first-child').addClass('abb1_mypage_reservation');
+	 detail_reservation.find('div:nth-child(2)').addClass('abb1_find_pw_margin');
+	 $('#detail_reservation_pic'+i+'').addClass('abb1_margin_left_20');
+	 $('#reservation_cancel'+i+'').addClass('btn abb1_btn_lg abb1_btn_verification').css('height','40px').css('width','100px').css('font-size','15px');
+}
+
+function customer_mypage_detail_success(info_list,i,ctx){
+	alert('success로 넘어온 i: '+i);
+	var info=info_list[i];
+	console.log(info);
+	console.log($('#movie_poster'+i+'').attr('src'));
+	console.log($('#reservation_cancel'+i+'').val());
+	$('#movie_poster'+i+'').attr('src',ctx+'/resources/img/movie/'+info.movPicMain);
+	$('#movie_name'+i+'').text(info.movTitle);
+	$('#show_info'+i+'').text(info.shoShowDate+' | 상영시간 '+info.shoStartTime+' ~ '+info.shoEndTime+' | 상영관 '+info.mulName+', '+info.theName);
+	$('#customer_info'+i+'').text('성인'+info.resHcount+' | 좌석 '+info.resId.split('-')[3]);
+	$('#reservation_price'+i+'').text(info.resPrice+'원');
 }

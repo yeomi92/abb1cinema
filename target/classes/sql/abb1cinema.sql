@@ -48,19 +48,6 @@ FOREIGN KEY(address) REFERENCES Address(seq)
 );
 
 -- 5
-CREATE TABLE Reservation(
-id VARCHAR(30) PRIMARY KEY,
-reg_date VARCHAR(10) NOT NULL,
-canceled VARCHAR(1),
-price VARCHAR(10),
-hcount  VARCHAR(10),
-customer_id VARCHAR(15),
-movie_seq INT,
-FOREIGN KEY(customer_id) REFERENCES Customer(id),
-FOREIGN KEY (movie_seq) REFERENCES Movie(seq)
-);
-
--- 6
 CREATE TABLE Review(
 seq INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 spectator VARCHAR(8) NOT NULL,
@@ -73,7 +60,7 @@ FOREIGN KEY(customer_id) REFERENCES Customer(id),
 FOREIGN KEY(movie_seq) REFERENCES Movie(seq)
 );
 
--- 7
+-- 6
 CREATE TABLE Multiplex(
 seq INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 name VARCHAR(20) NOT NULL,
@@ -81,21 +68,16 @@ address VARCHAR(40) NOT NULL,
 axis VARCHAR(40) NOT NULL
 );
 
--- 8
+-- 7
 CREATE TABLE Theater(
 seq INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 name VARCHAR(4) NOT NULL,
 total_seat VARCHAR(3) NOT NULL,
-start_time VARCHAR(5) NOT NULL,
-end_time VARCHAR(5) NOT NULL,
-price VARCHAR(5) NOT NULL,
 multiplex_seq INT,
-movie_seq INT,
-FOREIGN KEY(movie_seq) REFERENCES Movie(seq),
 FOREIGN KEY(multiplex_seq) REFERENCES Multiplex(seq)
 );
 
--- 9
+-- 8
 CREATE TABLE Article(
 seq INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 article_type VARCHAR(4) NOT NULL,
@@ -110,7 +92,7 @@ FOREIGN KEY(customer_id) REFERENCES Customer(id),
 FOREIGN KEY(multiplex_seq) REFERENCES Multiplex(seq)
 );
 
--- 10
+-- 9
 CREATE TABLE Comment(
 seq INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 reg_date VARCHAR(10) NOT NULL,
@@ -121,7 +103,31 @@ FOREIGN KEY(customer_id) REFERENCES Customer(id),
 FOREIGN KEY(article_seq) REFERENCES Article(seq)
 );
 
-CREATE TABLE Showing
+-- 10
+CREATE TABLE Showing(
+seq INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+start_time VARCHAR(5) NOT NULL,
+end_time VARCHAR(5) NOT NULL,
+show_date VARCHAR(10) NOT NULL,
+price VARCHAR(5) NOT NULL,
+movie_seq INT,
+theater_seq INT,
+FOREIGN KEY(movie_seq) REFERENCES Movie(seq),
+FOREIGN KEY(theater_seq) REFERENCES Theater(seq)
+);
+
+-- 11
+CREATE TABLE Reservation(
+id VARCHAR(30) PRIMARY KEY,
+reg_date VARCHAR(10) NOT NULL,
+canceled VARCHAR(1),
+price VARCHAR(10),
+hcount  VARCHAR(10),
+customer_id VARCHAR(15),
+showing_seq INT,
+FOREIGN KEY(customer_id) REFERENCES Customer(id),
+FOREIGN KEY(showing_seq) REFERENCES Showing(seq)
+);
 
 DROP TABLE Notice CASCADE;
 DROP TABLE Comment CASCADE;
@@ -180,6 +186,39 @@ mul.address AS mulAddress,
 mul.axis AS mulAxis 
 FROM  Multiplex mul, Theater t, Movie mov ,Reservation r, Showing s, Customer c 
 WHERE r.showing_seq=s.seq AND r.customer_id=c.id AND s.movie_seq=mov.seq AND s.theater_seq=t.seq AND t.multiplex_seq=mul.seq;
+
+CREATE VIEW Timetable AS
+SELECT 
+s.seq AS shoSeq,
+s.start_time AS shoStartTime,
+s.end_time AS shoEndTime,
+s.show_date AS shoShowDate,
+s.price AS shoPrice,
+s.movie_seq AS movSeq,
+mov.title AS movTitle,
+mov.count AS movCount,
+mov.grade AS movGrade,
+mov.released AS movReleased,
+mov.info AS movInfo,
+mov.synopsys AS movSynopsys,
+mov.male_p AS movMaleP,
+mov.female_p AS movFemaleP,
+mov.trailer_url AS movTrailerUrl,
+mov.pic_main AS movPicMain,
+mov.pic_director AS movPicDirector,
+mov.name_director AS movNameDirector,
+mov.pic_actor AS movPicActor,
+mov.name_actor AS movNameActor,
+mov.trailer_main AS movTrailerMain,
+s.theater_seq AS theSeq,
+t.name AS theName,
+t.total_seat AS theTotalSeat,
+t.multiplex_seq AS mulSeq,
+mul.name AS mulName,
+mul.address AS mulAddress,
+mul.axis AS mulAxis 
+FROM  Multiplex mul, Theater t, Movie mov , Showing s
+WHERE s.movie_seq=mov.seq AND s.theater_seq=t.seq AND t.multiplex_seq=mul.seq;
 
 SELECT * FROM Information WHERE cusId='t' AND resCanceled='Y' OR resCanceled='N';
 

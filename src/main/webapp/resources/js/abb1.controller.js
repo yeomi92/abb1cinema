@@ -23,20 +23,17 @@ var abb1 = abb1 || {};
 	@DESC : META-INF
 =================================*/
 abb1.context = (function(){
-	var init = function(context){ 
-		abb1.session.init(context);
-		onCreate();
+	var onCreate = function(context){
+		$.getScript(context+'/resources/js/abb1.domain.js',function(){
+			$.extend(new Session(context));
+			setContentView();
+		});
 	};
 	var setContentView = function(){
-		
-	};
-	var onCreate = function(){
-		setContentView();
-		abb1.util.datetime();
+		alert('0'+$.context());
+		abb1.jquery.onCreate();
 	};
 	return {
-		init : init,
-		setContentView : setContentView,
 		onCreate : onCreate
 	};
 })();
@@ -242,19 +239,57 @@ abb1.cookie={
 @UPDATE DATE : 2017-05-06
 @DESC : jQuery for view
 =================================*/
-abb1.jquery = {
-		
-	admin_header: function(){
-		
-	},
-	admin_gnb: function(){
-		
-	},
-	admin_footer: function(){
-		
-	},
-	admin_login: function(){
-		var ctx = abb1.session.getContextPath();
+abb1.jquery =(function() {
+		 var service, view;
+		 var onCreate = function(){
+			  service=$.javascript()+'/abb1.service.js';
+			  view=$.javascript()+'/abb1.view.js';
+			  setContentView();
+		   };
+		   var setContentView = function(){
+			   $.when(
+					   $.getScript(service),
+					   $.getScript(view),
+					   $.Deferred(function( deferred ){
+			                 $( deferred.resolve );
+			             })
+			         ).done(function(){
+			        	 customer_login();
+			         });
+		   };
+		var index = function(){
+            var ctx = abb1.session.getContextPath();
+            var john = ctx+'/resources/js/john.js';
+            $.ajax({
+               url: ctx+"/get/movieRank",
+               method: "POST",
+               data: JSON.stringify({}),
+               dataType: "json",
+               contentType: "application/json",
+               success : function(data){
+                  $.getScript(john, function(){
+                      index_movie_rank(data);
+                      $.each(data.movie_list, function(i,movie){
+                        if(movie.trailer_main==1){
+                            play_youtube('trailer', movie.trailer_url);
+                        }
+                      });
+                      show_slide();
+                      var add = 0;
+                      slide_click(add);
+                      index_css();
+                  });
+               },
+               error : function(xhr,status,msg){
+                  alert(msg);
+               }
+           });
+         };
+         var footer = function(){
+             $('#footer').find('div:first-child').css('padding-top','40px').css('background','#f9f6ec');
+              };
+	var admin_login= function(){
+		alert('관리자로그인 js');
 	    var view='<div id="signupSuccess">'
 	    	+'		<div id="signup_success">'
 	    	+'			<div>'
@@ -268,7 +303,7 @@ abb1.jquery = {
 	    	+'			         <td>'
 	    	+'			         <ul>'
 	    	+'						 <li>'
-	    	+'							<a href="'+ctx+'/admin/index"><input type="button" value="관리자 페이지 GO"/></a>'
+	    	+'							<a href="'+$.context()+'/admin/index"><input type="button" value="관리자 페이지 GO"/></a>'
 	    	+'						 </li>'
 	    	+'					 </ul>'
 	    	+'					 </td>'
@@ -291,8 +326,8 @@ abb1.jquery = {
 		signup_success.find('ul').addClass('abb1_page_ul_inline');
 		signup_success.find('li').addClass('abb1_page_li_inline');
 		signup_success.find('li').find('input').addClass('btn abb1_btn_lg abb1_btn_verification').css('height','50px').css('width','170px').css('font-size','17px').css('background','#453d3f').css('color','#efebdb');
-	},
-	admin_index : function(){
+	};
+	var admin_index = function(){
 	    var ctx = abb1.session.getContextPath();
 	    var view = '<div id="page-wrapper">'
 		+'            <div class="container-fluid">'
@@ -422,8 +457,8 @@ abb1.jquery = {
 	    $('#area_chart').css('width','100%').css('height','500px');
 	    $('#donut_chart').addClass('abb1_width_center').css('width','900px').css('height','450px');
 	   
-        	},
-        	admin_statistic : function(){
+        	};
+        	var admin_statistic = function(){
             		var ctx = abb1.session.getContextPath();
             		var view = '<div id="page-wrapper">'
             		+'			<div id="statistic">'
@@ -449,8 +484,8 @@ abb1.jquery = {
             		statistic_category.addClass('abb1_admin_reservation_category');
             		$('#statistic_search_keyword').addClass('abb1_admin_reservation_search_keyword');
             		$('#statistic_search_btn').addClass('abb1_admin_reservation_search_btn');
-        	},	
-        	admin_movie_register : function(){
+        	};	
+        	var admin_movie_register = function(){
         	    var ctx = abb1.session.getContextPath();
         	    var view = '<div id="page-wrapper">'
         		+'       		<div id="movie_register">'
@@ -523,8 +558,8 @@ abb1.jquery = {
             	movie_register_table.addClass('abb1_admin_movie_management_table');
             	$('#trailer_check').addClass('abb1_trailer_check');
             	$('#movie_register_btns').addClass('abb1_admin_movie_management_btns');
-            },
-            admin_customer : function(){
+            };
+            var admin_customer = function(){
         	var ctx = abb1.session.getContextPath();
         	var view =  '<div id="page-wrapper">'
         	    +'			<div id="customer">'
@@ -621,8 +656,8 @@ abb1.jquery = {
         	    $('#result').html(result);
         	    abb1.jquery.admin_customer_css();
         	});
-            },
-            admin_customer_css : function(){
+            };
+            var admin_customer_css = function(){
         	var customer = $('#customer');
             	customer.find('div:first-child').addClass('abb1_admin_maintext');
             	$('#customer_search_keyword').addClass('abb1_admin_reservation_search_keyword');
@@ -637,8 +672,8 @@ abb1.jquery = {
             	admin_customer_table.find('col:nth-child(5)').css('width','10%');
             	$('#delete').css('background','white');
             	$('#customer_result').addClass('abb1_signup_form_control abb1_admin_customer_change');
-            },
-            admin_reservation : function(){
+            };
+            var admin_reservation = function(){
         	var ctx = abb1.session.getContextPath();
         	
         	/* View */
@@ -781,8 +816,8 @@ abb1.jquery = {
         	    abb1.api.google2(20, 80);
         	});
             	abb1.jquery.admin_reservation_css();
-            },
-            admin_reservation_css : function(){
+            };
+            var admin_reservation_css = function(){
         	$('#reservation_category').addClass('abb1_admin_reservation_category');
             	$('#reservation_search_keyword').addClass('abb1_admin_reservation_search_keyword');
             	$('#reservation_search_btn').addClass('abb1_admin_reservation_search_btn');
@@ -819,8 +854,8 @@ abb1.jquery = {
             	movie_list_table.find('col:nth-child(3)').css('width','25%');
             	movie_list_table.find('col:nth-child(4)').css('width','25%');
             	movie_list_table.find('col:nth-child(5)').css('width','15%');
-            },
-            admin_movie_management : function(){
+            };
+            var admin_movie_management = function(){
         	var ctx = abb1.session.getContextPath();
         	var view = '<div id="page-wrapper">'
         	    +'        <div id="movie_management">'
@@ -898,8 +933,8 @@ abb1.jquery = {
             	$('#movie_search_keyword').addClass('abb1_admin_reservation_search_keyword');
             	$('#movie_search_btn').addClass('abb1_admin_reservation_search_btn');
             	movie_management.find('div:nth-child(3)').addClass('abb1_admin_settings');
-            },
-            admin_bbs_notice : function(pageNo){
+            };
+            var admin_bbs_notice = function(pageNo){
         	var ctx = abb1.session.getContextPath();
         	var view = '<div id="page-wrapper">'
         	    +'				<div id="notice_table">'
@@ -1033,8 +1068,8 @@ abb1.jquery = {
             	notice_pagination.addClass('abb1_admin_pagination abb1_pagination_faq');
             	notice_pagination.find('td:nth-child(2)').css('width','256px');
             	notice_pagination.find('td:nth-child(2)').find('a:nth-child('+pageNo+')').addClass('on');
-            },
-            admin_bbs_faq : function(pageNo){
+            };
+            var admin_bbs_faq = function(pageNo){
         	var ctx = abb1.session.getContextPath();
         	var view = '<div id="page-wrapper">'
         	    +'			<div id="faq_table">'
@@ -1170,8 +1205,8 @@ abb1.jquery = {
         	    $('#faq_write_wrapper').html(answer);
         	    abb1.jquery.admin_bbs_faq_css(pageNo);
         	});
-            },
-            admin_bbs_faq_css : function(pageNo){
+            };
+            var admin_bbs_faq_css = function(pageNo){
         	var faq_table = $('#faq_table');
             	faq_table.find('div:first-child').addClass('abb1_admin_maintext');
             	var faq_write_wrapper = $('#faq_write_wrapper');
@@ -1194,8 +1229,8 @@ abb1.jquery = {
             	var faq_answer_content = $('#faq_answer_content');
             	faq_answer_content.find('col:nth-child(1)').css('width','90%');
             	faq_answer_content.find('col:nth-child(2)').css('width','10%');
-            },
-            board_detail : function(){
+            };
+            var board_detail = function(){
         	var ctx = abb1.session.getContextPath();
         	var view =  '<div id="bbs_detail">'
         	    +'      <div><strong>문의사항</strong></div>'
@@ -1290,8 +1325,8 @@ abb1.jquery = {
             	bbs_detail_reply.css('margin-top','10px');
             	bbs_detail_reply.find('col:nth-child(1)').css('width','90%');
             	bbs_detail_reply.find('col:nth-child(2)').css('width','10%');
-            },
-            board_main : function(pageNo){
+            };
+            var board_main = function(pageNo){
         	var ctx = abb1.session.getContextPath();
         	var view = '<div id="board_main">'
         	+	   '<div><strong>고객센터</strong></div>'
@@ -1465,8 +1500,8 @@ abb1.jquery = {
             	var board_main_btn = $('#board_main_btn');
             	board_main_btn.css('text-align','right');
             	board_main_btn.find('input').addClass('abb1_bbs_write_btn');
-            },
-            board_notice_detail : function(){
+            };
+            var board_notice_detail = function(){
         	var ctx = abb1.session.getContextPath();
         	var view = '<div id="board_notice_detail">'
         	    +'      <div><strong>고객센터</strong></div>'
@@ -1512,8 +1547,8 @@ abb1.jquery = {
             	var board_notice_detail_btn = $('#board_notice_detail_btn')
             	board_notice_detail_btn.addClass('abb1_bbs_write_btns');
             	board_notice_detail_btn.find('input').addClass('abb1_bbs_write_confirm');
-            },
-            board_write : function(){
+            };
+            var board_write = function(){
         	var ctx = abb1.session.getContextPath();
         	var view = '<div id="board_write">'
         	    +'      <div><strong>문의내용</strong></div>'
@@ -1594,8 +1629,8 @@ abb1.jquery = {
 		$('#board_write_btns').addClass('abb1_bbs_write_btns');
 		$('#board_write_cancel').addClass('abb1_bbs_write_cancel');
 		$('#board_wrtie_confirm').addClass('abb1_bbs_write_confirm');
-	},
-	reservation_main : function(){
+	};
+	var reservation_main = function(){
 	    var ctx = abb1.session.getContextPath();
 	    var view = '<div id="reservation">'
 		+'	   <div id="reservation_main_form">'
@@ -1776,8 +1811,8 @@ abb1.jquery = {
 		movie_timeline_ul.addClass('abb1_ul_inline');
 		movie_timeline_ul.find('li').addClass('abb1_li_inline abb1_padding_right_0');
 		movie_timeline_ul.find('strong').addClass('abb1_font_size_22');
-	},
-	reservation_seat : function(){
+	};
+	var reservation_seat = function(){
 	    var ctx = abb1.session.getContextPath();
 	    var view = '<div id="seat">'
 		+'   	  <div id="reservation_seat_form">'
@@ -2029,8 +2064,8 @@ abb1.jquery = {
 		$('#ticketing_cost').addClass('abb1_ticketing_cost');
 		$('#ticketing_paying').addClass('abb1_ticketing_paying');
 		$('#ticketing_paying input').addClass('abb1_ticketing_btn');
-	},
-	multiplex_main : function(){
+	};
+	var multiplex_main = function(){
 	    var ctx = abb1.session.getContextPath();
 	    var view = '<div>'
 		+'	<img src="'+ctx+'/resources/img/multiplex/theater.jpg" alt="" />'
@@ -2130,8 +2165,8 @@ abb1.jquery = {
 		movie_time_line.find('ul').addClass('abb1_ul_inline');
 		movie_time_line.find('li').addClass('abb1_li_inline abb1_padding_right_0');
 		movie_time_line.find('li').find('strong').addClass('abb1_font_size_22');
-	},
-	multiplex_map : function(){
+	};
+	var multiplex_map = function(){
 	    var ctx = abb1.session.getContextPath();
 	    var view = '<div>'
 		+'	<img src="'+ctx+'/resources/img/multiplex/theater.jpg" alt="" />'
@@ -2159,8 +2194,8 @@ abb1.jquery = {
 		multiplex_info_btn.find('li:nth-child(2)').addClass('abb1_li_inline abb1_multiplex_select_btn');
 		multiplex_info_btn.find('li:nth-child(2)').find('a').addClass('abb1_multiplex_select_a');
 		$('#multiplex_map_api').addClass('abb1_multiplex_map');
-	},
-	customer_findid : function(){
+	};
+	var customer_findid = function(){
 	    var ctx = abb1.session.getContextPath();
 	    var view='<div id="customer_find_id">'
 	    	+'		<div> '
@@ -2222,8 +2257,8 @@ abb1.jquery = {
 		customer_find_id_btns.find('li:nth-child(1)').find('input').addClass('btn abb1_btn_lg abb1_btn_verification');
 		customer_find_id_btns.find('li:nth-child(2)').addClass('abb1_page_li_inline');
 		customer_find_id_btns.find('li:nth-child(2)').find('input').addClass('btn abb1_btn_lg abb1_btn_verification');
-	},
-	customer_findidsuccess : function(){
+	};
+	var customer_findidsuccess = function(){
 	    var ctx = abb1.session.getContextPath();
 	    var view='<div id="customer_find_id">'
 	    	+'		<div> '
@@ -2265,8 +2300,8 @@ abb1.jquery = {
 		customer_find_id_table.find('ul').addClass('abb1_page_ul_inline');
 		customer_find_id_table.find('li').addClass('abb1_page_li_inline');
 		customer_find_id_table.find('input').addClass('btn abb1_btn_lg abb1_btn_verification');
-	},
-	customer_findpw : function(){
+	};
+	var customer_findpw = function(){
 	    var ctx = abb1.session.getContextPath();
 	    var view='<div id="customer_find_pw">'
 	    	+'		<div> '
@@ -2329,8 +2364,8 @@ abb1.jquery = {
 		customer_find_pw_btns.find('li:nth-child(1)').find('input').addClass('btn abb1_btn_lg abb1_btn_verification');
 		customer_find_pw_btns.find('li:nth-child(2)').addClass('abb1_page_li_inline');
 		customer_find_pw_btns.find('li:nth-child(2)').find('input').addClass('btn abb1_btn_lg abb1_btn_verification');
-	},
-	customer_findpwsuccess : function(){
+	};
+	var customer_findpwsuccess = function(){
 	    var ctx = abb1.session.getContextPath();
 	    var view='<div id="customer_find_pw">'
 	    	+'		<div> '
@@ -2381,10 +2416,9 @@ abb1.jquery = {
 		customer_find_pw_btns.find('li:nth-child(1)').find('input').addClass('btn abb1_btn_lg abb1_btn_verification');
 		customer_find_pw_btns.find('li:nth-child(2)').addClass('abb1_page_li_inline');
 		customer_find_pw_btns.find('li:nth-child(2)').find('input').addClass('btn abb1_btn_lg abb1_btn_verification');
-	},
-	customer_login : function(){
-		var ctx = abb1.session.getContextPath();
-		var yeom=ctx+'/resources/js/yeom.js';
+	};
+	var customer_login=function(){
+		var yeom=$.context()+'/resources/js/yeom.js';
 		$.getScript(yeom,function(){
 			customer_login_css();
 			var authId=customer_login_cookie();
@@ -2424,42 +2458,12 @@ abb1.jquery = {
 				}
 			});
 		});
-	},
-	customer_mypage : function(){
+	};
+	var customer_mypage = function(){
 	    var ctx = abb1.session.getContextPath();
 	    var yeom = ctx+'/resources/js/yeom.js';
-	    var view='<div id="mypage">'
-	    	+'		<div> '
-	    	+'			<h2><strong>마이시네마</strong></h2><h4><strong>내 포인트</strong>: <span id="point"></span>점</h4>'
-	    	+'		</div>'
-	    	+'		<div id="mypageGnb">'
-	    	+'			<ul>'
-	    	+'				<li>'
-	    	+'					<a href="#">예매/구매내역</a>'
-	    	+'				</li>'
-	    	+'				<li>'
-	    	+'					<a href="javascript:abb1.jquery.customer_mypageInfo()">나의 정보관리</a>'
-	    	+'				</li>'
-	    	+'			</ul> '
-	    	+'		</div>'
-	    	+'		<div id="mypage_reservation_content">'
-	    	+'			<ul>'
-	    	+'				<li>'
-	    	+'					<a href="#"><strong>예매/구매내역</strong></a>'
-	    	+'				</li>'
-	    	+'				<li>'
-	    	+'					<a href="javascript:abb1.jquery.customer_mypageCancel()">취소내역</a>'
-	    	+'				</li>'
-	    	+'			</ul>'
-	    	
-	    	+'			<div id="mypage_reservation">'
-	    	+'			</div>'
-	    	
-	    	
-	    	
-	    	+'		</div>'
-	    	+'	</div>';
-	    $('#container').html(view);
+	    $.getScript(yeom,function(){
+	    customer_mypage_view();
 		
 		$.ajax({
 			url: ctx+'/getReservation',
@@ -2475,7 +2479,6 @@ abb1.jquery = {
 				console.log('data.infoList');
 				console.log(data.infoList);
 				$.each(data.infoList, function(i, info){
-		             //info_list.push(info);
 		             var o = {
 		            		 cusPoint : info.cusPoint,
 				             resId : info.resId,
@@ -2483,12 +2486,17 @@ abb1.jquery = {
 				             resCanceled : info.resCanceled,
 				             resPrice : info.resPrice,
 				             movTitle : info.movTitle,
-				             movPicMain : info.movPicMain
+				             movPicMain : info.movPicMain,
+				             shoStartTime : info.shoStartTime,
+				             shoEndTime : info.shoEndTime,
+				             shoShowDate : info.shoShowDate,
+				             mulName : info.mulName,
+				             theName : info.theName,
+				             resHcount : info.resHcount
 		             };
 		             info_list.push(o);
 		        });
 				$('#point').text(info_list[0].cusPoint);
-				$.getScript(yeom,function(){
 					var view='';
 					if(info_list.length===0){
 						$('#mypage_reservation').append('<h5 id="default_msg">예매/구매내역이 없습니다.</h5>');
@@ -2500,13 +2508,13 @@ abb1.jquery = {
 						}
 					}
 					customer_mypage_css(info_list.length);
-				});
+					customer_mypage_detail(info_list,ctx);
 			},
 			error: function(xhr,status,msg){
 				alert('실패 이유: '+msg)
 			}
 		});
-		
+	});
 		
 		$('#detail0').on('click',function(e){
 			e.preventDefault();
@@ -2563,10 +2571,10 @@ abb1.jquery = {
 					error: function(xhr,status,msg){
 						alert('실패 이유: '+msg)
 					}
-				});
+			});
 		});
-	},
-	customer_mypageCancel : function(){
+	};
+	var customer_mypageCancel = function(){
 	    var ctx = abb1.session.getContextPath();
 	    var view='<div id="mypage">'
 	    	+'		<div> '
@@ -2633,8 +2641,8 @@ abb1.jquery = {
 		mypage_reservation.find('tr:first-child').addClass('abb1_margin_left_20');
 		$('#reservation_pic').addClass('abb1_margin_left_20');
 		$('#reservation_no').addClass('abb1_margin_right_20');
-	},
-	customer_mypageInfo : function(){
+	};
+	var customer_mypageInfo = function(){
 	    var ctx = abb1.session.getContextPath();
 	    var view='<div id="mypage">'
 	    	+'		<div> '
@@ -2680,8 +2688,8 @@ abb1.jquery = {
 		mypage_reservation_content.find('li:nth-child(1)').addClass('abb1_finc_id_cancel_btn');
 		mypage_reservation_content.find('li:nth-child(2)').addClass('abb1_page_li_inline');
 		mypage_reservation_content.find('input').addClass('btn abb1_btn_lg abb1_btn_verification');
-	},
-	customer_mypageReservation : function(){
+	};
+	var customer_mypageReservation = function(){
 	    var ctx = abb1.session.getContextPath();
 	    var view='<div id="mypage">'
 	    	+'		<div> '
@@ -2787,8 +2795,8 @@ abb1.jquery = {
 		detail_reservation.find('div:nth-child(2)').addClass('abb1_find_pw_margin');
 		$('#detail_reservation_pic').addClass('abb1_margin_left_20');
 		$('#reservation_cancel').addClass('btn abb1_btn_lg abb1_btn_verification').css('height','40px').css('width','100px').css('font-size','15px');
-	},
-	customer_signup : function(){
+	};
+	var customer_signup = function(){
 	    var ctx = abb1.session.getContextPath();
 	    var yeom = ctx+'/resources/js/yeom.js';
 		$.getScript(yeom,function(){
@@ -2872,8 +2880,8 @@ abb1.jquery = {
 			});
 		});
 	});
-	},
-	customer_signupsuccess : function(){
+	};
+	var customer_signupsuccess = function(){
 	    var ctx = abb1.session.getContextPath();
 	    var view='<div id="signupSuccess">'
 	    	+'		<div> '
@@ -2914,8 +2922,8 @@ abb1.jquery = {
 		signup_success.find('ul').addClass('abb1_page_ul_inline');
 		signup_success.find('li').addClass('abb1_page_li_inline');
 		signup_success.find('li').find('input').addClass('btn abb1_btn_lg abb1_btn_verification').css('height','50px').css('width','150px').css('font-size','17px').css('background','#453d3f').css('color','#efebdb');
-	},
-	customer_updateInfo : function(){
+	};
+	var customer_updateInfo = function(){
 	    var ctx = abb1.session.getContextPath();
 	    var yeom = ctx+'/resources/js/yeom.js'
 	    $.getScript(yeom,function(){
@@ -2951,8 +2959,8 @@ abb1.jquery = {
 	    	});
 	    });
 	    });
-	},
-	customer_updateInfoChPw : function(){
+	};
+	var customer_updateInfoChPw = function(){
 	    var ctx = abb1.session.getContextPath();
 	    var view='<div id="updateInfoChPw">'
 	    	+'	<div> '
@@ -3011,8 +3019,8 @@ abb1.jquery = {
 		    	return;
 		    }
 	   });
-	},
-	customer_withdrawal : function(){
+	};
+	var customer_withdrawal = function(){
 	    var ctx = abb1.session.getContextPath();
 	    var view='<div id="mypageWithdrawal">'
 	    	+'		<div> '
@@ -3087,8 +3095,8 @@ abb1.jquery = {
 	    		}
 	    	});
 	    });
-	},
-	movie_detail : function(seq){
+	};
+	var movie_detail = function(seq){
 	       var ctx = abb1.session.getContextPath();
 	       $.ajax({
 	      url: ctx+"/get/movie",
@@ -3325,8 +3333,8 @@ abb1.jquery = {
 	         /*-- Google API Loading --*/
 	         abb1.api.google(30.5, 69.5);
 	         abb1.util.starRating();
-	      },
-	      movie_main : function(){
+	      };
+	      var movie_main = function(){
 	          var ctx = abb1.session.getContextPath();
 	          var view = '   <div id="movieMain">'
 	         +'      <div>'
@@ -3347,8 +3355,11 @@ abb1.jquery = {
 	         +'      </div>'
 	         +'   </div>';
 	          $('#container').html(view);
+	       };
+	       return{
+	    	   onCreate: onCreate
 	       }
-}
+})();
 /************************
  * Controller
  * abb1.controller

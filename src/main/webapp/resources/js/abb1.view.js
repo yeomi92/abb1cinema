@@ -1,0 +1,25 @@
+function admin_login_view(){
+	return '<div id="signupSuccess">'
+	+'		<div id="signup_success">'
+	+'			<div>'
+	+'				<table>'
+	+'		         <tr>'
+	+'		         	<td>'
+	+'			         	<h3><strong>관리자</strong><span>님 환영합니다!</span></h3>'
+	+'		         	</td>'
+	+'		         </tr>'
+	+'		         <tr>'
+	+'			         <td>'
+	+'			         <ul>'
+	+'						 <li>'
+	+'							<a href="'+$.context()+'/admin/index"><input type="button" value="관리자 페이지 GO"/></a>'
+	+'						 </li>'
+	+'					 </ul>'
+	+'					 </td>'
+	+'		         </tr>'
+	+'		      	</table>'
+	+'			</div>'
+	+'		</div>'
+	+'	</div>';
+}
+

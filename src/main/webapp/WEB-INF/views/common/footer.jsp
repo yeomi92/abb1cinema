@@ -8,6 +8,6 @@
 $(function(){
 	$('#footer').find('div:first-child').css('padding-top','40px').css('background','#f9f6ec');
 });
-   abb1.context.init('${context}');
+   abb1.context.onCreate('${context}');
 </script>
 </html>

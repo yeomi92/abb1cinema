@@ -41,9 +41,19 @@
         <img src="resources/img/common/shortList.png" alt="" />
    </div>
 </div>
+<div id="footer">
+<div></div>
+	<img src="${context}/resources/img/common/footer.png" alt="" />
+</div>
+</body>
 
-<jsp:include page="common/footer_white.jsp"/>
 <script>
+   abb1.context.onCreate('${context}');
+
+	$('#footer').find('div:first-child').css('margin-top','40px');
+
+
+
 function movie_sort(movie_arr){
     var temp = 0;
     for(k=0; k<movie_arr.length; k++) {
@@ -164,3 +174,4 @@ $(function(){
 });
 
 </script>
+</html>

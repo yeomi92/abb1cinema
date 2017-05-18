@@ -42,5 +42,5 @@
 </div>
 
 <script>
-abb1.jquery.customer_login();
+
 </script>
