@@ -25,6 +25,7 @@
          </div>
          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul id="ul_gnb" class="nav navbar-nav navbar-right">
+               <li><a href="${context}/customer/login">타일의 헤더<span class="sr-only">(current)</span></a></li>
                <li><a id="login" href="${context}/customer/login">로그인<span class="sr-only">(current)</span></a></li>
                <li><a id="register" href="${context}/customer/signUp">회원가입<span class="sr-only">(current)</span></a></li>
                <li><a id="FAQ" href="${context}/board/main">고객센터<span class="sr-only">(current)</span></a></li>
@@ -34,4 +35,3 @@
    </nav>
 </div>
 <!-- end bootstrap -->
-<jsp:include page="gnb.jsp"/>

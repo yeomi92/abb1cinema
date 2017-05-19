@@ -16,7 +16,7 @@
    slide_css(slide)
    view_index()
 =================================*/
-function customer_login_css(){
+/*function customer_login_css(){
 	var customer_login_form = $('#customer_login_form');
 	customer_login_form.addClass('abb1_signup_form');
 	customer_login_form.find('div:first-child').addClass('abb1_signup_settings');
@@ -32,44 +32,19 @@ function customer_login_css(){
 	login_footer.find('td:nth-child(1)').addClass('abb1_width_448');
 	login_footer.find('td:nth-child(2)').addClass('abb1_width_200');
 	login_footer.find('td:nth-child(2)').find('input').addClass('btn abb1_btn_lg abb1_btn_verification').css('height','60px').css('width','120px').css('font-size','15px');
-}
-function customer_login_cookie(){
+}*/
+/*function customer_login_cookie(){
 	var authId=$.cookie('authId');
 	if(authId!=undefined){
 		$('#customer_id').val(authId);
 		$('#remember').prop("checked",true);
 	}
 	return authId;
-}
-function customer_login_success(data,ctx){
-	if(data.exist==='0'){
-		alert('아이디가 존재하지 않습니다.');
-	}else if(data.permission==='admin'){
-		alert('관리자로 로그인 하셨습니다.');
-		abb1.jquery.admin_login();
-		$('#ul_gnb').html('<li><a id="login" href="'+ctx+'">로그아웃<span class="sr-only">(current)</span></a></li>'
-				+'<li><a id="FAQ" href="'+ctx+'/board/main">고객센터<span class="sr-only">(current)</span></a></li>');
-	}else if(data.permission==='customer'){
-		alert('로그인 성공');
-		abb1.cookie.setCookie('id',data.customer.id);
-		abb1.cookie.setCookie('pw',data.customer.pw);
-		abb1.cookie.setCookie('name',data.customer.name);
-		abb1.cookie.setCookie('gender',data.customer.gender);
-		abb1.cookie.setCookie('birth',data.customer.birth);
-		abb1.cookie.setCookie('phone',data.customer.phone);
-		abb1.cookie.setCookie('email',data.customer.email);
-		abb1.cookie.setCookie('point',data.customer.point);
-		abb1.cookie.setCookie('address',data.customer.address);
-		$('#ul_gnb').html('<li><a id="login" href="'+ctx+'">로그아웃<span class="sr-only">(current)</span></a></li>'
-					+'<li><a id="register" href="'+ctx+'/customer/mypage">마이시네마<span class="sr-only">(current)</span></a></li>'
-					+'<li><a id="FAQ" href="'+ctx+'/board/main">고객센터<span class="sr-only">(current)</span></a></li>');
-		abb1.jquery.customer_mypage();
-	}else{
-		alert('비밀번호를 다시 확인하세요.');
-	}
-	$('#loginForm').submit();
-}
-function customer_signup_view(){
+}*/
+/*function customer_login_success(data,ctx){
+	
+}*/
+/*function customer_signup_view(){
 	var view='<div id="signUp">'
     	+'	    <div>'
     	+'	      <h2>회원가입</h2>'
@@ -161,8 +136,8 @@ function customer_signup_view(){
     	+'	   </div> '  
     	+'	</div>';
     $('#container').html(view);
-}
-function customer_signup_css(){
+}*/
+/*function customer_signup_css(){
 	var signUp = $('#signUp');
 	signUp.addClass('abb1_signup_form');
 	signUp.find('div:first-child').addClass('abb1_signup_settings');
@@ -177,7 +152,7 @@ function customer_signup_css(){
 	$('#result_id_msg').addClass('abb1_signup_check');
 	$('#result_pw_msg').addClass('abb1_signup_check');
 	$('#check_pw_msg').addClass('abb1_signup_check');
-}
+}*/
 function customer_check_id(data){
 	if (data.result===0) {
         if(abb1.util.checkId(id)){
@@ -202,7 +177,7 @@ function customer_correct_pw(){
     	$("#check_pw_msg").text("비밀번호가 일치합니다.");
     }
 }
-function customer_updateInfo_view(){
+/*function customer_updateInfo_view(){
 	 var view='<div id="signUp">'
 	    	+'	    <div>'
 	    	+'	      <h2><strong>회원정보변경</strong></h2>'
@@ -265,7 +240,7 @@ function customer_updateInfo_view(){
 	    	+'		</div>'
 	    	+'	</div>';
 	    $('#container').html(view);
-}
+}*/
 function customer_updateInfo_css(){
 	var signUp = $('#signUp');
     signUp.addClass('abb1_signup_form');
@@ -317,7 +292,7 @@ function customer_updateInfo_success(data){
 		abb1.jquery.customer_mypageInfo();
 	}
 }
-function customer_mypage_view(){
+/*function customer_mypage_view(){
 	var view='<div id="mypage">'
     	+'		<div> '
     	+'			<h2><strong>마이시네마</strong></h2><h4><strong>내 포인트</strong>: <span id="point"></span>점</h4>'
@@ -346,7 +321,7 @@ function customer_mypage_view(){
     	+'		</div>'
     	+'	</div>';
     $('#container').html(view);
-}
+}*/
 function customer_mypage_reservation(info_list,ctx,i){
 	var info=info_list[i];
 	$('#movie_name'+i+'').text(info.movTitle);
@@ -362,7 +337,7 @@ function customer_mypage_reservation(info_list,ctx,i){
 		$('#canceled'+i+'').text('사용');
 	}
 }
-function customer_mypage_reservation_table(i,ctx){
+/*function customer_mypage_reservation_table(i,ctx){
 	var view='<div id="mypage_table'+i+'">	<table>'
 	+'					<tr>'
 	+'						<td id="movie_img'+i+'" rowspan="5"><span id="reservation_pic'+i+'"><img id="movie_poster'+i+'" src="" width="115px" height="150px" alt="" /></span></td>'
@@ -388,8 +363,8 @@ function customer_mypage_reservation_table(i,ctx){
 	+'					</tr>'
 	+'				</table></div>'
 	return view;
-}
-function customer_mypage_css(length){
+}*/
+/*function customer_mypage_css(length){
 	var mypage = $('#mypage');
 	mypage.addClass('abb1_find_id_container');
 	$('#mypageGnb').addClass('abb1_padding_top_20 abb1_width_left');
@@ -419,7 +394,7 @@ function customer_mypage_css(length){
 		$('#detail_icon'+i+'').css('text-align','right');
 		$('#price_title'+i+'').css('padding-right','25px');
 	}
-}
+}*/
 function customer_mypage_detail(info_list,ctx){
 	for(var i=0; i<info_list.length; i++){
 		customer_mypage_detail_click('#detail'+i,i,info_list,ctx);
