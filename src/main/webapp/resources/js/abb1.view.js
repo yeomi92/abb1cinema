@@ -1505,7 +1505,7 @@ function customerMypageReservationTable(i){
 	+'					<tr>'
 	+'						<td>사용상태</td>'
 	+'						<td id="canceled'+i+'">취소가능</td>'
-	+'						<td id="detail_icon'+i+'"><a id="detail'+i+'" href="#">상세<img src="'+$.image()+'/icon/downarrow.png" width="3%" height="3%" alt="" /></a></td>'
+	+'						<td id="detail_icon'+i+'"><a id="detail_'+i+'" class="abb1_detail_icon" href="#">상세<img src="'+$.image()+'/icon/downarrow.png" width="3%" height="3%" alt="" /></a></td>'
 	+'					</tr>'
 	+'					<tr>'
 	+'						<td>예매내역</td>'

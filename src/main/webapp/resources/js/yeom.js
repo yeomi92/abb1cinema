@@ -407,7 +407,42 @@ function customer_mypage_detail_click(id,i,info_list,ctx){
 		
 	});
 }
-function customer_mypage_detail_view(ctx,i,info_list,ctx){
+
+function customerMypageDetailView(i){
+	return '<div id="detail_reservation'+i+'">'
+	+'					<div>'
+	+'						<h4>상세내용</h4>'
+	+'					</div>'
+	+'					<div>'
+    +'					<table>'
+    +'						<tr>'
+    +'							<td rowspan="4"><span id="detail_reservation_pic'+i+'"><img id="movie_poster'+i+'" src="" width="60%" height="60%" alt="" /></span></td>'
+    +'							<td colspan="2"><h4><strong id="movie_name'+i+'"></strong></h4></td>'
+    +'						</tr>'
+    +'						<tr>'
+    +'							<td>상영일</td>'
+    +'							<td id="show_info'+i+'"></td>'
+    +'						</tr>'
+    +'						<tr>'
+    +'							<td>관람인원</td>'
+    +'							<td id="customer_info'+i+'"></td>'
+    +'						</tr>'
+    +'						<tr>'
+    +'							<td><span>주문금액</span></td>'
+    +'							<td id="reservation_price'+i+'"></td>'
+    +'						</tr>'
+    +'					</table>'
+	+'					</div>'
+	+'					<div>'
+	+'						<input id="reservation_cancel'+i+'" type="button" value="결제취소"  />'
+	+'					</div>'
+	+'				</div>';
+}
+
+
+
+
+function customer_mypage_detail_view(i,info_list){
 	alert('view로 넘어온 i: '+i);
 	var view='<div id="detail_reservation'+i+'">'
     	+'					<div>'
@@ -416,7 +451,7 @@ function customer_mypage_detail_view(ctx,i,info_list,ctx){
     	+'					<div>'
 	    +'					<table>'
 	    +'						<tr>'
-	    +'							<td rowspan="4"><span id="detail_reservation_pic'+i+'"><img id="movie_poster'+i+'" src="'+ctx+'/resources/img/movie/movie_poster_6.png" width="60%" height="60%" alt="" /></span></td>'
+	    +'							<td rowspan="4"><span id="detail_reservation_pic'+i+'"><img id="movie_poster'+i+'" src="'+$.context()+'/resources/img/movie/movie_poster_6.png" width="60%" height="60%" alt="" /></span></td>'
 	    +'							<td colspan="2"><h4><strong id="movie_name'+i+'">아빠는 딸</strong></h4></td>'
 	    +'						</tr>'
 	    +'						<tr>'
@@ -438,7 +473,7 @@ function customer_mypage_detail_view(ctx,i,info_list,ctx){
     	+'					</div>'
     	+'				</div>'
     $('#mypage_table'+i+'').append(view);
-	$('#detail_icon'+i+'').html('<a id="close" href="#">닫기<img src="'+ctx+'/resources/img/icon/uparrow.png" width="3%" height="3%" alt="" /></a>')
+	$('#detail_icon'+i+'').html('<a id="close" href="#">닫기<img src="'+$.context()+'/resources/img/icon/uparrow.png" width="3%" height="3%" alt="" /></a>')
 	customer_mypage_detail_success(info_list,i,ctx);
 	customer_mypage_detail_css(i);
 }
@@ -454,7 +489,7 @@ function customer_mypage_detail_css(i){
 function customer_mypage_detail_success(info_list,i,ctx){
 	alert('success로 넘어온 i: '+i);
 	var info=info_list[i];
-	console.log(info);
+	console.log(info_list[i]);
 	console.log($('#movie_poster'+i+'').attr('src'));
 	console.log($('#reservation_cancel'+i+'').val());
 	$('#movie_poster'+i+'').attr('src',ctx+'/resources/img/movie/'+info.movPicMain);

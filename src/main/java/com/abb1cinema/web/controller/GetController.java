@@ -111,7 +111,21 @@ public class GetController {
 			return map;
 	   }
 
-	// john
+	   @RequestMapping(value="/getReservationDetail", method=RequestMethod.POST, consumes="application/json")
+		public @ResponseBody Map<?,?> getReservationDetail( @RequestBody Map<String,String> paramMap) throws Exception{
+		    logger.info("GetController getReservationDetail() {}","ENTER");
+			Map<String, Object>map=new HashMap<>();
+			List<Information> infoList=new ArrayList<>();
+			String id=paramMap.get("id");
+			map.put("key1","resId");
+			map.put("value1",id);
+			infoList=getService.getInfoList(map);
+			logger.info("getReservation() infoList {}",infoList);
+			map.clear();
+			map.put("infoList", infoList);
+			return map;
+	   }
+	   
 	   @RequestMapping(value="/get/board", method=RequestMethod.POST, consumes="application/json")
 	   public @ResponseBody Map<?,?> getBoard() throws Exception {
 	      logger.info("getBoard() {}","ENTER");

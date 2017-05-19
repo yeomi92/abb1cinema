@@ -529,8 +529,7 @@ abb1.jquery =(function() {
 			contentType: 'application/json',
 			success: function(data){
 				var info_list=[];
-				console.log('data.infoList');
-				console.log(data.infoList);
+			
 				$.each(data.infoList, function(i, info){
 		             var o = {
 		            		 cusPoint : info.cusPoint,
@@ -550,15 +549,15 @@ abb1.jquery =(function() {
 		             info_list.push(o);
 		        });
 				$('#point').text(info_list[0].cusPoint);
-					var view='';
-					if(info_list.length===0){
-						$('#mypage_reservation').append('<h5 id="default_msg">예매/구매내역이 없습니다.</h5>');
-					}else{
-						for(var i=0;i<info_list.length;i++){
-							view=customerMypageReservationTable(i);
-							$('#mypage_reservation').append(view);
-							customer_mypage_reservation(info_list,ctx,i);
-						}
+				var view='';
+				if(info_list.length===0){
+					$('#mypage_reservation').append('<h5 id="default_msg">예매/구매내역이 없습니다.</h5>');
+				}else{
+					for(var i=0;i<info_list.length;i++){
+						view=customerMypageReservationTable(i);
+						$('#mypage_reservation').append(view);
+						console.log(i);
+						customer_mypage_reservation(info_list,ctx,i);
 					}
 					var mypage = $('#mypage');
 					mypage.addClass('abb1_find_id_container');
@@ -582,14 +581,82 @@ abb1.jquery =(function() {
 					mypage.find('table>tr:nth-child(3)>td:nth-child(3)').css('text-align','right');
 					$('#default_msg').css('padding-left','20px');
 					mypage.find('div:first-child>h4').addClass('abb1_width_right');
-					for(var i=0;i<info_list.length;i++){
+						
+					$('.abb1_detail_icon').on('click',function(){
+						var i = $(this).attr('id').split('_')[1]*1;
+						$('#mypage_table'+i+'').append(customerMypageDetailView(i));
+						alert($('#reservation_number'+i).text());
+						$.ajax({
+							url: ctx+'/getReservationDetail',
+							method: 'POST',
+							data: JSON.stringify({
+								id: $('#reservation_number'+i).text()
+							}),
+							dataType: 'json',
+							contentType: 'application/json',
+							success: function(data){
+								/*$.each(data.infoList, function(i, info){
+						             var o = {
+						            		 cusPoint : info.cusPoint,
+								             resId : info.resId,
+								             resRegDate : info.resRegDate,
+								             resCanceled : info.resCanceled,
+								             resPrice : info.resPrice,
+								             movTitle : info.movTitle,
+								             movPicMain : info.movPicMain,
+								             shoStartTime : info.shoStartTime,
+								             shoEndTime : info.shoEndTime,
+								             shoShowDate : info.shoShowDate,
+								             mulName : info.mulName,
+								             theName : info.theName,
+								             resHcount : info.resHcount
+						             };
+						             detail_list.push(o);
+						        });*/
+								console.log(data.infoList);
+								$('#movie_name'+i+'').text(data.infoList.movTitle);
+							},
+							error: function(){
+								alert('실패');
+							}
+						});
+						/*$('#detail_icon'+i+'').html('<a id="close" href="#">닫기<img src="'+$.context()+'/resources/img/icon/uparrow.png" width="3%" height="3%" alt="" /></a>');
+						var detail_reservation = $('#detail_reservation'+i+'');
+						 detail_reservation.addClass('abb1_detail_reservation');
+						 detail_reservation.find('div:first-child').addClass('abb1_mypage_reservation');
+						 detail_reservation.find('div:nth-child(2)').addClass('abb1_find_pw_margin');
+						 $('#detail_reservation_pic'+i+'').addClass('abb1_margin_left_20');
+						 $('#reservation_cancel'+i+'').addClass('btn abb1_btn_lg abb1_btn_verification').css('height','40px').css('width','100px').css('font-size','15px');
+						 
+						 var info=info_list[i];
+						console.log('i: '+i);
+						console.log('info_list[i]');
+						console.log(info);
+						$('#movie_poster'+i).attr('src',ctx+'/resources/img/movie/'+info.movPicMain);
+						//alert(ctx+'/resources/img/movie/'+info.movPicMain);
+						//alert('movie_'+$('#movie_poster'+i).attr('src'));
+						$('#movie_name'+i).text(info.movTitle);
+						$('#show_info'+i).text(info.shoShowDate+' | 상영시간 '+info.shoStartTime+' ~ '+info.shoEndTime+' | 상영관 '+info.mulName+', '+info.theName);
+						$('#customer_info'+i).text('성인'+info.resHcount+' | 좌석 '+info.resId.split('-')[3]);
+						$('#reservation_price'+i).text(info.resPrice+'원');*/
+						
+						
+						
+						//customer_mypage_detail_view(i,info_list);
+					
+					});
+				}
+				
+					
+					
+					/*for(var i=0;i<info_list.length;i++){
 						$('#movie_img'+i+'').css('padding-right','35px');
 						$('#reservation_pic'+i+'').addClass('abb1_margin_left_20');
 						$('#reservation_no'+i+'').addClass('abb1_margin_right_20');
 						$('#detail_icon'+i+'').css('text-align','right');
 						$('#price_title'+i+'').css('padding-right','25px');
-					}
-					customer_mypage_detail(info_list,ctx);
+					}*/
+					//customer_mypage_detail(info_list,ctx);
 			},
 			error: function(xhr,status,msg){
 				alert('실패 이유: '+msg)
@@ -655,6 +722,17 @@ abb1.jquery =(function() {
 			});
 		});*/
 	};
+	
+	var detailForLoop = function(info_list){
+		for(var i=0;i<info_list.length;i++){
+			$('#movie_img'+i+'').css('padding-right','35px');
+			$('#reservation_pic'+i+'').addClass('abb1_margin_left_20');
+			$('#reservation_no'+i+'').addClass('abb1_margin_right_20');
+			$('#detail_icon'+i+'').css('text-align','right');
+			$('#price_title'+i+'').css('padding-right','25px');
+		}
+	};
+	
 	var customer_mypageCancel = function(){
 	    $('#container').html(customerMypageCancelView());
 		var mypage = $('#mypage');
