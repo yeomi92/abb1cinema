@@ -13,18 +13,31 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.abb1cinema.web.mapper.Mapper;
+import com.abb1cinema.web.service.PostService;
 
 @RestController
 public class PostController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	@Autowired Mapper mapper;
+	@Autowired PostService postService;
 	
-	@RequestMapping(value="/post/{group}", method=RequestMethod.POST, consumes="application/json") // spring p291
-	public @ResponseBody Map<?,?> register(@PathVariable String group, @RequestBody Map<String, String> param) throws Exception {
-		logger.info("PersonController - register() {}","ENTER");
-		Map<String,String> map = new HashMap<>();
+	
+	@RequestMapping(value="/signup", method=RequestMethod.POST, consumes="application/json") // spring p291
+	public @ResponseBody Map<?,?> registerCustomer(@RequestBody Map<String, String> paramMap) throws Exception {
+		logger.info("PostController registerCustomer() {}","ENTER");
+		Map<String,Object> map = new HashMap<>();
+		map.put("id", paramMap.get("id"));
+		map.put("pw", paramMap.get("pw"));
+		map.put("name", paramMap.get("name"));
+		map.put("birth", paramMap.get("birth"));
+		map.put("phone", paramMap.get("phone"));
+		map.put("gender", paramMap.get("gender"));
+		map.put("email", paramMap.get("email"));
+		Integer result=postService.registerCustomer(map);
+		map.put("result", result);
 		return map;
 	}
+	
+	
 }
 
 

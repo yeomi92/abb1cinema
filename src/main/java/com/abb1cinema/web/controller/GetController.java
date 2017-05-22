@@ -1,30 +1,38 @@
 package com.abb1cinema.web.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttributes;
+
+import com.abb1cinema.web.domain.Article;
+import com.abb1cinema.web.domain.Comment;
 import com.abb1cinema.web.domain.Customer;
+import com.abb1cinema.web.domain.Information;
 import com.abb1cinema.web.domain.Movie;
+import com.abb1cinema.web.domain.Notice;
+import com.abb1cinema.web.domain.Reservation;
 import com.abb1cinema.web.domain.Review;
-import com.abb1cinema.web.mapper.Mapper;
 import com.abb1cinema.web.service.GetService;
-import com.abb1cinema.web.service.IGetService;
 
 @RestController
 public class GetController {
 	private static final Logger logger = LoggerFactory.getLogger(GetController.class);
 	@Autowired Customer customer;
+	@Autowired Movie movie;
+	@Autowired Information information;
+	@Autowired Reservation reservation;
 	@Autowired GetService getService;
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST, consumes="application/json")
@@ -54,6 +62,16 @@ public class GetController {
 		return map;
 	}
 	
+	@RequestMapping(value="/checkId", method=RequestMethod.POST, consumes="application/json")
+	public @ResponseBody Map<?,?> checkId( @RequestBody Map<String,String> paramMap) throws Exception{
+		logger.info("GetController checkId() {}","ENTER");
+		Map<String, Object>map=new HashMap<>();
+		map.put("id", paramMap.get("id"));
+		int exist=getService.checkId(map);
+		map.put("result", exist);
+		return map;
+	}
+	
 	@RequestMapping(value="/get/movieRank", method=RequestMethod.POST, consumes="application/json")
 	   public @ResponseBody Map<?,?> getMovieRank() throws Exception {
 	      logger.info("getMovieRank() {}","ENTER");
@@ -72,12 +90,100 @@ public class GetController {
 	      logger.info("getMovie() {}","ENTER");
 	      Map<String, Object> map = new HashMap<>();
 	      map.put("result", "Succeess!!!!");
-	      Movie movie = getService.getMovie(map);
+	      movie = getService.getMovie(map);
 	      map.put("movie", movie);
 	      return map;
 	   }
 	   
-	   
-	   
+	   @RequestMapping(value="/getReservation", method=RequestMethod.POST, consumes="application/json")
+		public @ResponseBody Map<?,?> getReservation( @RequestBody Map<String,String> paramMap) throws Exception{
+		    logger.info("GetController getReservation() {}","ENTER");
+			Map<String, Object>map=new HashMap<>();
+			List<Information> infoList=new ArrayList<>();
+			String id=paramMap.get("id");
+			map.put("key1","cusId");
+			map.put("value1",id);
+			map.put("key2","resCanceled");
+			map.put("value2","N");
+			infoList=getService.getInfoList(map);
+			logger.info("getReservation() infoList {}",infoList);
+			map.clear();
+			map.put("infoList", infoList);
+			return map;
+	   }
 
+	   @RequestMapping(value="/getCancel", method=RequestMethod.POST, consumes="application/json")
+		public @ResponseBody Map<?,?> getCancel( @RequestBody Map<String,String> paramMap) throws Exception{
+		    logger.info("GetController getReservation() {}","ENTER");
+			Map<String, Object>map=new HashMap<>();
+			List<Information> infoList=new ArrayList<>();
+			String id=paramMap.get("id");
+			map.put("key1","cusId");
+			map.put("value1",id);
+			map.put("key2","resCanceled");
+			map.put("value2","Y");
+			infoList=getService.getInfoList(map);
+			logger.info("getReservation() infoList {}",infoList);
+			map.clear();
+			map.put("infoList", infoList);
+			return map;
+	   }
+	   
+	   @RequestMapping(value="/getReservationDetail", method=RequestMethod.POST, consumes="application/json")
+		public @ResponseBody Map<?,?> getReservationDetail( @RequestBody Map<String,String> paramMap) throws Exception{
+		    logger.info("GetController getReservationDetail() {}","ENTER");
+			Map<String, Object>map=new HashMap<>();
+			List<Information> infoList=new ArrayList<>();
+			String id=paramMap.get("id");
+			map.put("key1","resId");
+			map.put("value1",id);
+			infoList=getService.getInfoList(map);
+			logger.info("getReservation() infoList {}",infoList);
+			map.clear();
+			map.put("infoList", infoList);
+			return map;
+	   }
+	   
+	   @RequestMapping(value="/get/board", method=RequestMethod.POST, consumes="application/json")
+	   public @ResponseBody Map<?,?> getBoard() throws Exception {
+	      logger.info("getBoard() {}","ENTER");
+	      Map<String, Object> map = new HashMap<>();
+	      map.put("group", "Article");
+	      int articleCount = getService.count(map);
+	      map.clear();
+	      map.put("group", "Notice");
+	      int noticeCount = getService.count(map);
+	      List<Article> articleList = getService.getArticleList(map);
+	      List<Notice> noticeList = getService.getNoticeList(map);
+	      map.put("article_list", articleList);
+	      map.put("notice_list", noticeList);
+	      map.put("article_count", articleCount);
+	      map.put("notice_count", noticeCount);
+	      map.put("success", "SUCCESS!!");
+	      return map;
+	   }
+
+	   @RequestMapping(value="/get/board/{seq}", method=RequestMethod.POST, consumes="application/json")
+	   public @ResponseBody Map<?,?> getBoard(@PathVariable String seq) throws Exception {
+	      logger.info("getBoard(seq) {}","ENTER");
+	      Map<String, Object> map = new HashMap<>();
+	      map.put("seq", seq);
+	      Article article = getService.getArticle(map);
+	      List<Comment> commentList = getService.getCommentList(map);
+	      map.put("article", article);
+	      map.put("comment_list", commentList);
+	      map.put("success", "SUCCESS!!");
+	      return map;
+	   }
+	   
+	   @RequestMapping(value="/get/notice/{seq}", method=RequestMethod.POST, consumes="application/json")
+	   public @ResponseBody Map<?,?> getNotice(@PathVariable String seq) throws Exception {
+	      logger.info("getNotice() {}","ENTER");
+	      Map<String, Object> map = new HashMap<>();
+	      map.put("seq", seq);
+	      map.put("notice", getService.getNotice(map));
+	      map.put("success", "SUCCESS!!");
+	      return map;
+	   }
+	   
 }

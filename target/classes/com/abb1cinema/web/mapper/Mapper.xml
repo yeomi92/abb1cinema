@@ -3,8 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.abb1cinema.web.mapper.Mapper">
-<insert id="registCustomer">
-INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES (#{id},#{pw},#{name},#{gender},#{birth},#{phone},#{email},#{point});
+<insert id="registerCustomer">
+INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES (#{id},#{pw},#{name},#{gender},#{birth},#{phone},#{email},'0');
 </insert>
 <select id="findCustomer" resultType="com.abb1cinema.web.domain.Customer" parameterType="hashMap">
 SELECT * FROM Customer WHERE id = #{id}
@@ -17,7 +17,7 @@ UPDATE Customer
 <set>
 	<if test="pw != null"> pw=#{pw}, </if>
 	<if test="phone != null"> phone=#{phone}, </if>
-	<if test="address != null"> pat_email=#{email} </if>
+	<if test="address != null"> email=#{email} </if>
 </set>
 WHERE id=#{id};
 </update>
@@ -25,27 +25,83 @@ WHERE id=#{id};
 DELETE FROM Customer WHERE id = #{id}
 </delete>
 
-
-<select id="getMovieList" resultType="com.abb1cinema.web.domain.Movie" parameterType="hashMap">
-SELECT * FROM Movie;
-</select>
-<select id="getMovie" resultType="com.abb1cinema.web.domain.Movie" parameterType="hashMap">
-SELECT * FROM Movie WHERE seq = ${seq};
-</select>
-<select id="getReviewList" resultType="com.abb1cinema.web.domain.Review" parameterType="hashMap">
-SELECT * FROM Review;
+<select id="getReservationList" resultType="com.abb1cinema.web.domain.Reservation" parameterType="hashMap">
+SELECT * FROM Reservation WHERE customer_id=#{id}
 </select>
 
-
-
-
-	<select id="count" resultType="int" parameterType="hashMap">
-		SELECT COUNT(*) FROM ${group}
-	</select>
-	<select id="exist" resultType="int" parameterType="hashMap">
-		SELECT COUNT(*) FROM ${group} WHERE ${idType} = #{id}
-	</select>
-	<delete id="delete" parameterType="hashMap">
-		DELETE FROM ${group} WHERE ${key} = #{value}
-	</delete>
+<!-- john -->
+   <select id="getMovieList" resultType="com.abb1cinema.web.domain.Movie" parameterType="hashMap">
+   SELECT * FROM Movie;
+   </select>
+   <select id="getReviewList" resultType="com.abb1cinema.web.domain.Review" parameterType="hashMap">
+   SELECT * FROM Review ORDER BY seq DESC;
+   </select>
+   <select id="getArticleList" resultType="com.abb1cinema.web.domain.Article" parameterType="hashMap">
+   SELECT * FROM Article 
+      <if test="title != null">
+      WHERE title like '%#{title}%' 
+      </if>
+      <if test="content != null">
+      WHERE content like '%#{content}%'
+      </if>
+      <if test="both != null">
+      WHERE title like '%#{both}%' OR content like '%#{both}%'
+      </if>
+   ORDER BY seq DESC;
+   </select>
+   <select id="getArticle" resultType="com.abb1cinema.web.domain.Article" parameterType="hashMap">
+   SELECT * FROM Article WHERE seq = #{seq};
+   </select>
+   <select id="getNoticeList" resultType="com.abb1cinema.web.domain.Notice" parameterType="hashMap">
+   SELECT * FROM Notice ORDER BY seq DESC;
+   </select>
+   <select id="getNotice" resultType="com.abb1cinema.web.domain.Notice" parameterType="hashMap">
+   SELECT * FROM Notice WHERE seq = #{seq};
+   </select>
+   <select id="getCommentList" resultType="com.abb1cinema.web.domain.Comment" parameterType="hashMap">
+   SELECT * FROM Comment WHERE article_seq = #{seq} ORDER BY reg_date DESC;
+   </select>
+   <select id="getMultiplexList" resultType="com.abb1cinema.web.domain.Multiplex" parameterType="hashMap">
+   SELECT * FROM Multiplex;
+   </select>
+   <select id="getTheaterList" resultType="com.abb1cinema.web.domain.Theater" parameterType="hashMap">
+   SELECT * FROM Theater
+      <if test="key != null">
+      WHERE multiplex_seq = ${seq};
+      </if>
+   </select>
+   <select id="getInfoList" resultType="com.abb1cinema.web.domain.Information" parameterType="hashMap">
+   SELECT * FROM Information 
+   <if test="key1 != null">
+   WHERE ${key1}=#{value1}
+   </if>
+   <if test="key2 != null">
+   AND ${key2}=#{value2}
+   </if>
+   <if test="key3 != null">
+   AND ${key3}=#{value3}
+   </if>
+   <if test="orderBy != null">
+   ORDER BY ${orderBy}
+   </if>
+   </select>
+   
+   
+   <!-- other -->
+   <select id="count" resultType="int" parameterType="hashMap">
+      SELECT COUNT(*) FROM ${group}
+      <if test="key != null">
+      WHERE ${key} = ${value};
+      </if>
+   </select>
+   <select id="exist" resultType="int" parameterType="hashMap">
+      SELECT COUNT(*) FROM ${group} WHERE ${idType} = #{id}
+   </select>
+   <delete id="delete" parameterType="hashMap">
+      DELETE FROM ${group} WHERE ${key} = #{value}
+   </delete>
+   
+   <update id="updateReservation">
+	UPDATE Reservation set canceled = 'Y' WHERE id = #{id}
+	</update>
 </mapper>

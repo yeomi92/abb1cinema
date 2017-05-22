@@ -234,9 +234,9 @@
 .abb1_bbs_pagination_table{margin: 0 auto; text-align: center;}
 .abb1_bbs_pagination_table td{width: 100px;}
 .abb1_bbs_main_table{width:100%;color:#231f20;line-height:18px;table-layout:fixed}
-.abb1_bbs_main_table tr:nth-child(1){font-weight: bold; background: #f9f6ec;}
+.abb1_bbs_main_table tr.notice{font-weight: bold; background: #f9f6ec;}
 .abb1_bbs_main_table th{padding:14px 0 13px;border-bottom:1px solid silver;vertical-align:middle; text-align: center; font-size:13px; background: white;}
-.abb1_bbs_main_table td{padding:15px 10px;border-bottom:1px solid #dedede;color:#666;vertical-align:middle; font-size:13px;}
+.abb1_bbs_main_table td{padding:15px 10px;border-bottom:1px solid #dedede;color:#666;vertical-align:middle; font-size:13px;text-align:center;}
 .abb1_bbs_main_table td:nth-child(3){text-align: left;}
 
 /*------- bbs detail, notice_detail -------*/
@@ -386,6 +386,14 @@
    background-color: #181818;
    color: white;
 }
+.abb1_seat_table td a.selected{
+   margin: 0 2px;
+   padding: 6px 6px;
+   font-size: 14px;
+   background-color: #181818;
+   color: white;
+}
+
 .abb1_seat_table .reserved{
    margin: 0 2px;
    border: 1px solid #ff8080;
@@ -395,6 +403,22 @@
    color: #b2b2b2;
 }
 .abb1_seat_table .reserved:hover{
+   margin: 0 2px;
+   border: 1px solid #ff8080;
+   padding: 5px 5px;
+   font-size: 14px;
+   background-color: #c2c2c2;
+   color: #b2b2b2;
+}
+.abb1_seat_table a.disabled{
+   margin: 0 2px;
+   border: 1px solid #ff8080;
+   padding: 5px 5px;
+   font-size: 14px;
+   background-color: #c2c2c2;
+   color: #b2b2b2;
+}
+.abb1_seat_table a.disabled:hover{
    margin: 0 2px;
    border: 1px solid #ff8080;
    padding: 5px 5px;

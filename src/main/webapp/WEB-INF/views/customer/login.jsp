@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<div id="container">
+<div id="wrapper">
 <div id="customer_login_form">
 	<div>
       <h2>로그인</h2>
@@ -9,7 +9,7 @@
          	<td><strong>아이디</strong></td>
             <td><input id="customer_id" name="customer_id" tabindex="1" type="text"></td>
             <td id="td_login" rowspan="2">
-            	<a id="a_login" href="#"><input id="login_btn" type="submit" tabindex="3" value="로그인"></a>
+            	<a id="a_login" href="${context}"><input id="login_btn" type="submit" tabindex="3" value="로그인"></a>
             </td>
          </tr>
          <tr>
@@ -40,7 +40,3 @@
 	</div>
 	</div>
 </div>
-
-<script>
-abb1.jquery.customer_login();
-</script>

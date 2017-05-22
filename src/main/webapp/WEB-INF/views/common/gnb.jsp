@@ -3,9 +3,9 @@
    <div>
       <div>
          <ul>
-            <li><a id="ticketing" href="${context}/reservation/main">예매</a></li>
-            <li><a id="movie" href="${context}/movie/main">영화</a></li>
-            <li><a id="multiplex" href="${context}/multiplex/main">영화관</a></li>
+            <li><a id="ticketing" href="#">예매</a></li>
+            <li><a id="movie" href="#">영화</a></li>
+            <li><a id="multiplex" href="#">영화관</a></li>
             <li><a class="abb1_tooltip" href="#">스위트샵<span>미구현</span></a></li>
             <li><a class="abb1_tooltip" href="#">이벤트<span>미구현</span></a></li>
             <li><a class="abb1_tooltip" href="#">기프트샵<span>미구현</span></a></li>

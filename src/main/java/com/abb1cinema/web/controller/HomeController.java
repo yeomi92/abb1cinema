@@ -21,7 +21,7 @@ public class HomeController {
 	public String home(Model model) {
 		logger.info("HomeController home() {}","ENTER");
 		model.addAttribute("context", Complex.ContextFactory.create());
-		return "index";
+		return "public:index";
 	}
 	@RequestMapping("/web")
 	public String main(Model model) {

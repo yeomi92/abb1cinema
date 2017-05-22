@@ -8,6 +8,5 @@
 $(function(){
 	$('#footer').find('div:first-child').css('margin-top','40px');
 });
-   abb1.context.init('${context}');
 </script>
 </html>
