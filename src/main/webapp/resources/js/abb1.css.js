@@ -1,5 +1,5 @@
 function gnbCss(){
-    var gnb = $('#gnb');
+    	var gnb = $('#gnb');
 	gnb.find('div:first-child').addClass('abb1_width_100 abb1_text_center')
 	gnb.find('div:first-child').find('div:first-child').addClass('abb1_gnb_tab abb1_width_100 abb1_text_center');
 	gnb.find('ul').addClass('abb1_gnb');
@@ -434,4 +434,238 @@ function multiplexMapCss(){
 	multiplex_info_btn.find('li:nth-child(2)').find('a').addClass('abb1_multiplex_select_a');
 	$('#multiplex_map_api').find('div:first-child').addClass('abb1_multiplex_map');
 	$('#map').css('width','900px').css('height','438px');
+}
+function customer_findid(){
+    $('#wrapper').html(customerFindIdView());
+	var customer_find_id = $('#customer_find_id');
+	customer_find_id.addClass('abb1_find_id_container');
+	customer_find_id.find('div:first-child').addClass('abb1_width_left');
+	customer_find_id.find('div:first-child').find('h2').addClass('abb1_color_bold_brown');
+	var customer_find_id_div = $('#customer_find_id_div');
+	customer_find_id_div.addClass('abb1_find_id_div');
+	customer_find_id_div.find('div:first-child').addClass('abb1_find_id_inner_div');
+	var customer_find_id_table = $('#customer_find_id_table');
+	customer_find_id_table.addClass('abb1_signup_form_control abb1_width_left');
+	customer_find_id_table.find('input').addClass('abb1_find_id_table_input');
+	customer_find_id_table.find('span:first-child').addClass('abb1_find_id_red_font');
+	customer_find_id_table.find('span:nth-child(2)').addClass('abb1_red_font');
+	$('#customer_send_email').css('background','#efebdb');
+	var customer_find_id_btns = $('#customer_find_id_btns');
+	customer_find_id_btns.css('text-align','center');
+	customer_find_id_btns.find('ul').addClass('abb1_page_ul_inline');
+	customer_find_id_btns.find('li:nth-child(1)').addClass('abb1_finc_id_cancel_btn');
+	customer_find_id_btns.find('li:nth-child(1)').find('input').addClass('btn abb1_btn_lg abb1_btn_verification');
+	customer_find_id_btns.find('li:nth-child(2)').addClass('abb1_page_li_inline');
+	customer_find_id_btns.find('li:nth-child(2)').find('input').addClass('btn abb1_btn_lg abb1_btn_verification');
+}
+function customer_findidsuccess(){
+    $('#wrapper').html(customerFindIdSuccessView());
+	var customer_find_id = $('#customer_find_id');
+	customer_find_id.addClass('abb1_find_id_container');
+	customer_find_id.find('div:first-child').addClass('abb1_width_left');
+	customer_find_id.find('div:first-child').find('h2').addClass('abb1_color_bold_brown');
+	var customer_find_id_result = $('#customer_find_id_result');
+	customer_find_id_result.addClass('abb1_find_id_div');
+	customer_find_id_result.find('div:first-child').addClass('abb1_page_info abb1_width_center');
+	var customer_find_id_table = $('#customer_find_id_table');
+	customer_find_id_table.addClass('abb1_signup_form_control abb1_width_left');
+	customer_find_id_table.find('strong').addClass('abb1_font_size_25');
+	customer_find_id_table.find('td:nth-child(2)').addClass('abb1_padding_left_163');
+	customer_find_id_table.find('ul').addClass('abb1_page_ul_inline');
+	customer_find_id_table.find('li').addClass('abb1_page_li_inline');
+	customer_find_id_table.find('input').addClass('btn abb1_btn_lg abb1_btn_verification');
+}
+function customer_findpw(){
+    $('#wrapper').html(customerFindpPwView());
+	var customer_find_pw = $('#customer_find_pw');
+	customer_find_pw.addClass('abb1_find_id_container');
+	customer_find_pw.find('div:first-child').addClass('abb1_width_left');
+	customer_find_pw.find('div:first-child').find('h2').addClass('abb1_color_bold_brown');
+	var customer_find_pw_div = $('#customer_find_pw_div');
+	customer_find_pw_div.addClass('abb1_find_id_div');
+	customer_find_pw_div.find('div:first-child').addClass('abb1_find_id_inner_div');
+	var customer_find_pw_table = $('#customer_find_pw_table');
+	customer_find_pw_table.addClass('abb1_signup_form_control abb1_width_left');
+	customer_find_pw_table.find('input').addClass('abb1_find_id_table_input');
+	customer_find_pw_table.find('span:first-child').addClass('abb1_find_id_red_font');
+	customer_find_pw_table.find('span:nth-child(2)').addClass('abb1_red_font');
+	$('#customer_send_email').css('background','#efebdb');
+	var customer_find_pw_btns = $('#customer_find_pw_btns');
+	customer_find_pw_btns.css('text-align','center');
+	customer_find_pw_btns.find('ul').addClass('abb1_page_ul_inline');
+	customer_find_pw_btns.find('li:nth-child(1)').addClass('abb1_finc_id_cancel_btn');
+	customer_find_pw_btns.find('li:nth-child(1)').find('input').addClass('btn abb1_btn_lg abb1_btn_verification');
+	customer_find_pw_btns.find('li:nth-child(2)').addClass('abb1_page_li_inline');
+	customer_find_pw_btns.find('li:nth-child(2)').find('input').addClass('btn abb1_btn_lg abb1_btn_verification');
+}
+function customer_findpwsuccess(){
+    	$('#wrapper').html(customerFindPwSuccessView());
+	var customer_find_pw = $('#customer_find_pw');
+	customer_find_pw.addClass('abb1_find_id_container');
+	customer_find_pw.find('div:first-child').addClass('abb1_width_left');
+	customer_find_pw.find('div:first-child').find('h2').addClass('abb1_color_bold_brown');
+	var customer_find_pw_result = $('#customer_find_pw_result');
+	customer_find_pw_result.addClass('abb1_find_id_div');
+	customer_find_pw_result.find('div:first-child').addClass('abb1_find_id_inner_div');
+	var customer_find_pw_table = $('#customer_find_pw_table');
+	customer_find_pw_table.addClass('abb1_signup_form_control abb1_width_left');
+	customer_find_pw_table.find('tr:nth-child(1)').find('input').addClass('abb1_find_pw_margin');
+	var customer_find_pw_btns = $('#customer_find_pw_btns');
+	customer_find_pw_btns.css('text-align','center');
+	customer_find_pw_btns.find('ul').addClass('abb1_page_ul_inline');
+	customer_find_pw_btns.find('li:nth-child(1)').addClass('abb1_finc_id_cancel_btn');
+	customer_find_pw_btns.find('li:nth-child(1)').find('input').addClass('btn abb1_btn_lg abb1_btn_verification');
+	customer_find_pw_btns.find('li:nth-child(2)').addClass('abb1_page_li_inline');
+	customer_find_pw_btns.find('li:nth-child(2)').find('input').addClass('btn abb1_btn_lg abb1_btn_verification');
+}
+function customer_signupsuccess(){
+    	$('#wrapper').html(customerSignUpSuccessView());
+	var container = $('#wrapper');
+	$('#signupSuccess').addClass('abb1_find_id_container');
+	container.find('div:first-child').find('div:first-child').addClass('abb1_width_left');
+	container.find('h2').addClass('abb1_color_bold_brown');
+	var signup_success = $('#signup_success');
+	signup_success.addClass('abb1_signup_success_div');
+	signup_success.find('div:first-child').addClass('abb1_page_info abb1_width_center');
+	signup_success.find('table').addClass('abb1_signup_form_control abb1_width_left');
+	signup_success.find('span').addClass('abb1_color_bold_gray');
+	signup_success.find('td:nth-child(2)').addClass('abb1_padding_left_163');
+	signup_success.find('ul').addClass('abb1_page_ul_inline');
+	signup_success.find('li').addClass('abb1_page_li_inline');
+	signup_success.find('li').find('input').addClass('btn abb1_btn_lg abb1_btn_verification').css('height','50px').css('width','150px').css('font-size','17px').css('background','#453d3f').css('color','#efebdb');
+}
+function customerLoginCss(){
+	var customer_login_form = $('#customer_login_form');
+	customer_login_form.addClass('abb1_signup_form');
+	customer_login_form.find('div:first-child').addClass('abb1_signup_settings');
+	customer_login_form.find('h2').addClass('abb1_login_maintext');
+	$('#login_table').addClass('abb1_signup_form_control');
+	$('#login_btn').addClass('btn abb1_btn_lg abb1_login_btn');
+	$('#find_table').addClass('abb1_find_table');
+	$('#find_table').find('tr:nth-child(1)>td').css('padding','0 0 0 82px').css('text-align','left');
+	$('#find_table').find('tr:nth-child(2)>td').addClass('abb1_a_findIdPw');
+	var login_footer = $('#login_footer');
+	login_footer.addClass('abb1_div_login_footer');
+	login_footer.find('table').addClass('abb1_width_center_w800');
+	login_footer.find('td:nth-child(1)').addClass('abb1_width_448');
+	login_footer.find('td:nth-child(2)').addClass('abb1_width_200');
+	login_footer.find('td:nth-child(2)').find('input').addClass('btn abb1_btn_lg abb1_btn_verification').css('height','60px').css('width','120px').css('font-size','15px');
+}
+function customerMypageCss(){
+    	var mypage = $('#mypage');
+	mypage.addClass('abb1_find_id_container');
+	$('#mypageGnb').addClass('abb1_padding_top_20 abb1_width_left');
+	mypage.find('table').css('margin','15px');
+	mypage.find('div:first-child');
+	mypage.find('div:first-child').find('h2').addClass('abb1_color_bold_brown').addClass('abb1_width_left');
+	mypage.find('div:nth-child(2)').find('ul').addClass('abb1_page_ul_inline');
+	mypage.find('div:nth-child(2)').find('li').addClass('abb1_page_li_inline');
+	mypage.find('div:nth-child(2)').find('li:nth-child(1)').find('a').addClass('abb1_mypage_select_btn');
+	mypage.find('div:nth-child(2)').find('li:nth-child(2)').find('a').addClass('abb1_mypage_not_select_btn');
+	var mypage_reservation_content = $('#mypage_reservation_content');
+	mypage_reservation_content.addClass('abb1_mypage_reservation_content');
+	mypage_reservation_content.find('ul').addClass('abb1_page_ul_inline abb1_mypage_margin');
+	mypage_reservation_content.find('li').addClass('abb1_page_li_inline');
+	mypage_reservation_content.find('li').find('a').addClass('abb1_detail_gnb_li');
+	var mypage_reservation = $('#mypage_reservation');
+	mypage_reservation.addClass('abb1_page_reservation');
+	mypage_reservation.find('tr:first-child').addClass('abb1_margin_left_20');
+	mypage_reservation.find('tr:nth-child(2)').find('td:nth-child(3)').addClass('abb1_text_right');
+	mypage.find('table>tr:nth-child(3)>td:nth-child(3)').css('text-align','right');
+	$('#default_msg').css('padding-left','20px');
+	mypage.find('div:first-child>h4').addClass('abb1_width_right');
+}
+function customerMypageInfoCss(){
+	var mypage = $('#mypage');
+	mypage.addClass('abb1_find_id_container');
+	mypage.find('div:first-child').addClass('abb1_width_left');
+	mypage.find('div:first-child').find('h2').addClass('abb1_color_bold_brown');
+	$('#mypageGnb').addClass('abb1_padding_top_20 abb1_width_left');
+	mypage.find('div:nth-child(2)').find('ul').addClass('abb1_page_ul_inline');
+	mypage.find('div:nth-child(2)').find('li').addClass('abb1_page_li_inline');
+	mypage.find('div:nth-child(2)').find('li:nth-child(2)').find('a').addClass('abb1_mypage_select_btn');
+	mypage.find('div:nth-child(2)').find('li:nth-child(1)').find('a').addClass('abb1_mypage_not_select_btn');
+	var mypage_reservation_content = $('#mypage_reservation_content');
+	mypage_reservation_content.addClass('abb1_mypage_reservation_content');
+	mypage_reservation_content.find('div:first-child').addClass('abb1_page_info abb1_width_center');
+	mypage_reservation_content.find('ul').addClass('abb1_page_ul_inline');
+	mypage_reservation_content.find('li:nth-child(1)').addClass('abb1_finc_id_cancel_btn');
+	mypage_reservation_content.find('li:nth-child(2)').addClass('abb1_page_li_inline');
+	mypage_reservation_content.find('input').addClass('btn abb1_btn_lg abb1_btn_verification');
+}
+function reservationDetailServiceCss(i){
+    	var detail_reservation = $('#detail_reservation'+i+'');
+	detail_reservation.addClass('abb1_detail_reservation');
+	detail_reservation.find('div:first-child').addClass('abb1_mypage_reservation');
+	detail_reservation.find('div:nth-child(2)').addClass('abb1_find_pw_margin');
+	$('#detail_reservation_pic'+i+'').addClass('abb1_margin_left_20');
+	$('#reservation_cancel'+i+'').addClass('btn abb1_btn_lg abb1_btn_verification');
+}
+function customerSignUpCss(){
+    	var signUp = $('#signUp');
+	signUp.addClass('abb1_signup_form');
+	signUp.find('div:first-child').addClass('abb1_signup_settings');
+	signUp.find('h2:first-child').addClass('abb1_signup_maintext');
+	var signup_tables = $('#signup_tables');
+	signup_tables.find('table').addClass('abb1_signup_form_control');
+	signup_tables.find('select').addClass('btn btn_default');
+	signup_tables.find('table').find('div').addClass('abb1_sigunup_form_gender');
+	$('#find_postcode').addClass('btn abb1_btn_lg abb1_btn_verification');
+	$('#send_code').addClass('btn abb1_btn_lg abb1_btn_verification');
+	$('#signup_finish').css('background','#453d3f').css('color','#efebdb').css('font-size','15px').addClass('btn abb1_btn_lg abb1_btn_verification abb1_btn_confirm');
+	$('#result_id_msg').addClass('abb1_signup_check');
+	$('#result_pw_msg').addClass('abb1_signup_check');
+	$('#check_pw_msg').addClass('abb1_signup_check');
+}
+function customerUpdateInfoCss(){
+        var signUp = $('#signUp');
+        signUp.addClass('abb1_signup_form');
+        signUp.find('div:first-child').addClass('abb1_signup_settings');
+        signUp.find('h2:first-child').addClass('abb1_signup_maintext');
+        var updateInfo = $('#updateInfo');
+        updateInfo.find('table').addClass('abb1_signup_form_control').css('text-align','left');
+        updateInfo.find('table:nth-child(2)').find('td:first-child').addClass('abb1_height_55');
+        updateInfo.find('table:nth-child(3)').find('td').addClass('abb1_height_0');
+        $('#find_postcode').addClass('btn abb1_btn_lg abb1_btn_verification');
+        updateInfo.find('ul').addClass('abb1_page_ul_inline abb1_updateinfo_margin');
+        updateInfo.find('li:first-child').addClass('abb1_finc_id_cancel_btn');
+        updateInfo.find('li:nth-child(2)').addClass('abb1_page_li_inline');
+        $('#cancel').addClass('btn abb1_btn_lg abb1_btn_verification').css('height','50px').css('width','150px').css('font-size','17px').css('color','#efebdb').css('background','#453d3f');
+        $('#confirm').addClass('btn abb1_btn_lg abb1_btn_verification').css('height','50px').css('width','150px').css('font-size','17px').css('color','#efebdb').css('background','#453d3f');
+        $('#result_pw_msg').addClass('abb1_signup_check');
+        $('#check_pw_msg').addClass('abb1_signup_check');
+}
+function customerUpdateInfoChPwCss(){
+        var container = $('#wrapper');
+        $('#updateInfoChPw').addClass('abb1_bgcolor_beige abb1_padding_top_20 abb1_padding_bottom_20');
+        container.find('td').addClass('abb1_text_left');
+        container.find('div:nth-child(1)').find('div:first-child').addClass('abb1_width_left');
+        container.find('h2').addClass('abb1_color_bold_brown');
+        var signup_success = $('#signup_success');
+        signup_success.addClass('abb1_signup_success_div');
+        signup_success.find('div:first-child').addClass('abb1_page_info abb1_width_left');
+        signup_success.find('table').addClass('abb1_signup_form_control abb1_width_left');
+        $('#customer_password').addClass('abb1_find_id_table_input');
+        signup_success.find('table').find('tr:nth-child(3)').css('text-align','center');
+        signup_success.find('table').find('tr:nth-child(3)').find('td').addClass('abb1_padding_left_73');
+        signup_success.find('ul').addClass('abb1_page_ul_inline');
+        signup_success.find('li:nth-child(1)').addClass('abb1_finc_id_cancel_btn');
+        signup_success.find('li:nth-child(2)').addClass('abb1_page_li_inline');
+        signup_success.find('li').find('input').addClass('btn abb1_btn_lg abb1_btn_verification');
+}
+function customerWithdrawalCss(){
+        var container = $('#wrapper');
+        $('#mypageWithdrawal').addClass('abb1_find_id_container');
+        container.find('div:first-child').find('div:first-child').addClass('abb1_width_left');
+        container.find('h2').addClass('abb1_color_bold_brown'); 
+        var withdrawal = $('#withdrawal');
+        withdrawal.addClass('abb1_signup_success_div');
+        withdrawal.find('div:first-child').addClass('abb1_page_info abb1_width_center');
+        withdrawal.find('table').addClass('abb1_signup_form_control abb1_width_left');
+        withdrawal.find('table').find('tr:first-child').css('text-align','center');
+        withdrawal.find('table').find('tr:nth-child(2)').find('td').addClass('abb1_padding_left_73');
+        withdrawal.find('ul').addClass('abb1_page_ul_inline');
+        withdrawal.find('li:nth-child(1)').addClass('abb1_finc_id_cancel_btn');
+        withdrawal.find('li:nth-child(2)').addClass('abb1_page_li_inline');
+        withdrawal.find('ul').find('input').addClass('btn abb1_btn_lg abb1_btn_verification');
 }
