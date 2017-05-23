@@ -14,7 +14,9 @@ import com.abb1cinema.web.domain.Multiplex;
 import com.abb1cinema.web.domain.Notice;
 import com.abb1cinema.web.domain.Reservation;
 import com.abb1cinema.web.domain.Review;
+import com.abb1cinema.web.domain.Showing;
 import com.abb1cinema.web.domain.Theater;
+import com.abb1cinema.web.domain.Timetable;
 
 @Repository
 public interface Mapper {
@@ -38,4 +40,7 @@ public interface Mapper {
 	public List<Multiplex> getMultiplexList(Map<?,?> map) throws Exception;
 	public List<Theater> getTheaterList(Map<?,?> map) throws Exception;
 	public List<Information> getInfoList(Map<?,?> map) throws Exception;
+	public List<Showing> getDistinctShowingList(Map<?,?> map) throws Exception;
+	public List<Timetable> getTimetableList(Map<?,?> map) throws Exception;
+	public List<Showing> getShowingList(Map<?,?> map) throws Exception;
 }

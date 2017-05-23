@@ -104,4 +104,20 @@ SELECT * FROM Reservation WHERE customer_id=#{id}
    <update id="updateReservation">
 	UPDATE Reservation set canceled = 'Y' WHERE id = #{id}
 	</update>
+	
+	<select id="getShowingList" resultType="com.abb1cinema.web.domain.Showing" parameterType="hashMap">
+   SELECT * FROM Showing;
+   </select>
+   <select id="getTimetableList" resultType="com.abb1cinema.web.domain.Timetable" parameterType="hashMap">
+   SELECT * FROM Timetable;
+   </select>
+   
+   
+   <select id="getDistinctShowingList" resultType="com.abb1cinema.web.domain.Showing" parameterType="hashMap">
+   SELECT DISTINCT ${column1}
+   <if test="column2 != null">
+   , ${column2}
+   </if>
+    FROM Showing;
+   </select>
 </mapper>

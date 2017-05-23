@@ -17,7 +17,9 @@ import com.abb1cinema.web.domain.Multiplex;
 import com.abb1cinema.web.domain.Notice;
 import com.abb1cinema.web.domain.Reservation;
 import com.abb1cinema.web.domain.Review;
+import com.abb1cinema.web.domain.Showing;
 import com.abb1cinema.web.domain.Theater;
+import com.abb1cinema.web.domain.Timetable;
 import com.abb1cinema.web.mapper.Mapper;
 
 @Service
@@ -103,4 +105,19 @@ public class GetService {
 		      IGetService service = (map) -> mapper.getInfoList(map);
 		      return (List<Information>) service.execute(paramMap);
 		   }
+		   
+		   public List<Showing> getDistinctShowingList(Map<?,?> paramMap) throws Exception {
+			      IGetService service = (map) -> mapper.getDistinctShowingList(map);
+			      return (List<Showing>) service.execute(paramMap);
+			   }
+		   
+		   public List<Timetable> getTimetableList(Map<?,?> paramMap) throws Exception {
+			      IGetService service = (map) -> mapper.getTimetableList(map);
+			      return (List<Timetable>) service.execute(paramMap);
+			   }
+		   
+		   public List<Showing> getShowingList(Map<?,?> paramMap) throws Exception {
+			      IGetService service = (map) -> mapper.getShowingList(map);
+			      return (List<Showing>) service.execute(paramMap);
+			   }
 }

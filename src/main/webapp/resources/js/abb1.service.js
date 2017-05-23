@@ -447,19 +447,7 @@ function multiplexMainMovielist(o){
 		};
 	return json;
 }
-function initMap(axis) {
-    var latval = axis.split(', ')[0]*1;
-    var lngval = axis.split(', ')[1]*1;
-    var pos = {lat: latval, lng: lngval};
-    var map = new google.maps.Map(document.getElementById('map'), {
-	    center: pos,
-	    zoom: 17
-    });
-    var marker = new google.maps.Marker({
-	    position: pos,
-	    map: map
-    });
-}
+
 function checkMultiplex(seq){
 	var multiplex = '';
 	if(seq==1){
@@ -601,4 +589,124 @@ function possibleSeatClickEvent(seatCount, seatReserved){
     		possibleSeatClickEvent(seatCount, seatReserved);
 	    });
     	});
+}
+function showMovielistService(o){
+	   var movielist = '';
+	   for(var i=0; i<o.dis_show_list.length; i++){
+	      for(var j=0; j<o.info_list.length; j++){
+	         if(o.dis_show_list[i].movie_seq==o.info_list[j].movSeq){
+	            movielist += '<li><a id="movie'+o.dis_show_list[i].movie_seq+'" class="movie" href="#"><img src="'+$.context()+'/resources/img/movie/grade_'+o.info_list[j].movGrade+'.png" alt="" width="24px" height="24px"/> '+o.info_list[j].movTitle+'</a></li>';
+	            break;
+	         }
+	      }
+	   }
+	   return movielist;
+}
+function possibleMovieClickEvent(data){
+    var info_list = data.info_list;
+    var dis_show_list = data.dis_show_list;
+    var timetable_list = data.timetable_list;
+    var json = {
+          dis_show_list : dis_show_list,
+          info_list : info_list
+       };
+    $('.movie').on('click',function(){
+           var id = $(this).attr('id');
+           selectedMovieSeq = id.split('movie')[1];
+           disableMovieListService(dis_show_list, selectedMovieSeq);
+           $('.disabled').on('click',function(){
+      alert('하나의 영화만 선택 가능합니다.'); 
+           });
+           $('.on').on('click',function(){
+      $('#reservation_movielist').html(showMovielistService(json));
+      $('#reservation_time').html('');
+      possibleMovieClickEvent(data);
+           });
+           $('#reservation_time').html('<h4>'+checkMultiplex(1)+'</h4>');
+           for(var i=0; i<timetable_list.length; i++){
+          if(selectedMovieSeq == timetable_list[i].movSeq){
+              selectedMovieName = timetable_list[i].movTitle;
+              var json1 = {
+                 info_list : info_list,
+                 timetable_list : timetable_list,
+                 i : i
+              };
+              var resCount = reservationMovielist(json1).resCount;
+              infoIdResTime = reservationMovielist(json1).resTime;
+              // TODO
+              $('#reservation_time').append(reservationMainTimetableView(selectedMovieSeq, timetable_list));
+              var shoSeq = timetable_list[i].shoSeq;
+              $('#movieTitle'+shoSeq).html(timetable_list[i].movTitle);
+              $('#theaterName'+shoSeq).html(timetable_list[i].theName);
+              $('#startTime'+shoSeq).html(timetable_list[i].shoStartTime);
+              $('#seatCount'+shoSeq).html(resCount+'석 / ' +timetable_list[i].theTotalSeat);
+      }
+           }
+         
+           reservationMainCss();
+           
+       });
+}
+function disableMovieListService(dis_show_list, selectedMovieSeq){
+    for(var i=0; i<dis_show_list.length; i++){
+   if(selectedMovieSeq!=dis_show_list[i].movie_seq){
+       $('#movie'+dis_show_list[i].movie_seq).addClass('disabled');
+   } else {
+       $('#movie'+dis_show_list[i].movie_seq).addClass('on');
+   }
+    }
+}
+function generateCost(param){
+    var money = '';
+    if(param.length==4){
+   money = param.substring(0,1) + ',' + param.substring(1,4);
+    } else if(param.length==5){
+   money = param.substring(0,2) + ',' + param.substring(2,5);
+    }
+    return money;
+}
+function multiplexMainTimetableService(data){
+    var info_list = data.info_list;
+    var theater_count = data.theater_count;
+    var dis_show_list = data.dis_show_list;
+    var timetable_list = data.timetable_list;
+    var view = '';
+    for(var i=0; i<dis_show_list.length; i++){
+      var movie_title = '';
+      for(var j=0; j<timetable_list.length; j++){
+          if(dis_show_list[i].movie_seq == timetable_list[j].movSeq){
+         movie_title = timetable_list[j].movTitle;
+         break;
+          }
+      }
+      view +='   <div id="movie_time_line">'
+          +'      <div>'
+          +'         <span><strong>'+movie_title+'</strong></span><a id="'+dis_show_list[i].movie_seq+'" class="goMD" href="#"><img src="'+$.context()+'/resources/img/icon/movieLink.png" alt="" /></a>'
+          +'      </div>'
+          +'      <ul>';
+      for(var j=0; j<timetable_list.length; j++){
+         if(dis_show_list[i].movie_seq == timetable_list[j].movSeq) {
+            var json = {
+               info_list : info_list,
+               timetable_list : timetable_list,
+               j : j
+            };
+            var resCount = multiplexMainMovielist(json).resCount;
+             view +='   <a id="rv'+timetable_list[i].shoSeq+'" class="goR" href="#"><li><table>'
+             +'      <tr>'
+             +'      <td>'+timetable_list[i].theName+'</td>'
+             +'      </tr>'
+             +'      <tr>'
+             +'      <td><strong>'+timetable_list[i].shoStartTime+'</strong></td>'
+             +'      </tr>'
+             +'      <tr>'
+             +'      <td> '+resCount+'석 / '+timetable_list[i].theTotalSeat+'석</td>'
+             +'      </tr>'
+             +'   </table></li></a>';
+         }
+      }
+      view +='</ul>';
+       }
+       view +='</div>';
+       return view;
 }

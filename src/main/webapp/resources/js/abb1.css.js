@@ -200,7 +200,6 @@ function reservationMainCss(){
     reservation_area.find('a').addClass('abb1_reservation_tab_cont on');
     var reservation_movielist = $('#reservation_movielist');
     reservation_movielist.addClass('abb1_reservation_movielist');
-    reservation_movielist.find('li:nth-child(1)').find('a').addClass('on');
     var reservation_confirm = $('#reservation_confirm');
     reservation_confirm.addClass('abb1_reservation_confirm');
     reservation_confirm.find('div').addClass('abb1_reservation_time');

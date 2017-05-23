@@ -260,7 +260,7 @@ abb1.controller =(function() {
     	$('#gnb').html(gnbView());
     	var gnb = $('#gnb');
     	gnb.find('div:first-child').addClass('abb1_width_100 abb1_text_center')
-    	gnb.find('div:first-child').find('div:first-child').addClass('abb1_gnb_tab abb1_width_100 abb1_text_center');
+    	gnb.find('div:first-child').find('div:first-child').addClass('abb1_width_100 abb1_gnb_tab abb1_text_center');
     	gnb.find('ul').addClass('abb1_gnb');
     	gnb.find('span:first-child').addClass('abb1_tooltiptext');
     	gnb.find('span:nth-child(2)').addClass('abb1_tooltiptext');
@@ -625,9 +625,7 @@ abb1.controller =(function() {
 							alert('아이디가 존재하지 않습니다.');
 						}else if(data.permission==='admin'){
 							alert('관리자로 로그인 하셨습니다.');
-							abb1.jquery.admin_login();
-							$('#ul_gnb').html('<li><a id="login" href="'+$.context()+'">로그아웃<span class="sr-only">(current)</span></a></li>'
-									+'<li><a id="FAQ" href="'+$.context()+'/board/main">고객센터<span class="sr-only">(current)</span></a></li>');
+							adminIndex();
 						}else if(data.permission==='customer'){
 							abb1.cookie.setCookie('id',data.customer.id);
 							abb1.cookie.setCookie('pw',data.customer.pw);
@@ -1414,18 +1412,54 @@ abb1.controller =(function() {
 	          $('#wrapper').html(view);
 	       };
 	       
-	       var adminLogin = function(){
-	           var ctx = $.context();
-	           $('#wrapper').html(adminLoginView());
-	           adminLoginCss();
-	       };
 	       var adminIndex = function(){
+	    	   $('#header').html('');
+	    	   $('#gnb').html(adminGnbView());
 	           $('#wrapper').html(adminIndexView());
+	           $('#footer').html('');
 	           adminIndexCss();
+	           $('#go_index').on('click',function(){
+	        	  index(); 
+	           });
+	           $('#admin_index').on('click',function(){
+	        	   alert('admin index');
+	        	   adminIndex();
+	           });
+			   $('#admin_reservation').on('click',function(){
+				   alert('admin_reservation');
+				   adminReservation();
+			   });
+			   /*$('#admin_movie').on('click',function(){
+				   alert('admin_movie');
+			   });*/
+			   $('#manage_movie').on('click',function(){
+				   alert('manage_movie');
+				   adminMovieManagement();
+			   });
+			   $('#regist_movie').on('click',function(){
+				   alert('regist_movie');
+				   adminMovieRegister();
+			   });
+			   $('#manage_article').on('click',function(){
+				   alert('manage_article');
+				   adminBbsFaq(4);
+			   });
+			   $('#manage_notice').on('click',function(){
+				   alert('manage_notice');
+				   adminBbsNotice(5);
+			   });
+			   $('#admin_gender').on('click',function(){
+				   alert('admin_gender');
+				   adminStatistic();
+			   });
+			   $('#admin_member').on('click',function(){
+				   alert('admin_member');
+				   adminCustomer();
+			   })
 	       };
 	       var adminStatistic = function(){
 	           var ctx = $.context();
-	           $('#wrapper').html(adminStatisticView());
+	           $('#page-wrapper').html(adminStatisticView());
 	           $('#statistic_search_btn').on('click',function(){
 	               $('#wrapper').html(adminStatisticChartView());
 	               /*-- Google API Loading --*/
@@ -1435,12 +1469,12 @@ abb1.controller =(function() {
 	       };	
 	       var adminMovieRegister = function(){
 	           var ctx = $.context();
-	           $('#wrapper').html(adminMovieRegisterView());
+	           $('#page-wrapper').html(adminMovieRegisterView());
 	           adminMovieRegisterCss();
 	       };
 	       var adminCustomer = function(){
 	           var ctx = $.context();
-	           $('#wrapper').html(adminCustomerView());
+	           $('#page-wrapper').html(adminCustomerView());
 	           adminCustomerCss();
 	           $('#customer_id').on('click',function(){
 	               $('#result').html(adminCustomerResultView());
@@ -1453,7 +1487,7 @@ abb1.controller =(function() {
 	       };
 	       var adminReservation = function(){
 	           var ctx = $.context();
-	           $('#wrapper').html(adminReservationView());
+	           $('#page-wrapper').html(adminReservationView());
 	           $('#reservation_search_btn').on('click',function(){
 	               $('#wrapper').html(adminReservationResultView());
 	               adminReservationCss();
@@ -1464,7 +1498,7 @@ abb1.controller =(function() {
 	       };
 	       var adminMovieManagement = function(){
 	           var ctx = $.context();
-	           $('#wrapper').html(adminMovieManagementView());
+	           $('#page-wrapper').html(adminMovieManagementView());
 	           $('#movie_search_btn').on('click',function(){
 	               $('#management').html(adminMovieManagementTableView());
 	               adminMovieSearchCss();
@@ -1473,7 +1507,7 @@ abb1.controller =(function() {
 	       };
 	       var adminBbsNotice = function(pageNo){
 	           var ctx = $.context();
-	           $('#wrapper').html(adminBbsNoticeView());
+	           $('#page-wrapper').html(adminBbsNoticeView());
 	           $('#write').on('click',function(){
 	               $('#notice_write_wrapper').html(adminBbsNoticeWriteView());
 	               adminBbsNoticeWriteCss();
@@ -1482,7 +1516,7 @@ abb1.controller =(function() {
 	       };
 	       var adminBbsFaq = function(pageNo){
 	           var ctx = $.context();
-	           $('#wrapper').html(adminBbsFaqView());
+	           $('#page-wrapper').html(adminBbsFaqView());
 	           adminBbsFaqCss(pageNo);
 	           $('#question4').on('click',function(){
 	               $('#faq_write_wrapper').html(adminBbsFaqAnswerView());
@@ -1518,179 +1552,176 @@ abb1.controller =(function() {
 	       var boardMain = function(pageNo){
 	           var ctx = $.context();
 	           $.ajax({
-	   	      url: ctx+"/get/board",
-	   	      method: "POST",
-	   	      data: JSON.stringify({}),
-	   	      dataType: "json",
-	   	      contentType: "application/json",
-	   	      success : function(data){
-	           	var notice_list = [];
-	           	var article_list = [];
-	           	$.each(data.notice_list, function(i, notice){
-	           	    notice_list.push(notice); 
-	           	});
-	           	$.each(data.article_list, function(i, article){
-	           	    article_list.push(article);
-	           	});
-	   		      
+	            url: ctx+"/get/board",
+	            method: "POST",
+	            data: JSON.stringify({}),
+	            dataType: "json",
+	            contentType: "application/json",
+	            success : function(data){
+	              var notice_list = [];
+	              var article_list = [];
+	              $.each(data.notice_list, function(i, notice){
+	                  notice_list.push(notice); 
+	              });
+	              $.each(data.article_list, function(i, article){
+	                  article_list.push(article);
+	              });
+	               
 	                   var count = data.article_count*1 + data.notice_count*1;
 	                   var view = boardMainView(count);
 	                   var notice_row = '';
 	                   for(var i=0; i<notice_list.length; i++){
-	                   	  var notice = notice_list[i];
-	                   	  notice_row += '<tr class="notice">'
-	                   		  +	            '<td>-</td>'
-	                   		  +	            '<td><b>전체</b></td>'
-	                   		  +	            '<td><a id="notice'+notice_list[i].seq+'" class="goNotice" href="#">[공지]'+notice_list[i].title+'</a></td>'
-	                   		  +	            '<td>'+notice_list[i].reg_date+'</td>'
-	                   		  +	            '<td>'+notice_list[i].hits+'</td>'
-	                   		  +	        ' </tr>';
+	                        var notice = notice_list[i];
+	                        notice_row += '<tr class="notice">'
+	                           +               '<td>-</td>'
+	                           +               '<td><b>전체</b></td>'
+	                           +               '<td><a id="notice'+notice_list[i].seq+'" class="goNotice" href="#">[공지]'+notice_list[i].title+'</a></td>'
+	                           +               '<td>'+notice_list[i].reg_date+'</td>'
+	                           +               '<td>'+notice_list[i].hits+'</td>'
+	                           +           ' </tr>';
 	                   }
 	                   view += notice_row;
-	   		      
+	               
 	                     // TODO
 	                   var article_count = 10 - notice_list.length*1;
+	                   var pageCount = data.article_count/article_count+1; 
 	                   var article = '';
 	                   for(var i=(pageNo-1)*article_count; i<pageNo*article_count; i++){
-	                       var multiplex = checkMultiplex(article_list[i].multiplex_seq);
+	                       var multiplex = checkMultiplex(article_list[i].multiplex_seq*1);
 	                       article += '<tr>'
-	                   	    +	   '<td>'+article_list[i].seq+'</td>'
-	                   	    +	   '<td>'+multiplex+'</td>'
-	                   	    +	   '<td><a id="detail'+article_list[i].seq+'" class="goBDetail" href="#">'+article_list[i].title+'</a></td>'
-	                   	    +	   '<td>'+article_list[i].reg_date+'</td>'
-	                   	    +	   '<td>'+article_list[i].hits+'</td>'
-	                   	    +	'</tr>';
+	                          +      '<td>'+article_list[i].seq+'</td>'
+	                          +      '<td>'+multiplex+'</td>'
+	                          +      '<td><a id="detail'+article_list[i].seq+'" class="goBDetail" href="#">'+article_list[i].title+'</a></td>'
+	                          +      '<td>'+article_list[i].reg_date+'</td>'
+	                          +      '<td>'+article_list[i].hits+'</td>'
+	                          +   '</tr>';
 	                       if(article_list[i].seq==1){
 	                           break;
 	                       }
 	                   }
 	                   article +='</tbody></table></div>';
 	                   view += article;
-	   		  
+	           
 	                   /* for pagination */
 	                   // 처음으로 가는 페이지 버튼
 	                   var pagination = '<div id="bbs_pagination">'
-	               	+'		   <table>'
-	               	+'		      <tr>'
-	               	+'		         <td>'
-	               	+'		            <a class="goFirstPage" href="#"><img src="'+$.context()+'/resources/img/pagination/prev_all.gif" alt="" /></a>';
+	                  +'         <table>'
+	                  +'            <tr>'
+	                  +'               <td>'
+	                  +'                  <a class="goFirstPage" href="#"><img src="'+$.context()+'/resources/img/pagination/prev_all.gif" alt="" /></a>';
 	                   
-	                   var prev_page = pageNo; // 이전 큰 페이지으로 가는 버튼의 페이지 넘버
+	                   var prevPageNo = pageNo; // 이전 큰 페이지으로 가는 버튼의 페이지 넘버
 	                   if(pageNo%5==0) {
-	                  	  prev_page = prev_page-5;
+	                         prevPageNo = prevPageNo-5;
 	                   } else {
-	                   		prev_page = parseInt(prev_page/5)*5;
+	                       prevPageNo = parseInt(prevPageNo/5)*5;
 	                   }
 	                   var prev_page_btn = ''; // 이전 큰 페이지으로 가는 버튼
 	                   
 	                   // 이전 큰 페이지로 가는 버튼이 출력되는지 확인하는 로직
 	                   if(parseInt(data.article_count*1/article_count)<=pageNo){
-	               	prev_page_btn = '<a class="goPrevPage" href="#"><img src="'+$.context()+'/resources/img/pagination/prev.gif" alt="" /></a>';
+	                      prev_page_btn = '<a class="goPrevPage" href="#"><img src="'+$.context()+'/resources/img/pagination/prev.gif" alt="" /></a>';
+	                   } else if((count/article_count)<5){
+	                       prev_page_btn = '';
 	                   }
 	                   pagination += prev_page_btn;
 	                   pagination += '</td><td id="bbs_pagination_number"><h4>';
-	               	
-	               	
-	                   var page_next_btn = ''; // 다음 큰 페이지로 가는 버튼
+	                  
+	                  
+	                   var next_page_btn = ''; // 다음 큰 페이지로 가는 버튼
 	                   
 	                   // 큰 페이지의 개수가 5 미만일 때
-	                   if((count/article_count)/5==0){
-	                  	  page_next_btn = '';
-	                   	for(var i=0; i<count/article_count; i++){
-	                   	    pagination += '<a id="page'+i+'" class="goPage" href="#">'+(i+1)+'</a>';
-	                   	}
+	                   if(pageCount/6==0){
+	                         next_page_btn = '';
+	                         for(var i=0; i<count/article_count; i++){
+	                        pagination += '<a id="page'+i+'" class="goPage" href="#">'+(i+1)+'</a>';
+	                         }
 	                   } else {
-	               	if(pageNo<=5){
-	               	    for(var i=0; i<5; i++){
-	               	  	  pagination += '<a id="page'+i+'" class="goPage" href="#">'+(i+1)+'</a>';
-	               	    }
-	               	} else {
-	               	  for(var i=5; i<count/article_count; i++){
-	               		  pagination += '<a id="page'+i+'" class="goPage" href="#">'+(i+1)+'</a>';
-	               	  }
-	               		}
+	                 if(pageNo<=5){
+	                for(var i=0; i<5; i++){
+	                    pagination += '<a id="page'+i+'" class="goPage" href="#">'+(i+1)+'</a>';
+	                }
+	                 } else {
+	                for(var i=5; i<count/article_count; i++){
+	                    pagination += '<a id="page'+i+'" class="goPage" href="#">'+(i+1)+'</a>';
+	                }
+	                 }
 	                   }
 	                     
-	                     var next_page = pageNo; // 다음 큰 페이지로 가는 버튼의 페이지 넘버
-	                    if(pageNo%5==0){ 
-	       		  next_page = next_page+1; 
-	                     } else { 
-	                     	  next_page = parseInt(next_page/5)*5+6; 
-	                     }
-	           	      
-	           	// 다음 큰 페이지로 가는 버튼이 출력되는지 확인하는 로직
-	   		if(parseInt(data.article_count*1/article_count)>pageNo){
-	   			  page_next_btn = '<a class="goNextPage" href="#"><img src="'+$.context()+'/resources/img/pagination/next.gif" alt="" /></a>';
-	   		}
-	   		view += pagination;
-	   		view += '</h4></td><td>'+page_next_btn;
-	   		
-	   		// 마지막 큰 페이지로 가는 버튼
-	   		var last_page = (count/article_count).toFixed(0);
-	   		view += '<a class="goLastPage" href="#"><img src="'+$.context()+'/resources/img/pagination/next_all.gif" alt="" /></a>'
-	   		  +'		         </td>'
-	   		  +'		      </tr>'
-	   		  +'		   </table>'
-	   		  +'	   </div>'
-	   		  +'	   <div id="board_main_btn" style="text-align: right">'
-	   		  +'	      <a id="goBWrite" href="#"><input type="button" value="글쓰기"/></a>'
-	   		  +'	   </div>'
-	   		  +'	   </div>'
-	   		  +'	</div>';
-	   		
-	   		$('#wrapper').html(view);
-	   		boardMainCss(pageNo);
-	   		$('#board_main_find_search').on('click',function(){
-	   			  alert('val: '+$('select[name=search]').val() + '\nkeyword: ' + $('#board_main_find_keyword').val()); 
-	   		});
-	   		$('.goBDetail').on('click',function(){
-	                   var id = $(this).attr('id');
-	                   var num = $(this).attr('id').split('detail')[1]*1;
-	                   $('#'+id).on('click',function(){
-	                     boardDetail(num);
-	                   });
-	                 });
-	   		      $('.goNotice').on('click',function(){
-	                     var id = $(this).attr('id');
-	                     var num = $(this).attr('id').split('notice')[1]*1;
-	                     $('#'+id).on('click',function(){
-	                   	  boardNoticeDetail(num);
-	                     });
-	                 });
-	   		      $('#bbs_count').html(count);
-	   		      
-	   		      $('.goFirstPage').on('click',function(){
-	                     boardMain(1);
-	                 });
-	   			  
-	   			  $('.goPrevPage').on('click',function(){
-	                     boardMain(prev_page);
-	                 });
-	   			  
-	   			  $('.goPage').on('click',function(){
-	                     var id = $(this).attr('id');
-	   				  var num = id.split('page')[1];
-	                     $('#'+id).on('click',function(){
-	                   	  boardMain(num+1);
-	                     });
-	                 });
-	   			  
-	   			  $('.goNextPage').on('click',function(){
-	                     boardMain(next_page);
-	                 });
-	   			  
-	   			  $('.goLastPage').on('click',function(){
-	                     boardMain(last_page);
-	                 });
-	   			  
-	   		      $('#goBWrite').on('click',function(){
-	   		    	 boardWrite();
-	   		      });
-	   	      },
-	   	      error : function(xhr,status,msg){
-	   	         alert(msg);
-	   	      }
-	   	   }); /* end of ajax */
+	                   var nextPageNo = pageNo; // 다음 큰 페이지로 가는 버튼의 페이지 넘버
+	                   if(pageNo%5==0){ 
+	                 nextPageNo = nextPageNo+1; 
+	                   } else { 
+	                       nextPageNo = parseInt(nextPageNo/5)*5+6; 
+	                   }
+	                    
+	              // 다음 큰 페이지로 가는 버튼이 출력되는지 확인하는 로직
+	         if(parseInt(data.article_count*1/article_count)>pageNo){
+	             next_page_btn = '<a class="goNextPage" href="#"><img src="'+$.context()+'/resources/img/pagination/next.gif" alt="" /></a>';
+	         }
+	         view += pagination;
+	         view += '</h4></td><td>'+next_page_btn;
+	         
+	         // 마지막 큰 페이지로 가는 버튼
+	         var last_page = (count/article_count).toFixed(0);
+	         view += '<a class="goLastPage" href="#"><img src="'+$.context()+'/resources/img/pagination/next_all.gif" alt="" /></a>'
+	           +'               </td>'
+	           +'            </tr>'
+	           +'         </table>'
+	           +'      </div>'
+	           +'      <div id="board_main_btn" style="text-align: right">'
+	           +'         <a id="goBWrite" href="#"><input type="button" value="글쓰기"/></a>'
+	           +'      </div>'
+	           +'      </div>'
+	           +'   </div>';
+	         
+	         $('#wrapper').html(view);
+	         boardMainCss(pageNo);
+	         $('#board_main_find_search').on('click',function(){
+	              alert('val: '+$('select[name=search]').val() + '\nkeyword: ' + $('#board_main_find_keyword').val()); 
+	         });
+	         $('.goBDetail').on('click',function(){
+	             var id = $(this).attr('id');
+	             var num = $(this).attr('id').split('detail')[1]*1;
+	             boardDetail(num);
+	         });
+	         $('.goNotice').on('click',function(){
+	             var id = $(this).attr('id');
+	             var num = $(this).attr('id').split('notice')[1]*1;
+	             boardNoticeDetail(num);
+	         });
+	         $('#bbs_count').html(count);
+	               
+	         $('.goFirstPage').on('click',function(){
+	             boardMain(1);
+	         });
+	              
+	         $('.goPrevPage').on('click',function(){
+	             boardMain(prevPageNo);
+	         });
+	              
+	         $('.goPage').on('click',function(){
+	             var id = $(this).attr('id');
+	             var num = id.split('page')[1];
+	             boardMain(num*1+1);
+	         });
+	              
+	         $('.goNextPage').on('click',function(){
+	             boardMain(nextPageNo);
+	         });
+	              
+	         $('.goLastPage').on('click',function(){
+	             boardMain(last_page);
+	         });
+	              
+	         $('#goBWrite').on('click',function(){
+	             boardWrite();
+	         });
+	            },
+	            error : function(xhr,status,msg){
+	               alert(msg);
+	            }
+	         }); /* end of ajax */
 	       };
 	       var boardNoticeDetail = function(seq){
 	   	$.ajax({
@@ -1718,272 +1749,303 @@ abb1.controller =(function() {
 	       	$('#wrapper').html(boardWriteView());
 	       	boardWriteCss();
 	       };
+
+	       //
 	       var reservationMain = function(){
 	           $('#wrapper').html(reservationMainView());
 	           $.ajax({
-	       	    url: $.context()+"/get/reservation/",
-	       	    method: "POST",
-	       	    data: JSON.stringify({}),
-	       	    dataType: "json",
-	       	    contentType: "application/json",
-	       	    success : function(data){
-	       	    	var info_list = data.info_list;
-	       	    	var dis_show_list = data.dis_show_list;
-	       	    	var timetable_list = data.timetable_list;
-	       	    	// TODO
-	       	    	var json = {
-	       	    		dis_show_list : dis_show_list,
-	       	    		info_list : info_list
-	       	    	};
-	       	    	$('#reservation_movielist').html(showMovielist(json));
-	       	    	
-	       	    	var selectedMovieSeq = '';
-	       	    	var selectedMovieName = '';
-	       	    	var infoIdResTime = '';
-	       	    	$('.movie').on('click',function(){
-	       	    		$('#reservation_movielist').html(showMovielist(json));
-	   	    			var id = $(this).attr('id');
-	   	    			selectedMovieSeq = id.split('movie')[1];
-	   	    			$('#'+id).addClass('on');
-	   	    			$('#reservation_time').html('<h4>'+checkMultiplex(1)+'</h4>');
-	   	    			for(var i=0; i<timetable_list.length; i++){
-	   	    				if(selectedMovieSeq == timetable_list[i].movSeq){
-	   	    					selectedMovieName = timetable_list[i].movTitle;
-	   	    					var json1 = {
-	   	    							info_list : info_list,
-	   	    							timetable_list : timetable_list,
-	   	    							i : i
-	   	    						};
-	       						var resCount = reservationMovielist(json1).resCount;
-	       						infoIdResTime = reservationMovielist(json1).resTime;
-	       						// TODO
-	       						$('#reservation_time').append('<div id="movie_time_line"><div><span id="movie_title"><strong>'+selectedMovieName+'</strong></span>'
-	       								+'<a id="movieDetail" href="#"><img src="'+$.context()+'/resources/img/icon/movieLink.png" alt="" /></a>'
-	       								+'</div><ul id="movie_timeline_ul">'
-	       								+'<a id="'+timetable_list[i].movSeq+'rv'+infoIdResTime+'" class="goR" href="#"><li><table>'
-	       								+'	<tr>'
-	       								+'		<td>'+timetable_list[i].theName+'</td>'
-	       								+'	</tr>'
-	       								+'	<tr>'
-	       								+'		<td><strong>'+timetable_list[i].shoStartTime+'</strong></td>'
-	       								+'	</tr>'
-	       								+'	<tr>'
-	       								+'		<td> '+resCount+'석 / '+timetable_list[i].theTotalSeat+'석</td>'
-	       								+'	</tr>'
-	       								+'	</table></li></a></ul></div>');
-	   	    				}
-	   	    			}
-	   	    			
-	   	    			reservationMainCss();
-	   	    			$('#movieDetail').on('click',function(){
-	   	    				movieDetail(selectedMovieSeq);
-	   	    			});
-	   	    			$('.goR').on('click',function(){
-	   		                  var id = $(this).attr('id');
-	   		                  var num = $(this).attr('id').split('rv')[0]*1;
-	   		                  var startTime = $(this).attr('id').split('rv')[1];
-	   		                  reservationSeat(num,startTime);
-	   		            });
-	   	    		});
-	   			},
-	   			error : function(xhr,status,msg){
-	       	         alert(msg);
-	       	    }
-	       	}); /* end of ajax */
-	           
-	           $('#reservation_movielist').find('li:nth-child(1)').on('click',function(){
-	           	alert('1번째 클릭');
-	           });
-	           reservationMainCss();
+	              url: $.context()+"/get/reservation/",
+	              method: "POST",
+	              data: JSON.stringify({}),
+	              dataType: "json",
+	              contentType: "application/json",
+	              success : function(data){
+	                 var info_list = data.info_list;
+	                 var dis_show_list = data.dis_show_list;
+	                 var timetable_list = data.timetable_list;
+	                 var json = {
+	                    dis_show_list : dis_show_list,
+	                    info_list : info_list
+	                 };
+	                 $('#reservation_movielist').html(showMovielistService(json));
+	                 
+	                 // TODO 1개씩만 선택되게 하기
+	                 possibleMovieClickEvent(data);
+	                 reservationMainCss();
+	                 
+	              },
+	              error : function(xhr,status,msg){
+	            	  alert(msg);
+	              }
+	              
+	          }); /* end of ajax */
+	           $('#movieDetail').on('click',function(){
+	               movieDetail(selectedMovieSeq);
+	      });
 	       };
-	       var reservationSeat = function(seq,startTime){
-	       	console.log(startTime);
-	   	$.ajax({
-	       	    url: $.context()+"/get/reservation/",
-	       	    method: "POST",
-	       	    data: JSON.stringify({}),
-	       	    dataType: "json",
-	       	    contentType: "application/json",
-	       	    success : function(data){
-	       	    	console.log(data.info_list);
-	       	    	var seatCount = 0;
-	       	    	var seatReserved = [];
-	       	    	$.each(data.info_list, function(i, info){
-	       	    	    var resId = info.resId;
-	       	    	    var infoMovSeq = resId.split('-')[1];
-	       	    	    var infoStartTime = resId.split('-')[2];
-	       	    	    if(infoMovSeq == seq && infoStartTime == startTime){
-	       	    		seatCount = info.theTotalSeat;
-	       	    		seatReserved.push(info.resId.split('-')[3]);
-	       	    	    } 
-	       	    	});
-	       	    	$('#wrapper').html(reservationSeatView());
-	       	    	$('#seat_area_table').html(reservationSeatTableView(seatCount));
-	       	    	showSeatTableService(seatCount, seatReserved);
-	       	    	makeAisleService(seatCount, [2, 8]);
-	       	    	reservationSeatCss();
-	       	    	
-	       	    	$('.reserved').on('click',function(){
-	       	    	    alert('예약된 좌석은 선택할 수 없습니다.'); 
-	       	    	});
-	       	    	possibleSeatClickEvent(seatCount, seatReserved);
-	       	    },
-	       	    error : function(xhr,status,msg){
-	       	         alert(msg);
-	       	    }
-	       	}); /* end of ajax */
-	   	
+	       var possibleMovieClickEvent = function(data){
+	      var info_list = data.info_list;
+	          var dis_show_list = data.dis_show_list;
+	          var timetable_list = data.timetable_list;
+	          var json = {
+	                dis_show_list : dis_show_list,
+	                info_list : info_list
+	             };
+	          var selectedMovieSeq = '', selectedMovieName = '';
+	          $('.movie').on('click',function(){
+	                 var id = $(this).attr('id');
+	                 selectedMovieSeq = id.split('movie')[1];
+	                 disableMovieListService(dis_show_list, selectedMovieSeq);
+	                 $('.disabled').on('click',function(){
+	            alert('하나의 영화만 선택 가능합니다.'); 
+	                 });
+	                 $('.on').on('click',function(){
+	            $('#reservation_movielist').html(showMovielistService(json));
+	            $('#reservation_time').html('');
+	            possibleMovieClickEvent(data);
+	                 });
+	                
+	                 $('#reservation_time').html('<h4>'+checkMultiplex(1)+'</h4>');
+	                 for(var i=0; i<timetable_list.length; i++){
+	                if(selectedMovieSeq == timetable_list[i].movSeq){
+	                    selectedMovieName = timetable_list[i].movTitle;
+	                    var json1 = {
+	                       info_list : info_list,
+	                       timetable_list : timetable_list,
+	                       i : i
+	                    };
+	                    var resCount = reservationMovielist(json1).resCount;
+	                    $('#reservation_time').append(reservationMainTimetableView(selectedMovieSeq, timetable_list));
+	                    var shoSeq = timetable_list[i].shoSeq;
+	                    $('#movieTitle'+shoSeq).html(timetable_list[i].movTitle);
+	                    $('#theaterName'+shoSeq).html(timetable_list[i].theName);
+	                    $('#startTime'+shoSeq).html(timetable_list[i].shoStartTime);
+	                    $('#seatCount'+shoSeq).html(resCount+'석 / ' +timetable_list[i].theTotalSeat);
+	            }
+	                 }
+	                 
+	                 $('.goReservation').on('click',function(){
+	             var id = $(this).attr('id');
+	             var shoSeq = $(this).attr('id').split('rv')[1];
+	             reservationSeat(shoSeq);
+	              });
+	                 reservationMainCss();
+	             });
 	       };
-	       var multiplexMain = function(seq){
-	           var ctx = $.context();
-	       	$.ajax({
-	       	    url: ctx+"/get/multiplex/"+seq,
-	       	    method: "POST",
-	       	    data: JSON.stringify({}),
-	       	    dataType: "json",
-	       	    contentType: "application/json",
-	       	    success : function(data){
-	   	    		var info_list = data.info_list;
-	   	    		var theater_count = data.theater_count;
-	   	    		var dis_show_list = data.dis_show_list;
-	   	    		var timetable_list = data.timetable_list;
-	   	    		// 인포메이션 리스트를 배열에 넣는 로직
-	   	    		$.each(data.info_list, function(i, info){
-	   	    		    info_list.push(info); 
-	   	    		});
-	   	    		
-	   	    		// 영화관별 총 좌석 수 구하는 로직
-	   	    		var seat_total = 0;
-	   	    		$.each(data.theater_list, function(i, theater){
-	   	    		    if(seq == theater.multiplex_seq){
-	   	    			seat_total += theater.total_seat*1; 
-	   	    		    }
-	   	    		});
-	   	    		
-	   	    		// 영화관 이름 및 주소
-	   	    		var multiplex_name = '';
-	   	    		var multiplex_addr = '';
-	   	    		for(var i=0; i<info_list.length; i++){
-	   	    		    if(seq==info_list[i].mulSeq){
-	   	    			multiplex_name = info_list[i].mulName;
-	   	    			multiplex_addr = info_list[i].mulAddress;
-	   	    		    }
-	   	    		}
-	   	    		// 다중 파라미터를 간편히 입력하기 위한 JSON 생성
-	   	    		var o = {
-	   	    			ctx : ctx,
-	   	    			multiplex_name : multiplex_name,
-	   	    			multiplex_addr : multiplex_addr,
-	   	    			count : theater_count,
-	   	    			seat_total : seat_total,
-	   	    			seq : seq
-	   	    		};
-	       			    var view = multiplexMainInfo(o);
-	       			    
-	       			    /* Calendar API */
-	       			    view += multiplexMainCalendarView();
-	       			    
-	       			    for(var i=0; i<dis_show_list.length; i++){
-	       	    			var movie_title = '';
-	       	    			for(var j=0; j<timetable_list.length; j++){
-	       	    			    if(dis_show_list[i].movie_seq == timetable_list[j].movSeq){
-	       	    				movie_title = timetable_list[j].movTitle;
-	       	    				break;
-	       	    			    }
-	       	    			}
-	       	    			view +='	<div id="movie_time_line">'
-	       	    			    +'		<div>'
-	       	    			    +'			<span><strong>'+movie_title+'</strong></span><a id="'+dis_show_list[i].movie_seq+'" class="goMD" href="#"><img src="'+$.context()+'/resources/img/icon/movieLink.png" alt="" /></a>'
-	       	    			    +'		</div>'
-	       	    			    +'		<ul>';
-	       	    			for(var j=0; j<timetable_list.length; j++){
-	       	    				if(dis_show_list[i].movie_seq == timetable_list[j].movSeq) {
-	       	    					var json = {
-	       	    						info_list : info_list,
-	       	    						timetable_list : timetable_list,
-	       	    						j : j
-	       	    					};
-	       	    					var resCount = multiplexMainMovielist(json).resCount;
-	       	    					var infoIdResTime = multiplexMainMovielist(json).resTime;
-	       	    				    view +='	<a id="'+timetable_list[i].movSeq+'rv'+infoIdResTime+'" class="goR" href="#"><li><table>'
-	       	    				    +'		<tr>'
-	       	    				    +'		<td>'+timetable_list[i].theName+'</td>'
-	       	    				    +'		</tr>'
-	       	    				    +'		<tr>'
-	       	    				    +'		<td><strong>'+timetable_list[i].shoStartTime+'</strong></td>'
-	       	    				    +'		</tr>'
-	       	    				    +'		<tr>'
-	       	    				    +'		<td> '+resCount+'석 / '+timetable_list[i].theTotalSeat+'석</td>'
-	       	    				    +'		</tr>'
-	       	    				    +'	</table></li></a>';
-	       	    				}
-	       	    			}
-	       	    			view +='</ul>';
-	       			    }
-	       			    view +='</div>';
-	       			    $('#wrapper').html(view);
-	       			    multiplexMainCss();
-	       			    $('.goMain').on('click',function(){
-	               	            	  multiplexMain(seq);
-	               	            });
-	       				  
-	       			    $('.goMap').on('click',function(){
-	               	            	  multiplexMap(seq);
-	               	            });
-	       				
-	       			    $('.goMD').on('click',function(){
-	       				var id = $(this).attr('id');
-	       				movieDetail(id);
-	               	            });
-	       				
-	       			    $('.goR').on('click',function(){
-	       				var id = $(this).attr('id');
-	       				var num = id.split('rv')[0]*1;
-	       				var startTime = id.split('rv')[1];
-	       	                	reservationSeat(num,startTime);
-	       			    });
-	       	    },
-	       	    error : function(xhr,status,msg){
-	       	         alert(msg);
-	       	    }
-	       	}); /* end of ajax */
-	           
-	           
+	       var reservationSeat = function(shoSeq){
+	      $.ajax({
+	              url: $.context()+"/get/reservation/",
+	              method: "POST",
+	              data: JSON.stringify({}),
+	              dataType: "json",
+	              contentType: "application/json",
+	              success : function(data){
+	                 var seatCount = 0;
+	                 var seatReserved = [];
+	                 $.each(data.info_list, function(i, info){
+	                     if(info.shoSeq == shoSeq){
+	                    seatCount = info.theTotalSeat;
+	                    seatReserved.push(info.resId.split('-')[3]);
+	                     } 
+	                 });
+	                 $('#wrapper').html(reservationSeatView());
+	                 $('#seat_area_table').html(reservationSeatTableView(seatCount));
+	                 showSeatTableService(seatCount, seatReserved);
+	                 makeAisleService(seatCount, [2, 8]);
+	                 reservationSeatCss();
+	                 
+	                 $('.reserved').on('click',function(){
+	                     alert('예약된 좌석은 선택할 수 없습니다.'); 
+	                 });
+	                 var json = {
+	                    seatCount : seatCount,
+	                    seatReserved : seatReserved,
+	                    timetable_list : data.timetable_list,
+	                    shoSeq : shoSeq
+	                 };
+	                 possibleSeatClickEvent(json);
+	              
+	              },
+	              error : function(xhr,status,msg){
+	                   alert(msg);
+	              }
+	          }); /* end of ajax */
+	      
 	       };
-	       var multiplexMap = function(seq){
-	       	alert('multiplexMap('+seq+') 진입');
-	           $.ajax({
-	       	      url: $.context()+"/get/multiplex/"+seq,
-	       	      method: "POST",
-	       	      data: JSON.stringify({}),
-	       	      dataType: "json",
-	       	      contentType: "application/json",
-	       	      success : function(data){
-	   		        var axis;
-	   		        $.each(data.info_list, function(i, info){
-	   		            if(info.mulSeq==seq){
-	   		            	axis = info.mulAxis;
-	   		            }
-	   		        })
-	   		    	var view = multiplexMapView();
-	   		    	
-	   		    		/* Google Map API */
-	   		    	var googlemap_api_with_key = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD9Z-OH7NHZvC5Nn-aG5BEDPl9Egpu3AIg&callback=initMap';
-	   		    	$.getScript(googlemap_api_with_key, function(){
-	   		    	    initMap(axis);
-	   		    	});
-	   		    	$('#wrapper').html(view);
-	   		    		
-	   		    	$('.goMain').on('click',function(){
-	   		    		multiplexMain(seq);
-	   		    	});
-	   		    	multiplexMapCss();
-	       	      },
-	       	      error : function(xhr,status,msg){
-	       	         alert(msg);
-	       	      }
-	       	  }); /* end of ajax */
-	       };
+	       var possibleSeatClickEvent = function(o){
+	    	   var seatCount = o.seatCount;
+	    	       var seatReserved = o.seatReserved;
+	    	       var timetable_list = o.timetable_list;
+	    	       var shoSeq = o.shoSeq;
+	    	       $('.can').on('click',function(){
+	    	              var id = $(this).attr('id');
+	    	              $('#seat_area_table').html(reservationSeatTableView(seatCount));
+	    	              makeAisleService(seatCount, [2, 8]);
+	    	              disableSeatTableService(seatCount, id);
+	    	              $('.disabled').on('click',function(){
+	    	             alert('먼저 선택한 좌석을 해제한 후 선택하세요.'); 
+	    	              });
+	    	              $('#seat').append(reservationSeatTicketingTableView());
+	    	              $('#ticketing_tr2').html(reservationSeatInfoView());
+	    	          $.each(timetable_list, function(i,time){
+	    	         if(time.shoSeq == shoSeq){
+	    	             $('#moviePoster').attr('src',$.context()+'/resources/img/movie/'+time.movPicMain);
+	    	             $('#ticketing_movie_title').html(time.movTitle);
+	    	             $('#ticketing_movie_type').html(time.movInfo);
+	    	             var grade = '';
+	    	             if(time.movGrade=='all'){
+	    	            grade = '전체관람가';
+	    	             } else {
+	    	            grade = time.movGrade + '세이상관람가';
+	    	             }
+	    	             $('#movGrade').html(grade);
+	    	             $('#showdate').html(time.shoShowDate);
+	    	             $('#runningTime').html(time.shoStartTime + '~' + time.shoEndTime);
+	    	             $('#multiplexName').html(time.mulName + ' ' + time.theName);
+	    	             $('#seatNum').html(id);
+	    	             var cost = generateCost(time.shoPrice) + '원';
+	    	             $('#ticketing_cost').html(cost);
+	    	             $('#ticketing_cost_total').html(cost);
+	    	         }
+	    	          });
+	    	          reservationSeatCss();
+	    	          
+	    	              $('.selected').on('click',function(){
+	    	             $('#wrapper').html(reservationSeatView());
+	    	             $('#seat_area_table').html(reservationSeatTableView(seatCount));
+	    	             showSeatTableService(seatCount, seatReserved);
+	    	             makeAisleService(seatCount, [2, 8]);
+	    	             reservationSeatCss();
+	    	             possibleSeatClickEvent(o);
+	    	          });
+	    	          });
+	    	    };
+	    	    var multiplexMain = function(seq){
+	    	        var ctx = $.context();
+	    	       $.ajax({
+	    	           url: ctx+"/get/multiplex/"+seq,
+	    	           method: "POST",
+	    	           data: JSON.stringify({}),
+	    	           dataType: "json",
+	    	           contentType: "application/json",
+	    	           success : function(data){
+	    	              var info_list = data.info_list;
+	    	              var theater_count = data.theater_count;
+	    	              var dis_show_list = data.dis_show_list;
+	    	              var timetable_list = data.timetable_list;
+	    	              // 인포메이션 리스트를 배열에 넣는 로직
+	    	              $.each(data.info_list, function(i, info){
+	    	                  info_list.push(info); 
+	    	              });
+	    	              
+	    	              // 영화관별 총 좌석 수 구하는 로직
+	    	              var seat_total = 0;
+	    	              $.each(data.theater_list, function(i, theater){
+	    	                  if(seq == theater.multiplex_seq){
+	    	                 seat_total += theater.total_seat*1; 
+	    	                  }
+	    	              });
+	    	              
+	    	              // 영화관 이름 및 주소
+	    	              var multiplex_name = '';
+	    	              var multiplex_addr = '';
+	    	              for(var i=0; i<info_list.length; i++){
+	    	                  if(seq==info_list[i].mulSeq){
+	    	                 multiplex_name = info_list[i].mulName;
+	    	                 multiplex_addr = info_list[i].mulAddress;
+	    	                  }
+	    	              }
+	    	              // 다중 파라미터를 간편히 입력하기 위한 JSON 생성
+	    	              var o = {
+	    	                 ctx : ctx,
+	    	                 multiplex_name : multiplex_name,
+	    	                 multiplex_addr : multiplex_addr,
+	    	                 count : theater_count,
+	    	                 seat_total : seat_total,
+	    	                 seq : seq
+	    	              };
+	    	           var view = multiplexMainInfo(o);
+	    	        
+	    	           /* Calendar API */
+	    	           view += multiplexMainCalendarView();
+	    	        
+	    	           view += multiplexMainTimetableService(data);
+	    	           $('#wrapper').html(view);
+	    	        
+	    	           multiplexMainCss();
+	    	           $('.goMain').on('click',function(){
+	    	               multiplexMain(seq);
+	    	                  });
+	    	             
+	    	           $('.goMap').on('click',function(){
+	    	               multiplexMap(seq);
+	    	                  });
+	    	        
+	    	           $('.goMD').on('click',function(){
+	    	               var id = $(this).attr('id');
+	    	               movieDetail(id);
+	    	                  });
+	    	        
+	    	           $('.goR').on('click',function(){
+	    	               var id = $(this).attr('id');
+	    	               var shoSeq = id.split('rv')[1];
+	    	               reservationSeat(shoSeq);
+	    	          });
+	    	           },
+	    	           error : function(xhr,status,msg){
+	    	                alert(msg);
+	    	           }
+	    	       }); /* end of ajax */
+	    	        
+	    	        
+	    	    };
+	    	    var multiplexMap = function(seq){
+	    	        $.ajax({
+	    	             url: $.context()+"/get/multiplex/"+seq,
+	    	             method: "POST",
+	    	             data: JSON.stringify({}),
+	    	             dataType: "json",
+	    	             contentType: "application/json",
+	    	             success : function(data){
+	    	        var axis;
+	    	        $.each(data.info_list, function(i, info){
+	    	            if(info.mulSeq==seq){
+	    	               axis = info.mulAxis;
+	    	            }
+	    	        })
+	    	        
+	    	          /* Google Map API */
+	    	        var googlemap_api_with_key = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD9Z-OH7NHZvC5Nn-aG5BEDPl9Egpu3AIg&callback=initMap';
+	    	        $.getScript(googlemap_api_with_key, function(){
+	    	            initMap(axis);
+	    	        });
+	    	        $('#wrapper').html(multiplexMapView());
+	    	           
+	    	        $('.goMain').on('click',function(){
+	    	            multiplexMain(seq);
+	    	        });
+	    	        multiplexMapCss();
+	    	             },
+	    	             error : function(xhr,status,msg){
+	    	                alert(msg);
+	    	             }
+	    	         }); /* end of ajax */
+	    	    };
+	    	    
+	    	    function initMap(axis) {
+	    	        var latval = axis.split(', ')[0]*1;
+	    	        var lngval = axis.split(', ')[1]*1;
+	    	        var pos = {lat: latval, lng: lngval};
+	    	        var map = new google.maps.Map(document.getElementById('map'), {
+	    	    	    center: pos,
+	    	    	    zoom: 17
+	    	        });
+	    	        var marker = new google.maps.Marker({
+	    	    	    position: pos,
+	    	    	    map: map
+	    	        });
+	    	    };
+	    	    
 	       var movieDetail = function(seq){
 	             var ctx = $.context();
 	             var john = ctx+'/resources/js/john.js';

@@ -22,7 +22,7 @@
 .abb1_gnb {list-style-type: none; display: inline-block;}
 .abb1_gnb li {float: left;}
 .abb1_gnb a {font-size: 15px;color: #5b5b5b; text-align: center; padding: 0 30px; border-left: 1px solid #5b5b5b; border-right: 1px solid #5b5b5b;}
-.abb1_gnb_tab{border-bottom: 1px solid #c0c0c0;}
+.abb1_gnb_tab{border-bottom: 1px solid #c0c0c0; margin-top: 15px;}
 .abb1_tooltip { position: relative; display: inline-block; border-bottom: 1px dotted black;}
 .abb1_tooltip .abb1_tooltiptext {font-size: 10px; width: 30px; visibility: hidden; background-color: #5b5b5b; color: #fff; text-align: center; border-radius: 6px; padding: 5px 0; position: absolute; z-index: 1; bottom: 3px;}
 .abb1_tooltip:hover .abb1_tooltiptext { visibility: visible; }
@@ -223,7 +223,7 @@
 
 /*------ bbs -------*/
 .abb1_bbs_table{width:980px;margin:0 auto;padding:20px 0;color:#231f20}
-.abb1_bbs_table_text{margin: 0 auto;width:900px;text-align: left;margin-top: 20px;}
+.abb1_bbs_table_text{margin: 0 auto;width:900px;text-align: left;padding:30px;}
 .abb1_bbs_table_text>strong{font-size:28px;}
 .abb1_bbs_table .abb1_select_box{float:left;margin-right:5px; width: 124px; height: 28px;}
 .abb1_bbs_table select {width: 124px; height: 28px; }
@@ -231,7 +231,6 @@
 .abb1_submitbtn{float: left;min-width: 50px;text-align: center;height: 28px;border: 0;background: #231f20; color: #fff; font-size: 12px; font-weight: bold;}
 .abb1_searchtext {float: left; height: 28px; border-right: 0;}
 .abb1_category{padding-top:30px;font-size:14px}
-.abb1_bbs_pagination_table{margin: 0 auto; text-align: center;}
 .abb1_bbs_pagination_table td{width: 100px;}
 .abb1_bbs_main_table{width:100%;color:#231f20;line-height:18px;table-layout:fixed}
 .abb1_bbs_main_table tr.notice{font-weight: bold; background: #f9f6ec;}
@@ -250,7 +249,7 @@
 .abb1_view_info li:first-child{padding-left: 0;background: none;}
 .abb1_view_info li{float:left;margin:0 20px 0 0;font-size:13px;color:#666}
 .abb1_review_result{display:table-cell;width:900px;vertical-align:middle;border-bottom: 1px solid #9d9d9d}
-.abb1_view_content {font-size: 15px; margin: 20px 30px;}
+.abb1_view_content {font-size: 15px;}
 .abb1_bbs_write_btn{background-color: white; color: #231f20;}
 
 /*------- bbs write -------*/
@@ -295,7 +294,7 @@
 
 /*------ reservation -------*/
 .abb1_reservation{width:100%;background: #f9f6ec;}
-.abb1_reservation_main_form{ margin: 0 auto; text-align: center; width: 1000px}
+.abb1_reservation_main_form{ margin: 0 auto; width: 1000px}
 .abb1_reservation_calendar {width: 100%}
 .abb1_reservation_calendar span{font-size: 15px; }
 .abb1_reservation_multiplex {background: white; width: 100%}
@@ -439,7 +438,7 @@
    background: #33373a; width: 100%; height:234px; min-width: 900px;
 }
 .abb1_ticketing_table{
-   margin: 0 auto; width: 1000px; text-align: center;
+   margin: 0 auto; width: 1000px;
 }
 .abb1_ticketing_table td{
    width: 333px;

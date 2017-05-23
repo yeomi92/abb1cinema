@@ -24,6 +24,7 @@ import com.abb1cinema.web.domain.Movie;
 import com.abb1cinema.web.domain.Notice;
 import com.abb1cinema.web.domain.Reservation;
 import com.abb1cinema.web.domain.Review;
+import com.abb1cinema.web.domain.Showing;
 import com.abb1cinema.web.service.GetService;
 
 @RestController
@@ -185,5 +186,54 @@ public class GetController {
 	      map.put("success", "SUCCESS!!");
 	      return map;
 	   }
+	   
+	   
+	   @RequestMapping(value="/get/multiplex/{seq}", method=RequestMethod.POST, consumes="application/json")
+	   public @ResponseBody Map<?,?> getMultiplex(@PathVariable String seq) throws Exception {
+	      logger.info("getMultiplex() {}","ENTER");
+	      Map<String, Object> map = new HashMap<>();
+	      
+	      // distinct showing list (영화 갯수에 대한 정렬에 사용)
+	      map.put("column1", "movie_seq");
+	      List<Showing> disShowList = getService.getDistinctShowingList(map);
+	      map.put("dis_show_list", disShowList);
+	      
+	      // theater list (영화관의 총 좌석 개수 카운팅에 사용)
+	      map.put("theater_list", getService.getTheaterList(map));
+	      
+	      // information list (예약한 좌석 개수 카운팅에 사용)
+	      map.put("info_list", getService.getInfoList(map));
+	      
+	      // timetable list (예약 가능한 영화의 시간테이블에 사용)
+	      map.put("timetable_list", getService.getTimetableList(map));
+	      
+	      // theater count (상영관 개수 카운팅에 사용)
+	      map.put("group", "Theater");
+	      map.put("key", "multiplex_seq");
+	      map.put("value", seq);
+	      int theaterCount = getService.count(map);
+	      map.put("theater_count", theaterCount);
+	      map.put("success", "SUCCESS!!");
+	      return map;
+	   }
+	   @RequestMapping(value="/get/reservation", method=RequestMethod.POST, consumes="application/json")
+	   public @ResponseBody Map<?,?> getReservation() throws Exception {
+	      logger.info("getReservation() {}","ENTER");
+	      Map<String, Object> map = new HashMap<>();
+	      // distinct showing list (영화 갯수에 대한 정렬에 사용)
+	      map.put("column1", "movie_seq");
+	      List<Showing> disShowList = getService.getDistinctShowingList(map);
+	      map.put("dis_show_list", disShowList);
+	      
+	      // information list (예약한 좌석 개수 카운팅에 사용)
+	      map.put("info_list", getService.getInfoList(map));
+	      
+	      // timetable list (예약 가능한 영화의 시간테이블에 사용)
+	      map.put("timetable_list", getService.getTimetableList(map));
+	      
+	      map.put("success", "SUCCESS!!");
+	      return map;
+	   }
+
 	   
 }

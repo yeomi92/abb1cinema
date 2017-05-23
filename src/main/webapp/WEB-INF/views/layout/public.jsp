@@ -17,6 +17,17 @@
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="${context}/resources/css/abb1.css" type="text/css"/>
+	<!-- Bootstrap Core CSS -->
+    <link href="${context}/resources/css/bootstrap_admin/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="${context}/resources/css/bootstrap_admin/sb-admin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="${context}/resources/css/bootstrap_admin/plugins/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="${context}/resources/css/bootstrap_admin/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<header>
