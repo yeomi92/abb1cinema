@@ -120,4 +120,19 @@ public class GetService {
 			      IGetService service = (map) -> mapper.getShowingList(map);
 			      return (List<Showing>) service.execute(paramMap);
 			   }
+		   
+		   public List<Information> getAdminReservationList(Map<?,?> paramMap) throws Exception{
+			   IGetService service = (map) -> mapper.getAdminReservationList(map);
+			   return (List<Information>) service.execute(paramMap);
+		   }
+		   
+		   public List<Information> getAdminCancelList(Map<?,?> paramMap) throws Exception{
+			   IGetService service = (map) -> mapper.getAdminCancelList(map);
+			   return (List<Information>) service.execute(paramMap);
+		   }
+		   
+		   public List<Timetable> getAdminShowList(Map<?,?> paramMap) throws Exception{
+			   IGetService service = (map) -> mapper.getAdminShowList(map);
+			   return (List<Timetable>) service.execute(paramMap);
+		   }
 }

@@ -107,28 +107,28 @@ function adminGnbView(){
 	+'                        </ul>'
 	+'                    </li>'
 	+'                    <li>'
-	+'                     <a id="admin_board" href="javascript:;" data-toggle="collapse" data-target="#bbs"><i class="fa fa-fw fa-edit"></i> 게시판 <i class="fa fa-fw fa-caret-down"></i></a>'
+	+'                     <a id="admin_board" href="#" data-toggle="collapse" data-target="#bbs"><i class="fa fa-fw fa-edit"></i> 게시판 <i class="fa fa-fw fa-caret-down"></i></a>'
 	+'                        <ul id="bbs" class="collapse">'
 	+'                            <li>'
-	+'                                <a id="manage_article" href="">문의글 관리</a>'
+	+'                                <a id="manage_article" href="#">문의글 관리</a>'
 	+'                            </li>'
 	+'                            <li>'
-	+'                                <a id="manage_notice" href="">공지글 관리</a>'
+	+'                                <a id="manage_notice" href="#">공지글 관리</a>'
 	+'                            </li>'
 	+'                        </ul>'
 	+'                    </li>'
 	+'                    <li>'
-	+'                        <a id="admin_gender" href=""><i class="fa fa-fw fa-bar-chart-o"></i> 성별 예매율</a>'
+	+'                        <a id="admin_gender" href="#"><i class="fa fa-fw fa-bar-chart-o"></i> 성별 예매율</a>'
 	+'                    </li>'
 	+'                    <li>'
-	+'                        <a id="admin_member" href=""><i class="fa fa-fw fa-wrench"></i> 회원 관리</a>'
+	+'                        <a id="admin_member" href="#"><i class="fa fa-fw fa-wrench"></i> 회원 관리</a>'
 	+'                    </li>'
 	+'                </ul>'
 	+'            </div>'
 	+'        </nav>';
 }
 function adminIndexView(){
-    return '<div id="page-wrapper" style="padding-left:225px;">'
+    return '<div id="page-wrapper" style="padding-left:230px;margin-top: 45px;">'
 	+'            <div class="container-fluid">'
 	+'                <div class="row">'
 	+'                    <div class="col-lg-12">'
@@ -246,9 +246,9 @@ function adminIndexView(){
 	+'        </div>';
 }
 function adminStatisticView(){
-    return '<div id="page-wrapper">'
-	+'			<div id="statistic">'
-	+'				<select name="" id="statistic_category">'
+    return '			<div id="statistic">'
+    +'	<div>성별 예매율</div>'
+	+'				<div style="margin-left:50px;"><select name="" id="statistic_category">'
 	+'					<option selected>카테고리 선택</option>'
 	+'					<option value="multiplex">영화관</option>'
 	+'					<option value="movie">영화</option>'
@@ -256,64 +256,63 @@ function adminStatisticView(){
 	+'				<input id="statistic_search_keyword" type="text"/>'
 	+'				<input id="statistic_search_btn" type="button" value="검색"/>'
 	+'			</div>'
-	+'		</div>'
-	+'        </div>';
+	+'			</div>'
+	+'		</div>';
 }
 function adminStatisticChartView(){
-    return '<div id="page-wrapper"><div id="admin_movie_donut_chart"></div></div>';
+    return '<div id="admin_movie_donut_chart"></div>';
 }
 function adminMovieRegisterView(){
-    return '<div id="page-wrapper">'
-	+'    <div id="movie_register">'
+    return '    <div id="movie_register">'
 	+'	<div>영화 등록</div>'
 	+'	<div>'
-	+'		<div id="movie_register_table">'
+	+'		<div id="movie_register_table" style="margin-left:50px;">'
 	+'		<table>'
-	+'			<tr>'
+	+'			<tr style="height:40px;">'
 	+'				<td>영화명</td>'
 	+'				<td><input id="" type="text"/></td>'
 	+'			</tr>'
-	+'			<tr>'
+	+'			<tr style="height:40px;">'
 	+'				<td>등급</td>'
 	+'				<td><input id="" type="text"/></td>'
 	+'			</tr>'
-	+'			<tr>'
+	+'			<tr style="height:40px;">'
 	+'				<td>개봉일</td>'
 	+'				<td><input id="" type="text"/></td>'
 	+'			</tr>'
-	+'			<tr>'
+	+'			<tr style="height:40px;">'
 	+'				<td>기본정보</td>'
 	+'				<td><input id="" type="text"/></td>'
 	+'			</tr>'
-	+'			<tr>'
+	+'			<tr style="height:40px;">'
 	+'				<td>시놉시스</td>'
 	+'				<td><textarea name="" id="" cols="30" rows="6"></textarea></td>'
 	+'			</tr>'
-	+'			<tr>'
+	+'			<tr style="height:40px;">'
 	+'				<td>감독 이름</td>'
 	+'				<td><input id="" type="text"/></td>'
 	+'			</tr>'
-	+'			<tr>'
+	+'			<tr style="height:40px;">'
 	+'				<td>감독 사진</td>'
 	+'				<td><input type="file" /></td>'
 	+'			</tr>'
-	+'			<tr>'
+	+'			<tr style="height:40px;">'
 	+'				<td>배우 이름</td>'
 	+'				<td><input id="" type="text"/></td>'
 	+'			</tr>'
-	+'			<tr>'
+	+'			<tr style="height:40px;">'
 	+'				<td>배우 사진</td>'
 	+'				<td><input type="file" /></td>'
 	+'			</tr>'
-	+'			<tr>'
-	+'				<td>영화 프로필 사진</td>'
+	+'			<tr style="height:40px;">'
+	+'				<td style="padding-right: 20px;">영화 프로필 사진</td>'
 	+'				<td><input type="file" /></td>'
 	+'			</tr>'
-	+'			<tr>'
+	+'			<tr style="height:40px;">'
 	+'				<td>트레일러 URL</td>'
 	+'				<td><span><input type="text"/></span></td>'
 	+'			</tr>'
-	+'			<tr id="trailer_check">'
+	+'			<tr id="trailer_check" style="height:40px;">'
 	+'				<td><input id="" type="checkbox"/></td>'
 	+'				<td>메인 페이지 트레일러로 등록</td>'
 	+'			</tr>'
@@ -324,14 +323,12 @@ function adminMovieRegisterView(){
 	+'			<input id="confirm" type="button" value="확인"/>'
 	+'		</div>'
 	+'	</div>'
-	+'</div>'
 	+'</div>';
 }
 function adminCustomerView(){
-    return '<div id="page-wrapper">'
-    +'			<div id="customer">'
+    return '			<div id="customer">'
     +'				<div>회원 관리</div>'
-    +'					<div id="customer_management_wrapper">'
+    +'					<div id="customer_management_wrapper" style="margin-left: 50px;">'
     +'						<div>'
     +'							<input id="customer_search_keyword" type="text" placeholder="아이디 or 이름" />'
     +'							<input id="customer_search_btn" type="button" value="검색"/>'
@@ -368,8 +365,7 @@ function adminCustomerView(){
     +'						</div>'
     +'					</div>'
     +'				</div>'
-    +'			</div>'
-     +'       </div>';
+    +'			</div>';
 }
 function adminCustomerResultView(){
     return '<div id="customer_result">'
@@ -417,9 +413,9 @@ function adminCustomerResultView(){
     +'	</div>';
 }
 function adminReservationView(){
-    return '<div id="page-wrapper">'
-    +'		<div id="reservation">'
-    +'			<div>'
+    return '		<div id="reservation">'
+    +'	        <div>예매 관리</div>'
+    +'			<div id="inner_wrapper" style="margin-left: 50px;margin-right: 50px;">'
     +'				<select name="" id="reservation_category">'
     +'					<option selected>카테고리 선택</option>'
     +'					<option value="multiplex">영화관</option>'
@@ -427,11 +423,10 @@ function adminReservationView(){
     +'				</select>'
     +'				<input id="reservation_search_keyword" type="text" />'
     +'				<input id="reservation_search_btn" type="button" value="검색"/>'
-    +'			</div></div></div>';
+    +'			</div></div>';
 }
 function adminReservationResultView(){
-    return '<div id="page-wrapper">'
-    +'		<div id="reservation">'
+    return '	<div id="reservationDetail">'
     +'			<div>'
     +'				<select name="" id="reservation_category">'
     +'					<option selected>카테고리 선택</option>'
@@ -456,7 +451,7 @@ function adminReservationResultView(){
     +'				      	</colgroup>'
     +'				      	<thead>'
     +'							<tr>'
-    +'								<th>관</th>'
+    +'								<th>상영관</th>'
     +'								<th>영화제목</th>'
     +'								<th>시작시간</th>'
     +'								<th>좌석번호</th>'
@@ -464,16 +459,7 @@ function adminReservationResultView(){
     +'								<th>가격</th>'
     +'							</tr>'
     +'				   	   	</thead>'
-    +'				     	<tbody>'
-    +'							<tr>'
-    +'								<td>1관</td>'
-    +'								<td>아빠와 딸</td>'
-    +'								<td>12:00</td>'
-    +'								<td>A1</td>'
-    +'								<td>2017-05-01</td>'
-    +'								<td>10,000</td>'
-    +'							</tr>'
-    +'		   			   </tbody>'
+    
     +'					</table>'
     +'					</div>'
     +'				</div>'
@@ -491,7 +477,7 @@ function adminReservationResultView(){
     +'				      	</colgroup>'
     +'				      	<thead>'
     +'							<tr>'
-    +'								<th>관</th>'
+    +'								<th>상영관</th>'
     +'								<th>영화제목</th>'
     +'								<th>시작시간</th>'
     +'								<th>좌석번호</th>'
@@ -499,16 +485,7 @@ function adminReservationResultView(){
     +'								<th>가격</th>'
     +'							</tr>'
     +'				      </thead>'
-    +'				      <tbody>'
-    +'							<tr>'
-    +'								<td>1관</td>'
-    +'								<td>아빠와 딸</td>'
-    +'								<td>12:00</td>'
-    +'								<td>A1</td>'
-    +'								<td>2017-05-01</td>'
-    +'								<td>10,000</td>'
-    +'							</tr>'
-    +'		   			   </tbody>'
+   
     +'					</table>'
     +'					</div>'
     +'				</div>'
@@ -525,41 +502,28 @@ function adminReservationResultView(){
     +'					      	</colgroup>'
     +'					      	<thead>'
     +'								<tr>'
-    +'									<th>영화관</th>'
     +'									<th>상영관</th>'
+    +'									<th>영화제목</th>'
     +'									<th>시작시간</th>'
-    +'									<th>예매날짜</th>'
-    +'									<th>가격</th>'
     +'								</tr>'
     +'					      	</thead>'
-    +'					      	<tbody>'
-    +'								<tr>'
-    +'									<td>1관</td>'
-    +'									<td>아빠와 딸</td>'
-    +'									<td>12:00</td>'
-    +'									<td>2017-05-01</td>'
-    +'									<td>10,000</td>'
-    +'								</tr>'
-    +'			   			   </tbody>'
+    
     +'						</table>'
     +'					</div>'
     +'				</div>'
     +'				<div id="admin_movie_donut_chart">'
     +'				</div>'
     +'			</div>'
-    +'		</div>'
-    +'    </div>';
+    +'		</div>';
 }
 function adminMovieManagementView(){
-    return '<div id="page-wrapper">'
-    +'        <div id="movie_management">'
+    return '        <div id="movie_management">'
     +'	        <div>영화 관리</div>'
-    +'			<div id="management">'
+    +'			<div id="management" style="margin-left: 50px;">'
     +'				<input id="movie_search_keyword" type="text" placeholder="영화명 입력" />'
     +'				<input id="movie_search_btn" type="button" value="검색"/>'
     +'			</div>'
-    +'	        </div>'
-    +'        </div>';
+    +'	        </div>';
 }
 function adminMovieManagementTableView(){
     return '<div>'
@@ -619,10 +583,9 @@ function adminMovieManagementTableView(){
 	+'</div>';
 }
 function adminBbsNoticeView(){
-    return '<div id="page-wrapper">'
-    +'		<div id="notice_table">'
+    return '		<div id="notice_table">'
     +'		<div>공지글 관리</div>'
-    +'		<div id="notice_write_wrapper">'
+    +'		<div id="notice_write_wrapper" style="margin-left:22px;">'
     +'		<div>'
     +'			<input id="write" type="button" value="등록" />'
     +'		</div>'
@@ -694,7 +657,6 @@ function adminBbsNoticeView(){
     +'		  </div>'
     +'		</div>'
     +'	</div>';
-    +'        </div>';
 }
 function adminBbsNoticeWriteView(){
     return '<div id="notice_write">'
@@ -730,10 +692,9 @@ function adminBbsNoticeWriteView(){
 	+'</div>';
 }
 function adminBbsFaqView(){
-    return '<div id="page-wrapper">'
-    +'			<div id="faq_table">'
+    return '			<div id="faq_table">'
     +'			<div>문의글 관리</div>'
-    +'			<div id="faq_write_wrapper">'
+    +'			<div id="faq_write_wrapper" style="margin-left:22px;">'
     +'				<table>'
     +'				<colgroup>'
     +'					<col />'
@@ -813,8 +774,7 @@ function adminBbsFaqView(){
     +'				   </table>'
     +'				  </div>'
     +'			</div>'
-    +'			</div>'
-    +'       </div>';
+    +'			</div>';
 }
 function adminBbsFaqAnswerView(){
     return '<div id="faq_answer">'

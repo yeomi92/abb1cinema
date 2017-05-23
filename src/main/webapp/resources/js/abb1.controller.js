@@ -1422,38 +1422,27 @@ abb1.controller =(function() {
 	        	  index(); 
 	           });
 	           $('#admin_index').on('click',function(){
-	        	   alert('admin index');
 	        	   adminIndex();
 	           });
 			   $('#admin_reservation').on('click',function(){
-				   alert('admin_reservation');
 				   adminReservation();
 			   });
-			   /*$('#admin_movie').on('click',function(){
-				   alert('admin_movie');
-			   });*/
 			   $('#manage_movie').on('click',function(){
-				   alert('manage_movie');
 				   adminMovieManagement();
 			   });
 			   $('#regist_movie').on('click',function(){
-				   alert('regist_movie');
 				   adminMovieRegister();
 			   });
 			   $('#manage_article').on('click',function(){
-				   alert('manage_article');
 				   adminBbsFaq(4);
 			   });
 			   $('#manage_notice').on('click',function(){
-				   alert('manage_notice');
 				   adminBbsNotice(5);
 			   });
 			   $('#admin_gender').on('click',function(){
-				   alert('admin_gender');
 				   adminStatistic();
 			   });
 			   $('#admin_member').on('click',function(){
-				   alert('admin_member');
 				   adminCustomer();
 			   })
 	       };
@@ -1461,7 +1450,7 @@ abb1.controller =(function() {
 	           var ctx = $.context();
 	           $('#page-wrapper').html(adminStatisticView());
 	           $('#statistic_search_btn').on('click',function(){
-	               $('#wrapper').html(adminStatisticChartView());
+	               $('#page-wrapper').html(adminStatisticChartView());
 	               /*-- Google API Loading --*/
 	               abb1.api.google2(20, 80);
 	           });
@@ -1489,8 +1478,62 @@ abb1.controller =(function() {
 	           var ctx = $.context();
 	           $('#page-wrapper').html(adminReservationView());
 	           $('#reservation_search_btn').on('click',function(){
-	               $('#wrapper').html(adminReservationResultView());
-	               adminReservationCss();
+	        	   $.ajax({
+	        		   url: $.context()+'/get/admin/reservation',
+	        		   method: 'POST',
+	        		   data: JSON.stringify({
+	        			  category: $('#reservation_category').val(),
+	        			  value: $('#reservation_search_keyword').val()
+	        		   }),
+	        		   dataType: 'json',
+	        		   contentType: 'application/json',
+	        		   success: function(data){
+	        			   console.log(data.reservationList);
+	        			   console.log(data.cancelList);
+	        			   console.log(data.showList);
+	        			   alert('성공');
+	        			   $('#inner_wrapper').html(adminReservationResultView());
+	        			   $.each(data.reservationList, function(i,list){
+	        				   $('#reservation_table').append('<tbody>'
+	        						    +'							<tr>'
+	        						    +'								<td>'+list.theName+'</td>'
+	        						    +'								<td>'+list.movTitle+'</td>'
+	        						    +'								<td>'+list.shoStartTime+'</td>'
+	        						    +'								<td>'+list.resId+'</td>'
+	        						    +'								<td>'+list.resRegDate+'</td>'
+	        						    +'								<td>'+list.resPrice+'</td>'
+	        						    +'							</tr>'
+	        						    +'		   			   </tbody>');
+	        			   });
+	        			   $.each(data.cancelList, function(i,list){
+	        				   $('#cancel_list_table').append('<tbody>'
+	        						    +'							<tr>'
+	        						    +'								<td>'+list.theName+'</td>'
+	        						    +'								<td>'+list.movTitle+'</td>'
+	        						    +'								<td>'+list.shoStartTime+'</td>'
+	        						    +'								<td>'+list.resRegDate+'</td>'
+	        						    +'								<td>'+list.resPrice+'</td>'
+	        						    +'							</tr>'
+	        						    +'		   			   </tbody>');
+	        			   });
+	        			   $.each(data.showList, function(i,list){
+	        				   $('#movie_list_table').append('<tbody>'
+	        						    +'							<tr>'
+	        						    +'								<td>'+list.theName+'</td>'
+	        						    +'								<td>'+list.movTitle+'</td>'
+	        						    +'								<td>'+list.shoStartTime+'</td>'
+	        						    +'							</tr>'
+	        						    +'		   			   </tbody>');
+	        			   });
+	    	               adminReservationCss();
+	        			   
+	        		   },
+	        		   error: function(xhr,status,msg){
+	        			   alert('실패 이유: '+msg);
+	        		   }
+	        	   });
+	               //$('#inner_wrapper').html(adminReservationResultView());
+	               //adminReservationCss();
 	               /*-- Google API Loading --*/
 	               abb1.api.google2(20, 80);
 	           });

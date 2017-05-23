@@ -111,13 +111,23 @@ SELECT * FROM Reservation WHERE customer_id=#{id}
    <select id="getTimetableList" resultType="com.abb1cinema.web.domain.Timetable" parameterType="hashMap">
    SELECT * FROM Timetable;
    </select>
-   
-   
    <select id="getDistinctShowingList" resultType="com.abb1cinema.web.domain.Showing" parameterType="hashMap">
    SELECT DISTINCT ${column1}
    <if test="column2 != null">
    , ${column2}
    </if>
     FROM Showing;
+   </select>
+   
+   <!-- 추가 -->
+   <select id="getAdminReservationList" resultType="com.abb1cinema.web.domain.Information" parameterType="hashMap">
+   SELECT * FROM Information WHERE ${key} LIKE '%${value}%' AND resCanceled='N'
+   </select>
+   
+   <select id="getAdminCancelList" resultType="com.abb1cinema.web.domain.Information" parameterType="hashMap">
+   SELECT * FROM Information WHERE ${key} LIKE '%${value}%' AND resCanceled='Y'
+   </select>
+   <select id="getAdminShowList" resultType="com.abb1cinema.web.domain.Timetable" parameterType="hashMap">
+   SELECT * FROM Timetable WHERE ${key} LIKE '%${value}%'
    </select>
 </mapper>

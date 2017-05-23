@@ -46,23 +46,27 @@ function adminIndexCss(){
 	$('#donut_chart').addClass('abb1_width_center').css('width','900px').css('height','450px');
 }
 function adminStatisticCss(){
-    var statistic_category = $('#statistic_category');
+	$('#statistic>div:nth-child(1)').addClass('abb1_admin_maintext');
+	var statistic_category = $('#statistic_category');
     statistic_category.addClass('abb1_admin_reservation_category');
     $('#statistic_search_keyword').addClass('abb1_admin_reservation_search_keyword');
     $('#statistic_search_btn').addClass('abb1_admin_reservation_search_btn');
 }
 function adminMovieRegisterCss(){
     var movie_register = $('#movie_register');
-    movie_register.find('div:first-child').addClass('abb1_admin_maintext');
+    $('#movie_register>div:nth-child(1)').addClass('abb1_admin_maintext');
+    //movie_register.find('div:first-child').addClass('abb1_admin_maintext');
     movie_register.find('div:nth-child(2)').addClass('abb1_admin_settings');
     var movie_register_table = $('#movie_register_table');
-    movie_register_table.addClass('abb1_admin_movie_management_table');
+    //movie_register_table.addClass('abb1_admin_movie_management_table');
+    movie_register_table.css('margin-left','50px');
+    movie_register_table.find('td').css('height','40px');
     $('#trailer_check').addClass('abb1_trailer_check');
     $('#movie_register_btns').addClass('abb1_admin_movie_management_btns');
 }
 function adminCustomerCss(){
     var customer = $('#customer');
-    customer.find('div:first-child').addClass('abb1_admin_maintext');
+    $('#customer>div:nth-child(1)').addClass('abb1_admin_maintext');
     $('#customer_search_keyword').addClass('abb1_admin_reservation_search_keyword');
     $('#customer_search_btn').addClass('abb1_admin_customer_search_btn');
     $('#customer_management_wrapper').find('div:nth-child(2)').addClass('abb1_admin_settings');
@@ -77,6 +81,7 @@ function adminCustomerCss(){
     $('#customer_result').addClass('abb1_signup_form_control abb1_admin_customer_change');
 }
 function adminReservationCss(){
+	$('#reservation>div:nth-child(1)').addClass('abb1_admin_maintext');
     $('#reservation_category').addClass('abb1_admin_reservation_category');
     $('#reservation_search_keyword').addClass('abb1_admin_reservation_search_keyword');
     $('#reservation_search_btn').addClass('abb1_admin_reservation_search_btn');
@@ -133,6 +138,7 @@ function adminBbsNoticeCss(pageNo){
     var notice_write_wrapper = $('#notice_write_wrapper');
     notice_write_wrapper.find('div:first-child').addClass('abb1_admin_notice_register');
     notice_write_wrapper.find('table').addClass('abb1_admin_notice_table');
+    notice_write_wrapper.find('table td').css('border-bottom-color','white');
     notice_write_wrapper.find('col:nth-child(1)').css('width','10%');
     notice_write_wrapper.find('col:nth-child(2)').css('width','60%');
     notice_write_wrapper.find('col:nth-child(3)').css('width','20%');

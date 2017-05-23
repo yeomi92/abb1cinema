@@ -43,4 +43,7 @@ public interface Mapper {
 	public List<Showing> getDistinctShowingList(Map<?,?> map) throws Exception;
 	public List<Timetable> getTimetableList(Map<?,?> map) throws Exception;
 	public List<Showing> getShowingList(Map<?,?> map) throws Exception;
+	public List<Information> getAdminReservationList(Map<?,?> map) throws Exception;
+	public List<Information> getAdminCancelList(Map<?,?> map) throws Exception;
+	public List<Timetable> getAdminShowList(Map<?,?> map) throws Exception;
 }
