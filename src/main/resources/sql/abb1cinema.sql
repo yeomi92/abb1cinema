@@ -267,6 +267,15 @@ INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('
 INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('c','1','테스트','M','19900518','01022068900','babungv@gmail.com','0');
 INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('d','1','테스트','M','19900518','01022068900','babungv@gmail.com','0');
 INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('test','1','test','M','19900518','01022068900','babungv@gmail.com','0');
+INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('yheisun1','1','염혜선','F','19921015','01040502695','yheisun@gmail.com','0');
+INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('yheisun2','1','염혜선','F','19921015','01040502695','yheisun@gmail.com','0');
+INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('yheisun3','1','염혜선','F','19921015','01040502695','yheisun@gmail.com','0');
+INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('yheisun4','1','염혜선','F','19921015','01040502695','yheisun@gmail.com','0');
+INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('yheisun5','1','염혜선','F','19921015','01040502695','yheisun@gmail.com','0');
+INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('yheisun6','1','염혜선','F','19921015','01040502695','yheisun@gmail.com','0');
+INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('yheisun7','1','염혜선','F','19921015','01040502695','yheisun@gmail.com','0');
+INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES ('yheisun8','1','염혜선','F','19921015','01040502695','yheisun@gmail.com','0');
+
 
 
 INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, showing_seq) VALUES ('1-1-1800-A01','2017-05-10','N','10000', '1','babungv1',1);
@@ -282,6 +291,14 @@ INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, show
 INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, showing_seq) VALUES ('1-5-1800-D07','2017-05-10','N','10000', '1','a',5);
 INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, showing_seq) VALUES ('1-6-1800-A09','2017-05-10','N','10000', '1','b',6);
 INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, showing_seq) VALUES ('1-6-1800-A10','2017-05-10','N','10000', '1','b',6);
+INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, showing_seq) VALUES ('1-1-1800-B10','2017-05-15','N','10000', '1','yheisun1',1);
+INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, showing_seq) VALUES ('1-2-1900-B10','2017-05-15','N','10000', '1','yheisun1',2);
+INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, showing_seq) VALUES ('1-3-1800-B10','2017-05-15','N','10000', '1','yheisun1',3);
+INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, showing_seq) VALUES ('1-4-1900-B10','2017-05-15','N','10000', '1','yheisun1',4);
+INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, showing_seq) VALUES ('1-5-1800-B10','2017-05-15','N','10000', '1','yheisun1',5);
+INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, showing_seq) VALUES ('1-5-1800-D01','2017-05-15','N','10000', '1','yheisun1',6);
+INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, showing_seq) VALUES ('1-5-1800-D10','2017-05-15','N','10000', '1','yheisun1',6);
+INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, showing_seq) VALUES ('1-1-1800-C10','2017-05-15','N','10000', '1','yheisun1',2);
 
 
 INSERT INTO Showing(start_time, end_time, show_date, price, movie_seq, theater_seq) VALUES ('18:00', '18:10', '2017-05-20', '10000', 1, 1);

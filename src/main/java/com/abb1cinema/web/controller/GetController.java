@@ -146,50 +146,7 @@ public class GetController {
 			return map;
 	   }
 	   
-	   @RequestMapping(value="/get/admin/reservation", method=RequestMethod.POST, consumes="application/json")
-	   public @ResponseBody Map<?,?> getAdminReservation( @RequestBody Map<String,String> paramMap) throws Exception{
-		    logger.info("GetController getAdminReservation() {}","ENTER");
-		    List<Information> reservationList=new ArrayList<>();
-		    List<Information> cancelList=new ArrayList<>();
-		    List<Timetable> showList=new ArrayList<>();
-		    Map<String, Object>map=new HashMap<>();
-			logger.info("getAdminReservation() paramMap에서 가져온 data {}",paramMap.get("category")+paramMap.get("value"));
-			switch(paramMap.get("category")){
-			case "multiplex":
-				map.put("key", "mulName");
-				map.put("value", paramMap.get("value"));
-				reservationList=getService.getAdminReservationList(map);
-				logger.info("getAdminReservation() infoList {}",reservationList);
-				map.put("key", "mulName");
-				map.put("value", paramMap.get("value"));
-				cancelList=getService.getAdminCancelList(map);
-				logger.info("getAdminReservation() infoList {}",cancelList);
-				map.put("key", "mulName");
-				map.put("value", paramMap.get("value"));
-				showList=getService.getAdminShowList(map);
-				logger.info("getAdminReservation() infoList {}",showList);
-				map.clear();
-				map.put("reservationList", reservationList);
-				map.put("cancelList", cancelList);
-				map.put("showList", showList);
-				break;
-			case "movie":
-				map.put("key", "movTitle");
-				map.put("value", paramMap.get("value"));
-				reservationList=getService.getAdminReservationList(map);
-				logger.info("getAdminReservation() infoList {}",reservationList);
-				map.put("key", "movTitle");
-				map.put("value", paramMap.get("value"));
-				cancelList=getService.getAdminCancelList(map);
-				logger.info("getAdminReservation() infoList {}",cancelList);
-				map.put("key", "movTitle");
-				map.put("value", paramMap.get("value"));
-				showList=getService.getAdminShowList(map);
-				logger.info("getAdminReservation() infoList {}",showList);
-				break;
-			}
-			return map;
-	   }
+	   
 	   
 	   @RequestMapping(value="/get/board", method=RequestMethod.POST, consumes="application/json")
 	   public @ResponseBody Map<?,?> getBoard() throws Exception {
@@ -281,5 +238,47 @@ public class GetController {
 	      return map;
 	   }
 
+	   //추가
+	   @RequestMapping(value="/get/admin/reservation", method=RequestMethod.POST, consumes="application/json")
+	   public @ResponseBody Map<?,?> getAdminReservation( @RequestBody Map<String,String> paramMap) throws Exception{
+		    logger.info("GetController getAdminReservation() {}","ENTER");
+		    List<Information> reservationList=new ArrayList<>();
+		    List<Information> cancelList=new ArrayList<>();
+		    List<Timetable> showList=new ArrayList<>();
+		    Map<String, Object>map=new HashMap<>();
+			logger.info("getAdminReservation() paramMap에서 가져온 data {}",paramMap.get("category")+paramMap.get("value"));
+			switch(paramMap.get("category")){
+			case "multiplex":
+				map.put("key", "mulName");
+				map.put("value", paramMap.get("value"));
+				reservationList=getService.getAdminReservationList(map);
+				cancelList=getService.getAdminCancelList(map);
+				showList=getService.getAdminShowList(map);
+				map.clear();
+				map.put("reservationList", reservationList);
+				map.put("cancelList", cancelList);
+				map.put("showList", showList);
+				break;
+			case "movie":
+				map.put("key", "movTitle");
+				map.put("value", paramMap.get("value"));
+				reservationList=getService.getAdminReservationList(map);
+				logger.info("getAdminReservation() infoList {}",reservationList);
+				map.put("key", "movTitle");
+				map.put("value", paramMap.get("value"));
+				cancelList=getService.getAdminCancelList(map);
+				logger.info("getAdminReservation() infoList {}",cancelList);
+				map.put("key", "movTitle");
+				map.put("value", paramMap.get("value"));
+				showList=getService.getAdminShowList(map);
+				logger.info("getAdminReservation() infoList {}",showList);
+				map.clear();
+				map.put("reservationList", reservationList);
+				map.put("cancelList", cancelList);
+				map.put("showList", showList);
+				break;
+			}
+			return map;
+	   }
 	   
 }

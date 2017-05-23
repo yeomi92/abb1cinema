@@ -1488,6 +1488,8 @@ abb1.controller =(function() {
 	        		   dataType: 'json',
 	        		   contentType: 'application/json',
 	        		   success: function(data){
+	        			   var male=0;
+	        			   var female=0;
 	        			   console.log(data.reservationList);
 	        			   console.log(data.cancelList);
 	        			   console.log(data.showList);
@@ -1504,6 +1506,11 @@ abb1.controller =(function() {
 	        						    +'								<td>'+list.resPrice+'</td>'
 	        						    +'							</tr>'
 	        						    +'		   			   </tbody>');
+	        				   if(list.cusGender==='M'){
+	        					   male++;
+	        				   }else{
+	        					   female++;
+	        				   }
 	        			   });
 	        			   $.each(data.cancelList, function(i,list){
 	        				   $('#cancel_list_table').append('<tbody>'
@@ -1526,16 +1533,14 @@ abb1.controller =(function() {
 	        						    +'		   			   </tbody>');
 	        			   });
 	    	               adminReservationCss();
-	        			   
+	    	               var maleP=male/(male+female)*100;
+	    	               var femaleP=female/(male+female)*100;
+	    	               abb1.api.google2(maleP,femaleP);
 	        		   },
 	        		   error: function(xhr,status,msg){
 	        			   alert('실패 이유: '+msg);
 	        		   }
 	        	   });
-	               //$('#inner_wrapper').html(adminReservationResultView());
-	               //adminReservationCss();
-	               /*-- Google API Loading --*/
-	               abb1.api.google2(20, 80);
 	           });
 	           adminReservationCss();
 	       };
