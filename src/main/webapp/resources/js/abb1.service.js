@@ -1,4 +1,4 @@
-function reservationDetailService(){
+/*function reservationDetailService(){
 	$('.abb1_detail_icon').on('click',function(){
 		//다시 화면 그리기
 		$.ajax({
@@ -62,8 +62,8 @@ function reservationDetailService(){
 				$('#detail_icon'+i+'').html('<a id="close" href="#">닫기<img src="'+$.context()+'/resources/img/icon/uparrow.png" width="3%" height="3%" alt="" /></a>');
 				reservationDetailServiceCss(i);
 				$('#close').on('click',function(){
-					 	/*$(this).html('<a id="detail_icon'+i+'" href="#">상세<img src="'+$.context()+'/resources/img/icon/downarrow.png" width="3%" height="3%" alt="" /></a>');
-						$('#detail_reservation'+i+'').remove();*/
+					 	$(this).html('<a id="detail_icon'+i+'" href="#">상세<img src="'+$.context()+'/resources/img/icon/downarrow.png" width="3%" height="3%" alt="" /></a>');
+						$('#detail_reservation'+i+'').remove();
 					 //TODO: 다시 ajax를 부를 것인가?
 				 });
 				 $('#reservation_cancel'+i+'').on('click',function(){
@@ -127,7 +127,7 @@ function reservationDetailService(){
 		});
 		
 	});
-}
+}*/
 function movieSort(movie_arr){
     var temp = 0;
     for(k=0; k<movie_arr.length; k++) {

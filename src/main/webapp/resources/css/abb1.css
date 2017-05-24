@@ -684,7 +684,7 @@ ul, menu, dir {
 .abb1_star_rating a.on {color:#000000;}
 .abb1_page_gnb_li{padding: 10px;border-bottom:1px solid #231f20;}
 .abb1_detail_gnb_li{padding: 10px;color: black;}
-.abb1_page_reservation{border-top:1px solid #cec8ca;border-bottom:1px solid #cec8ca;padding-top: 20px;padding-bottom: 20px;margin-left: 10px;margin-right: 10px;}
+.abb1_page_reservation{border-top:1px solid #cec8ca;border-bottom:1px solid #cec8ca;padding-top: 20px;padding-bottom: 20px;margin-left: 20px;margin-right: 20px;}
 .abb1_page_info{width:960px; margin-left:20px; margin-right:20px; border-top:1px solid #cec8ca;border-bottom:1px solid #cec8ca;padding-top: 20px;padding-bottom: 20px;text-align: center;}
 .abb1_page_info table{text-align: center;margin: 0 auto;}
 .abb1_detail_reservation{border:1px solid #cec8ca;margin-top: 20px;margin-left: 10px;margin-right: 10px;}

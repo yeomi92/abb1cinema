@@ -253,14 +253,14 @@ abb1.controller =(function() {
 	};
 	var checkLogin = function(){
 	    if(abb1.cookie.getCookie('id')===null||abb1.cookie.getCookie('id')===''){
-            	$('#logout').attr('id','login').text('로그인');
-            	$('#mycinema').attr('id','register').text('회원가입');
+        	$('#logout').attr('id','login').text('로그인');
+        	$('#mycinema').attr('id','register').text('회원가입');
         	$('#FAQ_login').attr('id','FAQ');
-            }else{
-            	$('#login').attr('id','logout').text('로그아웃');
+        }else{
+        	$('#login').attr('id','logout').text('로그아웃');
         	$('#register').attr('id','mycinema').text('마이시네마');
         	$('#FAQ').attr('id','FAQ_login');
-            }  
+        }  
 	};
         var header = function(){
             $('#header').html(headerView());
@@ -367,8 +367,9 @@ abb1.controller =(function() {
                 indexTilesClickEvent();
             });
             $('#FAQ').on('click',function(){
-         	boardMain(1);
-         	indexTilesClickEvent();
+            	necessary();
+	         	boardMain(1);
+	         	indexTilesClickEvent();
             });
         };
         var necessary=function(){
@@ -382,6 +383,17 @@ abb1.controller =(function() {
         };
         var index=function(){
             $('#wrapper').html(indexView());
+            if(abb1.cookie.getCookie('id')===null||abb1.cookie.getCookie('id')===''){
+            	alert('null일 때'+abb1.cookie.getCookie('id'));
+            	$('#logout').attr('id','login').text('로그인');
+            	$('#mycinema').attr('id','register').text('회원가입');
+            	$('#FAQ_login').attr('id','FAQ');
+            }else{
+            	alert('null 아닐 때'+abb1.cookie.getCookie('id'));
+            	$('#login').attr('id','logout').text('로그아웃');
+	        	$('#register').attr('id','mycinema').text('마이시네마');
+	        	$('#FAQ').attr('id','FAQ_login');
+            }  
             $.ajax({
                 url: $.context()+"/get/movieRank",
                 method: "POST",
@@ -465,10 +477,6 @@ abb1.controller =(function() {
         };
         function indexClickEvent(){
             checkLogin();
-            $('#home').on('click',function(){
-            	index();
-            	indexClickEvent();
-            });
             $('.goMovie').on('click',function(){
             	var id = $(this).attr('id');
             	var num = id.split('movie')[1];
@@ -476,18 +484,18 @@ abb1.controller =(function() {
             	indexClickEvent();
             });
             $('#FAQ').on('click',function(){
-         	boardMain(1);
-         	indexClickEvent();
+	         	boardMain(1);
+	         	indexClickEvent();
             });
             $('#reservation').find('a').on('click',function(){
-        	reservationMain(); 
-        	indexClickEvent();
+	        	reservationMain(); 
+	        	indexClickEvent();
             });
             $('.goMovieDetail').on('click',function(){
-        	var rarr = reverseArr(data.movie_list, 8);
-        	var i = $(this).attr('id').split('slide')[1];
-        	movieDetail(rarr[(i*1+add*1)].seq);
-        	indexClickEvent();
+	        	var rarr = reverseArr(data.movie_list, 8);
+	        	var i = $(this).attr('id').split('slide')[1];
+	        	movieDetail(rarr[(i*1+add*1)].seq);
+	        	indexClickEvent();
             });
             $('#reservation').find('a').on('click',function(){
              	reservationMain(); 
@@ -499,16 +507,16 @@ abb1.controller =(function() {
             });
             $('#logout').on('click',function(){
             	abb1.cookie.removeCookie('id');
-     		abb1.cookie.removeCookie('pw');
-     		abb1.cookie.removeCookie('name');
-     		abb1.cookie.removeCookie('gender');
-     		abb1.cookie.removeCookie('birth');
-     		abb1.cookie.removeCookie('phone');
-     		abb1.cookie.removeCookie('email');
-     		abb1.cookie.removeCookie('point');
-     		abb1.cookie.removeCookie('address');
-     		index();
-     		indexClickEvent();
+	     		abb1.cookie.removeCookie('pw');
+	     		abb1.cookie.removeCookie('name');
+	     		abb1.cookie.removeCookie('gender');
+	     		abb1.cookie.removeCookie('birth');
+	     		abb1.cookie.removeCookie('phone');
+	     		abb1.cookie.removeCookie('email');
+	     		abb1.cookie.removeCookie('point');
+	     		abb1.cookie.removeCookie('address');
+	     		index();
+	     		indexClickEvent();
             });
             $('#mycinema').on('click',function(){
             	customerMypage();
@@ -774,7 +782,7 @@ abb1.controller =(function() {
 			             $('#mypage_reservation').append(reservationDetailView(i, canceled, info));
 			        });
 					customerMypageCss();
-					reservationDetailService();
+					customerReservationDetail();
 				}
 			},
 			error: function(xhr,status,msg){
@@ -815,7 +823,29 @@ abb1.controller =(function() {
 						 }else{
 							 canceled='사용';
 					   	 }
-						 var view=reservationDetailView(i, canceled, info);
+						 view='<div id="mypage_table'+i+'" style="margin-top: 5px;margin-bottom: 5px;margin-left: 20px;">	<table>'
+							+'	<tr>'
+					        +'		<td id="movie_img'+i+'" rowspan="5" style="padding-right: 25px;"><span id="reservation_pic'+i+'"><img id="movie_poster'+i+'" src="'+$.image()+'/movie/'+info.movPicMain+'" width="115px" height="150px" alt="" /></span></td>'
+					        +'		<td><span id="reservation_no'+i+'"><strong>예매번호</strong></span></td>'
+					        +'		<td id="reservation_number'+i+'">'+info.resId+'</td>'
+					        +'	</tr>'
+					        +'	<tr>'
+					        +'		<td><strong>예매일</strong></td>'
+					        +'		<td colspan="2" id="reservation_date'+i+'">'+info.resRegDate+'</td>'
+					        +'	</tr>'
+					        +'	<tr>'
+					        +'		<td><strong>사용상태</strong></td>'
+					        +'		<td id="canceled'+i+'" colspan="2">'+canceled+'</td>'
+					        +'	</tr>'
+					        +'	<tr>'
+					        +'		<td><strong>예매내역</strong></td>'
+					        +'		<td colspan="2" id="movie_name'+i+'">'+info.movTitle+'</td>'
+					        +'	</tr>'
+					        +'	<tr>'
+					        +'		<td id="price_title'+i+'" style="padding-right: 20px;"><strong>총 결제 금액</strong></td>'
+					        +'		<td colspan="2" id="reservation_price'+i+'">'+info.resPrice+'</td>'
+					        +'	</tr>'
+					        +'</table></div>';
 						 if(i==0){
 							 $('#mypage_reservation').html(view);
 						 }else{
@@ -823,7 +853,6 @@ abb1.controller =(function() {
 						 }
 			        });
 					customerMypageCss();
-					reservationDetailService();
 				}
 			},
 			error: function(xhr,status,msg){
@@ -837,56 +866,48 @@ abb1.controller =(function() {
 			customerMypageInfo();
 		});
 	};
-	var reservationDetailService = function(){
+	var customerReservationDetail = function(){
 	    checkLogin();
 	    $('.abb1_detail_icon').on('click',function(){
 		//다시 화면 그리기
-		$.ajax({
-			url: $.context()+'/getReservation',
-			method: 'POST',
-			data: JSON.stringify({
-				id: abb1.cookie.getCookie('id')
-			}),
-			dataType: 'json',
-			contentType: 'application/json',
-			success: function(data){
-				var info_list=[];
-				$.each(data.infoList, function(i, info){
-		             var o = {
-		            		 cusPoint : info.cusPoint,
-				             resId : info.resId,
-				             resRegDate : info.resRegDate,
-				             resCanceled : info.resCanceled,
-				             resPrice : info.resPrice,
-				             movTitle : info.movTitle,
-				             movPicMain : info.movPicMain,
-				             shoStartTime : info.shoStartTime,
-				             shoEndTime : info.shoEndTime,
-				             shoShowDate : info.shoShowDate,
-				             mulName : info.mulName,
-				             theName : info.theName,
-				             resHcount : info.resHcount
-		             };
-		             info_list.push(o);
-		        });
-				$('#point').text(info_list[0].cusPoint);
-				var view='';
-				if(info_list.length===0){
-					$('#mypage_reservation').append('<h5 id="default_msg">예매/구매내역이 없습니다.</h5>');
-				}else{
-					for(var i=0;i<info_list.length;i++){
-						view=customerMypageReservationTable(i);
-						if(i==0){
-							$('#mypage_reservation').html(view);
-						}else{
-							$('#mypage_reservation').append(view);
-						}
-						customer_mypage_reservation(info_list,$.context(),i);
+	    	$.ajax({
+				url: $.context()+'/getReservation',
+				method: 'POST',
+				data: JSON.stringify({
+					id: abb1.cookie.getCookie('id')
+				}),
+				dataType: 'json',
+				contentType: 'application/json',
+				success: function(data){
+					//포인트 출력
+					var view='';
+					if(data.infoList.length===0){
+						$('#mypage_reservation').append('<h5 id="default_msg">예매/구매내역이 없습니다.</h5>');
+						customerMypageCss();
+					}else{
+						$.each(data.infoList, function(i, info){
+							 var canceled='';
+							 if(info.resCanceled==='N'){
+							 	 canceled='취소가능';
+							 }else if(info.resCanceled==='Y'){
+								 canceled='취소';
+							 }else{
+								 canceled='사용';
+						   	 }
+							 if(i==0){
+								 $('#mypage_reservation').html(reservationDetailView(i, canceled, info));
+							 }else{
+								 $('#mypage_reservation').append(reservationDetailView(i, canceled, info));
+							 }
+				        });
+						customerMypageCss();
+						//customerReservationDetail();
 					}
-					customerMypageCss();
+				},
+				error: function(xhr,status,msg){
+					alert('실패 이유: '+msg)
 				}
-			}
-		});
+			});
 		var i = $(this).attr('id').split('_')[1]*1;
 		$.ajax({
 			url: $.context()+'/getReservationDetail',
@@ -915,42 +936,42 @@ abb1.controller =(function() {
 						dataType: 'json',
 						contentType: 'application/json',
 						success: function(data){
-                                			if(data.result===1){
-                                				alert('취소되었습니다.');
-                                				$.ajax({
-                                					url: $.context()+'/getReservation',
-                                					method: 'POST',
-                                					data: JSON.stringify({
-                                						id: abb1.cookie.getCookie('id')
-                                					}),
-                                					dataType: 'json',
-                                					contentType: 'application/json',
-                                					success: function(data){
-                                						$('#point').text(data.infoList[0].cusPoint);
-                                						var view='';
-                                						if(data.infoList.length===0){
-                                							$('#mypage_reservation').append('<h5 id="default_msg">예매/구매내역이 없습니다.</h5>');
-                                						}else{
-                                							$.each(data.infoList, function(i, info){
-                                								 var canceled='';
-                                								 if(info.resCanceled==='N'){
-                                								 	 canceled='취소가능';
-                                								 }else if(info.resCanceled==='Y'){
-                                									 canceled='취소';
-                                								 }else{
-                                									 canceled='사용';
-                                							   	 }
-                                					             $('#mypage_reservation').append(reservationDetailView(i, canceled, info));
-                                					        });
-                                							customerMypageCss();
-                                							reservationDetailService();
-                                						}
-                                					},
-                                					error: function(xhr,status,msg){
-                                						alert('실패 이유: '+msg)
-                                					}
-                                				});
-                                			}
+                			if(data.result===1){
+                				alert('취소되었습니다.');
+                				$.ajax({
+                					url: $.context()+'/getReservation',
+                					method: 'POST',
+                					data: JSON.stringify({
+                						id: abb1.cookie.getCookie('id')
+                					}),
+                					dataType: 'json',
+                					contentType: 'application/json',
+                					success: function(data){
+                						$('#point').text(data.infoList[0].cusPoint);
+                						var view='';
+                						if(data.infoList.length===0){
+                							$('#mypage_reservation').append('<h5 id="default_msg">예매/구매내역이 없습니다.</h5>');
+                						}else{
+                							$.each(data.infoList, function(i, info){
+                								 var canceled='';
+                								 if(info.resCanceled==='N'){
+                								 	 canceled='취소가능';
+                								 }else if(info.resCanceled==='Y'){
+                									 canceled='취소';
+                								 }else{
+                									 canceled='사용';
+                							   	 }
+                					             $('#mypage_reservation').append(reservationDetailView(i, canceled, info));
+                					        });
+                							customerMypageCss();
+                							reservationDetailService();
+                						}
+                					},
+                					error: function(xhr,status,msg){
+                						alert('실패 이유: '+msg)
+                					}
+                				});
+                			}
 						},
 						error: function(xhr,status,msg){
 							alert('업데이트 실패 이유:')
@@ -958,7 +979,7 @@ abb1.controller =(function() {
 					});
 					
 				 });
-				 reservationDetailService();
+				 customerReservationDetail();
 			},
 			error: function(){
 				alert('실패');
@@ -1442,6 +1463,9 @@ abb1.controller =(function() {
                 }
                });
            });
+            $('#cancel').on('click',function(){
+            	adminMovieManagement();
+            });
             
          };
          
