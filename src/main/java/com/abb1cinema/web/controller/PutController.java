@@ -41,4 +41,36 @@ public class PutController {
 		map.put("result", result);
 		return map;
 	}
+	
+	@RequestMapping(value="/updateHits", method=RequestMethod.POST, consumes="application/json")
+	public @ResponseBody Map<?,?> updateHits(@RequestBody Map<String,String> paramMap) throws Exception {
+		logger.info("PutController updateHits() {}","ENTER");
+		Map<String,Object> map = new HashMap<>();
+		map.put("group", paramMap.get("group"));
+		map.put("hits", paramMap.get("hits"));
+		map.put("seq", paramMap.get("seq"));
+		Integer result = putService.updateHits(map);
+		map.put("result", result);
+		return map;
+	}
+	
+	@RequestMapping(value="/put/admin/movie", method=RequestMethod.POST, consumes="application/json")
+	   public @ResponseBody Map<?,?> putAdminMovie(@RequestBody Map<String,String> paramMap) throws Exception {
+	      logger.info("PutController putAdminMovie() {}","ENTER");
+	      Map<String,Object> map = new HashMap<>();
+	      map.put("seq",paramMap.get("seq"));
+	      map.put("title",paramMap.get("title"));
+	      map.put("grade",paramMap.get("grade"));
+	      map.put("released",paramMap.get("released"));
+	      map.put("info",paramMap.get("info"));
+	      map.put("synopsys",paramMap.get("synopsys"));
+	      map.put("name_director",paramMap.get("name_director"));
+	      map.put("name_actor",paramMap.get("name_actor"));
+	      map.put("trailer_url",paramMap.get("trailer_url"));
+	      Integer update=putService.updateAdminMovie(map);
+	      map.clear();
+	      map.put("update", update);
+	      return map;
+	   }
+	
 }

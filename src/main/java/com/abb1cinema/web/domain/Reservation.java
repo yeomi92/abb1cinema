@@ -6,5 +6,5 @@ import lombok.*;
 
 @Component @Data @Lazy
 public class Reservation {
-	String id, reg_date, canceled, price, hcount, customer_id, movie_seq;
+	String id, reg_date, canceled, price, hcount, customer_id, showing_seq;
 }

@@ -23,4 +23,16 @@ public class PutService {
 		IPutService service=(map)->mapper.updateReservation(map);
 		return service.execute(paramMap);
 	}
+	
+	public int updateHits(Map<?,?> paramMap) throws Exception{
+		logger.info("PutService updateHits() {}","ENTER");
+		IPutService service=(map)->mapper.updateHits(map);
+		return service.execute(paramMap);
+	}
+	
+	public int updateAdminMovie(Map<?,?> paramMap) throws Exception{
+	      logger.info("PutService updateAdminMovie() {}","ENTER");
+	      IPutService service=(map)->mapper.updateAdminMovie(map);
+	      return service.execute(paramMap);
+	   }
 }

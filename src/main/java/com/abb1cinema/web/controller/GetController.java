@@ -132,7 +132,7 @@ public class GetController {
 	   }
 	   
 	   @RequestMapping(value="/getReservationDetail", method=RequestMethod.POST, consumes="application/json")
-	   public @ResponseBody Map<?,?> getReservationDetail( @RequestBody Map<String,String> paramMap) throws Exception{
+		public @ResponseBody Map<?,?> getReservationDetail( @RequestBody Map<String,String> paramMap) throws Exception{
 		    logger.info("GetController getReservationDetail() {}","ENTER");
 			Map<String, Object>map=new HashMap<>();
 			List<Information> infoList=new ArrayList<>();
@@ -145,8 +145,6 @@ public class GetController {
 			map.put("infoList", infoList);
 			return map;
 	   }
-	   
-	   
 	   
 	   @RequestMapping(value="/get/board", method=RequestMethod.POST, consumes="application/json")
 	   public @ResponseBody Map<?,?> getBoard() throws Exception {
@@ -166,9 +164,46 @@ public class GetController {
 	      map.put("success", "SUCCESS!!");
 	      return map;
 	   }
+	   
+	   @RequestMapping(value="/get/board/find", method=RequestMethod.POST, consumes="application/json")
+	   public @ResponseBody Map<?,?> getArticleList(@RequestBody Map<String, String> paramMap) throws Exception {
+		   logger.info("getBoard() {}","ENTER");
+		   Map<String, Object> map = new HashMap<>();
+		   int articleCount = 0;
+		   map.put("group", "Article");
+		   switch (paramMap.get("search")) {
+				case "title":
+					map.put("title", paramMap.get("keyword"));
+					map.put("articleList", getService.getArticleList(map));
+					map.put("key1", "title");
+					map.put("value1", paramMap.get("keyword"));
+					articleCount = getService.countSome(map);
+					break;
+				case "content":
+					map.put("content", paramMap.get("keyword"));
+					map.put("articleList", getService.getArticleList(map));
+					map.put("key1", "content");
+					map.put("value1", paramMap.get("keyword"));
+					articleCount = getService.countSome(map);
+					break;
+				case "both":
+					map.put("both", paramMap.get("keyword"));
+					map.put("articleList", getService.getArticleList(map));
+					map.put("key2", "title");
+					map.put("key3", "content");
+					map.put("value2", paramMap.get("keyword"));
+					map.put("value3", paramMap.get("keyword"));
+					articleCount = getService.countSome(map);
+					break;
+		   }
+		   
+		   map.put("articleCount", articleCount);
+		   map.put("success", "SUCCESS!!");
+		   return map;
+	   }
 
 	   @RequestMapping(value="/get/board/{seq}", method=RequestMethod.POST, consumes="application/json")
-	   public @ResponseBody Map<?,?> getBoard(@PathVariable String seq) throws Exception {
+	   public @ResponseBody Map<?,?> getBoard(@PathVariable String seq, @RequestBody Map<String, String> paramMap) throws Exception {
 	      logger.info("getBoard(seq) {}","ENTER");
 	      Map<String, Object> map = new HashMap<>();
 	      map.put("seq", seq);
@@ -176,6 +211,8 @@ public class GetController {
 	      List<Comment> commentList = getService.getCommentList(map);
 	      map.put("article", article);
 	      map.put("comment_list", commentList);
+	      map.put("id", paramMap.get("customerId"));
+    	  map.put("customer", getService.getCustomer(map));
 	      map.put("success", "SUCCESS!!");
 	      return map;
 	   }
@@ -237,48 +274,82 @@ public class GetController {
 	      map.put("success", "SUCCESS!!");
 	      return map;
 	   }
-
-	   //추가
-	   @RequestMapping(value="/get/admin/reservation", method=RequestMethod.POST, consumes="application/json")
-	   public @ResponseBody Map<?,?> getAdminReservation( @RequestBody Map<String,String> paramMap) throws Exception{
-		    logger.info("GetController getAdminReservation() {}","ENTER");
-		    List<Information> reservationList=new ArrayList<>();
-		    List<Information> cancelList=new ArrayList<>();
-		    List<Timetable> showList=new ArrayList<>();
-		    Map<String, Object>map=new HashMap<>();
-			logger.info("getAdminReservation() paramMap에서 가져온 data {}",paramMap.get("category")+paramMap.get("value"));
-			switch(paramMap.get("category")){
-			case "multiplex":
-				map.put("key", "mulName");
-				map.put("value", paramMap.get("value"));
-				reservationList=getService.getAdminReservationList(map);
-				cancelList=getService.getAdminCancelList(map);
-				showList=getService.getAdminShowList(map);
-				map.clear();
-				map.put("reservationList", reservationList);
-				map.put("cancelList", cancelList);
-				map.put("showList", showList);
-				break;
-			case "movie":
-				map.put("key", "movTitle");
-				map.put("value", paramMap.get("value"));
-				reservationList=getService.getAdminReservationList(map);
-				logger.info("getAdminReservation() infoList {}",reservationList);
-				map.put("key", "movTitle");
-				map.put("value", paramMap.get("value"));
-				cancelList=getService.getAdminCancelList(map);
-				logger.info("getAdminReservation() infoList {}",cancelList);
-				map.put("key", "movTitle");
-				map.put("value", paramMap.get("value"));
-				showList=getService.getAdminShowList(map);
-				logger.info("getAdminReservation() infoList {}",showList);
-				map.clear();
-				map.put("reservationList", reservationList);
-				map.put("cancelList", cancelList);
-				map.put("showList", showList);
-				break;
-			}
-			return map;
+	   
+	   @RequestMapping(value="/get/customer/find", method=RequestMethod.POST, consumes="application/json")
+	   public @ResponseBody Map<?,?> getCustomerFind(@RequestBody Map<String,String> paramMap) throws Exception {
+		   logger.info("getCustomerFind() {}","ENTER");
+		   Map<String, Object> map = new HashMap<>();
+		   map.put("name", paramMap.get("name"));
+		   map.put("id", paramMap.get("id"));
+		   map.put("email", paramMap.get("email"));
+		   int countByName = getService.existCustomerByName(map);
+		   Customer c = new Customer();
+		   if(countByName!=0){
+			   c = getService.findCustomerByName(map);
+		   }
+		   int countById = getService.existCustomerById(map);
+		   if(countById!=0){
+			   c = getService.findCustomerById(map);
+		   }
+		   map.put("customer", c);
+		   map.put("countByName", countByName);
+		   map.put("countById", countById);
+		   map.put("success", "SUCCESS!!");
+		   return map;
 	   }
+	   
+	   @RequestMapping(value="/get/admin/reservation", method=RequestMethod.POST, consumes="application/json")
+	      public @ResponseBody Map<?,?> getAdminReservation( @RequestBody Map<String,String> paramMap) throws Exception{
+	          logger.info("GetController getAdminReservation() {}","ENTER");
+	          List<Information> reservationList=new ArrayList<>();
+	          List<Information> cancelList=new ArrayList<>();
+	          List<Timetable> showList=new ArrayList<>();
+	          Map<String, Object>map=new HashMap<>();
+	         logger.info("getAdminReservation() paramMap에서 가져온 data {}",paramMap.get("category")+paramMap.get("value"));
+	         switch(paramMap.get("category")){
+	         case "multiplex":
+	            map.put("key", "mulName");
+	            map.put("value", paramMap.get("value"));
+	            map.put("canceled", "N");
+	            reservationList=getService.getAdminReservationList(map);
+	            map.put("canceled", "Y");
+	            cancelList=getService.getAdminReservationList(map);
+	            showList=getService.getAdminShowList(map);
+	            map.clear();
+	            map.put("reservationList", reservationList);
+	            map.put("cancelList", cancelList);
+	            map.put("showList", showList);
+	            break;
+	         case "movie":
+	            map.put("key", "movTitle");
+	            map.put("value", paramMap.get("value"));
+	            map.put("canceled", "N");
+	            reservationList=getService.getAdminReservationList(map);
+	            map.put("canceled", "Y");
+	            cancelList=getService.getAdminReservationList(map);
+	            showList=getService.getAdminShowList(map);
+	            map.clear();
+	            map.put("reservationList", reservationList);
+	            map.put("cancelList", cancelList);
+	            map.put("showList", showList);
+	            break;
+	         }
+	         return map;
+	      }
+	      
+	      @RequestMapping(value="/get/admin/movie", method=RequestMethod.POST, consumes="application/json")
+	      public @ResponseBody Map<?,?> getAdminMovie( @RequestBody Map<String,String> paramMap) throws Exception{
+	         logger.info("GetController getAdminMovie() {}","ENTER");
+	         Map<String, Object>map=new HashMap<>();
+	         map.put("value", paramMap.get("value"));
+	         int check=getService.checkMovieTitle(map);
+	         if(check==1){
+	            movie=getService.getMovieDetail(map);
+	         }else{
+	            movie.setTitle("no");
+	         }
+	         map.put("movie", movie);
+	         return map;
+	      }
 	   
 }

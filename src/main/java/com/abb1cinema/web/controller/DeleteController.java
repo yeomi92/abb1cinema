@@ -27,4 +27,34 @@ public class DeleteController {
 		map.put("result", delete);
 		return map;
 	}
+	
+	@RequestMapping(value="/delete/article", method=RequestMethod.POST, consumes="application/json") // spring p291
+	public @ResponseBody Map<?,?> deleteSeq(@RequestBody Map<String,String> paramMap) throws Exception {
+		Map<String,Object> map = new HashMap<>();
+		Integer delete = 0;
+		map.put("group", "Comment");
+		map.put("key", "article_seq");
+		map.put("value", paramMap.get("seq"));
+		delete=deleteService.delete(map);
+		map.clear();
+		map.put("group", "Article");
+		map.put("key", "seq");
+		map.put("value", paramMap.get("seq"));
+		delete=deleteService.delete(map);
+		map.put("result", delete);
+		return map;
+	}
+	
+	@RequestMapping(value="/delete/admin/movie", method=RequestMethod.POST, consumes="application/json")
+    public @ResponseBody Map<?,?> deleteAdminMovie(@RequestBody Map<String,String> paramMap) throws Exception {
+       logger.info("PutController deleteAdminMovie() {}","ENTER");
+       Map<String,Object> map = new HashMap<>();
+       map.put("value",paramMap.get("value"));
+       map.put("key", "seq");
+       map.put("group", "Movie");
+       Integer delete=deleteService.delete(map);
+       map.clear();
+       map.put("delete", delete);
+       return map;
+    }
 }

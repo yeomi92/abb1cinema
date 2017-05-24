@@ -12,7 +12,6 @@
          </div>
          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul id="ul_gnb" class="nav navbar-nav navbar-right">
-               <li><a href="#">타일의 헤더<span class="sr-only">(current)</span></a></li>
                <li><a id="login" href="#">로그인<span class="sr-only">(current)</span></a></li>
                <li><a id="register" href="#">회원가입<span class="sr-only">(current)</span></a></li>
                <li><a id="FAQ" href="#">고객센터<span class="sr-only">(current)</span></a></li>

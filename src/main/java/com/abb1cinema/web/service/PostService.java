@@ -16,4 +16,19 @@ public class PostService {
 		IPostService service=(map)->mapper.registerCustomer(map);
 		return service.execute(paramMap);
 	}
+	
+	public int doReservation(Map<?,?>paramMap) throws Exception{
+		IPostService service=(map)->mapper.postReservation(map);
+		return service.execute(paramMap);
+	}
+	
+	public int writeArticle(Map<?,?>paramMap) throws Exception{
+		IPostService service=(map)->mapper.writeArticle(map);
+		return service.execute(paramMap);
+	}
+	
+	public int writeComment(Map<?,?>paramMap) throws Exception{
+		IPostService service=(map)->mapper.writeComment(map);
+		return service.execute(paramMap);
+	}
 }

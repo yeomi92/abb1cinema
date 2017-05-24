@@ -6,12 +6,15 @@
 <insert id="registerCustomer">
 INSERT INTO Customer(id, pw, name, gender, birth, phone, email, point) VALUES (#{id},#{pw},#{name},#{gender},#{birth},#{phone},#{email},'0');
 </insert>
+
 <select id="findCustomer" resultType="com.abb1cinema.web.domain.Customer" parameterType="hashMap">
 SELECT * FROM Customer WHERE id = #{id}
 </select>
+
 <select id="existCustomer" resultType="int" parameterType="hashMap">
 SELECT COUNT(*) FROM Customer WHERE id=#{id}
 </select>
+
 <update id="updateCustomer">
 UPDATE Customer
 <set>
@@ -21,6 +24,7 @@ UPDATE Customer
 </set>
 WHERE id=#{id};
 </update>
+
 <delete id="deleteCustomer" parameterType="hashMap">
 DELETE FROM Customer WHERE id = #{id}
 </delete>
@@ -39,13 +43,13 @@ SELECT * FROM Reservation WHERE customer_id=#{id}
    <select id="getArticleList" resultType="com.abb1cinema.web.domain.Article" parameterType="hashMap">
    SELECT * FROM Article 
       <if test="title != null">
-      WHERE title like '%#{title}%' 
+      WHERE title like '%${title}%' 
       </if>
       <if test="content != null">
-      WHERE content like '%#{content}%'
+      WHERE content like '%${content}%' 
       </if>
       <if test="both != null">
-      WHERE title like '%#{both}%' OR content like '%#{both}%'
+      WHERE title like '%${both}%' OR content like '%${both}%' 
       </if>
    ORDER BY seq DESC;
    </select>
@@ -73,10 +77,10 @@ SELECT * FROM Reservation WHERE customer_id=#{id}
    <select id="getInfoList" resultType="com.abb1cinema.web.domain.Information" parameterType="hashMap">
    SELECT * FROM Information 
    <if test="key1 != null">
-   WHERE ${key1}=#{value1}
+   WHERE ${key1}=#{value1} 
    </if>
    <if test="key2 != null">
-   AND ${key2}=#{value2}
+   AND ${key2}=#{value2} 
    </if>
    <if test="key3 != null">
    AND ${key3}=#{value3}
@@ -91,7 +95,7 @@ SELECT * FROM Reservation WHERE customer_id=#{id}
    <select id="count" resultType="int" parameterType="hashMap">
       SELECT COUNT(*) FROM ${group}
       <if test="key != null">
-      WHERE ${key} = ${value};
+      WHERE ${key} = #{value};
       </if>
    </select>
    <select id="exist" resultType="int" parameterType="hashMap">
@@ -111,6 +115,8 @@ SELECT * FROM Reservation WHERE customer_id=#{id}
    <select id="getTimetableList" resultType="com.abb1cinema.web.domain.Timetable" parameterType="hashMap">
    SELECT * FROM Timetable;
    </select>
+   
+   
    <select id="getDistinctShowingList" resultType="com.abb1cinema.web.domain.Showing" parameterType="hashMap">
    SELECT DISTINCT ${column1}
    <if test="column2 != null">
@@ -119,15 +125,85 @@ SELECT * FROM Reservation WHERE customer_id=#{id}
     FROM Showing;
    </select>
    
-   <!-- 추가 -->
-   <select id="getAdminReservationList" resultType="com.abb1cinema.web.domain.Information" parameterType="hashMap">
-   SELECT * FROM Information WHERE ${key} LIKE '%${value}%' AND resCanceled='N'
+   
+   <!-- 2017-05-23 -->
+   <select id="getCustomerFindList" resultType="com.abb1cinema.web.domain.Customer" parameterType="hashMap">
+   SELECT id,pw,name,email FROM Customer;
    </select>
    
-   <select id="getAdminCancelList" resultType="com.abb1cinema.web.domain.Information" parameterType="hashMap">
-   SELECT * FROM Information WHERE ${key} LIKE '%${value}%' AND resCanceled='Y'
+   <!-- 2017-05-24 -->
+   <insert id="postReservation">
+	INSERT INTO Reservation(id, reg_date, canceled, price, hcount, customer_id, showing_seq) 
+	VALUES (#{id},#{reg_date},#{canceled},#{price},#{hcount},#{customer_id},#{showing_seq});
+	</insert>
+	<insert id="writeArticle">
+	INSERT INTO Article(article_type, title, content, file, reg_date, hits, customer_id, multiplex_seq) 
+	VALUES (#{article_type},#{title},#{content},#{file},#{reg_date},#{hits},#{customer_id},#{multiplex_seq});
+	</insert>
+	<insert id="writeComment">
+	INSERT INTO Comment(reg_date, content, customer_id, article_seq) 
+	VALUES (#{reg_date},#{content},#{customer_id},#{article_seq});
+	</insert>
+	
+	<select id="findCustomerByName" resultType="com.abb1cinema.web.domain.Customer" parameterType="hashMap">
+	SELECT * FROM Customer WHERE name = #{name} AND email = #{email}
+	</select>
+	<select id="findCustomerById" resultType="com.abb1cinema.web.domain.Customer" parameterType="hashMap">
+	SELECT * FROM Customer WHERE id = #{id} AND email = #{email}
+	</select>
+	
+	<select id="existCustomerByName" resultType="int" parameterType="hashMap">
+	SELECT COUNT(*) FROM Customer WHERE name=#{name} AND email=#{email}
+	</select>
+	<select id="existCustomerById" resultType="int" parameterType="hashMap">
+	SELECT COUNT(*) FROM Customer WHERE id=#{id} AND email=#{email}
+	</select>
+	
+	<update id="updateHits">
+	UPDATE ${group}
+	<set>
+		<if test="hits != null"> hits=#{hits} </if>
+	</set>
+	WHERE seq=#{seq};
+	</update>
+	
+	<select id="countSome" resultType="int" parameterType="hashMap">
+      SELECT COUNT(*) FROM ${group}
+      <if test="key1 != null">
+      WHERE ${key1} like '%${value1}%'
+      </if>
+      <if test="key2 != null">
+      WHERE ${key2} like '%${value2}%' OR ${key3} like '%${value3}%'
+      </if>
    </select>
+   
+   <select id="getAdminReservationList" resultType="com.abb1cinema.web.domain.Information" parameterType="hashMap">
+   SELECT * FROM Information WHERE ${key} LIKE '%${value}%' AND resCanceled=#{canceled}
+   </select>
+   
    <select id="getAdminShowList" resultType="com.abb1cinema.web.domain.Timetable" parameterType="hashMap">
    SELECT * FROM Timetable WHERE ${key} LIKE '%${value}%'
+   </select>
+   
+   <select id="getMovieDetail" resultType="com.abb1cinema.web.domain.Movie" parameterType="hashMap">
+   SELECT * FROM Movie WHERE title LIKE '%${value}%'
+   </select>
+   
+   <update id="updateAdminMovie">
+   UPDATE Movie 
+   SET 
+   title=#{title},
+   grade=#{grade},
+   released=#{released},
+   info=#{info},
+   synopsys=#{synopsys},
+   name_director=#{name_director},
+   name_actor=#{name_actor},
+   trailer_url=#{trailer_url} 
+   WHERE seq=${seq}
+   </update>
+   
+   <select id="checkMovieTitle" resultType="int" parameterType="hashMap">
+   SELECT COUNT(*) FROM Movie WHERE title LIKE '%${value}%'
    </select>
 </mapper>

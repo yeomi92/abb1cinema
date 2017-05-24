@@ -14,4 +14,8 @@ public class DeleteService {
 		IDeleteService service=(map)->mapper.deleteCustomer(map);
 		return service.execute(paramMap);
 	}
+	public int delete(Map<?,?> paramMap) throws Exception{
+	    IDeleteService service=(map)->mapper.delete(map);
+	    return service.execute(paramMap);
+	}
 }
