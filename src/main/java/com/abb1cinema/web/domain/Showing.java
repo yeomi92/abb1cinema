@@ -5,6 +5,6 @@ import org.springframework.stereotype.Component;
 import lombok.*;
 
 @Component @Data @Lazy
-public class Comment {
-	String seq, reg_date, content, customer_id, article_seq;
+public class Showing {
+   String seq, start_time, end_time, show_date, price, movie_seq, theater_seq;
 }

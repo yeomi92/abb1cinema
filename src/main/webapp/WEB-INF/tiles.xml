@@ -2,45 +2,13 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 	<definition name="public" template="/WEB-INF/views/layout/public.jsp">
-		<put-attribute name="title" value="abb1cinema"/>
+		<put-attribute name="title" value="ABB1Cinema"/>
 		<put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/>
-		<put-attribute name="container" value=""/>
+		<put-attribute name="gnb" value="/WEB-INF/views/common/gnb.jsp"/>
+		<put-attribute name="wrapper" value=""/>
 		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
 	</definition>
-	<definition name="public:*/*" extends="public">
-		<put-attribute name="container" value="/WEB-INF/views/{1}/{2}.jsp"/>
+	<definition name="public:*" extends="public">
+		<put-attribute name="wrapper" value="/WEB-INF/views/{1}.jsp"/>
 	</definition>
-	<definition name="login" template="/WEB-INF/views/layout/login.jsp">
-		<put-attribute name="title" value="abb1cinema"/>
-		<put-attribute name="header" value="/WEB-INF/views/common/headerLogin.jsp"/>
-		<put-attribute name="container" value=""/>
-		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
-	</definition>
-	<definition name="login:*/*" extends="login">
-		<put-attribute name="container" value="/WEB-INF/views/{1}/{2}.jsp"/>
-	</definition>
-	<definition name="admin:*/*" template="/WEB-INF/views/layout/admin.jsp">
-		<put-attribute name="title" value="abb1cinema"/>
-		<put-attribute name="header" value="/WEB-INF/views/admin/header.jsp"/>
-		<put-attribute name="header" value="/WEB-INF/views/admin/gnb.jsp"/>		
-		<put-attribute name="container" value=""/>
-		<put-attribute name="footer" value="/WEB-INF/views/admin/footer.jsp"/>
-	</definition>
-	<definition name="admin:*/*" extends="admin">
-		<put-attribute name="container" value="/WEB-INF/views/{1}/{2}.jsp"/>
-	</definition>
-	<!-- <definition name="noTiles" template="/WEB-INF/views/layout/noTemplate.jsp">
-		<put-attribute name="noTemplate" value=""/>
-	</definition>
-	<definition name="*.jsp" extends="noTiles">
-		<put-attribute name="noTemplate" value="/WEB-INF/views/{1}.jsp"/>
-	</definition>
-	
-	<definition name="*/*.jsp" extends="noTiles">
-		<put-attribute name="noTemplate" value="/WEB-INF/views/{1}/{2}.jsp"/>
-	</definition>
-	
-	<definition name="*/*/*.jsp" extends="noTiles">
-		<put-attribute name="noTemplate" value="/WEB-INF/views/{1}/{2}/{3}.jsp"/>
-	</definition> -->
 </tiles-definitions>
